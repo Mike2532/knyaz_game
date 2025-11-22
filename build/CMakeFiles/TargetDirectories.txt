@@ -1,0 +1,8 @@
+/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles/edit_cache.dir
+/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles/rebuild_cache.dir
+/Users/misaculkov/CLionProjects/knyaz-game/build/src/CMakeFiles/mainGame.dir
+/Users/misaculkov/CLionProjects/knyaz-game/build/src/CMakeFiles/edit_cache.dir
+/Users/misaculkov/CLionProjects/knyaz-game/build/src/CMakeFiles/rebuild_cache.dir
+/Users/misaculkov/CLionProjects/knyaz-game/build/config/CMakeFiles/config.dir
+/Users/misaculkov/CLionProjects/knyaz-game/build/config/CMakeFiles/edit_cache.dir
+/Users/misaculkov/CLionProjects/knyaz-game/build/config/CMakeFiles/rebuild_cache.dir

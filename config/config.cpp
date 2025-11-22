@@ -1,0 +1,39 @@
+#include "map"
+#include "string"
+
+#include <SFML/Window.hpp>
+
+using namespace std;
+
+map<string, string> initConfig() {
+    return {
+        {"MAIN_MENU_BG", "MMBG.png"},
+        {"HELP_MENU_BG", "HBG.png"},
+        {"LOAD_SCREEN_BG_FIRST", "loadScreen1.png"},
+        {"LOAD_SCREEN_BG_SECOND", "loadScreen2.png"},
+        {"GAME_PROCESS_BG", "gameProcess.png"},
+        {"GAME_END_BG", "gameEnd.png"},
+        {"FONT_PATH", "./../media/fonts/Wild-Rune.otf"},
+        {"BG_TEXTURE_FOLDER", "./../media/backgrounds/"},
+        {"MUSIC_FOLDER", "./../media/music/"},
+        {"GAME_MUSIC_FILE", "gameMusic.ogg"},
+        {"GAME_NAME", "Knyaz Vladimir Game"},
+        {"MOVE_LEFT_KEY", "A"},
+        {"MOVE_RIGHT_KEY", "D"},
+        {"JUMP_KEY", "SPACE"},
+        {"RAGE_KEY", "R"},
+        {"FOCUS_KEY", "F"},
+        {"LIGHT_ATTACK_KEY", "LMB"},
+        {"HEAVY_ATTACK_KEY", "RMB"}
+    };
+}
+
+map<string, sf::Keyboard::Scancode> getKeymap() {
+    return {
+        {"MOVE_LEFT_KEY", sf::Keyboard::Scancode::A},
+        {"MOVE_RIGHT_KEY", sf::Keyboard::Scancode::D},
+        {"JUMP_KEY", sf::Keyboard::Scancode::Space},
+        {"RAGE_KEY", sf::Keyboard::Scancode::R},
+        {"FOCUS_KEY", sf::Keyboard::Scancode::F}
+    };
+}

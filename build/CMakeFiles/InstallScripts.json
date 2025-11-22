@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/misaculkov/CLionProjects/knyaz-game/build/cmake_install.cmake",
+		"/Users/misaculkov/CLionProjects/knyaz-game/build/src/cmake_install.cmake",
+		"/Users/misaculkov/CLionProjects/knyaz-game/build/config/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
