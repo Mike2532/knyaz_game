@@ -16,89 +16,6 @@ void pollEvents();
 void update(std::vector<sf::Text>& textToPrint);
 void redrawFrame(const std::vector<sf::Text>& textToPrint);
 
-vector<GameEntity> mapObjs;
-
-void initMapObj(sf::Vector2f objSize, sf::Vector2f objPos) {
-    GameEntity newEntity;
-
-    sf::RectangleShape objBody({objSize});
-    objBody.setPosition(objPos);
-    objBody.setFillColor(sf::Color::Green);
-    newEntity.body = objBody;
-
-    mapObjs.push_back(newEntity);
-}
-
-const vector<pair<sf::Vector2f, sf::Vector2f>> mapObjParams {
-    make_pair<sf::Vector2f, sf::Vector2f>({20.f, 2000.f}, {-20.f, -1000.f}), //leftWorldEdge
-    make_pair<sf::Vector2f, sf::Vector2f>({20.f, 2000.f}, {4320.f, -1000.f}), //rightWorldEdge
-    make_pair<sf::Vector2f, sf::Vector2f>({4320.f, 28.f}, {0.f, 771.f}),    //floor
-
-    //todo закомментировано только для теста
-    make_pair<sf::Vector2f, sf::Vector2f>({237.f, 582.f}, {1017.f, 217.f}), //1-end
-    make_pair<sf::Vector2f, sf::Vector2f>({237.f, 35.f}, {666.f, 684.f}), //1-1
-    make_pair<sf::Vector2f, sf::Vector2f>({237.f, 35.f}, {403.f, 541.f}), //1-2
-    make_pair<sf::Vector2f, sf::Vector2f>({237.f, 35.f}, {149.f, 446.f}), //1-3
-    make_pair<sf::Vector2f, sf::Vector2f>({237.f, 35.f}, {0.f, 321.f}), //1-4
-    make_pair<sf::Vector2f, sf::Vector2f>({237.f, 35.f}, {347.f, 216.f}), //1-5
-    make_pair<sf::Vector2f, sf::Vector2f>({367.f, 35.f}, {650.f, 147.f}), //1-6
-
-    //todo сделать лесенку удобнее
-    make_pair<sf::Vector2f, sf::Vector2f>({20.f, 642.f}, {2860.f, 129.f}), //2-end
-    make_pair<sf::Vector2f, sf::Vector2f>({145.f, 35.f}, {2420.f, 676.f}), //2-1
-    make_pair<sf::Vector2f, sf::Vector2f>({145.f, 35.f}, {2420.f, 511.f}), //2-2
-    make_pair<sf::Vector2f, sf::Vector2f>({145.f, 35.f}, {2420.f, 346.f}), //2-3
-    make_pair<sf::Vector2f, sf::Vector2f>({145.f, 35.f}, {2420.f, 181.f}), //2-4
-    make_pair<sf::Vector2f, sf::Vector2f>({145.f, 35.f}, {2715.f, 624.f}), //2-5
-    make_pair<sf::Vector2f, sf::Vector2f>({145.f, 35.f}, {2715.f, 459.f}), //2-6
-    make_pair<sf::Vector2f, sf::Vector2f>({145.f, 35.f}, {2715.f, 294.f}), //2-7
-    make_pair<sf::Vector2f, sf::Vector2f>({145.f, 35.f}, {2715.f, 129.f}), //2-8
-    make_pair<sf::Vector2f, sf::Vector2f>({20.f, 545.f}, {2400.f, 0.f}), //2-9
-    //todo 2-nd lvl objects
-
-//    make_pair<sf::Vector2f, sf::Vector2f>({0.f, 0.f}, {0.f, 0.f}), //todo
-//    make_pair<sf::Vector2f, sf::Vector2f>({0.f, 0.f}, {0.f, 0.f}), //todo
-//    make_pair<sf::Vector2f, sf::Vector2f>({0.f, 0.f}, {0.f, 0.f}), //todo
-//    make_pair<sf::Vector2f, sf::Vector2f>({0.f, 0.f}, {0.f, 0.f}), //todo
-//    make_pair<sf::Vector2f, sf::Vector2f>({0.f, 0.f}, {0.f, 0.f}), //todo
-};
-
-void initGameMap() {
-    for (auto obj : mapObjParams) {
-        initMapObj({obj.first.x, obj.first.y}, {obj.second.x, obj.second.y});
-    }
-}
-
-void checkKnyazFalling() {
-    bool falling = true;
-    for (auto entity : mapObjs) {
-        bool a = knyaz.getRight() > entity.getLeft() && knyaz.getRight() < entity.getRight();
-        bool b = knyaz.getLeft() > entity.getLeft() && knyaz.getLeft() < entity.getRight();
-        bool c = abs(knyaz.getBot() - entity.getTop()) < 0.2f;
-
-        if ((a || b) && c) {
-            falling = false;
-            break;
-        }
-    }
-
-    if (knyaz.isFalling && !falling) {
-        if (!(knyaz.isMovingRight || knyaz.isMovingLeft)) knyaz.changeAnimation(animationContainer["idle"]);
-        else knyaz.changeAnimation(animationContainer["run"]);
-    }
-
-    if (falling == knyaz.isFalling) return;
-    if (falling && !knyaz.isJump) knyaz.changeAnimation(animationContainer["falling"]);
-    if (falling) {
-        knyaz.isFalling = true;
-        knyaz.freeFallingTimer.restart();
-    } else {
-        knyaz.isFalling = false;
-        knyaz.isJump = false;
-    }
-}
-
-
 int main() {
     config = initConfig();
     keymap = getKeymap();
@@ -128,6 +45,7 @@ void initDepends() {
     initAnimationTextures();
     initGameMap();
     initAnimations();
+    initObjsTextures();
     knyaz.animationData = animationContainer["idle"];
 }
 

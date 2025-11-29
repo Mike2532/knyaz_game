@@ -11,6 +11,8 @@ void playGameMusic();
 void initAnimationTextures();
 void initAnimations();
 
+void initObjsTextures();
+
 void updateBGSprite(); // использует curState
 
 #endif //KNYAZ_GAME_RESOURCES_H

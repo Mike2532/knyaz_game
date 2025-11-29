@@ -2,10 +2,38 @@
 #include "iostream"
 #include "../globals/globals.h"
 
-
 using namespace std;
 
 extern vector<GameEntity> mapObjs;
+
+bool isKnyazVerticalOverlap(GameEntity entity) {
+    return knyaz.getRight() > entity.getLeft() && knyaz.getRight() < entity.getRight() || knyaz.getLeft() > entity.getLeft() && knyaz.getLeft() < entity.getRight();
+}
+
+void checkKnyazFalling() {
+    bool falling = true;
+    for (auto entity : mapObjs) {
+        if (isKnyazVerticalOverlap(entity) && abs(knyaz.getBot() - entity.getTop()) < 0.2f) {
+            falling = false;
+            break;
+        }
+    }
+
+    if (knyaz.isFalling && !falling) {
+        if (!(knyaz.isMovingRight || knyaz.isMovingLeft)) knyaz.changeAnimation(animationContainer["idle"]);
+        else knyaz.changeAnimation(animationContainer["run"]);
+    }
+
+    if (falling == knyaz.isFalling) return;
+    if (falling && !knyaz.isJump) knyaz.changeAnimation(animationContainer["falling"]);
+    if (falling) {
+        knyaz.isFalling = true;
+        knyaz.freeFallingTimer.restart();
+    } else {
+        knyaz.isFalling = false;
+        knyaz.isJump = false;
+    }
+}
 
 bool isLeftCollision(GameEntity& entity) {
     return knyaz.getRight() > entity.getLeft() && knyaz.getLeft() < entity.getLeft();
@@ -16,19 +44,11 @@ bool isRightCollision(GameEntity& entity) {
 }
 
 bool isUpCollision(GameEntity& entity) {
-    bool a = knyaz.getRight() > entity.getLeft() && knyaz.getRight() < entity.getRight();
-    bool b = knyaz.getLeft() > entity.getLeft() && knyaz.getLeft() < entity.getRight();
-    bool c = knyaz.getBot() > entity.getTop() && knyaz.getTop() < entity.getTop();
-
-    return (a || b) && c;
+    return isKnyazVerticalOverlap(entity) && knyaz.getBot() > entity.getTop() && knyaz.getTop() < entity.getTop();
 }
 
 bool isDownCollision(GameEntity& entity) {
-    bool a = knyaz.getRight() > entity.getLeft() && knyaz.getRight() < entity.getRight();
-    bool b = knyaz.getLeft() > entity.getLeft() && knyaz.getLeft() < entity.getRight();
-    bool c = knyaz.getTop() < entity.getBot() && knyaz.getBot() > entity.getBot();
-
-    return (a || b) && c;
+    return isKnyazVerticalOverlap(entity) && knyaz.getTop() < entity.getBot() && knyaz.getBot() > entity.getBot();
 }
 
 bool isKnyazUpper(GameEntity& entity) {
@@ -39,7 +59,7 @@ bool isKnyazLower(GameEntity& entity) {
     return knyaz.getTop() >= entity.getBot();
 }
 
-void checkXCollision() {
+void checkHorizontalCollision() {
     sf::Vector2f knyazPos = knyaz.body.getPosition();
     sf::Vector2f knyazSize = knyaz.body.getSize();
 
@@ -60,7 +80,7 @@ void checkXCollision() {
     }
 }
 
-void checkYCollision() {
+void checkVerticalCollision() {
     sf::Vector2f knyazPos = knyaz.body.getPosition();
     sf::Vector2f knyazSize = knyaz.body.getSize();
 
@@ -87,55 +107,67 @@ void checkYCollision() {
     }
 }
 
-void knyazMove(const float& elapsedTime) {
-    const sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
-    const unsigned int SCREEN_WIDTH = desktopMode.width;
-    const unsigned int SCREEN_HEIGHT = desktopMode.height;
-
-    constexpr float FREE_FALLING_SPEED_MULTIPLYER = 0.4f;
-    constexpr float JUMP_POWER = 0.25f;
-
-    constexpr float KNYAZ_MOVE_SPEED = 600.f;
-    const float offset = KNYAZ_MOVE_SPEED * elapsedTime;
+void leftMoveProcess(const unsigned int& LEFT_CAMERA_EDGE, const float &offset) {
+    constexpr int LEFT_EDGE_INDEX = 0;
 
     sf::Vector2f knyazPosition = knyaz.body.getPosition();
 
-    if (knyaz.isMovingLeft && knyazPosition.x >= SCREEN_WIDTH / 5 * 2) {
+    GameEntity leftEdge = mapObjs[LEFT_EDGE_INDEX];
+    sf::Vector2f leftEdgeSize = leftEdge.body.getSize();
+    sf::Vector2f leftEdgePos = leftEdge.body.getPosition();
+
+    if (knyazPosition.x >= LEFT_CAMERA_EDGE || leftEdgePos.x + leftEdgeSize.x + offset >= 0) {
         knyazPosition.x -= offset;
-    } else if (knyaz.isMovingLeft && knyazPosition.x < SCREEN_WIDTH / 5 * 2) {
-        GameEntity leftEdge = mapObjs[0];
-        sf::Vector2f edgeSize = leftEdge.body.getSize();
-        sf::Vector2f edgePos = leftEdge.body.getPosition();
-        if (edgePos.x + edgeSize.x + offset < 0) {
-            for (auto& mapObj : mapObjs) {
-                sf::Vector2f entityPos = mapObj.body.getPosition();
-                entityPos.x += offset;
-                mapObj.body.setPosition(entityPos);
-            }
-        } else {
-            knyazPosition.x -= offset;
-        }
-    } else if (knyaz.isMovingRight && knyazPosition.x <= SCREEN_WIDTH / 5 * 3) {
-        knyazPosition.x += offset;
-    } else if (knyaz.isMovingRight && knyazPosition.x > SCREEN_WIDTH / 5 * 3) {
-        GameEntity righttEdge = mapObjs[1];
-        sf::Vector2f edgePos = righttEdge.body.getPosition();
-        if (edgePos.x - offset >= SCREEN_WIDTH) {
-            for (auto& mapObj : mapObjs) {
-                sf::Vector2f entityPos = mapObj.body.getPosition();
-                entityPos.x -= offset;
-                mapObj.body.setPosition(entityPos);
-            }
-        } else {
-            knyazPosition.x += offset;
+    } else if (knyazPosition.x < LEFT_CAMERA_EDGE) {
+        for (auto& mapObj : mapObjs) {
+            sf::Vector2f entityPos = mapObj.body.getPosition();
+            entityPos.x += offset;
+            mapObj.body.setPosition(entityPos);
         }
     }
-
     knyaz.body.setPosition(knyazPosition);
+}
 
-    checkXCollision();
+void rightMoveProcess(const unsigned int& RIGHT_CAMERA_EDGE, const float &offset, const unsigned int &SCREEN_WIDTH) {
+    constexpr int RIGHT_EDGE_INDEX = 1;
 
-    knyazPosition = knyaz.body.getPosition();
+    sf::Vector2f knyazPosition = knyaz.body.getPosition();
+
+    GameEntity rightEdge = mapObjs[RIGHT_EDGE_INDEX];
+    sf::Vector2f rightEdgePos = rightEdge.body.getPosition();
+
+    if (knyazPosition.x <= RIGHT_CAMERA_EDGE || rightEdgePos.x - offset < SCREEN_WIDTH) {
+        knyazPosition.x += offset;
+    } else if (knyaz.isMovingRight && knyazPosition.x > RIGHT_CAMERA_EDGE) {
+        for (auto& mapObj : mapObjs) {
+            sf::Vector2f entityPos = mapObj.body.getPosition();
+            entityPos.x -= offset;
+            mapObj.body.setPosition(entityPos);
+        }
+    }
+    knyaz.body.setPosition(knyazPosition);
+}
+
+void horizontalMoveProcess(const float& elapsedTime) {
+    constexpr float KNYAZ_MOVE_SPEED = 600.f;
+    const float offset = KNYAZ_MOVE_SPEED * elapsedTime;
+
+    const unsigned int SCREEN_WIDTH = sf::VideoMode::getDesktopMode().width;
+    const unsigned int LEFT_CAMERA_EDGE = SCREEN_WIDTH / 5 * 2;
+    const unsigned int RIGHT_CAMERA_EDGE = SCREEN_WIDTH / 5 * 2;
+
+    if (knyaz.isMovingLeft) {
+        leftMoveProcess(LEFT_CAMERA_EDGE, offset);
+    } else if (knyaz.isMovingRight) {
+        rightMoveProcess(RIGHT_CAMERA_EDGE, offset, SCREEN_WIDTH);
+    }
+}
+
+void verticalMoveProcess() {
+    constexpr float FREE_FALLING_SPEED_MULTIPLYER = 0.4f;
+    constexpr float JUMP_POWER = 0.25f;
+
+    sf::Vector2f knyazPosition = knyaz.body.getPosition();
 
     float fallingOffset = knyaz.freeFallingTimer.getElapsedTime().asSeconds() * FREE_FALLING_SPEED_MULTIPLYER;
 
@@ -153,12 +185,29 @@ void knyazMove(const float& elapsedTime) {
     }
 
     knyaz.body.setPosition(knyazPosition);
+}
 
-    checkYCollision();
+void horizontalMove(const float& elapsedTime) {
+    horizontalMoveProcess(elapsedTime);
+    checkHorizontalCollision();
+}
+
+void verticalMove() {
+    verticalMoveProcess();
+    checkVerticalCollision();
+}
+
+void knyazMove(const float& elapsedTime) {
+    horizontalMove(elapsedTime);
+    verticalMove();
 }
 
 sf::RectangleShape getKnyazBody() {
-    sf::RectangleShape knyazBody({80.f, 80.f});
-    knyazBody.setPosition({39.f, 400.f});
+    constexpr float KNYAZ_SIDE_SIZE = 80.f;
+    constexpr float KNYAZ_START_X = 39.f;
+    constexpr float KNYAZ_START_Y = 400.f;
+
+    sf::RectangleShape knyazBody({KNYAZ_SIDE_SIZE, KNYAZ_SIDE_SIZE});
+    knyazBody.setPosition({KNYAZ_START_X, KNYAZ_START_Y});
     return knyazBody;
 }

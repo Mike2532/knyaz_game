@@ -40,6 +40,10 @@ void initAnimationTextures() {
     KnyazHeavyAttackTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_HEAVY_ATTACK_ANIMATION"]);
 }
 
+void initObjsTextures() {
+    GroundTexture.loadFromFile(config["WORLD_TEXTURES_FOLDER"] + config["GROUND_TEXTURE"]);
+}
+
 void playGameMusic() {
     GameMusic.play();
 }

@@ -99,11 +99,11 @@ void MainMenuMouseClickHandler(const sf::Event& event) {
 
     auto checkButtonMatch = [eventX, eventY] (const sf::FloatRect& textInfo) -> bool {
         if (
-                eventX >= textInfo.left &&
-                eventX <= textInfo.left + textInfo.width &&
-                eventY >= textInfo.top &&
-                eventY <= textInfo.top + textInfo.height
-                ) {
+            eventX >= textInfo.left &&
+            eventX <= textInfo.left + textInfo.width &&
+            eventY >= textInfo.top &&
+            eventY <= textInfo.top + textInfo.height
+            ) {
             return true;
         }
         return false;
@@ -163,39 +163,58 @@ void GameEndEventsHandler(const sf::Event& event) {
     }
 }
 
-void GameProcessEventsHandler(const sf::Event& event) {
-    //TODO сейчас это просто проверка способности игры завершиться
-    if (event.type == sf::Event::MouseButtonPressed) {
-        if (!(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight)) {
-            if (event.mouseButton.button == sf::Mouse::Left) {
-                knyaz.changeAnimation(animationContainer["easyAttack"]);
-            } else if (event.mouseButton.button == sf::Mouse::Right) {
-                knyaz.changeAnimation(animationContainer["heavyAttack"]);
-            }
+void mouseEventsHandler(const sf::Event& event) {
+    if (!(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight)) {
+        if (event.mouseButton.button == sf::Mouse::Left) {
+            knyaz.changeAnimation(animationContainer["easyAttack"]);
+        } else if (event.mouseButton.button == sf::Mouse::Right) {
+            knyaz.changeAnimation(animationContainer["heavyAttack"]);
         }
     }
+}
 
-    if (sf::Keyboard::isKeyPressed(keymap["MOVE_LEFT_KEY"]) && !knyaz.isMovingLeft) {
-        knyaz.isMovingLeft = true;
-        if (!(knyaz.isJump || knyaz.isFalling)) knyaz.changeAnimation(animationContainer["run"]);
-        if (!knyaz.isLeftOrented) knyaz.isLeftOrented = true;
-    } else if (!sf::Keyboard::isKeyPressed(keymap["MOVE_LEFT_KEY"]) && knyaz.isMovingLeft) {
-        knyaz.isMovingLeft = false;
-        if (!knyaz.isMovingRight && !knyaz.isJump && !knyaz.isFalling) knyaz.changeAnimation(animationContainer["idle"]);
-    } else if (sf::Keyboard::isKeyPressed(keymap["MOVE_RIGHT_KEY"]) && !knyaz.isMovingRight) {
-        knyaz.isMovingRight = true;
-        if (!(knyaz.isJump || knyaz.isFalling)) knyaz.changeAnimation(animationContainer["run"]);
-        if (knyaz.isLeftOrented) knyaz.isLeftOrented = false;
-    } else if (!sf::Keyboard::isKeyPressed(keymap["MOVE_RIGHT_KEY"]) && knyaz.isMovingRight) {
-        knyaz.isMovingRight = false;
-        if (!knyaz.isMovingLeft && !knyaz.isJump && !knyaz.isFalling) knyaz.changeAnimation(animationContainer["idle"]);
-    }
-
-    if (sf::Keyboard::isKeyPressed(keymap["JUMP_KEY"]) && !knyaz.isJump && !knyaz.isFalling) {
+void jumpHandler(const sf::Event& event) {
+    if (! (knyaz.isJump || knyaz.isFalling)) {
         knyaz.isJump = true;
         knyaz.changeAnimation(animationContainer["jump"]);
         knyaz.freeFallingTimer.restart();
     }
+}
 
-    //TODO В будущем тут будет больше обработчиков кнопок Князя
+void movementHandler() {
+    bool moveLeftPressed = sf::Keyboard::isKeyPressed(keymap["MOVE_LEFT_KEY"]);
+    bool moveRightPressed = sf::Keyboard::isKeyPressed(keymap["MOVE_RIGHT_KEY"]);
+    bool isKnyazStanding = !(knyaz.isJump || knyaz.isFalling);
+
+    if (moveLeftPressed && !knyaz.isMovingLeft) {
+        knyaz.isMovingLeft = true;
+        if (isKnyazStanding) knyaz.changeAnimation(animationContainer["run"]);
+        if (!knyaz.isLeftOrented) knyaz.isLeftOrented = true;
+
+    } else if (!moveLeftPressed && knyaz.isMovingLeft) {
+        knyaz.isMovingLeft = false;
+        if (!knyaz.isMovingRight && isKnyazStanding) knyaz.changeAnimation(animationContainer["idle"]);
+
+    } else if (moveRightPressed && !knyaz.isMovingRight) {
+        knyaz.isMovingRight = true;
+        if (isKnyazStanding) knyaz.changeAnimation(animationContainer["run"]);
+        if (knyaz.isLeftOrented) knyaz.isLeftOrented = false;
+
+    } else if (!moveRightPressed && knyaz.isMovingRight) {
+        knyaz.isMovingRight = false;
+        if (!knyaz.isMovingLeft && isKnyazStanding) knyaz.changeAnimation(animationContainer["idle"]);
+
+    }
+}
+
+void GameProcessEventsHandler(const sf::Event& event) {
+    if (event.type == sf::Event::MouseButtonPressed) {
+        mouseEventsHandler(event);
+    }
+
+    if (sf::Keyboard::isKeyPressed(keymap["JUMP_KEY"])) {
+        jumpHandler(event);
+    }
+
+    movementHandler();
 }

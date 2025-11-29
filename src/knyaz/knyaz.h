@@ -6,6 +6,6 @@
 
 void knyazMove(const float& elapsedTime);
 sf::RectangleShape getKnyazBody();
-
+void checkKnyazFalling();
 
 #endif //KNYAZ_GAME_KNYAZ_H

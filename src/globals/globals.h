@@ -6,7 +6,10 @@
 #include <SFML/Audio.hpp>
 #include <map>
 #include <string>
+#include <vector>
 #include "../types.h"
+
+using namespace std;
 
 extern sf::Texture MainMenuTexture;
 extern sf::Texture HelpMenuTexture;
@@ -22,6 +25,7 @@ extern sf::Texture KnyazFallingTexture;
 extern sf::Texture KnyazEasyAttackTexture;
 extern sf::Texture KnyazHeavyAttackTexture;
 
+extern sf::Texture GroundTexture;
 
 extern sf::Music GameMusic;
 extern sf::Font myFont;
@@ -50,33 +54,48 @@ struct Knyaz : GameEntity {
     AnimationData animationData;
 
     void textureUpdate() {
+        constexpr int DISTANSE_OFFSET = 120;
+        constexpr int RIGHT_INNER_OFFSET = 27;
+        constexpr int ATTACK_OFFSET = 40;
+        constexpr int LEFT_ATTACK_OFFSET = 65;
+        constexpr int ATTACK_TOP = 35;
+        constexpr int TOP = 40;
+        constexpr int ATTACK_HEIGHT = 40;
+        constexpr int HEIGHT = 40;
+        constexpr int ATTACK_WIDTH = 43;
+        constexpr int WIDTH = 43;
+        constexpr int LEFT_ORENTED_OFFSET = 43;
+        constexpr float KNYAZ_SIDE_SIZE = 80.f;
+
         body.setTexture(&animationData.animationTexture);
         if (isLeftOrented) {
             if (animationData.animationType == AnimationTypes::ATTACK) {
-                body.setTextureRect(sf::IntRect(120 * animationFrameNumber + 40 + 65, 35, -65, 45));
+                body.setTextureRect(sf::IntRect(DISTANSE_OFFSET * animationFrameNumber + ATTACK_OFFSET + LEFT_ATTACK_OFFSET, ATTACK_TOP, -ATTACK_WIDTH, ATTACK_HEIGHT));
                 if (animationFrameNumber == animationData.animationFrames - 1) {
                     changeAnimation(animationContainer["idle"]);
-                    body.setTextureRect(sf::IntRect(120 * animationFrameNumber + 27 + 43, 40, -43, 40));
+                    body.setTextureRect(sf::IntRect(DISTANSE_OFFSET * animationFrameNumber + RIGHT_INNER_OFFSET + LEFT_ORENTED_OFFSET, TOP, -WIDTH, HEIGHT));
                 }
             } else {
-                body.setTextureRect(sf::IntRect(120 * animationFrameNumber + 27 + 43, 40, -43, 40));
+                body.setTextureRect(sf::IntRect(DISTANSE_OFFSET * animationFrameNumber + RIGHT_INNER_OFFSET + LEFT_ORENTED_OFFSET, TOP, -WIDTH, HEIGHT));
             }
         } else {
             if (animationData.animationType == AnimationTypes::ATTACK) {
-                body.setTextureRect(sf::IntRect(120 * animationFrameNumber + 40, 35, 65, 45));
+                body.setTextureRect(sf::IntRect(DISTANSE_OFFSET * animationFrameNumber + ATTACK_OFFSET, ATTACK_TOP, ATTACK_WIDTH, ATTACK_HEIGHT));
                 if (animationFrameNumber == animationData.animationFrames - 1) {
                     changeAnimation(animationContainer["idle"]);
-                    body.setTextureRect(sf::IntRect(120 * animationFrameNumber + 27, 40, 43, 40));
+                    body.setTextureRect(sf::IntRect(DISTANSE_OFFSET * animationFrameNumber + RIGHT_INNER_OFFSET, TOP, WIDTH, HEIGHT));
                 }
             } else {
-                body.setTextureRect(sf::IntRect(120 * animationFrameNumber + 27, 40, 43, 40));
+                body.setTextureRect(sf::IntRect(DISTANSE_OFFSET * animationFrameNumber + RIGHT_INNER_OFFSET, TOP, WIDTH, HEIGHT));
             }
         }
-        body.setSize(sf::Vector2f(80.f, 80.f));
+        body.setSize(sf::Vector2f(KNYAZ_SIDE_SIZE, KNYAZ_SIDE_SIZE));
     }
 
     void animationProcess() {
-        if (animationTimer.getElapsedTime().asMilliseconds() < 100) return;
+        constexpr int ANIMATION_DURATON = 100;
+
+        if (animationTimer.getElapsedTime().asMilliseconds() < ANIMATION_DURATON) return;
         animationTimer.restart();
 
         animationFrameNumber++;
@@ -104,5 +123,9 @@ extern sf::Clock globalTimer;
 
 void initDepends();
 void initVariables();
+
+void initGameMap();
+
+extern vector<GameEntity> mapObjs;
 
 #endif //KNYAZ_GAME_GLOBALS_H
