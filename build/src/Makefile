@@ -117,145 +117,73 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/CMakeFiles/mainGame.dir/rule:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/mainGame.dir/rule
-.PHONY : src/CMakeFiles/mainGame.dir/rule
+src/CMakeFiles/knyaz_game.dir/rule:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/knyaz_game.dir/rule
+.PHONY : src/CMakeFiles/knyaz_game.dir/rule
 
 # Convenience name for target.
-mainGame: src/CMakeFiles/mainGame.dir/rule
-.PHONY : mainGame
+knyaz_game: src/CMakeFiles/knyaz_game.dir/rule
+.PHONY : knyaz_game
 
 # fast build rule for target.
-mainGame/fast:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/build
-.PHONY : mainGame/fast
+knyaz_game/fast:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/build
+.PHONY : knyaz_game/fast
 
-CommonElements/CommonElements.o: CommonElements/CommonElements.cpp.o
-.PHONY : CommonElements/CommonElements.o
-
-# target to build an object file
-CommonElements/CommonElements.cpp.o:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/CommonElements/CommonElements.cpp.o
-.PHONY : CommonElements/CommonElements.cpp.o
-
-CommonElements/CommonElements.i: CommonElements/CommonElements.cpp.i
-.PHONY : CommonElements/CommonElements.i
-
-# target to preprocess a source file
-CommonElements/CommonElements.cpp.i:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/CommonElements/CommonElements.cpp.i
-.PHONY : CommonElements/CommonElements.cpp.i
-
-CommonElements/CommonElements.s: CommonElements/CommonElements.cpp.s
-.PHONY : CommonElements/CommonElements.s
-
-# target to generate assembly for a file
-CommonElements/CommonElements.cpp.s:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/CommonElements/CommonElements.cpp.s
-.PHONY : CommonElements/CommonElements.cpp.s
-
-Models/GameState/GameState.o: Models/GameState/GameState.cpp.o
-.PHONY : Models/GameState/GameState.o
+globals/globals.o: globals/globals.cpp.o
+.PHONY : globals/globals.o
 
 # target to build an object file
-Models/GameState/GameState.cpp.o:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/Models/GameState/GameState.cpp.o
-.PHONY : Models/GameState/GameState.cpp.o
+globals/globals.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/globals/globals.cpp.o
+.PHONY : globals/globals.cpp.o
 
-Models/GameState/GameState.i: Models/GameState/GameState.cpp.i
-.PHONY : Models/GameState/GameState.i
+globals/globals.i: globals/globals.cpp.i
+.PHONY : globals/globals.i
 
 # target to preprocess a source file
-Models/GameState/GameState.cpp.i:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/Models/GameState/GameState.cpp.i
-.PHONY : Models/GameState/GameState.cpp.i
+globals/globals.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/globals/globals.cpp.i
+.PHONY : globals/globals.cpp.i
 
-Models/GameState/GameState.s: Models/GameState/GameState.cpp.s
-.PHONY : Models/GameState/GameState.s
+globals/globals.s: globals/globals.cpp.s
+.PHONY : globals/globals.s
 
 # target to generate assembly for a file
-Models/GameState/GameState.cpp.s:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/Models/GameState/GameState.cpp.s
-.PHONY : Models/GameState/GameState.cpp.s
+globals/globals.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/globals/globals.cpp.s
+.PHONY : globals/globals.cpp.s
 
-Models/Knyaz/Knyaz.o: Models/Knyaz/Knyaz.cpp.o
-.PHONY : Models/Knyaz/Knyaz.o
+knyaz/knyaz.o: knyaz/knyaz.cpp.o
+.PHONY : knyaz/knyaz.o
 
 # target to build an object file
-Models/Knyaz/Knyaz.cpp.o:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/Models/Knyaz/Knyaz.cpp.o
-.PHONY : Models/Knyaz/Knyaz.cpp.o
+knyaz/knyaz.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/knyaz/knyaz.cpp.o
+.PHONY : knyaz/knyaz.cpp.o
 
-Models/Knyaz/Knyaz.i: Models/Knyaz/Knyaz.cpp.i
-.PHONY : Models/Knyaz/Knyaz.i
-
-# target to preprocess a source file
-Models/Knyaz/Knyaz.cpp.i:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/Models/Knyaz/Knyaz.cpp.i
-.PHONY : Models/Knyaz/Knyaz.cpp.i
-
-Models/Knyaz/Knyaz.s: Models/Knyaz/Knyaz.cpp.s
-.PHONY : Models/Knyaz/Knyaz.s
-
-# target to generate assembly for a file
-Models/Knyaz/Knyaz.cpp.s:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/Models/Knyaz/Knyaz.cpp.s
-.PHONY : Models/Knyaz/Knyaz.cpp.s
-
-Models/MainMenu/MainMenu.o: Models/MainMenu/MainMenu.cpp.o
-.PHONY : Models/MainMenu/MainMenu.o
-
-# target to build an object file
-Models/MainMenu/MainMenu.cpp.o:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/Models/MainMenu/MainMenu.cpp.o
-.PHONY : Models/MainMenu/MainMenu.cpp.o
-
-Models/MainMenu/MainMenu.i: Models/MainMenu/MainMenu.cpp.i
-.PHONY : Models/MainMenu/MainMenu.i
+knyaz/knyaz.i: knyaz/knyaz.cpp.i
+.PHONY : knyaz/knyaz.i
 
 # target to preprocess a source file
-Models/MainMenu/MainMenu.cpp.i:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/Models/MainMenu/MainMenu.cpp.i
-.PHONY : Models/MainMenu/MainMenu.cpp.i
+knyaz/knyaz.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/knyaz/knyaz.cpp.i
+.PHONY : knyaz/knyaz.cpp.i
 
-Models/MainMenu/MainMenu.s: Models/MainMenu/MainMenu.cpp.s
-.PHONY : Models/MainMenu/MainMenu.s
-
-# target to generate assembly for a file
-Models/MainMenu/MainMenu.cpp.s:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/Models/MainMenu/MainMenu.cpp.s
-.PHONY : Models/MainMenu/MainMenu.cpp.s
-
-__/config/config.o: __/config/config.cpp.o
-.PHONY : __/config/config.o
-
-# target to build an object file
-__/config/config.cpp.o:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/__/config/config.cpp.o
-.PHONY : __/config/config.cpp.o
-
-__/config/config.i: __/config/config.cpp.i
-.PHONY : __/config/config.i
-
-# target to preprocess a source file
-__/config/config.cpp.i:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/__/config/config.cpp.i
-.PHONY : __/config/config.cpp.i
-
-__/config/config.s: __/config/config.cpp.s
-.PHONY : __/config/config.s
+knyaz/knyaz.s: knyaz/knyaz.cpp.s
+.PHONY : knyaz/knyaz.s
 
 # target to generate assembly for a file
-__/config/config.cpp.s:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/__/config/config.cpp.s
-.PHONY : __/config/config.cpp.s
+knyaz/knyaz.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/knyaz/knyaz.cpp.s
+.PHONY : knyaz/knyaz.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/main.cpp.o
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -263,7 +191,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/main.cpp.i
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -271,8 +199,56 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/main.cpp.s
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/main.cpp.s
 .PHONY : main.cpp.s
+
+resources/resources.o: resources/resources.cpp.o
+.PHONY : resources/resources.o
+
+# target to build an object file
+resources/resources.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/resources/resources.cpp.o
+.PHONY : resources/resources.cpp.o
+
+resources/resources.i: resources/resources.cpp.i
+.PHONY : resources/resources.i
+
+# target to preprocess a source file
+resources/resources.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/resources/resources.cpp.i
+.PHONY : resources/resources.cpp.i
+
+resources/resources.s: resources/resources.cpp.s
+.PHONY : resources/resources.s
+
+# target to generate assembly for a file
+resources/resources.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/resources/resources.cpp.s
+.PHONY : resources/resources.cpp.s
+
+ui/ui.o: ui/ui.cpp.o
+.PHONY : ui/ui.o
+
+# target to build an object file
+ui/ui.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/ui/ui.cpp.o
+.PHONY : ui/ui.cpp.o
+
+ui/ui.i: ui/ui.cpp.i
+.PHONY : ui/ui.i
+
+# target to preprocess a source file
+ui/ui.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/ui/ui.cpp.i
+.PHONY : ui/ui.cpp.i
+
+ui/ui.s: ui/ui.cpp.s
+.PHONY : ui/ui.s
+
+# target to generate assembly for a file
+ui/ui.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/ui/ui.cpp.s
+.PHONY : ui/ui.cpp.s
 
 # Help Target
 help:
@@ -282,25 +258,22 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... mainGame"
-	@echo "... CommonElements/CommonElements.o"
-	@echo "... CommonElements/CommonElements.i"
-	@echo "... CommonElements/CommonElements.s"
-	@echo "... Models/GameState/GameState.o"
-	@echo "... Models/GameState/GameState.i"
-	@echo "... Models/GameState/GameState.s"
-	@echo "... Models/Knyaz/Knyaz.o"
-	@echo "... Models/Knyaz/Knyaz.i"
-	@echo "... Models/Knyaz/Knyaz.s"
-	@echo "... Models/MainMenu/MainMenu.o"
-	@echo "... Models/MainMenu/MainMenu.i"
-	@echo "... Models/MainMenu/MainMenu.s"
-	@echo "... __/config/config.o"
-	@echo "... __/config/config.i"
-	@echo "... __/config/config.s"
+	@echo "... knyaz_game"
+	@echo "... globals/globals.o"
+	@echo "... globals/globals.i"
+	@echo "... globals/globals.s"
+	@echo "... knyaz/knyaz.o"
+	@echo "... knyaz/knyaz.i"
+	@echo "... knyaz/knyaz.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... resources/resources.o"
+	@echo "... resources/resources.i"
+	@echo "... resources/resources.s"
+	@echo "... ui/ui.o"
+	@echo "... ui/ui.i"
+	@echo "... ui/ui.s"
 .PHONY : help
 
 

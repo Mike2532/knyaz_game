@@ -5,6 +5,7 @@
 #ifndef KNYAZ_GAME_CONFIG_H
 #define KNYAZ_GAME_CONFIG_H
 
+#include <SFML/Window/Keyboard.hpp>
 #include "map"
 #include "string"
 

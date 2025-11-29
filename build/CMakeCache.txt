@@ -219,6 +219,9 @@ SFML_DOC_DIR:PATH=SFML_DOC_DIR-NOTFOUND
 //Dependencies for the target
 config_LIB_DEPENDS:STATIC=general;sfml-window;
 
+//Dependencies for the target
+globals_lib_LIB_DEPENDS:STATIC=general;sfml-graphics;general;sfml-window;general;sfml-system;
+
 //Value Computed by CMake
 knyaz_game_BINARY_DIR:STATIC=/Users/misaculkov/CLionProjects/knyaz-game/build
 
@@ -227,6 +230,15 @@ knyaz_game_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 knyaz_game_SOURCE_DIR:STATIC=/Users/misaculkov/CLionProjects/knyaz-game
+
+//Dependencies for the target
+knyaz_lib_LIB_DEPENDS:STATIC=general;sfml-graphics;general;sfml-window;general;sfml-system;
+
+//Dependencies for the target
+resources_lib_LIB_DEPENDS:STATIC=general;sfml-audio;general;sfml-system;
+
+//Dependencies for the target
+ui_lib_LIB_DEPENDS:STATIC=general;sfml-graphics;general;sfml-window;general;sfml-system;
 
 
 ########################
@@ -317,7 +329,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

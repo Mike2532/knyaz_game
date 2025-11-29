@@ -7,4 +7,4 @@ mkdir -p build
 cd ./build
 cmake ..
 cmake --build .
-./src/mainGame
+./src/knyaz_game

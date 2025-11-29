@@ -117,19 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named mainGame
-
-# Build rule for target.
-mainGame: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mainGame
-.PHONY : mainGame
-
-# fast build rule for target.
-mainGame/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/mainGame.dir/build.make src/CMakeFiles/mainGame.dir/build
-.PHONY : mainGame/fast
-
-#=============================================================================
 # Target rules for targets named config
 
 # Build rule for target.
@@ -142,6 +129,71 @@ config/fast:
 	$(MAKE) $(MAKESILENT) -f config/CMakeFiles/config.dir/build.make config/CMakeFiles/config.dir/build
 .PHONY : config/fast
 
+#=============================================================================
+# Target rules for targets named knyaz_game
+
+# Build rule for target.
+knyaz_game: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 knyaz_game
+.PHONY : knyaz_game
+
+# fast build rule for target.
+knyaz_game/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/build
+.PHONY : knyaz_game/fast
+
+#=============================================================================
+# Target rules for targets named globals_lib
+
+# Build rule for target.
+globals_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 globals_lib
+.PHONY : globals_lib
+
+# fast build rule for target.
+globals_lib/fast:
+	$(MAKE) $(MAKESILENT) -f src/globals/CMakeFiles/globals_lib.dir/build.make src/globals/CMakeFiles/globals_lib.dir/build
+.PHONY : globals_lib/fast
+
+#=============================================================================
+# Target rules for targets named knyaz_lib
+
+# Build rule for target.
+knyaz_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 knyaz_lib
+.PHONY : knyaz_lib
+
+# fast build rule for target.
+knyaz_lib/fast:
+	$(MAKE) $(MAKESILENT) -f src/knyaz/CMakeFiles/knyaz_lib.dir/build.make src/knyaz/CMakeFiles/knyaz_lib.dir/build
+.PHONY : knyaz_lib/fast
+
+#=============================================================================
+# Target rules for targets named resources_lib
+
+# Build rule for target.
+resources_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 resources_lib
+.PHONY : resources_lib
+
+# fast build rule for target.
+resources_lib/fast:
+	$(MAKE) $(MAKESILENT) -f src/resources/CMakeFiles/resources_lib.dir/build.make src/resources/CMakeFiles/resources_lib.dir/build
+.PHONY : resources_lib/fast
+
+#=============================================================================
+# Target rules for targets named ui_lib
+
+# Build rule for target.
+ui_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ui_lib
+.PHONY : ui_lib
+
+# fast build rule for target.
+ui_lib/fast:
+	$(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/ui_lib.dir/build.make src/ui/CMakeFiles/ui_lib.dir/build
+.PHONY : ui_lib/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -151,7 +203,11 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... config"
-	@echo "... mainGame"
+	@echo "... globals_lib"
+	@echo "... knyaz_game"
+	@echo "... knyaz_lib"
+	@echo "... resources_lib"
+	@echo "... ui_lib"
 .PHONY : help
 
 

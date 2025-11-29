@@ -24,7 +24,14 @@ map<string, string> initConfig() {
         {"RAGE_KEY", "R"},
         {"FOCUS_KEY", "F"},
         {"LIGHT_ATTACK_KEY", "LMB"},
-        {"HEAVY_ATTACK_KEY", "RMB"}
+        {"HEAVY_ATTACK_KEY", "RMB"},
+        {"KNYAZ_ANIMATIOS_FOLDER", "./../media/animations/knyaz/"},
+        {"KNYAZ_IDLE_ANIMATION", "idle.png"},
+        {"KNYAZ_RUN_ANIMATION", "run.png"},
+        {"KNYAZ_JUMP_ANIMATION", "jump.png"},
+        {"KNYAZ_FALLING_ANIMATION", "falling.png"},
+        {"KNYAZ_EASY_ATTACK_ANIMATION", "easyAttack.png"},
+        {"KNYAZ_HEAVY_ATTACK_ANIMATION", "heavyAttack.png"},
     };
 }
 

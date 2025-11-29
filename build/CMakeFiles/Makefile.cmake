@@ -12,6 +12,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/4.1.1/CMakeSystem.cmake"
   "/Users/misaculkov/CLionProjects/knyaz-game/config/CMakeLists.txt"
   "/Users/misaculkov/CLionProjects/knyaz-game/src/CMakeLists.txt"
+  "/Users/misaculkov/CLionProjects/knyaz-game/src/globals/CMakeLists.txt"
+  "/Users/misaculkov/CLionProjects/knyaz-game/src/knyaz/CMakeLists.txt"
+  "/Users/misaculkov/CLionProjects/knyaz-game/src/resources/CMakeLists.txt"
+  "/Users/misaculkov/CLionProjects/knyaz-game/src/ui/CMakeLists.txt"
   "/opt/homebrew/opt/sfml@2/lib/cmake/SFML/SFMLConfig.cmake"
   "/opt/homebrew/opt/sfml@2/lib/cmake/SFML/SFMLConfigDependencies.cmake"
   "/opt/homebrew/opt/sfml@2/lib/cmake/SFML/SFMLConfigVersion.cmake"
@@ -51,12 +55,20 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "src/CMakeFiles/CMakeDirectoryInformation.cmake"
   "config/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/globals/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/knyaz/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/resources/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/ui/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "src/CMakeFiles/mainGame.dir/DependInfo.cmake"
   "config/CMakeFiles/config.dir/DependInfo.cmake"
+  "src/CMakeFiles/knyaz_game.dir/DependInfo.cmake"
+  "src/globals/CMakeFiles/globals_lib.dir/DependInfo.cmake"
+  "src/knyaz/CMakeFiles/knyaz_lib.dir/DependInfo.cmake"
+  "src/resources/CMakeFiles/resources_lib.dir/DependInfo.cmake"
+  "src/ui/CMakeFiles/ui_lib.dir/DependInfo.cmake"
   )
