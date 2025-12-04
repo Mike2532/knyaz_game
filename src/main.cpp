@@ -43,9 +43,9 @@ void initDepends() {
     initFont();
     initBGTexture();
     initAnimationTextures();
-    initGameMap();
     initAnimations();
     initObjsTextures();
+    initGameMap();
     knyaz.animationData = animationContainer["idle"];
 }
 

@@ -26,15 +26,14 @@ void fallingCheck(bool &falling, vector<GameEntity> &container) {
 void checkKnyazFalling() {
     bool falling = true;
     fallingCheck(falling, mapObjs);
-    if (!knyaz.isAlive) return;
 
     if (knyaz.isFalling && !falling) {
         if (!(knyaz.isMovingRight || knyaz.isMovingLeft)) knyaz.changeAnimation(animationContainer["idle"]);
-        else knyaz.changeAnimation(animationContainer["run"]);
+        else if (knyaz.isAlive) knyaz.changeAnimation(animationContainer["run"]);
     }
 
     if (falling == knyaz.isFalling) return;
-    if (falling && !knyaz.isJump) knyaz.changeAnimation(animationContainer["falling"]);
+    if (falling && !knyaz.isJump && knyaz.isAlive) knyaz.changeAnimation(animationContainer["falling"]);
     if (falling) {
         knyaz.isFalling = true;
         knyaz.freeFallingTimer.restart();
@@ -79,10 +78,9 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
 
         if ((isKnyazLower(obj) || isKnyazUpper(obj)) || !(leftCollision || rightCollision)) continue;
 
-        if (obj.type == ObjsTypes::OBTACLE && knyaz.isAlive) {
+        if (knyaz.isAlive && (obj.type == ObjsTypes::OBTACLE || obj.type == ObjsTypes::SPIKES)) {
             knyaz.isAlive = false;
             knyaz.changeAnimation(animationContainer["death"]);
-            return;
         }
 
         sf::Vector2f objPos = obj.body.getPosition();

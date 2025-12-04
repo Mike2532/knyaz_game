@@ -28,6 +28,7 @@ extern sf::Texture KnyazDeathTexture;
 
 extern sf::Texture GroundTexture;
 extern sf::Texture LavaTexture;
+extern sf::Texture SpikesTexture;
 
 extern sf::Music GameMusic;
 extern sf::Font myFont;
@@ -86,7 +87,7 @@ struct Knyaz : GameEntity {
                 ));
 
                 if (animationFrameNumber == animationData.animationFrames - 1) {
-                    changeAnimation(animationContainer["idle"]);
+                    if (isAlive) changeAnimation(animationContainer["idle"]);
                     body.setTextureRect(sf::IntRect(
                             STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X + LEFT_ORIENTED_EXTRA,
                             NORMAL_TOP,
@@ -112,8 +113,7 @@ struct Knyaz : GameEntity {
                 ));
 
                 if (animationFrameNumber == animationData.animationFrames - 1) {
-                    changeAnimation(animationContainer["idle"]);
-                    // сразу выставляем кадр idle (право-ориентированный)
+                    if (isAlive) changeAnimation(animationContainer["idle"]);
                     body.setTextureRect(sf::IntRect(
                             STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X,
                             NORMAL_TOP,

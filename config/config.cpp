@@ -36,6 +36,7 @@ map<string, string> initConfig() {
         {"WORLD_TEXTURES_FOLDER", "../media/objsTextures/"},
         {"GROUND_TEXTURE", "ground.jpg"},
         {"LAVA_TEXTURE", "lava.jpg"},
+        {"SPIKES_TEXTURE", "spikesRight.png"}
     };
 }
 

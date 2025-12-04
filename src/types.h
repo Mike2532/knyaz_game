@@ -24,7 +24,7 @@ enum class AnimationTypes {
     DEATH
 };
 
-enum class ObjsTypes {ENTITY, OBTACLE};
+enum class ObjsTypes {ENTITY, OBTACLE, SPIKES};
 
 struct GameEntity {
     sf::RectangleShape body;

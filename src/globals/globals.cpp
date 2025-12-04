@@ -21,6 +21,7 @@ sf::Texture KnyazDeathTexture;
 
 sf::Texture GroundTexture;
 sf::Texture LavaTexture;
+sf::Texture SpikesTexture;
 
 sf::Music GameMusic;
 sf::Font myFont;
@@ -39,7 +40,6 @@ sf::RenderWindow window;
 GameState curState = GameState::GAME_PROCESS;
 
 vector<GameEntity> mapObjs;
-vector<GameEntity> mapObtacles;
 
 void initMapObj(sf::Vector2f objSize, sf::Vector2f objPos, sf::Texture &texture, vector<GameEntity> &container, ObjsTypes type) {
     GameEntity newEntity;
@@ -47,7 +47,7 @@ void initMapObj(sf::Vector2f objSize, sf::Vector2f objPos, sf::Texture &texture,
     sf::RectangleShape objBody({objSize});
     objBody.setPosition(objPos);
     objBody.setTexture(&texture);
-    objBody.setTextureRect(sf::IntRect(0, 0, (int)objSize.x, (int)objSize.y));
+    if (type != ObjsTypes::SPIKES) objBody.setTextureRect(sf::IntRect(0, 0, (int)objSize.x, (int)objSize.y));
     newEntity.body = objBody;
 
     newEntity.type = type;
@@ -95,6 +95,26 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({20.f, 945.f}, {2400.f, -400.f}, ObjsTypes::ENTITY),        // 2-9
 
         makeEntity({400.f, 50.f}, {1254.f, 721.f}, ObjsTypes::OBTACLE),        //lava
+
+        makeEntity({30.f, 30.f}, {2420.f, 151.f}, ObjsTypes::SPIKES), //ship1
+        makeEntity({30.f, 30.f}, {2420.f, 151.f - 30 * 1}, ObjsTypes::SPIKES), //ship2
+        makeEntity({30.f, 30.f}, {2420.f, 151.f - 30 * 2}, ObjsTypes::SPIKES), //ship3
+        makeEntity({30.f, 30.f}, {2420.f, 151.f - 30 * 3}, ObjsTypes::SPIKES), //ship4
+        makeEntity({30.f, 30.f}, {2420.f, 151.f - 30 * 4}, ObjsTypes::SPIKES), //ship5
+        makeEntity({30.f, 30.f}, {2420.f, 151.f - 30 * 5}, ObjsTypes::SPIKES), //ship6
+
+
+        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 1}, ObjsTypes::SPIKES), //ship2
+        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 2}, ObjsTypes::SPIKES), //ship3
+        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 3}, ObjsTypes::SPIKES), //ship4
+        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 4}, ObjsTypes::SPIKES), //ship5
+        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 5}, ObjsTypes::SPIKES), //ship6
+
+        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 1}, ObjsTypes::SPIKES), //ship2
+        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 2}, ObjsTypes::SPIKES), //ship3
+        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 3}, ObjsTypes::SPIKES), //ship4
+        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 4}, ObjsTypes::SPIKES), //ship5
+        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 5}, ObjsTypes::SPIKES), //ship6
 };
 
 void initGameMap() {
@@ -106,6 +126,9 @@ void initGameMap() {
                 break;
             case ObjsTypes::ENTITY:
                 initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, GroundTexture, mapObjs, obj.second);
+                break;
+            case ObjsTypes::SPIKES:
+                initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, SpikesTexture, mapObjs, obj.second);
                 break;
         }
     }
