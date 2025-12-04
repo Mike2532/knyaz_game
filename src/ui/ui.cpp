@@ -2,6 +2,7 @@
 #include "../globals/globals.h"
 #include "../resources/resources.h"
 #include <iostream>
+#include "../knyaz/knyaz.h"
 
 using namespace std;
 
@@ -211,16 +212,29 @@ void movementHandler() {
     }
 }
 
+void gameRestart() {
+    knyaz.body = getKnyazBody();
+    initGameMap();
+    knyaz.isAlive = true;
+    knyaz.changeAnimation(animationContainer["falling"]);
+    knyaz.freeFallingTimer.restart();
+}
+
 void GameProcessEventsHandler(const sf::Event& event) {
-    if (event.type == sf::Event::MouseButtonPressed) {
-        mouseEventsHandler(event);
+    if (!knyaz.isAlive && (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::KeyPressed) && knyaz.animationFrameNumber == knyaz.animationData.animationFrames - 1) {
+        gameRestart();
+        return;
     }
 
+    if (knyaz.isAlive) {
+        if (event.type == sf::Event::MouseButtonPressed) {
+            mouseEventsHandler(event);
+        }
 
+        if (event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(keymap["JUMP_KEY"])) {
+            jumpHandler(event);
+        }
 
-    if (event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(keymap["JUMP_KEY"])) {
-        jumpHandler(event);
+        movementHandler();
     }
-
-    movementHandler();
 }

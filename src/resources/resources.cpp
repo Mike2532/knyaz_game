@@ -38,10 +38,12 @@ void initAnimationTextures() {
     KnyazFallingTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_FALLING_ANIMATION"]);
     KnyazEasyAttackTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_EASY_ATTACK_ANIMATION"]);
     KnyazHeavyAttackTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_HEAVY_ATTACK_ANIMATION"]);
+    KnyazDeathTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_DEATH_ANIMATION"]);
 }
 
 void initObjsTextures() {
     GroundTexture.loadFromFile(config["WORLD_TEXTURES_FOLDER"] + config["GROUND_TEXTURE"]);
+    LavaTexture.loadFromFile(config["WORLD_TEXTURES_FOLDER"] + config["LAVA_TEXTURE"]);
 }
 
 void playGameMusic() {
@@ -94,5 +96,11 @@ void initAnimations() {
             KnyazHeavyAttackTexture,
             6,
             AnimationTypes::ATTACK
+    };
+
+    animationContainer["death"] = {
+            KnyazDeathTexture,
+            10,
+            AnimationTypes::DEATH
     };
 }

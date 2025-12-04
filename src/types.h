@@ -20,11 +20,15 @@ enum class AnimationTypes {
     JUMP,
     FALL,
     ATTACK,
-    IDLE
+    IDLE,
+    DEATH
 };
+
+enum class ObjsTypes {ENTITY, OBTACLE};
 
 struct GameEntity {
     sf::RectangleShape body;
+    ObjsTypes type;
     float getTop() {
         return body.getPosition().y;
     }
@@ -42,53 +46,6 @@ struct GameEntity {
         return pos.x + size.x;
     }
 };
-
-//struct AnimationData {
-//    sf::Texture animationTexture;
-//    int animationFrames;
-//    AnimationTypes animationType;
-//};
-//
-//struct Knyaz : GameEntity {
-//    bool isMovingLeft = false;
-//    bool isMovingRight = false;
-//    bool isJump = false;
-//    bool isFalling = false;
-//    bool isLeftOrented = false;
-//
-//    int animationFrameNumber;
-//
-//    sf::Clock freeFallingTimer;
-//    sf::Clock animationTimer;
-//
-//    AnimationData animationData;
-//
-//    void animationProcess() {
-//        if (animationTimer.getElapsedTime().asMilliseconds() < 100) return;
-//        animationTimer.restart();
-//
-//        animationFrameNumber++;
-//        animationFrameNumber %= animationData.animationFrames;
-//
-//        body.setTexture(&animationData.animationTexture);
-//        if (isLeftOrented) {
-//            body.setTextureRect(sf::IntRect(120 * animationFrameNumber + 27 + 43, 40, -43, 40));
-//        } else {
-//            if (animationData.animationType == AnimationTypes::ATTACK) {
-//                body.setTextureRect(sf::IntRect(120 * animationFrameNumber + 53, 40, 65, 40));
-//            } else {
-//                body.setTextureRect(sf::IntRect(120 * animationFrameNumber + 27, 40, 43, 40));
-//            }
-//        }
-//        body.setSize(sf::Vector2f(80.f, 80.f));
-//    }
-//
-//    void changeAnimation(const AnimationData& newAnimation) {
-//        animationData = newAnimation;
-//        animationFrameNumber = 0;
-//        animationTimer.restart();
-//    }
-//};
 
 struct MainMenu {
     sf::Text startText;

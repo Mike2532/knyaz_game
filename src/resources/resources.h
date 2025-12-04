@@ -13,6 +13,6 @@ void initAnimations();
 
 void initObjsTextures();
 
-void updateBGSprite(); // использует curState
+void updateBGSprite();
 
 #endif //KNYAZ_GAME_RESOURCES_H
