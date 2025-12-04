@@ -32,6 +32,7 @@ void checkKnyazFalling() {
     } else {
         knyaz.isFalling = false;
         knyaz.isJump = false;
+        knyaz.isDoubleJump = false;
     }
 }
 

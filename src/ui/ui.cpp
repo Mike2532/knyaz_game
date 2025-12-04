@@ -174,7 +174,11 @@ void mouseEventsHandler(const sf::Event& event) {
 }
 
 void jumpHandler(const sf::Event& event) {
-    if (! (knyaz.isJump || knyaz.isFalling)) {
+    if (knyaz.isJump && !(knyaz.isDoubleJump)) {
+        knyaz.isDoubleJump = true;
+        knyaz.changeAnimation(animationContainer["jump"]);
+        knyaz.freeFallingTimer.restart();
+    } else if (!knyaz.isJump && !knyaz.isDoubleJump) {
         knyaz.isJump = true;
         knyaz.changeAnimation(animationContainer["jump"]);
         knyaz.freeFallingTimer.restart();
@@ -212,7 +216,9 @@ void GameProcessEventsHandler(const sf::Event& event) {
         mouseEventsHandler(event);
     }
 
-    if (sf::Keyboard::isKeyPressed(keymap["JUMP_KEY"])) {
+
+
+    if (event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(keymap["JUMP_KEY"])) {
         jumpHandler(event);
     }
 

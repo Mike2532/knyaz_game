@@ -102,6 +102,7 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
 }
 
 void pollEvents() {
+//    cout << "poll event\n";
     sf::Event event{};
     while (window.pollEvent(event)) {
         switch (curState) {

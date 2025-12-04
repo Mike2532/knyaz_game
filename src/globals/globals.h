@@ -44,6 +44,7 @@ struct Knyaz : GameEntity {
     bool isMovingRight = false;
     bool isJump = false;
     bool isFalling = false;
+    bool isDoubleJump = false;
     bool isLeftOrented = false;
 
     int animationFrameNumber;
