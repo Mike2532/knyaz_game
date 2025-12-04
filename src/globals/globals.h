@@ -54,43 +54,82 @@ struct Knyaz : GameEntity {
     AnimationData animationData;
 
     void textureUpdate() {
-        constexpr int DISTANSE_OFFSET = 120;
-        constexpr int RIGHT_INNER_OFFSET = 27;
-        constexpr int ATTACK_OFFSET = 40;
-        constexpr int LEFT_ATTACK_OFFSET = 65;
+        constexpr int STRIP_FRAME_OFFSET = 120;
+        constexpr int NORMAL_BASE_X = 27;
+        constexpr int ATTACK_BASE_X = 40;
+        constexpr int LEFT_ORIENTED_EXTRA = 43;
+        constexpr int LEFT_ATTACK_EXTRA = 65;
+
+        constexpr int NORMAL_W = 43;
+        constexpr int NORMAL_H = 40;
+        constexpr int ATTACK_W = 65;
+        constexpr int ATTACK_H = 45;
+
+        constexpr int NORMAL_TOP = 40;
         constexpr int ATTACK_TOP = 35;
-        constexpr int TOP = 40;
-        constexpr int ATTACK_HEIGHT = 40;
-        constexpr int HEIGHT = 40;
-        constexpr int ATTACK_WIDTH = 43;
-        constexpr int WIDTH = 43;
-        constexpr int LEFT_ORENTED_OFFSET = 43;
+
         constexpr float KNYAZ_SIDE_SIZE = 80.f;
 
         body.setTexture(&animationData.animationTexture);
+
         if (isLeftOrented) {
             if (animationData.animationType == AnimationTypes::ATTACK) {
-                body.setTextureRect(sf::IntRect(DISTANSE_OFFSET * animationFrameNumber + ATTACK_OFFSET + LEFT_ATTACK_OFFSET, ATTACK_TOP, -ATTACK_WIDTH, ATTACK_HEIGHT));
+                body.setTextureRect(sf::IntRect(
+                        STRIP_FRAME_OFFSET * animationFrameNumber + ATTACK_BASE_X + LEFT_ATTACK_EXTRA,
+                        ATTACK_TOP,
+                        -ATTACK_W,
+                        ATTACK_H
+                ));
+
                 if (animationFrameNumber == animationData.animationFrames - 1) {
                     changeAnimation(animationContainer["idle"]);
-                    body.setTextureRect(sf::IntRect(DISTANSE_OFFSET * animationFrameNumber + RIGHT_INNER_OFFSET + LEFT_ORENTED_OFFSET, TOP, -WIDTH, HEIGHT));
+                    body.setTextureRect(sf::IntRect(
+                            STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X + LEFT_ORIENTED_EXTRA,
+                            NORMAL_TOP,
+                            -NORMAL_W,
+                            NORMAL_H
+                    ));
                 }
             } else {
-                body.setTextureRect(sf::IntRect(DISTANSE_OFFSET * animationFrameNumber + RIGHT_INNER_OFFSET + LEFT_ORENTED_OFFSET, TOP, -WIDTH, HEIGHT));
+                body.setTextureRect(sf::IntRect(
+                        STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X + LEFT_ORIENTED_EXTRA,
+                        NORMAL_TOP,
+                        -NORMAL_W,
+                        NORMAL_H
+                ));
             }
         } else {
             if (animationData.animationType == AnimationTypes::ATTACK) {
-                body.setTextureRect(sf::IntRect(DISTANSE_OFFSET * animationFrameNumber + ATTACK_OFFSET, ATTACK_TOP, ATTACK_WIDTH, ATTACK_HEIGHT));
+                body.setTextureRect(sf::IntRect(
+                        STRIP_FRAME_OFFSET * animationFrameNumber + ATTACK_BASE_X,
+                        ATTACK_TOP,
+                        ATTACK_W,
+                        ATTACK_H
+                ));
+
                 if (animationFrameNumber == animationData.animationFrames - 1) {
                     changeAnimation(animationContainer["idle"]);
-                    body.setTextureRect(sf::IntRect(DISTANSE_OFFSET * animationFrameNumber + RIGHT_INNER_OFFSET, TOP, WIDTH, HEIGHT));
+                    // сразу выставляем кадр idle (право-ориентированный)
+                    body.setTextureRect(sf::IntRect(
+                            STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X,
+                            NORMAL_TOP,
+                            NORMAL_W,
+                            NORMAL_H
+                    ));
                 }
             } else {
-                body.setTextureRect(sf::IntRect(DISTANSE_OFFSET * animationFrameNumber + RIGHT_INNER_OFFSET, TOP, WIDTH, HEIGHT));
+                body.setTextureRect(sf::IntRect(
+                        STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X,
+                        NORMAL_TOP,
+                        NORMAL_W,
+                        NORMAL_H
+                ));
             }
         }
+
         body.setSize(sf::Vector2f(KNYAZ_SIDE_SIZE, KNYAZ_SIDE_SIZE));
     }
+
 
     void animationProcess() {
         constexpr int ANIMATION_DURATON = 100;
