@@ -71,8 +71,8 @@ void update(std::vector<sf::Text>& textToPrint) {
     } else if (curState == GameState::GAME_PROCESS) {
         float elapsedTime = globalTimer.getElapsedTime().asSeconds();
         globalTimer.restart();
-        checkKnyazFalling();
         knyazMove(elapsedTime);
+        checkKnyazFalling();
         knyaz.animationProcess();
     }
 }

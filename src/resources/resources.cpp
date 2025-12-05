@@ -39,12 +39,14 @@ void initAnimationTextures() {
     KnyazEasyAttackTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_EASY_ATTACK_ANIMATION"]);
     KnyazHeavyAttackTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_HEAVY_ATTACK_ANIMATION"]);
     KnyazDeathTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_DEATH_ANIMATION"]);
+    KnyazWallHangTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_WALL_HANG_ANIMATION"]);
 }
 
 void initObjsTextures() {
     GroundTexture.loadFromFile(config["WORLD_TEXTURES_FOLDER"] + config["GROUND_TEXTURE"]);
     LavaTexture.loadFromFile(config["WORLD_TEXTURES_FOLDER"] + config["LAVA_TEXTURE"]);
     SpikesTexture.loadFromFile(config["WORLD_TEXTURES_FOLDER"] + config["SPIKES_TEXTURE"]);
+    SpikesUpTexture.loadFromFile(config["WORLD_TEXTURES_FOLDER"] + config["SPIKES_UP_TEXTURE"]);
 }
 
 void playGameMusic() {
@@ -103,5 +105,11 @@ void initAnimations() {
             KnyazDeathTexture,
             10,
             AnimationTypes::DEATH
+    };
+
+    animationContainer["wallHang"] = {
+            KnyazWallHangTexture,
+            1,
+            AnimationTypes::CLIMB
     };
 }

@@ -25,10 +25,12 @@ extern sf::Texture KnyazFallingTexture;
 extern sf::Texture KnyazEasyAttackTexture;
 extern sf::Texture KnyazHeavyAttackTexture;
 extern sf::Texture KnyazDeathTexture;
+extern sf::Texture KnyazWallHangTexture;
 
 extern sf::Texture GroundTexture;
 extern sf::Texture LavaTexture;
 extern sf::Texture SpikesTexture;
+extern sf::Texture SpikesUpTexture;
 
 extern sf::Music GameMusic;
 extern sf::Font myFont;
@@ -50,6 +52,7 @@ struct Knyaz : GameEntity {
     bool isDoubleJump = false;
     bool isLeftOrented = false;
     bool isAlive = true;
+    bool isClimbing = false;
 
     int animationFrameNumber;
 
@@ -151,6 +154,7 @@ struct Knyaz : GameEntity {
     }
 
     void changeAnimation(const AnimationData& newAnimation) {
+        if (!isAlive) return;
         animationData = newAnimation;
         animationFrameNumber = 0;
         animationTimer.restart();

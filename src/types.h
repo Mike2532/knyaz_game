@@ -21,10 +21,11 @@ enum class AnimationTypes {
     FALL,
     ATTACK,
     IDLE,
-    DEATH
+    DEATH,
+    CLIMB
 };
 
-enum class ObjsTypes {ENTITY, OBTACLE, SPIKES};
+enum class ObjsTypes {ENTITY, OBTACLE, SPIKES, SPIKES_UP, ENEMY};
 
 struct GameEntity {
     sf::RectangleShape body;

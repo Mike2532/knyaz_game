@@ -179,10 +179,12 @@ void jumpHandler(const sf::Event& event) {
         knyaz.isDoubleJump = true;
         knyaz.changeAnimation(animationContainer["jump"]);
         knyaz.freeFallingTimer.restart();
+        if (knyaz.isClimbing) knyaz.isClimbing = false;
     } else if (!knyaz.isJump && !knyaz.isDoubleJump) {
         knyaz.isJump = true;
         knyaz.changeAnimation(animationContainer["jump"]);
         knyaz.freeFallingTimer.restart();
+        if (knyaz.isClimbing) knyaz.isClimbing = false;
     }
 }
 
@@ -190,26 +192,38 @@ void movementHandler() {
     bool moveLeftPressed = sf::Keyboard::isKeyPressed(keymap["MOVE_LEFT_KEY"]);
     bool moveRightPressed = sf::Keyboard::isKeyPressed(keymap["MOVE_RIGHT_KEY"]);
     bool isKnyazStanding = !(knyaz.isJump || knyaz.isFalling);
-
     if (moveLeftPressed && !knyaz.isMovingLeft) {
         knyaz.isMovingLeft = true;
         if (isKnyazStanding) knyaz.changeAnimation(animationContainer["run"]);
         if (!knyaz.isLeftOrented) knyaz.isLeftOrented = true;
-
+        if (knyaz.isClimbing) {
+            knyaz.isClimbing = false;
+            knyaz.freeFallingTimer.restart();
+        }
     } else if (!moveLeftPressed && knyaz.isMovingLeft) {
         knyaz.isMovingLeft = false;
         if (!knyaz.isMovingRight && isKnyazStanding) knyaz.changeAnimation(animationContainer["idle"]);
-
+        if (knyaz.isClimbing) {
+            knyaz.isClimbing = false;
+            knyaz.freeFallingTimer.restart();
+        }
     } else if (moveRightPressed && !knyaz.isMovingRight) {
         knyaz.isMovingRight = true;
         if (isKnyazStanding) knyaz.changeAnimation(animationContainer["run"]);
         if (knyaz.isLeftOrented) knyaz.isLeftOrented = false;
-
+        if (knyaz.isClimbing) {
+            knyaz.isClimbing = false;
+            knyaz.freeFallingTimer.restart();
+        }
     } else if (!moveRightPressed && knyaz.isMovingRight) {
         knyaz.isMovingRight = false;
         if (!knyaz.isMovingLeft && isKnyazStanding) knyaz.changeAnimation(animationContainer["idle"]);
-
+        if (knyaz.isClimbing) {
+            knyaz.isClimbing = false;
+            knyaz.freeFallingTimer.restart();
+        }
     }
+
 }
 
 void gameRestart() {
@@ -227,12 +241,16 @@ void GameProcessEventsHandler(const sf::Event& event) {
     }
 
     if (knyaz.isAlive) {
-        if (event.type == sf::Event::MouseButtonPressed) {
+        if (event.type == sf::Event::MouseButtonPressed && !knyaz.isClimbing) {
             mouseEventsHandler(event);
         }
 
         if (event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(keymap["JUMP_KEY"])) {
             jumpHandler(event);
+        }
+
+        if (event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(keymap["CLIMBING_KEY"]) && knyaz.isFalling && !knyaz.isClimbing) {
+            knyaz.isClimbing = true;
         }
 
         movementHandler();

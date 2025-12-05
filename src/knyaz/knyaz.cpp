@@ -15,8 +15,8 @@ void fallingCheck(bool &falling, vector<GameEntity> &container) {
         if (isKnyazVerticalOverlap(entity) && abs(knyaz.getBot() - entity.getTop()) < 0.2f) {
             falling = false;
             if (entity.type == ObjsTypes::OBTACLE && knyaz.isAlive) {
-                knyaz.isAlive = false;
                 knyaz.changeAnimation(animationContainer["death"]);
+                knyaz.isAlive = false;
             }
             break;
         }
@@ -24,12 +24,14 @@ void fallingCheck(bool &falling, vector<GameEntity> &container) {
 }
 
 void checkKnyazFalling() {
+    if (knyaz.isClimbing) return;
+
     bool falling = true;
     fallingCheck(falling, mapObjs);
 
     if (knyaz.isFalling && !falling) {
         if (!(knyaz.isMovingRight || knyaz.isMovingLeft)) knyaz.changeAnimation(animationContainer["idle"]);
-        else if (knyaz.isAlive) knyaz.changeAnimation(animationContainer["run"]);
+        else knyaz.changeAnimation(animationContainer["run"]);
     }
 
     if (falling == knyaz.isFalling) return;
@@ -72,25 +74,46 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
     sf::Vector2f knyazPos = knyaz.body.getPosition();
     sf::Vector2f knyazSize = knyaz.body.getSize();
 
+    bool climbed = false;
+
+    int i = 0;
+
     for (auto& obj : container) {
         const bool leftCollision = isLeftCollision(obj);
         const bool rightCollision = isRightCollision(obj);
 
-        if ((isKnyazLower(obj) || isKnyazUpper(obj)) || !(leftCollision || rightCollision)) continue;
-
-        if (knyaz.isAlive && (obj.type == ObjsTypes::OBTACLE || obj.type == ObjsTypes::SPIKES)) {
-            knyaz.isAlive = false;
-            knyaz.changeAnimation(animationContainer["death"]);
-        }
+        if ((isKnyazLower(obj) || isKnyazUpper(obj))) continue;
 
         sf::Vector2f objPos = obj.body.getPosition();
         sf::Vector2f  objSize = obj.body.getSize();
+
+        bool leftClimb = abs((knyazPos.x + knyazSize.x) - objPos.x) <= 3;
+        bool rightClimb = abs((knyazPos.x - 1) - (objPos.x + objSize.x)) <= 3;
+
+        if (knyaz.isClimbing && (leftClimb || rightClimb)) {
+            knyaz.changeAnimation(animationContainer["wallHang"]);
+            knyaz.isJump = false;
+            knyaz.isDoubleJump = false;
+            knyaz.isFalling = false;
+            climbed = true;
+        }
+
+        if ( !(leftCollision || rightCollision)) continue;
+
+        if (knyaz.isAlive && (obj.type == ObjsTypes::OBTACLE || obj.type == ObjsTypes::SPIKES || obj.type == ObjsTypes::SPIKES_UP)) {
+            knyaz.changeAnimation(animationContainer["death"]);
+            knyaz.isAlive = false;
+        }
 
         knyazPos.x = (leftCollision)
                      ? objPos.x - knyazSize.x
                      : objPos.x + objSize.x;
 
         knyaz.body.setPosition(knyazPos);
+    }
+
+    if (knyaz.isClimbing && !climbed) {
+        knyaz.isClimbing = false;
     }
 }
 

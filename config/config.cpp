@@ -23,6 +23,7 @@ map<string, string> initConfig() {
         {"JUMP_KEY", "SPACE"},
         {"RAGE_KEY", "R"},
         {"FOCUS_KEY", "F"},
+        {"CLIMBING_KEY", "E"},
         {"LIGHT_ATTACK_KEY", "LMB"},
         {"HEAVY_ATTACK_KEY", "RMB"},
         {"KNYAZ_ANIMATIOS_FOLDER", "./../media/animations/knyaz/"},
@@ -33,10 +34,12 @@ map<string, string> initConfig() {
         {"KNYAZ_EASY_ATTACK_ANIMATION", "easyAttack.png"},
         {"KNYAZ_HEAVY_ATTACK_ANIMATION", "heavyAttack.png"},
         {"KNYAZ_DEATH_ANIMATION", "death.png"},
+        {"KNYAZ_WALL_HANG_ANIMATION", "wallHang.png"},
         {"WORLD_TEXTURES_FOLDER", "../media/objsTextures/"},
         {"GROUND_TEXTURE", "ground.jpg"},
         {"LAVA_TEXTURE", "lava.jpg"},
-        {"SPIKES_TEXTURE", "spikesRight.png"}
+        {"SPIKES_TEXTURE", "spikesRight.png"},
+        {"SPIKES_UP_TEXTURE", "spikesUp.png"}
     };
 }
 
@@ -46,6 +49,7 @@ map<string, sf::Keyboard::Scancode> getKeymap() {
         {"MOVE_RIGHT_KEY", sf::Keyboard::Scancode::D},
         {"JUMP_KEY", sf::Keyboard::Scancode::Space},
         {"RAGE_KEY", sf::Keyboard::Scancode::R},
-        {"FOCUS_KEY", sf::Keyboard::Scancode::F}
+        {"FOCUS_KEY", sf::Keyboard::Scancode::F},
+        {"CLIMBING_KEY", sf::Keyboard::Scancode::E}
     };
 }

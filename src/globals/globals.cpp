@@ -18,10 +18,12 @@ sf::Texture KnyazFallingTexture;
 sf::Texture KnyazEasyAttackTexture;
 sf::Texture KnyazHeavyAttackTexture;
 sf::Texture KnyazDeathTexture;
+sf::Texture KnyazWallHangTexture;
 
 sf::Texture GroundTexture;
 sf::Texture LavaTexture;
 sf::Texture SpikesTexture;
+sf::Texture SpikesUpTexture;
 
 sf::Music GameMusic;
 sf::Font myFont;
@@ -47,7 +49,8 @@ void initMapObj(sf::Vector2f objSize, sf::Vector2f objPos, sf::Texture &texture,
     sf::RectangleShape objBody({objSize});
     objBody.setPosition(objPos);
     objBody.setTexture(&texture);
-    if (type != ObjsTypes::SPIKES) objBody.setTextureRect(sf::IntRect(0, 0, (int)objSize.x, (int)objSize.y));
+    if (type != ObjsTypes::SPIKES && type != ObjsTypes::SPIKES_UP) objBody.setTextureRect(sf::IntRect(0, 0, (int)objSize.x, (int)objSize.y));
+    if (type == ObjsTypes::ENEMY) objBody.setFillColor(sf::Color::Red); //TODO удалить
     newEntity.body = objBody;
 
     newEntity.type = type;
@@ -73,28 +76,34 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({4320.f, 28.f}, {0.f, 771.f}, ObjsTypes::ENTITY),           // floor
 
         makeEntity({237.f, 582.f}, {1017.f, 217.f}, ObjsTypes::ENTITY),       // 1-end
-        makeEntity({237.f, 35.f}, {666.f, 684.f}, ObjsTypes::ENTITY),          // 1-1
-        makeEntity({237.f, 35.f}, {403.f, 541.f}, ObjsTypes::ENTITY),          // 1-2
-        makeEntity({237.f, 35.f}, {149.f, 446.f}, ObjsTypes::ENTITY),          // 1-3
-        makeEntity({237.f, 35.f}, {0.f, 321.f}, ObjsTypes::ENTITY),            // 1-4
-        makeEntity({237.f, 35.f}, {347.f, 216.f}, ObjsTypes::ENTITY),          // 1-5
-        makeEntity({367.f, 35.f}, {650.f, 147.f}, ObjsTypes::ENTITY),          // 1-6
+        makeEntity({237.f, 35.f}, {666.f, 684.f}, ObjsTypes::ENTITY), // 1-1
+        makeEntity({237.f, 35.f}, {403.f, 541.f}, ObjsTypes::ENTITY), // 1-2
+        makeEntity({237.f, 35.f}, {149.f, 446.f}, ObjsTypes::ENTITY), // 1-3
+        makeEntity({237.f, 35.f}, {0.f, 321.f}, ObjsTypes::ENTITY), // 1-4
+        makeEntity({237.f, 35.f}, {347.f, 216.f}, ObjsTypes::ENTITY), // 1-5
+        makeEntity({367.f, 35.f}, {650.f, 147.f}, ObjsTypes::ENTITY), // 1-6
 
-        makeEntity({80.f, 850.f}, {1434.f, -400.f}, ObjsTypes::ENTITY),        // M1
-        makeEntity({120.f, 120.f + 100}, {1654.f, 651.f - 100}, ObjsTypes::ENTITY), // M2
+        makeEntity({20.f, 642.f}, {2860.f, 129.f}, ObjsTypes::ENTITY), // 2-end
+        makeEntity({145.f, 35.f}, {2420.f, 676.f}, ObjsTypes::ENTITY), // 2-1
+        makeEntity({145.f, 35.f}, {2420.f, 511.f}, ObjsTypes::ENTITY), // 2-2
+        makeEntity({145.f, 35.f}, {2420.f, 346.f}, ObjsTypes::ENTITY), // 2-3
+        makeEntity({145.f, 35.f}, {2420.f, 181.f}, ObjsTypes::ENTITY), // 2-4
+        makeEntity({145.f, 35.f}, {2715.f, 624.f}, ObjsTypes::ENTITY), // 2-5
+        makeEntity({145.f, 35.f}, {2715.f, 459.f}, ObjsTypes::ENTITY), // 2-6
+        makeEntity({145.f, 35.f}, {2715.f, 294.f}, ObjsTypes::ENTITY), // 2-7
+        makeEntity({145.f, 35.f}, {2715.f, 129.f}, ObjsTypes::ENTITY), // 2-8
+        makeEntity({20.f, 945.f}, {2400.f, -400.f}, ObjsTypes::ENTITY), // 2-9
 
-        makeEntity({20.f, 642.f}, {2860.f, 129.f}, ObjsTypes::ENTITY),         // 2-end
-        makeEntity({145.f, 35.f}, {2420.f, 676.f}, ObjsTypes::ENTITY),         // 2-1
-        makeEntity({145.f, 35.f}, {2420.f, 511.f}, ObjsTypes::ENTITY),         // 2-2
-        makeEntity({145.f, 35.f}, {2420.f, 346.f}, ObjsTypes::ENTITY),         // 2-3
-        makeEntity({145.f, 35.f}, {2420.f, 181.f}, ObjsTypes::ENTITY),         // 2-4
-        makeEntity({145.f, 35.f}, {2715.f, 624.f}, ObjsTypes::ENTITY),         // 2-5
-        makeEntity({145.f, 35.f}, {2715.f, 459.f}, ObjsTypes::ENTITY),         // 2-6
-        makeEntity({145.f, 35.f}, {2715.f, 294.f}, ObjsTypes::ENTITY),         // 2-7
-        makeEntity({145.f, 35.f}, {2715.f, 129.f}, ObjsTypes::ENTITY),         // 2-8
-        makeEntity({20.f, 945.f}, {2400.f, -400.f}, ObjsTypes::ENTITY),        // 2-9
+        makeEntity({80.f, 900.f}, {1434.f, -400.f}, ObjsTypes::ENTITY), // M1
+        makeEntity({60.f, 535.f}, {1714.f, 236.f}, ObjsTypes::ENTITY), // M2
+        makeEntity({80.f, 35.f}, {1634.f, 236.f}, ObjsTypes::ENTITY), //M3
 
-        makeEntity({400.f, 50.f}, {1254.f, 721.f}, ObjsTypes::OBTACLE),        //lava
+        makeEntity({30.f, 30.f}, {1647.f, 206.f}, ObjsTypes::SPIKES_UP), //SPIKES_UP
+        makeEntity({30.f, 30.f}, {1647.f + 30 * 1, 206.f}, ObjsTypes::SPIKES_UP),  //SPIKES_UP
+        makeEntity({30.f, 30.f}, {1647.f + 30 * 2, 206.f}, ObjsTypes::SPIKES_UP),  //SPIKES_UP
+        makeEntity({30.f, 30.f}, {1647.f + 30 * 3, 206.f}, ObjsTypes::SPIKES_UP),  //SPIKES_UP
+
+        makeEntity({460.f, 50.f}, {1254.f, 721.f}, ObjsTypes::OBTACLE),        //lava
 
         makeEntity({30.f, 30.f}, {2420.f, 151.f}, ObjsTypes::SPIKES), //ship1
         makeEntity({30.f, 30.f}, {2420.f, 151.f - 30 * 1}, ObjsTypes::SPIKES), //ship2
@@ -103,23 +112,31 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({30.f, 30.f}, {2420.f, 151.f - 30 * 4}, ObjsTypes::SPIKES), //ship5
         makeEntity({30.f, 30.f}, {2420.f, 151.f - 30 * 5}, ObjsTypes::SPIKES), //ship6
 
+        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 1}, ObjsTypes::SPIKES), //start-low ship
+        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 2}, ObjsTypes::SPIKES), //start-low ship
+        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 3}, ObjsTypes::SPIKES), //start-low ship
+        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 4}, ObjsTypes::SPIKES), //start-low ship
+        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 5}, ObjsTypes::SPIKES), //start-low ship
 
-        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 1}, ObjsTypes::SPIKES), //ship2
-        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 2}, ObjsTypes::SPIKES), //ship3
-        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 3}, ObjsTypes::SPIKES), //ship4
-        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 4}, ObjsTypes::SPIKES), //ship5
-        makeEntity({30.f, 30.f}, {0.f, 151.f * 2 - 30 * 5}, ObjsTypes::SPIKES), //ship6
+        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 1}, ObjsTypes::SPIKES), //start-hight ship
+        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 2}, ObjsTypes::SPIKES), //start-hight ship
+        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 3}, ObjsTypes::SPIKES), //start-hight ship
+        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 4}, ObjsTypes::SPIKES), //start-hight ship
+        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 5}, ObjsTypes::SPIKES), //start-hight ship
 
-        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 1}, ObjsTypes::SPIKES), //ship2
-        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 2}, ObjsTypes::SPIKES), //ship3
-        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 3}, ObjsTypes::SPIKES), //ship4
-        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 4}, ObjsTypes::SPIKES), //ship5
-        makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 5}, ObjsTypes::SPIKES), //ship6
+        makeEntity({80.f, 80.f}, {460.f, 461.f}, ObjsTypes::ENEMY), //enemy1
+        makeEntity({80.f, 80.f}, {720.f, 67.f}, ObjsTypes::ENEMY), //enemy1
+        makeEntity({80.f, 80.f}, {1932.f, 691.f}, ObjsTypes::ENEMY), //enemy1
+        makeEntity({80.f, 80.f}, {2435.f, 431.f}, ObjsTypes::ENEMY), //enemy1
+        makeEntity({80.f, 80.f}, {2770.f, 214.f}, ObjsTypes::ENEMY), //enemy1
+
 };
 
 void initGameMap() {
     mapObjs.clear();
     for (auto obj : mapObjParams) {
+        sf::Texture emptyTexture;
+
         switch (obj.second) {
             case ObjsTypes::OBTACLE:
                 initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, LavaTexture, mapObjs, obj.second);
@@ -129,6 +146,12 @@ void initGameMap() {
                 break;
             case ObjsTypes::SPIKES:
                 initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, SpikesTexture, mapObjs, obj.second);
+                break;
+            case ObjsTypes::SPIKES_UP:
+                initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, SpikesUpTexture, mapObjs, obj.second);
+                break;
+            case ObjsTypes::ENEMY:
+                initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, emptyTexture, mapObjs, obj.second);
                 break;
         }
     }
