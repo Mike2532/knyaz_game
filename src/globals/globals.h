@@ -7,6 +7,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include "iostream"
 #include "../types.h"
 
 using namespace std;
@@ -179,7 +180,8 @@ struct Enemy : AnimatedObj {
     float LEFT_ACTIVE_EDGE;
     float RIGHT_ACTIVE_EDGE;
 
-
+    bool isNearLeftKnyaz = false;
+    bool isNearRightKnyaz = false;
     bool seeKnyaz = false;
     bool isPatrolingLeft = true;
 
@@ -221,28 +223,47 @@ struct Enemy : AnimatedObj {
             bool isKnyazRight = knyazLeft >= enemyRight;
             bool needToRightRun = knyazLeft - enemyRight >= NOT_NEED_TO_RUN_DISTANSE;
 
+            if (isKnyazLeft && !needToLeftRun && !isNearLeftKnyaz) {
+                isNearLeftKnyaz = true;
+                isNearRightKnyaz = false;
+            }
+
+            if (isKnyazRight && !needToRightRun && !isNearRightKnyaz) {
+                isNearRightKnyaz = true;
+                isNearLeftKnyaz = false;
+            }
+
             if (isKnyazLeft && needToLeftRun) {
                 enemyPos.x -= AGRESSIVE_SPEED * elapsedTime;
                 enemyPos.x = max(enemyPos.x, LEFT_ACTIVE_EDGE);
                 body.setPosition(enemyPos);
+                if (isNearLeftKnyaz) {
+                    isNearLeftKnyaz = false;
+                }
             } else if (isKnyazRight && needToRightRun) {
                 enemyPos.x += AGRESSIVE_SPEED * elapsedTime;
                 enemyPos.x = min(enemyPos.x, RIGHT_ACTIVE_EDGE - body.getSize().x);
                 body.setPosition(enemyPos);
+                if (isNearRightKnyaz) {
+                    isNearRightKnyaz = false;
+                }
             }
         }
     }
 
     void checkKnyazVision() {
         constexpr float SEARCHING_DURATION = 2.f;
-        if (!knyaz.isFalling) {
-            bool a = true;
-        }
         bool isKnyazUpperOrLower = knyaz.getTop() >= getBot() || knyaz.getBot() <= getTop();
 
         if (isKnyazUpperOrLower) {
             if (seeKnyaz) {
                 seeKnyaz = false;
+                if (isNearLeftKnyaz) {
+                    isNearLeftKnyaz = false;
+                }
+                if (isNearRightKnyaz) {
+                    isNearRightKnyaz = false;
+                }
                 searchingTimer.restart();
             }
             if (state == EnemyStates::AGRESSIVE && searchingTimer.getElapsedTime().asSeconds() >= SEARCHING_DURATION) {
@@ -271,6 +292,12 @@ struct Enemy : AnimatedObj {
         } else if (knyazRight <= LEFT_ACTIVE_EDGE || knyazLeft >= RIGHT_ACTIVE_EDGE) {
             if (seeKnyaz) {
                 seeKnyaz = false;
+                if (isNearLeftKnyaz) {
+                    isNearLeftKnyaz = false;
+                }
+                if (isNearRightKnyaz) {
+                    isNearRightKnyaz = false;
+                }
                 searchingTimer.restart();
             }
         }

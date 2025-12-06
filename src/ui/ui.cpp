@@ -168,6 +168,14 @@ void mouseEventsHandler(const sf::Event& event) {
     if (!(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight)) {
         if (event.mouseButton.button == sf::Mouse::Left) {
             knyaz.changeAnimation(animationContainer["easyAttack"]);
+            for (auto &enemy : mapEnemys) {
+                if (enemy.isNearLeftKnyaz && !knyaz.isLeftOrented) {
+                    enemy.body.setFillColor(sf::Color::Yellow);
+                }
+                if (enemy.isNearRightKnyaz && knyaz.isLeftOrented) {
+                    enemy.body.setFillColor(sf::Color::Green);
+                }
+            }
         } else if (event.mouseButton.button == sf::Mouse::Right) {
             knyaz.changeAnimation(animationContainer["heavyAttack"]);
         }

@@ -29,16 +29,6 @@ int main() {
     initVariables();
     playGameMusic();
 
-//    Enemy myEnemy;
-//    myEnemy.body.setSize({80.f, 80.f});
-//    myEnemy.body.setPosition({1932.f - 1774.f, 691.f});
-//    myEnemy.body.setFillColor(sf::Color::Red);
-//    myEnemy.LEFT_ACTIVE_EDGE = 1774.f - 1774.f;
-//    myEnemy.LEFT_PATROLING_EDGE = 1899.f - 1774.f;
-//    myEnemy.RIGHT_PATROLING_EDGE = 2290.f - 1774.f - 300.f;
-//    myEnemy.RIGHT_ACTIVE_EDGE = 2420.f - 1774.f  - 300.f;
-//    mapEnemys.push_back(myEnemy);
-
     std::vector<sf::Text> textToPrint;
     while (window.isOpen()) {
         pollEvents();
