@@ -226,3 +226,15 @@ void initGameMap() {
 std::map<std::string, std::string> config;
 std::map<std::string, sf::Keyboard::Scancode> keymap;
 sf::Clock globalTimer;
+
+void enemysTakenDamage() {
+    if (knyaz.isAttackFinished) {
+        for (auto &enemy : mapEnemys) {
+            if (enemy.takenDamage != 0) {
+                enemy.hp -= enemy.takenDamage;
+                enemy.takenDamage = 0;
+            }
+        }
+        knyaz.isAttackFinished = false;
+    }
+}

@@ -21,13 +21,6 @@ void fallingCheck(bool &falling) {
             break;
         }
     }
-//    if (!falling) return;
-//    for (auto enemy : mapEnemys) {
-//        if (isKnyazVerticalOverlap(enemy) && abs(knyaz.getBot() - enemy.getTop()) < 0.2f) {
-//            falling = false;
-//            break;
-//        }
-//    }
 }
 
 void checkKnyazFalling() {
@@ -130,7 +123,6 @@ void checkKnyazEnemyCollision() {
     for (auto &enemy : mapEnemys) {
         const bool leftCollision = isLeftCollision(enemy);
         const bool rightCollision = isRightCollision(enemy);
-//        const bool upCollision = isUpCollision(enemy);
 
         if ((isKnyazLower(enemy) || isKnyazUpper(enemy)) || !(leftCollision || rightCollision)) continue;
 

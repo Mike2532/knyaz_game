@@ -81,6 +81,8 @@ void update(std::vector<sf::Text>& textToPrint) {
         knyazMove(elapsedTime);
         checkKnyazFalling();
         checkKnyazEnemyCollision();
+        enemysTakenDamage();
+        removeDeathEnemys();
         knyaz.animationProcess();
     }
 }

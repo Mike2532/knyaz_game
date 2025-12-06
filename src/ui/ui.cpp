@@ -3,6 +3,7 @@
 #include "../resources/resources.h"
 #include <iostream>
 #include "../knyaz/knyaz.h"
+#include "algorithm"
 
 using namespace std;
 
@@ -170,14 +171,22 @@ void mouseEventsHandler(const sf::Event& event) {
             knyaz.changeAnimation(animationContainer["easyAttack"]);
             for (auto &enemy : mapEnemys) {
                 if (enemy.isNearLeftKnyaz && !knyaz.isLeftOrented) {
-                    enemy.body.setFillColor(sf::Color::Yellow);
+                    enemy.takenDamage += knyaz.lightAttackPower;
                 }
                 if (enemy.isNearRightKnyaz && knyaz.isLeftOrented) {
-                    enemy.body.setFillColor(sf::Color::Green);
+                    enemy.takenDamage += knyaz.lightAttackPower;
                 }
             }
         } else if (event.mouseButton.button == sf::Mouse::Right) {
             knyaz.changeAnimation(animationContainer["heavyAttack"]);
+            for (auto &enemy : mapEnemys) {
+                if (enemy.isNearLeftKnyaz && !knyaz.isLeftOrented) {
+                    enemy.takenDamage += knyaz.lightAttackPower;
+                }
+                if (enemy.isNearRightKnyaz && knyaz.isLeftOrented) {
+                    enemy.takenDamage += knyaz.lightAttackPower;
+                }
+            }
         }
     }
 }
@@ -241,6 +250,11 @@ void gameRestart() {
     knyaz.isAlive = true;
     knyaz.changeAnimation(animationContainer["falling"]);
     knyaz.freeFallingTimer.restart();
+}
+
+void removeDeathEnemys() {
+    auto toRemove = remove_if(mapEnemys.begin(), mapEnemys.end(), [](Enemy &enemy) {return enemy.hp <= 0;});
+    mapEnemys.erase(toRemove, mapEnemys.end());
 }
 
 void GameProcessEventsHandler(const sf::Event& event) {

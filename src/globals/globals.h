@@ -87,6 +87,11 @@ struct Knyaz : AnimatedObj {
     bool isDoubleJump = false;
     bool isLeftOrented = false;
     bool isClimbing = false;
+    bool isAttackFinished = false;
+
+    int hp = 2500;
+    int lightAttackPower = 400;
+    int heavyAttackPower = 700;
 
     void textureUpdate() override {
         constexpr int STRIP_FRAME_OFFSET = 120;
@@ -125,6 +130,7 @@ struct Knyaz : AnimatedObj {
                             NORMAL_H
                     ));
                 }
+                isAttackFinished = true;
             } else {
                 body.setTextureRect(sf::IntRect(
                         STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X + LEFT_ORIENTED_EXTRA,
@@ -159,6 +165,7 @@ struct Knyaz : AnimatedObj {
                         NORMAL_H
                 ));
             }
+            isAttackFinished = true;
         }
 
         body.setSize(sf::Vector2f(KNYAZ_SIDE_SIZE, KNYAZ_SIDE_SIZE));
@@ -184,6 +191,10 @@ struct Enemy : AnimatedObj {
     bool isNearRightKnyaz = false;
     bool seeKnyaz = false;
     bool isPatrolingLeft = true;
+
+    int hp = 1000;
+    int attackPower = 250;
+    int takenDamage = 0;
 
     sf::Clock searchingTimer;
     EnemyStates state = EnemyStates::PATROLLING;
@@ -316,4 +327,6 @@ void initEnemys();
 
 extern vector<GameEntity> mapObjs;
 extern vector<Enemy> mapEnemys;
+
+extern void enemysTakenDamage();
 #endif //KNYAZ_GAME_GLOBALS_H

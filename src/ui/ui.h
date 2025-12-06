@@ -20,5 +20,6 @@ void LoadScreenClickHandler();
 void GameEndEventsHandler(const sf::Event& event);
 void GameEndClickHandler();
 void GameProcessEventsHandler(const sf::Event& event);
+void removeDeathEnemys();
 
 #endif //KNYAZ_GAME_UI_H
