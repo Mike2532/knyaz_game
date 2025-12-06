@@ -20,6 +20,8 @@ sf::Texture KnyazHeavyAttackTexture;
 sf::Texture KnyazDeathTexture;
 sf::Texture KnyazWallHangTexture;
 
+sf::Texture EnemyWalkTexture;
+
 sf::Texture GroundTexture;
 sf::Texture LavaTexture;
 sf::Texture SpikesTexture;
@@ -59,11 +61,6 @@ void initMapObj(sf::Vector2f objSize, sf::Vector2f objPos, sf::Texture &texture,
     container.push_back(newEntity);
 }
 
-const vector<pair<sf::Vector2f, sf::Vector2f>> mapObtaclesParams {
-        make_pair<sf::Vector2f, sf::Vector2f>({400.f, 50.f}, {1254.f, 721.f}), //lava
-};
-
-
 auto makeEntity(const sf::Vector2f &entitySize, const sf::Vector2f &entityPos, ObjsTypes entityType) {
     return std::make_pair(
             std::make_pair(entitySize, entityPos),
@@ -83,11 +80,11 @@ auto addEnemy(const EnemyParam &enemyParam) {
     Enemy myEnemy;
     myEnemy.body.setSize({80.f, 80.f});
     myEnemy.body.setPosition(enemyParam.enemyPos);
-    myEnemy.body.setFillColor(sf::Color::Red);
     myEnemy.LEFT_ACTIVE_EDGE = enemyParam.LEFT_ACTIVE_EDGE;
     myEnemy.LEFT_PATROLING_EDGE = enemyParam.LEFT_PATROLING_EDGE;
     myEnemy.RIGHT_PATROLING_EDGE = enemyParam.RIGHT_PATROLING_EDGE;
     myEnemy.RIGHT_ACTIVE_EDGE = enemyParam.RIGHT_ACTIVE_EDGE;
+    myEnemy.animationData = animationContainer["enemyWalk"];
     mapEnemys.push_back(myEnemy);
 }
 
@@ -190,12 +187,6 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 4}, ObjsTypes::SPIKES), //start-hight ship
         makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 5}, ObjsTypes::SPIKES), //start-hight ship
 
-//        makeEntity({80.f, 80.f}, {460.f, 461.f}, ObjsTypes::ENEMY), //enemy1
-//        makeEntity({80.f, 80.f}, {720.f, 67.f}, ObjsTypes::ENEMY), //enemy1
-//        makeEntity({80.f, 80.f}, {1932.f, 691.f}, ObjsTypes::ENEMY), //enemy1
-//        makeEntity({80.f, 80.f}, {2435.f, 431.f}, ObjsTypes::ENEMY), //enemy1
-//        makeEntity({80.f, 80.f}, {2770.f, 214.f}, ObjsTypes::ENEMY), //enemy1
-
 };
 
 void initGameMap() {
@@ -228,11 +219,13 @@ std::map<std::string, sf::Keyboard::Scancode> keymap;
 sf::Clock globalTimer;
 
 void enemysTakenDamage() {
-    if (knyaz.isAttackFinished) {
+    constexpr int ATTACK_DELAY = 200;
+    if (knyaz.attackTimer.getElapsedTime().asMilliseconds() >= ATTACK_DELAY && knyaz.isAttackFinished) {
         for (auto &enemy : mapEnemys) {
             if (enemy.takenDamage != 0) {
                 enemy.hp -= enemy.takenDamage;
                 enemy.takenDamage = 0;
+                enemy.body.setFillColor(sf::Color::White);
             }
         }
         knyaz.isAttackFinished = false;

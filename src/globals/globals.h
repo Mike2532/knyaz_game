@@ -1,7 +1,6 @@
 #ifndef KNYAZ_GAME_GLOBALS_H
 #define KNYAZ_GAME_GLOBALS_H
 
-#pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <map>
@@ -27,6 +26,8 @@ extern sf::Texture KnyazEasyAttackTexture;
 extern sf::Texture KnyazHeavyAttackTexture;
 extern sf::Texture KnyazDeathTexture;
 extern sf::Texture KnyazWallHangTexture;
+
+extern sf::Texture EnemyWalkTexture;
 
 extern sf::Texture GroundTexture;
 extern sf::Texture LavaTexture;
@@ -92,6 +93,8 @@ struct Knyaz : AnimatedObj {
     int hp = 2500;
     int lightAttackPower = 400;
     int heavyAttackPower = 700;
+
+    sf::Clock attackTimer;
 
     void textureUpdate() override {
         constexpr int STRIP_FRAME_OFFSET = 120;
@@ -247,6 +250,7 @@ struct Enemy : AnimatedObj {
             if (isKnyazLeft && needToLeftRun) {
                 enemyPos.x -= AGRESSIVE_SPEED * elapsedTime;
                 enemyPos.x = max(enemyPos.x, LEFT_ACTIVE_EDGE);
+                isPatrolingLeft = true;
                 body.setPosition(enemyPos);
                 if (isNearLeftKnyaz) {
                     isNearLeftKnyaz = false;
@@ -254,6 +258,7 @@ struct Enemy : AnimatedObj {
             } else if (isKnyazRight && needToRightRun) {
                 enemyPos.x += AGRESSIVE_SPEED * elapsedTime;
                 enemyPos.x = min(enemyPos.x, RIGHT_ACTIVE_EDGE - body.getSize().x);
+                isPatrolingLeft = false;
                 body.setPosition(enemyPos);
                 if (isNearRightKnyaz) {
                     isNearRightKnyaz = false;
@@ -315,7 +320,33 @@ struct Enemy : AnimatedObj {
     };
 
     void textureUpdate() override {
-        return;
+        constexpr float ENEMY_SIDE_SIZE = 80.f;
+
+        constexpr int FRAME_WIDTH = 100;
+        constexpr int X_OFFSET = 44;
+        constexpr int Y_OFFSET = 41;
+        constexpr int ANIMATION_WIDTH = 22;
+        constexpr int ANIMATION_HEIGHT = 16;
+
+        body.setTexture(&animationData.animationTexture);
+
+        if (isPatrolingLeft) {
+            body.setTextureRect(sf::IntRect(
+                    FRAME_WIDTH * animationFrameNumber + X_OFFSET + ANIMATION_WIDTH,
+                    Y_OFFSET,
+                    -ANIMATION_WIDTH,
+                    ANIMATION_HEIGHT
+            ));
+        } else {
+            body.setTextureRect(sf::IntRect(
+                    FRAME_WIDTH * animationFrameNumber + X_OFFSET,
+                    Y_OFFSET,
+                    ANIMATION_WIDTH,
+                    ANIMATION_HEIGHT
+            ));
+        }
+
+        body.setSize(sf::Vector2f(ENEMY_SIDE_SIZE, ENEMY_SIDE_SIZE));
     }
 };
 

@@ -40,6 +40,7 @@ void initAnimationTextures() {
     KnyazHeavyAttackTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_HEAVY_ATTACK_ANIMATION"]);
     KnyazDeathTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_DEATH_ANIMATION"]);
     KnyazWallHangTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_WALL_HANG_ANIMATION"]);
+    EnemyWalkTexture.loadFromFile(config["ENEMYS_ANIMATION_FOLDER"] + config["ENEMY_WALK_ANIMATION"]);
 }
 
 void initObjsTextures() {
@@ -111,5 +112,11 @@ void initAnimations() {
             KnyazWallHangTexture,
             1,
             AnimationTypes::CLIMB
+    };
+
+    animationContainer["enemyWalk"] = {
+            EnemyWalkTexture,
+            8,
+            AnimationTypes::RUN
     };
 }

@@ -5,7 +5,6 @@
 #include "types.h"
 #include "vector"
 #include <iostream>
-#include "cmath"
 
 using namespace std;
 
@@ -76,6 +75,7 @@ void update(std::vector<sf::Text>& textToPrint) {
         for (auto &enemy : mapEnemys) {
             enemy.checkKnyazVision();
             enemy.move(elapsedTime);
+            enemy.animationProcess();
         }
 
         knyazMove(elapsedTime);

@@ -166,25 +166,47 @@ void GameEndEventsHandler(const sf::Event& event) {
 }
 
 void mouseEventsHandler(const sf::Event& event) {
+    constexpr int DAMAGE_OFFSET = 15;
+
     if (!(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight)) {
         if (event.mouseButton.button == sf::Mouse::Left) {
             knyaz.changeAnimation(animationContainer["easyAttack"]);
             for (auto &enemy : mapEnemys) {
                 if (enemy.isNearLeftKnyaz && !knyaz.isLeftOrented) {
+                    sf::Vector2f enemyPos = enemy.body.getPosition();
+                    enemyPos.x -= DAMAGE_OFFSET;
+                    enemy.body.setPosition(enemyPos);
                     enemy.takenDamage += knyaz.lightAttackPower;
+                    enemy.body.setFillColor(sf::Color::Red);
+                    knyaz.attackTimer.restart();
                 }
                 if (enemy.isNearRightKnyaz && knyaz.isLeftOrented) {
+                    sf::Vector2f enemyPos = enemy.body.getPosition();
+                    enemyPos.x -= DAMAGE_OFFSET;
+                    enemy.body.setPosition(enemyPos);
                     enemy.takenDamage += knyaz.lightAttackPower;
+                    enemy.body.setFillColor(sf::Color::Red);
+                    knyaz.attackTimer.restart();
                 }
             }
         } else if (event.mouseButton.button == sf::Mouse::Right) {
             knyaz.changeAnimation(animationContainer["heavyAttack"]);
             for (auto &enemy : mapEnemys) {
                 if (enemy.isNearLeftKnyaz && !knyaz.isLeftOrented) {
+                    sf::Vector2f enemyPos = enemy.body.getPosition();
+                    enemyPos.x += DAMAGE_OFFSET;
+                    enemy.body.setPosition(enemyPos);
                     enemy.takenDamage += knyaz.lightAttackPower;
+                    enemy.body.setFillColor(sf::Color::Red);
+                    knyaz.attackTimer.restart();
                 }
                 if (enemy.isNearRightKnyaz && knyaz.isLeftOrented) {
+                    sf::Vector2f enemyPos = enemy.body.getPosition();
+                    enemyPos.x += DAMAGE_OFFSET;
+                    enemy.body.setPosition(enemyPos);
                     enemy.takenDamage += knyaz.lightAttackPower;
+                    enemy.body.setFillColor(sf::Color::Red);
+                    knyaz.attackTimer.restart();
                 }
             }
         }

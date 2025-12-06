@@ -39,7 +39,9 @@ map<string, string> initConfig() {
         {"GROUND_TEXTURE", "ground.jpg"},
         {"LAVA_TEXTURE", "lava.jpg"},
         {"SPIKES_TEXTURE", "spikesRight.png"},
-        {"SPIKES_UP_TEXTURE", "spikesUp.png"}
+        {"SPIKES_UP_TEXTURE", "spikesUp.png"},
+        {"ENEMYS_ANIMATION_FOLDER", "./../media/animations/enemys/"},
+        {"ENEMY_WALK_ANIMATION", "walk.png"}
     };
 }
 
