@@ -173,14 +173,6 @@ extern std::map<std::string, std::string> config;
 extern std::map<std::string, sf::Keyboard::Scancode> keymap;
 extern sf::Clock globalTimer;
 
-//2 состояния ящера
-// патрулирование - ящер ходит вперед назад между заданными x координатами
-// агрессия - ящер побежит к князю
-// ящер умеет только ходить и атаковать
-// ящер знает границы потрулирования и границы своего мира - куда он не пойдет дальше даже во время боя
-//
-//todo в отрисовщике хранить не сами объекты, а указатели на них
-//тогда можно тело ящера запихнуть и в глобальную карту и в структуру ящера
 struct Enemy : AnimatedObj {
     float LEFT_PATROLING_EDGE;
     float RIGHT_PATROLING_EDGE;
@@ -195,20 +187,20 @@ struct Enemy : AnimatedObj {
     EnemyStates state = EnemyStates::PATROLLING;
 
     void move(const float& elapsedTime) {
-        float PATROL_SPEED = 150.f;
-        float AGRESSIVE_SPEED = 200.f;
+        float PATROL_SPEED = 125.f;
+        float AGRESSIVE_SPEED = 250.f;
         sf::Vector2f enemyPos = body.getPosition();
 
         if (state == EnemyStates::PATROLLING) {
             if (isPatrolingLeft) {
-                if (enemyPos.x > LEFT_PATROLING_EDGE) {
+                if (getLeft() > LEFT_PATROLING_EDGE) {
                     enemyPos.x -= PATROL_SPEED * elapsedTime;
                     body.setPosition(enemyPos);
                 } else {
                     isPatrolingLeft = false;
                 }
             } else {
-                if (enemyPos.x < RIGHT_PATROLING_EDGE) {
+                if (getRight() < RIGHT_PATROLING_EDGE) {
                     enemyPos.x += PATROL_SPEED * elapsedTime;
                     body.setPosition(enemyPos);
                 } else {
@@ -235,7 +227,7 @@ struct Enemy : AnimatedObj {
                 body.setPosition(enemyPos);
             } else if (isKnyazRight && needToRightRun) {
                 enemyPos.x += AGRESSIVE_SPEED * elapsedTime;
-                enemyPos.x = min(enemyPos.x, RIGHT_ACTIVE_EDGE);
+                enemyPos.x = min(enemyPos.x, RIGHT_ACTIVE_EDGE - body.getSize().x);
                 body.setPosition(enemyPos);
             }
         }
@@ -243,7 +235,6 @@ struct Enemy : AnimatedObj {
 
     void checkKnyazVision() {
         constexpr float SEARCHING_DURATION = 2.f;
-        float enemyBot = getBot();
         if (!knyaz.isFalling) {
             bool a = true;
         }
@@ -261,22 +252,23 @@ struct Enemy : AnimatedObj {
         }
 
         float knyazLeft = knyaz.getLeft();
+        float knyazRight = knyaz.getRight();
 
-        if (state == EnemyStates::AGRESSIVE && (knyazLeft >= LEFT_ACTIVE_EDGE || knyazLeft <= RIGHT_ACTIVE_EDGE)) {
+        if (state == EnemyStates::AGRESSIVE && (knyazRight >= LEFT_ACTIVE_EDGE || knyazLeft <= RIGHT_ACTIVE_EDGE)) {
             if (!seeKnyaz) {
                 seeKnyaz = true;
             }
         } else if (
                 state == EnemyStates::PATROLLING && (
                     !isPatrolingLeft && knyazLeft >= getRight() && knyazLeft <= RIGHT_ACTIVE_EDGE ||
-                    isPatrolingLeft && knyazLeft <= getLeft()  && knyazLeft >= LEFT_ACTIVE_EDGE
+                    isPatrolingLeft && knyazLeft <= getLeft()  && knyazRight >= LEFT_ACTIVE_EDGE
                 )
         ) {
             state = EnemyStates::AGRESSIVE;
             if (!seeKnyaz) {
                 seeKnyaz = true;
             }
-        } else if (knyazLeft <= LEFT_ACTIVE_EDGE || knyazLeft >= RIGHT_ACTIVE_EDGE) {
+        } else if (knyazRight <= LEFT_ACTIVE_EDGE || knyazLeft >= RIGHT_ACTIVE_EDGE) {
             if (seeKnyaz) {
                 seeKnyaz = false;
                 searchingTimer.restart();
@@ -293,7 +285,8 @@ void initDepends();
 void initVariables();
 
 void initGameMap();
+void initEnemys();
 
 extern vector<GameEntity> mapObjs;
-
+extern vector<Enemy> mapEnemys;
 #endif //KNYAZ_GAME_GLOBALS_H

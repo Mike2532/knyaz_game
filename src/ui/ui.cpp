@@ -229,6 +229,7 @@ void movementHandler() {
 void gameRestart() {
     knyaz.body = getKnyazBody();
     initGameMap();
+    initEnemys();
     knyaz.isAlive = true;
     knyaz.changeAnimation(animationContainer["falling"]);
     knyaz.freeFallingTimer.restart();
