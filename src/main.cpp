@@ -13,8 +13,8 @@ extern std::map<std::string, std::string> initConfig();
 extern std::map<std::string, sf::Keyboard::Scancode> getKeymap();
 
 void pollEvents();
-void update(std::vector<sf::Text>& textToPrint);
-void redrawFrame(const std::vector<sf::Text>& textToPrint);
+void update(std::vector<sf::Text>& textToPrint, Enemy &myEnemy);
+void redrawFrame(const std::vector<sf::Text>& textToPrint, Enemy &myEnemy);
 
 int main() {
     config = initConfig();
@@ -29,11 +29,21 @@ int main() {
     initVariables();
     playGameMusic();
 
+    Enemy myEnemy;
+    myEnemy.body.setSize({80.f, 80.f});
+    myEnemy.body.setPosition({1932.f - 1774.f, 691.f});
+    myEnemy.body.setFillColor(sf::Color::Red);
+    myEnemy.LEFT_ACTIVE_EDGE = 1774.f - 1774.f;
+    myEnemy.LEFT_PATROLING_EDGE = 1899.f - 1774.f;
+    myEnemy.RIGHT_PATROLING_EDGE = 2290.f - 1774.f - 300.f;
+    myEnemy.RIGHT_ACTIVE_EDGE = 2420.f - 1774.f  - 300.f;
+
+
     std::vector<sf::Text> textToPrint;
     while (window.isOpen()) {
         pollEvents();
-        update(textToPrint);
-        redrawFrame(textToPrint);
+        update(textToPrint, myEnemy);
+        redrawFrame(textToPrint, myEnemy);
     }
     return 0;
 }
@@ -56,7 +66,7 @@ void initVariables() {
     settingsMenu = getSettingsMenu();
 }
 
-void update(std::vector<sf::Text>& textToPrint) {
+void update(std::vector<sf::Text>& textToPrint, Enemy &myEnemy) {
     constexpr float LOADING_DURATION = 5.f;
 
     if (curState == GameState::MAIN_MENU) {
@@ -71,13 +81,18 @@ void update(std::vector<sf::Text>& textToPrint) {
     } else if (curState == GameState::GAME_PROCESS) {
         float elapsedTime = globalTimer.getElapsedTime().asSeconds();
         globalTimer.restart();
+
+        myEnemy.checkKnyazVision();
+        cout << (myEnemy.state == EnemyStates::PATROLLING) << ' ' << myEnemy.seeKnyaz << endl;
+        myEnemy.move(elapsedTime);
+
         knyazMove(elapsedTime);
         checkKnyazFalling();
         knyaz.animationProcess();
     }
 }
 
-void redrawFrame(const std::vector<sf::Text>& textToPrint) {
+void redrawFrame(const std::vector<sf::Text>& textToPrint, Enemy &myEnemy) {
     window.clear();
     window.draw(BGSprite);
 
@@ -90,6 +105,7 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             break;
         case GameState::GAME_PROCESS:
             window.draw(knyaz.body);
+            window.draw(myEnemy.body);
             for (const auto& obj : mapObjs) {
                 window.draw(obj.body);
             }

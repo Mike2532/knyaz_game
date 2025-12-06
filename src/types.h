@@ -27,6 +27,8 @@ enum class AnimationTypes {
 
 enum class ObjsTypes {ENTITY, OBTACLE, SPIKES, SPIKES_UP, ENEMY};
 
+enum class EnemyStates {PATROLLING, AGRESSIVE};
+
 struct GameEntity {
     sf::RectangleShape body;
     ObjsTypes type;

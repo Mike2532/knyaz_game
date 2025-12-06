@@ -75,7 +75,7 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({20.f, 2000.f}, {4320.f, -1000.f}, ObjsTypes::ENTITY),     // rightWorldEdge
         makeEntity({4320.f, 28.f}, {0.f, 771.f}, ObjsTypes::ENTITY),           // floor
 
-        makeEntity({237.f, 582.f}, {1017.f, 217.f}, ObjsTypes::ENTITY),       // 1-end
+//        makeEntity({237.f, 582.f}, {1017.f, 217.f}, ObjsTypes::ENTITY),       // 1-end
         makeEntity({237.f, 35.f}, {666.f, 684.f}, ObjsTypes::ENTITY), // 1-1
         makeEntity({237.f, 35.f}, {403.f, 541.f}, ObjsTypes::ENTITY), // 1-2
         makeEntity({237.f, 35.f}, {149.f, 446.f}, ObjsTypes::ENTITY), // 1-3
@@ -95,7 +95,7 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({20.f, 945.f}, {2400.f, -400.f}, ObjsTypes::ENTITY), // 2-9
 
         makeEntity({80.f, 900.f}, {1434.f, -400.f}, ObjsTypes::ENTITY), // M1
-        makeEntity({60.f, 535.f}, {1714.f, 236.f}, ObjsTypes::ENTITY), // M2
+//        makeEntity({60.f, 535.f}, {1714.f, 236.f}, ObjsTypes::ENTITY), // M2
         makeEntity({80.f, 35.f}, {1634.f, 236.f}, ObjsTypes::ENTITY), //M3
 
         makeEntity({30.f, 30.f}, {1647.f, 206.f}, ObjsTypes::SPIKES_UP), //SPIKES_UP
@@ -124,11 +124,11 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 4}, ObjsTypes::SPIKES), //start-hight ship
         makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 5}, ObjsTypes::SPIKES), //start-hight ship
 
-        makeEntity({80.f, 80.f}, {460.f, 461.f}, ObjsTypes::ENEMY), //enemy1
-        makeEntity({80.f, 80.f}, {720.f, 67.f}, ObjsTypes::ENEMY), //enemy1
-        makeEntity({80.f, 80.f}, {1932.f, 691.f}, ObjsTypes::ENEMY), //enemy1
-        makeEntity({80.f, 80.f}, {2435.f, 431.f}, ObjsTypes::ENEMY), //enemy1
-        makeEntity({80.f, 80.f}, {2770.f, 214.f}, ObjsTypes::ENEMY), //enemy1
+//        makeEntity({80.f, 80.f}, {460.f, 461.f}, ObjsTypes::ENEMY), //enemy1
+//        makeEntity({80.f, 80.f}, {720.f, 67.f}, ObjsTypes::ENEMY), //enemy1
+//        makeEntity({80.f, 80.f}, {1932.f, 691.f}, ObjsTypes::ENEMY), //enemy1
+//        makeEntity({80.f, 80.f}, {2435.f, 431.f}, ObjsTypes::ENEMY), //enemy1
+//        makeEntity({80.f, 80.f}, {2770.f, 214.f}, ObjsTypes::ENEMY), //enemy1
 
 };
 
