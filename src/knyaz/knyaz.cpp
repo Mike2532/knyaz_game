@@ -10,8 +10,8 @@ bool isKnyazVerticalOverlap(GameEntity entity) {
     return knyaz.getRight() > entity.getLeft() && knyaz.getRight() < entity.getRight() || knyaz.getLeft() > entity.getLeft() && knyaz.getLeft() < entity.getRight();
 }
 
-void fallingCheck(bool &falling, vector<GameEntity> &container) {
-    for (auto entity : container) {
+void fallingCheck(bool &falling) {
+    for (auto entity : mapObjs) {
         if (isKnyazVerticalOverlap(entity) && abs(knyaz.getBot() - entity.getTop()) < 0.2f) {
             falling = false;
             if (entity.type == ObjsTypes::OBTACLE && knyaz.isAlive) {
@@ -21,13 +21,21 @@ void fallingCheck(bool &falling, vector<GameEntity> &container) {
             break;
         }
     }
+//    if (!falling) return;
+//    for (auto enemy : mapEnemys) {
+//        if (isKnyazVerticalOverlap(enemy) && abs(knyaz.getBot() - enemy.getTop()) < 0.2f) {
+//            falling = false;
+//            break;
+//        }
+//    }
 }
 
 void checkKnyazFalling() {
     if (knyaz.isClimbing) return;
 
     bool falling = true;
-    fallingCheck(falling, mapObjs);
+    fallingCheck(falling);
+
 
     if (knyaz.isFalling && !falling) {
         if (!(knyaz.isMovingRight || knyaz.isMovingLeft)) knyaz.changeAnimation(animationContainer["idle"]);
@@ -76,8 +84,6 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
 
     bool climbed = false;
 
-    int i = 0;
-
     for (auto& obj : container) {
         const bool leftCollision = isLeftCollision(obj);
         const bool rightCollision = isRightCollision(obj);
@@ -114,6 +120,28 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
 
     if (knyaz.isClimbing && !climbed) {
         knyaz.isClimbing = false;
+    }
+}
+
+void checkKnyazEnemyCollision() {
+    sf::Vector2f knyazPos = knyaz.body.getPosition();
+    sf::Vector2f knyazSize = knyaz.body.getSize();
+
+    for (auto &enemy : mapEnemys) {
+        const bool leftCollision = isLeftCollision(enemy);
+        const bool rightCollision = isRightCollision(enemy);
+//        const bool upCollision = isUpCollision(enemy);
+
+        if ((isKnyazLower(enemy) || isKnyazUpper(enemy)) || !(leftCollision || rightCollision)) continue;
+
+        sf::Vector2f objPos = enemy.body.getPosition();
+        sf::Vector2f  objSize = enemy.body.getSize();
+
+        knyazPos.x = (leftCollision)
+                     ? objPos.x - knyazSize.x
+                     : objPos.x + objSize.x;
+
+        knyaz.body.setPosition(knyazPos);
     }
 }
 
