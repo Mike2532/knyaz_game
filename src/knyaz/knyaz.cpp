@@ -17,6 +17,7 @@ void fallingCheck(bool &falling) {
             if (entity.type == ObjsTypes::OBTACLE && knyaz.isAlive) {
                 knyaz.changeAnimation(animationContainer["death"]);
                 knyaz.isAlive = false;
+                knyaz.hp = 0;
             }
             break;
         }
@@ -101,6 +102,7 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
         if (knyaz.isAlive && (obj.type == ObjsTypes::OBTACLE || obj.type == ObjsTypes::SPIKES || obj.type == ObjsTypes::SPIKES_UP)) {
             knyaz.changeAnimation(animationContainer["death"]);
             knyaz.isAlive = false;
+            knyaz.hp = 0;
         }
 
         knyazPos.x = (leftCollision)
@@ -291,4 +293,10 @@ sf::RectangleShape getKnyazBody() {
     sf::RectangleShape knyazBody({KNYAZ_SIDE_SIZE, KNYAZ_SIDE_SIZE});
     knyazBody.setPosition({KNYAZ_START_X, KNYAZ_START_Y});
     return knyazBody;
+}
+
+void updateHpIndicator() {
+    sf::Color HpColor = HpIndicatorSprite.getColor();
+    HpColor.a = 255 * float (float (knyaz.MAX_HP - knyaz.hp) / knyaz.MAX_HP);
+    HpIndicatorSprite.setColor(HpColor);
 }

@@ -23,6 +23,9 @@ int main() {
     const sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
     const unsigned int SCREEN_WIDTH = desktopMode.width;
     const unsigned int SCREEN_HEIGHT = desktopMode.height;
+
+    cout << SCREEN_WIDTH << ' ' << SCREEN_HEIGHT << endl;
+
     window.create(sf::VideoMode({SCREEN_WIDTH, SCREEN_HEIGHT}), config["GAME_NAME"]);
 
     initVariables();
@@ -44,9 +47,11 @@ void initDepends() {
     initAnimationTextures();
     initAnimations();
     initObjsTextures();
+    initUITextures();
     initGameMap();
     initEnemys();
     knyaz.animationData = animationContainer["idle"];
+    HpIndicatorSprite.setTexture(HpIndicatorTexture);
 }
 
 void initVariables() {
@@ -84,6 +89,7 @@ void update(std::vector<sf::Text>& textToPrint) {
         enemysTakenDamage();
         removeDeathEnemys();
         knyaz.animationProcess();
+        updateHpIndicator();
     }
 }
 
@@ -107,6 +113,7 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             for (const auto& obj : mapObjs) {
                 window.draw(obj.body);
             }
+            window.draw(HpIndicatorSprite);
             break;
         default:
             break;

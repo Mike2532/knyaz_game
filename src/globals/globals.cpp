@@ -20,6 +20,8 @@ sf::Texture KnyazHeavyAttackTexture;
 sf::Texture KnyazDeathTexture;
 sf::Texture KnyazWallHangTexture;
 
+sf::Texture HpIndicatorTexture;
+
 sf::Texture EnemyWalkTexture;
 
 sf::Texture GroundTexture;
@@ -30,6 +32,7 @@ sf::Texture SpikesUpTexture;
 sf::Music GameMusic;
 sf::Font myFont;
 sf::Sprite BGSprite;
+sf::Sprite HpIndicatorSprite;
 
 std::map<std::string, AnimationData> animationContainer;
 

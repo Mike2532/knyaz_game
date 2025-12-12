@@ -13,6 +13,8 @@ void initAnimations();
 
 void initObjsTextures();
 
+void initUITextures();
+
 void updateBGSprite();
 
 #endif //KNYAZ_GAME_RESOURCES_H

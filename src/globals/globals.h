@@ -27,6 +27,8 @@ extern sf::Texture KnyazHeavyAttackTexture;
 extern sf::Texture KnyazDeathTexture;
 extern sf::Texture KnyazWallHangTexture;
 
+extern sf::Texture HpIndicatorTexture;
+
 extern sf::Texture EnemyWalkTexture;
 
 extern sf::Texture GroundTexture;
@@ -37,6 +39,7 @@ extern sf::Texture SpikesUpTexture;
 extern sf::Music GameMusic;
 extern sf::Font myFont;
 extern sf::Sprite BGSprite;
+extern sf::Sprite HpIndicatorSprite;
 
 struct AnimationData {
     sf::Texture animationTexture;
@@ -82,6 +85,8 @@ struct AnimatedObj : GameEntity {
 };
 
 struct Knyaz : AnimatedObj {
+    const int MAX_HP = 2500;
+
     bool isMovingLeft = false;
     bool isMovingRight = false;
     bool isJump = false;
@@ -90,7 +95,7 @@ struct Knyaz : AnimatedObj {
     bool isClimbing = false;
     bool isAttackFinished = false;
 
-    int hp = 2500;
+    int hp = -40;
     int lightAttackPower = 400;
     int heavyAttackPower = 700;
 

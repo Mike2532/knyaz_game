@@ -50,6 +50,10 @@ void initObjsTextures() {
     SpikesUpTexture.loadFromFile(config["WORLD_TEXTURES_FOLDER"] + config["SPIKES_UP_TEXTURE"]);
 }
 
+void initUITextures() {
+    HpIndicatorTexture.loadFromFile(config["UI_TEXTURES_FOLDER"] + config["HP_INDICATOR_TEXTURE"]);
+}
+
 void playGameMusic() {
     GameMusic.play();
 }

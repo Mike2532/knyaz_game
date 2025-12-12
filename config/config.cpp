@@ -35,6 +35,8 @@ map<string, string> initConfig() {
         {"KNYAZ_HEAVY_ATTACK_ANIMATION", "heavyAttack.png"},
         {"KNYAZ_DEATH_ANIMATION", "death.png"},
         {"KNYAZ_WALL_HANG_ANIMATION", "wallHang.png"},
+        {"UI_TEXTURES_FOLDER", "../media/ui/"},
+        {"HP_INDICATOR_TEXTURE", "HpIndicator.png"},
         {"WORLD_TEXTURES_FOLDER", "../media/objsTextures/"},
         {"GROUND_TEXTURE", "ground.jpg"},
         {"LAVA_TEXTURE", "lava.jpg"},

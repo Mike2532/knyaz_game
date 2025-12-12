@@ -8,5 +8,6 @@ void knyazMove(const float& elapsedTime);
 sf::RectangleShape getKnyazBody();
 void checkKnyazFalling();
 void checkKnyazEnemyCollision();
+void updateHpIndicator();
 
 #endif //KNYAZ_GAME_KNYAZ_H

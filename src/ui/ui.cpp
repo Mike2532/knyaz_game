@@ -270,6 +270,7 @@ void gameRestart() {
     initGameMap();
     initEnemys();
     knyaz.isAlive = true;
+    knyaz.hp = knyaz.MAX_HP;
     knyaz.changeAnimation(animationContainer["falling"]);
     knyaz.freeFallingTimer.restart();
 }
