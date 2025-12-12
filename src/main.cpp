@@ -89,6 +89,7 @@ void update(std::vector<sf::Text>& textToPrint) {
         enemysTakenDamage();
         removeDeathEnemys();
         knyaz.animationProcess();
+        knyaz.spritePositionUpdate();
         updateHpIndicator();
     }
 }
@@ -105,14 +106,17 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             }
             break;
         case GameState::GAME_PROCESS:
+            for (const auto& obj : mapObjs) {
+                window.draw(obj.body);
+            }
+
             window.draw(knyaz.body);
+            window.draw(knyaz.objSprite);
 
             for (auto &enemy : mapEnemys) {
                 window.draw(enemy.body);
             }
-            for (const auto& obj : mapObjs) {
-                window.draw(obj.body);
-            }
+
             window.draw(HpIndicatorSprite);
             break;
         default:

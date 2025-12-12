@@ -24,6 +24,8 @@ sf::Texture HpIndicatorTexture;
 
 sf::Texture EnemyWalkTexture;
 
+sf::Texture emptyTexture;
+
 sf::Texture GroundTexture;
 sf::Texture LavaTexture;
 sf::Texture SpikesTexture;

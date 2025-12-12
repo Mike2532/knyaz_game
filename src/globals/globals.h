@@ -36,6 +36,8 @@ extern sf::Texture LavaTexture;
 extern sf::Texture SpikesTexture;
 extern sf::Texture SpikesUpTexture;
 
+extern sf::Texture emptyTexture;
+
 extern sf::Music GameMusic;
 extern sf::Font myFont;
 extern sf::Sprite BGSprite;
@@ -50,8 +52,13 @@ struct AnimationData {
 extern std::map<std::string, AnimationData> animationContainer;
 
 struct AnimatedObj : GameEntity {
+    sf::Sprite objSprite;
+
     bool isFalling = false;
     bool isAlive = true;
+    bool isLeftOrented = false;
+    bool isSpriteLeftOrented = false;
+
     sf::Clock freeFallingTimer;
 
     sf::Clock animationTimer;
@@ -61,6 +68,7 @@ struct AnimatedObj : GameEntity {
     virtual void textureUpdate() = 0;
 
     void animationProcess() {
+        objSprite.setPosition(body.getPosition());
         constexpr int ANIMATION_DURATON = 100;
 
         if (
@@ -91,11 +99,10 @@ struct Knyaz : AnimatedObj {
     bool isMovingRight = false;
     bool isJump = false;
     bool isDoubleJump = false;
-    bool isLeftOrented = false;
     bool isClimbing = false;
     bool isAttackFinished = false;
 
-    int hp = -40;
+    int hp = 2500;
     int lightAttackPower = 400;
     int heavyAttackPower = 700;
 
@@ -104,10 +111,10 @@ struct Knyaz : AnimatedObj {
 
     void textureUpdate() override {
         constexpr int STRIP_FRAME_OFFSET = 120;
-        constexpr int NORMAL_BASE_X = 27;
+        constexpr int NORMAL_BASE_X = 27 + 17;
         constexpr int ATTACK_BASE_X = 40;
-        constexpr int LEFT_ORIENTED_EXTRA = 43;
-        constexpr int LEFT_ATTACK_EXTRA = 65;
+        constexpr int LEFT_ORIENTED_EXTRA = 43 - 22;
+        constexpr int LEFT_ATTACK_EXTRA = 65 - 42;
 
         constexpr int NORMAL_W = 43;
         constexpr int NORMAL_H = 40;
@@ -117,67 +124,57 @@ struct Knyaz : AnimatedObj {
         constexpr int NORMAL_TOP = 40;
         constexpr int ATTACK_TOP = 35;
 
-        constexpr float KNYAZ_SIDE_SIZE = 80.f;
+        objSprite.setTexture(animationData.animationTexture);
+        if (animationData.animationType == AnimationTypes::ATTACK) {
+            objSprite.setTextureRect(sf::IntRect(
+                    STRIP_FRAME_OFFSET * animationFrameNumber + ATTACK_BASE_X - 15.f,
+                    ATTACK_TOP,
+                    ATTACK_W + 15.f,
+                    ATTACK_H
+            ));
 
-        body.setTexture(&animationData.animationTexture);
-
-        if (isLeftOrented) {
-            if (animationData.animationType == AnimationTypes::ATTACK) {
-                body.setTextureRect(sf::IntRect(
-                        STRIP_FRAME_OFFSET * animationFrameNumber + ATTACK_BASE_X + LEFT_ATTACK_EXTRA,
-                        ATTACK_TOP,
-                        -ATTACK_W,
-                        ATTACK_H
-                ));
-
-                if (animationFrameNumber == animationData.animationFrames - 1) {
-                    if (isAlive) changeAnimation(animationContainer["idle"]);
-                    body.setTextureRect(sf::IntRect(
-                            STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X + LEFT_ORIENTED_EXTRA,
-                            NORMAL_TOP,
-                            -NORMAL_W,
-                            NORMAL_H
-                    ));
-                }
-                isAttackFinished = true;
-            } else {
-                body.setTextureRect(sf::IntRect(
-                        STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X + LEFT_ORIENTED_EXTRA,
+            if (animationFrameNumber == animationData.animationFrames - 1) {
+                if (isAlive) changeAnimation(animationContainer["idle"]);
+                objSprite.setTextureRect(sf::IntRect(
+                        STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X - 15.f,
                         NORMAL_TOP,
-                        -NORMAL_W,
+                        NORMAL_W  + 15.f,
                         NORMAL_H
                 ));
             }
         } else {
-            if (animationData.animationType == AnimationTypes::ATTACK) {
-                body.setTextureRect(sf::IntRect(
-                        STRIP_FRAME_OFFSET * animationFrameNumber + ATTACK_BASE_X,
-                        ATTACK_TOP,
-                        ATTACK_W,
-                        ATTACK_H
-                ));
+            objSprite.setTextureRect(sf::IntRect(
+                    STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X  - 15.f,
+                    NORMAL_TOP,
+                    NORMAL_W + 15.f,
+                    NORMAL_H
+            ));
+        }
+        isAttackFinished = true;
+        float scaleX = 2.f;
+        float scaleY = 2.f;
 
-                if (animationFrameNumber == animationData.animationFrames - 1) {
-                    if (isAlive) changeAnimation(animationContainer["idle"]);
-                    body.setTextureRect(sf::IntRect(
-                            STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X,
-                            NORMAL_TOP,
-                            NORMAL_W,
-                            NORMAL_H
-                    ));
-                }
-            } else {
-                body.setTextureRect(sf::IntRect(
-                        STRIP_FRAME_OFFSET * animationFrameNumber + NORMAL_BASE_X,
-                        NORMAL_TOP,
-                        NORMAL_W,
-                        NORMAL_H
-                ));
-            }
-            isAttackFinished = true;
+        if (isLeftOrented) {
+            scaleX *= -1;
+            if (!isSpriteLeftOrented) isSpriteLeftOrented = true;
+        } else if (isSpriteLeftOrented) {
+            isSpriteLeftOrented = false;
         }
 
-        body.setSize(sf::Vector2f(KNYAZ_SIDE_SIZE, KNYAZ_SIDE_SIZE));
+        objSprite.setScale(scaleX, scaleY);
+    }
+
+    void spritePositionUpdate() {
+        sf::Vector2f pos = body.getPosition();
+        pos.x -= 30;
+        if (animationData.animationType == AnimationTypes::ATTACK) {
+            pos.y -= 10;
+        }
+
+        if (isSpriteLeftOrented) {
+            pos.x += 105;
+        }
+        objSprite.setPosition(pos);
     }
 };
 
