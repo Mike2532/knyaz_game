@@ -24,11 +24,10 @@ void fallingCheck(bool &falling) {
 }
 
 void checkKnyazFalling() {
-    if (knyaz.isClimbing) return;
-
     bool falling = true;
     fallingCheck(falling);
 
+    if (knyaz.isClimbing) return;
 
     if (knyaz.isFalling && !falling) {
         if (!(knyaz.isMovingRight || knyaz.isMovingLeft)) knyaz.changeAnimation(animationContainer["idle"]);
@@ -241,10 +240,17 @@ void horizontalMoveProcess(const float& elapsedTime) {
 void verticalMoveProcess() {
     constexpr float FREE_FALLING_SPEED_MULTIPLYER = 0.4f;
     constexpr float JUMP_POWER = 0.25f;
+    constexpr float CLIMBING_SPEED_MULTIPLYER = 0.015f;
 
     sf::Vector2f knyazPosition = knyaz.body.getPosition();
 
-    float fallingOffset = knyaz.freeFallingTimer.getElapsedTime().asSeconds() * FREE_FALLING_SPEED_MULTIPLYER;
+    if (knyaz.isClimbing && knyaz.climbingTimer.getElapsedTime().asSeconds() > 1) {
+        float climbingOffset = (knyaz.climbingTimer.getElapsedTime().asSeconds() - 1) * CLIMBING_SPEED_MULTIPLYER;
+        climbingOffset = min(climbingOffset, 0.03f);
+        knyazPosition.y += climbingOffset;
+    }
+
+    const float fallingOffset = knyaz.freeFallingTimer.getElapsedTime().asSeconds() * FREE_FALLING_SPEED_MULTIPLYER;
 
     if (knyaz.isFalling) {
         knyazPosition.y += fallingOffset;

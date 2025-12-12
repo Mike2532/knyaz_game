@@ -296,6 +296,7 @@ void GameProcessEventsHandler(const sf::Event& event) {
 
         if (event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(keymap["CLIMBING_KEY"]) && knyaz.isFalling && !knyaz.isClimbing) {
             knyaz.isClimbing = true;
+            knyaz.climbingTimer.restart();
         }
 
         movementHandler();

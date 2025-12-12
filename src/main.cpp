@@ -104,7 +104,6 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             for (auto &enemy : mapEnemys) {
                 window.draw(enemy.body);
             }
-
             for (const auto& obj : mapObjs) {
                 window.draw(obj.body);
             }

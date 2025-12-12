@@ -95,6 +95,7 @@ struct Knyaz : AnimatedObj {
     int heavyAttackPower = 700;
 
     sf::Clock attackTimer;
+    sf::Clock climbingTimer;
 
     void textureUpdate() override {
         constexpr int STRIP_FRAME_OFFSET = 120;
