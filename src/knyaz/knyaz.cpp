@@ -290,7 +290,7 @@ sf::RectangleShape getKnyazBody() {
     constexpr float KNYAZ_START_X = 39.f;
     constexpr float KNYAZ_START_Y = 400.f;
 
-    sf::RectangleShape knyazBody({45.f, KNYAZ_SIDE_SIZE});
+    sf::RectangleShape knyazBody({45.f, 75.f});
     knyazBody.setPosition({KNYAZ_START_X, KNYAZ_START_Y});
     return knyazBody;
 }

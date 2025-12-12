@@ -81,6 +81,7 @@ void update(std::vector<sf::Text>& textToPrint) {
             enemy.checkKnyazVision();
             enemy.move(elapsedTime);
             enemy.animationProcess();
+            enemy.spritePositionUpdate();
         }
 
         knyazMove(elapsedTime);
@@ -115,6 +116,7 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
 
             for (auto &enemy : mapEnemys) {
                 window.draw(enemy.body);
+                window.draw(enemy.objSprite);
             }
 
             window.draw(HpIndicatorSprite);

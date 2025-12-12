@@ -83,7 +83,7 @@ struct EnemyParam {
 
 auto addEnemy(const EnemyParam &enemyParam) {
     Enemy myEnemy;
-    myEnemy.body.setSize({80.f, 80.f});
+    myEnemy.body.setSize({50.f, 60.f});
     myEnemy.body.setPosition(enemyParam.enemyPos);
     myEnemy.LEFT_ACTIVE_EDGE = enemyParam.LEFT_ACTIVE_EDGE;
     myEnemy.LEFT_PATROLING_EDGE = enemyParam.LEFT_PATROLING_EDGE;
@@ -95,35 +95,35 @@ auto addEnemy(const EnemyParam &enemyParam) {
 
 const vector<EnemyParam> enemyParams {
         { //MW
-                {1932.f, 691.f},
+                {1932.f, 691.f + 20.f - 2.f},
                 1774.f,
                 1899.f,
                 2290.f,
                 2420.f
         },
         { //Start 1-st
-                {466.f, 461.f},
+                {466.f, 461.f + 20.f - 2.f},
                 407.f,
                 407.f,
                 653.f,
                 653.f
         },
         { //Start 2-nd
-                {702.f, 67.f},
+                {702.f, 67.f + 20.f - 2.f},
                 655.f,
                 680.f,
                 982.f,
                 1012.f
         },
         {  //Tower 1-st
-                {2435.f, 431.f},
+                {2435.f, 431.f + 20.f - 2.f},
                 2425.f,
                 2425.f,
                 2560.f,
                 2560.f
         },
         { //Tower 2-nd
-                {2770.f, 214.f},
+                {2770.f, 214.f + 20.f - 2.f},
                 2720.f,
                 2720.f,
                 2855.f,

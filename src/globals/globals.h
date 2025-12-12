@@ -68,7 +68,6 @@ struct AnimatedObj : GameEntity {
     virtual void textureUpdate() = 0;
 
     void animationProcess() {
-        objSprite.setPosition(body.getPosition());
         constexpr int ANIMATION_DURATON = 100;
 
         if (
@@ -167,6 +166,7 @@ struct Knyaz : AnimatedObj {
     void spritePositionUpdate() {
         sf::Vector2f pos = body.getPosition();
         pos.x -= 30;
+        pos.y -= 5;
         if (animationData.animationType == AnimationTypes::ATTACK) {
             pos.y -= 10;
         }
@@ -331,25 +331,34 @@ struct Enemy : AnimatedObj {
         constexpr int ANIMATION_WIDTH = 22;
         constexpr int ANIMATION_HEIGHT = 16;
 
-        body.setTexture(&animationData.animationTexture);
+        objSprite.setTexture(animationData.animationTexture);
+
+        objSprite.setTextureRect(sf::IntRect(
+                FRAME_WIDTH * animationFrameNumber + X_OFFSET,
+                Y_OFFSET,
+                ANIMATION_WIDTH,
+                ANIMATION_HEIGHT
+        ));
+
+        float SCALE_X = 4.f;
+        float SCALE_Y = 4.f;
 
         if (isPatrolingLeft) {
-            body.setTextureRect(sf::IntRect(
-                    FRAME_WIDTH * animationFrameNumber + X_OFFSET + ANIMATION_WIDTH,
-                    Y_OFFSET,
-                    -ANIMATION_WIDTH,
-                    ANIMATION_HEIGHT
-            ));
-        } else {
-            body.setTextureRect(sf::IntRect(
-                    FRAME_WIDTH * animationFrameNumber + X_OFFSET,
-                    Y_OFFSET,
-                    ANIMATION_WIDTH,
-                    ANIMATION_HEIGHT
-            ));
+            isSpriteLeftOrented = true;
+            SCALE_X *= -1;
+        } else if (isSpriteLeftOrented) {
+            isSpriteLeftOrented = false;
         }
 
-        body.setSize(sf::Vector2f(ENEMY_SIDE_SIZE, ENEMY_SIDE_SIZE));
+        objSprite.setScale(SCALE_X, SCALE_Y);
+    }
+
+    void spritePositionUpdate() {
+        sf::Vector2f pos = body.getPosition();
+        if (isSpriteLeftOrented) {
+            pos.x += 50;
+        }
+        objSprite.setPosition(pos);
     }
 };
 
