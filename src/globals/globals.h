@@ -31,6 +31,7 @@ extern sf::Texture HpIndicatorTexture;
 
 extern sf::Texture EnemyWalkTexture;
 extern sf::Texture EnemyAttackTexture;
+extern sf::Texture EnemyIDLETexture;
 
 extern sf::Texture GroundTexture;
 extern sf::Texture LavaTexture;

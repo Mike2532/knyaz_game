@@ -24,6 +24,7 @@ sf::Texture HpIndicatorTexture;
 
 sf::Texture EnemyWalkTexture;
 sf::Texture EnemyAttackTexture;
+sf::Texture EnemyIDLETexture;
 
 sf::Texture GroundTexture;
 sf::Texture LavaTexture;
@@ -88,8 +89,7 @@ auto addEnemy(const EnemyParam &enemyParam) {
     myEnemy.LEFT_PATROLING_EDGE = enemyParam.LEFT_PATROLING_EDGE;
     myEnemy.RIGHT_PATROLING_EDGE = enemyParam.RIGHT_PATROLING_EDGE;
     myEnemy.RIGHT_ACTIVE_EDGE = enemyParam.RIGHT_ACTIVE_EDGE;
-//    myEnemy.animationData = animationContainer["enemyWalk"];
-    myEnemy.animationData = animationContainer["enemyAttack"];
+    myEnemy.animationData = animationContainer["enemyWalk"];
     mapEnemys.push_back(myEnemy);
 }
 
