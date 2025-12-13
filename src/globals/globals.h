@@ -105,16 +105,16 @@ struct Knyaz : AnimatedObj {
     int hp = 2500;
     int lightAttackPower = 400;
     int heavyAttackPower = 700;
+    int takenDamage = 0;
 
     sf::Clock attackTimer;
+    sf::Clock damageTimer;
     sf::Clock climbingTimer;
 
     void textureUpdate() override {
         constexpr int STRIP_FRAME_OFFSET = 120;
         constexpr int NORMAL_BASE_X = 27 + 17;
         constexpr int ATTACK_BASE_X = 40;
-        constexpr int LEFT_ORIENTED_EXTRA = 43 - 22;
-        constexpr int LEFT_ATTACK_EXTRA = 65 - 42;
 
         constexpr int NORMAL_W = 43;
         constexpr int NORMAL_H = 40;
@@ -177,6 +177,14 @@ struct Knyaz : AnimatedObj {
         }
         objSprite.setPosition(pos);
     }
+
+    void takeDamage() {
+        constexpr float damageMilliseconds = 400;
+        if (takenDamage != 0 && damageTimer.getElapsedTime().asMilliseconds() >= damageMilliseconds) {
+            objSprite.setColor(sf::Color::White);
+            takenDamage = 0;
+        }
+    }
 };
 
 extern Knyaz knyaz;
@@ -201,7 +209,7 @@ struct Enemy : AnimatedObj {
     bool isAttacking = false;
 
     int hp = 1000;
-    int attackPower = 250;
+    int attackPower = 650;
     int takenDamage = 0;
 
     sf::Clock searchingTimer;
@@ -342,11 +350,10 @@ struct Enemy : AnimatedObj {
     }
 
     void tryToAttack() {
-        const float time = attackTimer.getElapsedTime().asMilliseconds();
+        if (!knyaz.isAlive) return;
         bool isAttacking = isAttackingNow(attackTimer.getElapsedTime().asMilliseconds());
 
         if ((isNearLeftKnyaz || isNearRightKnyaz) && animationData.animationType != AnimationTypes::ATTACK && isAttacking) {
-            cout << 1 << ' ' << time <<endl;
             changeAnimation(animationContainer["enemyAttack"]);
         }
     }
@@ -378,6 +385,23 @@ struct Enemy : AnimatedObj {
         }
 
         objSprite.setScale(SCALE_X, SCALE_Y);
+
+        if (animationData.animationType == AnimationTypes::ATTACK) {
+            if (animationFrameNumber == animationData.animationFrames - 1) {
+                attackTimer.restart();
+                changeAnimation(animationContainer["enemyIDLE"]);
+            } else if (animationFrameNumber == animationData.animationFrames - 3) {
+                knyaz.hp -= attackPower;
+                if (knyaz.hp <= 0) {
+                    knyaz.changeAnimation(animationContainer["death"]);
+                    knyaz.isAlive = false;
+                }
+                knyaz.takenDamage += attackPower;
+                knyaz.objSprite.setColor(sf::Color::Red);
+                knyaz.damageTimer.restart();
+            }
+
+        }
 
         if (animationFrameNumber == animationData.animationFrames - 1 && animationData.animationType == AnimationTypes::ATTACK) {
             attackTimer.restart();

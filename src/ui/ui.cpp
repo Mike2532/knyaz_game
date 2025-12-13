@@ -172,7 +172,7 @@ void mouseEventsHandler(const sf::Event& event) {
         if (event.mouseButton.button == sf::Mouse::Left) {
             knyaz.changeAnimation(animationContainer["easyAttack"]);
             for (auto &enemy : mapEnemys) {
-                if (enemy.isNearLeftKnyaz && !knyaz.isLeftOrented) {
+                if ((enemy.isNearLeftKnyaz) && !knyaz.isLeftOrented) {
                     sf::Vector2f enemyPos = enemy.body.getPosition();
                     enemyPos.x -= DAMAGE_OFFSET;
                     enemy.body.setPosition(enemyPos);

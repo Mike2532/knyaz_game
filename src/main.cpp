@@ -93,6 +93,7 @@ void update(std::vector<sf::Text>& textToPrint) {
         removeDeathEnemys();
         knyaz.animationProcess();
         knyaz.spritePositionUpdate();
+        knyaz.takeDamage();
         updateHpIndicator();
     }
 }
