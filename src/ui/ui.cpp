@@ -177,7 +177,7 @@ void mouseEventsHandler(const sf::Event& event) {
                     enemyPos.x -= DAMAGE_OFFSET;
                     enemy.body.setPosition(enemyPos);
                     enemy.takenDamage += knyaz.lightAttackPower;
-                    enemy.body.setFillColor(sf::Color::Red);
+                    enemy.objSprite.setColor(sf::Color::Red);
                     knyaz.attackTimer.restart();
                 }
                 if (enemy.isNearRightKnyaz && knyaz.isLeftOrented) {
@@ -185,7 +185,7 @@ void mouseEventsHandler(const sf::Event& event) {
                     enemyPos.x -= DAMAGE_OFFSET;
                     enemy.body.setPosition(enemyPos);
                     enemy.takenDamage += knyaz.lightAttackPower;
-                    enemy.body.setFillColor(sf::Color::Red);
+                    enemy.objSprite.setColor(sf::Color::Red);
                     knyaz.attackTimer.restart();
                 }
             }
@@ -197,7 +197,7 @@ void mouseEventsHandler(const sf::Event& event) {
                     enemyPos.x += DAMAGE_OFFSET;
                     enemy.body.setPosition(enemyPos);
                     enemy.takenDamage += knyaz.lightAttackPower;
-                    enemy.body.setFillColor(sf::Color::Red);
+                    enemy.objSprite.setColor(sf::Color::Red);
                     knyaz.attackTimer.restart();
                 }
                 if (enemy.isNearRightKnyaz && knyaz.isLeftOrented) {
@@ -205,7 +205,7 @@ void mouseEventsHandler(const sf::Event& event) {
                     enemyPos.x += DAMAGE_OFFSET;
                     enemy.body.setPosition(enemyPos);
                     enemy.takenDamage += knyaz.lightAttackPower;
-                    enemy.body.setFillColor(sf::Color::Red);
+                    enemy.objSprite.setColor(sf::Color::Red);
                     knyaz.attackTimer.restart();
                 }
             }

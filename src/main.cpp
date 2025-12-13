@@ -52,6 +52,7 @@ void initDepends() {
     initEnemys();
     knyaz.animationData = animationContainer["idle"];
     HpIndicatorSprite.setTexture(HpIndicatorTexture);
+    srand(time(NULL));
 }
 
 void initVariables() {
@@ -80,6 +81,7 @@ void update(std::vector<sf::Text>& textToPrint) {
         for (auto &enemy : mapEnemys) {
             enemy.checkKnyazVision();
             enemy.move(elapsedTime);
+            enemy.tryToAttack();
             enemy.animationProcess();
             enemy.spritePositionUpdate();
         }
@@ -108,11 +110,11 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             break;
         case GameState::GAME_PROCESS:
 
-            window.draw(knyaz.body);
+//            window.draw(knyaz.body);
             window.draw(knyaz.objSprite);
 
             for (auto &enemy : mapEnemys) {
-                window.draw(enemy.body);
+//                window.draw(enemy.body);
                 window.draw(enemy.objSprite);
             }
 

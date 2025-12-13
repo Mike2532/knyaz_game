@@ -230,7 +230,7 @@ void enemysTakenDamage() {
             if (enemy.takenDamage != 0) {
                 enemy.hp -= enemy.takenDamage;
                 enemy.takenDamage = 0;
-                enemy.body.setFillColor(sf::Color::White);
+                enemy.objSprite.setColor(sf::Color::White);
             }
         }
         knyaz.isAttackFinished = false;

@@ -198,15 +198,24 @@ struct Enemy : AnimatedObj {
     bool isNearRightKnyaz = false;
     bool seeKnyaz = false;
     bool isPatrolingLeft = true;
+    bool isAttacking = false;
 
     int hp = 1000;
     int attackPower = 250;
     int takenDamage = 0;
 
     sf::Clock searchingTimer;
+    sf::Clock attackTimer;
     EnemyStates state = EnemyStates::PATROLLING;
 
     void move(const float& elapsedTime) {
+        if ((isNearLeftKnyaz || isNearRightKnyaz) && animationData.animationType != AnimationTypes::IDLE && animationData.animationType != AnimationTypes::ATTACK) {
+            changeAnimation(animationContainer["enemyIDLE"]);
+            attackTimer.restart();
+        } else if (!(isNearLeftKnyaz || isNearRightKnyaz) && animationData.animationType == AnimationTypes::ATTACK) {
+            changeAnimation(animationContainer["enemyIDLE"]);
+        }
+
         float PATROL_SPEED = 125.f;
         float AGRESSIVE_SPEED = 250.f;
         sf::Vector2f enemyPos = body.getPosition();
@@ -288,6 +297,7 @@ struct Enemy : AnimatedObj {
             }
             if (state == EnemyStates::AGRESSIVE && searchingTimer.getElapsedTime().asSeconds() >= SEARCHING_DURATION) {
                 state = EnemyStates::PATROLLING;
+                changeAnimation(animationContainer["enemyWalk"]);
             }
             return;
         }
@@ -323,6 +333,24 @@ struct Enemy : AnimatedObj {
         }
     };
 
+    bool isAttackingNow(int x) {
+        constexpr float k = 0.08;
+        constexpr int x0 = 650;
+        double y = (1.0 / (1.0 + exp(-k * (x - x0)))) * 10000.0;
+        int r2 = rand() % 10000;
+        return r2 <= y;
+    }
+
+    void tryToAttack() {
+        const float time = attackTimer.getElapsedTime().asMilliseconds();
+        bool isAttacking = isAttackingNow(attackTimer.getElapsedTime().asMilliseconds());
+
+        if ((isNearLeftKnyaz || isNearRightKnyaz) && animationData.animationType != AnimationTypes::ATTACK && isAttacking) {
+            cout << 1 << ' ' << time <<endl;
+            changeAnimation(animationContainer["enemyAttack"]);
+        }
+    }
+
     void textureUpdate() override {
         constexpr int FRAME_WIDTH = 100;
         constexpr int X_OFFSET = 44;
@@ -350,6 +378,11 @@ struct Enemy : AnimatedObj {
         }
 
         objSprite.setScale(SCALE_X, SCALE_Y);
+
+        if (animationFrameNumber == animationData.animationFrames - 1 && animationData.animationType == AnimationTypes::ATTACK) {
+            attackTimer.restart();
+            changeAnimation(animationContainer["enemyIDLE"]);
+        }
     }
 
     void spritePositionUpdate() {
