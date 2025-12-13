@@ -30,13 +30,13 @@ extern sf::Texture KnyazWallHangTexture;
 extern sf::Texture HpIndicatorTexture;
 
 extern sf::Texture EnemyWalkTexture;
+extern sf::Texture EnemyAttackTexture;
 
 extern sf::Texture GroundTexture;
 extern sf::Texture LavaTexture;
 extern sf::Texture SpikesTexture;
 extern sf::Texture SpikesUpTexture;
 
-extern sf::Texture emptyTexture;
 
 extern sf::Music GameMusic;
 extern sf::Font myFont;
@@ -323,8 +323,6 @@ struct Enemy : AnimatedObj {
     };
 
     void textureUpdate() override {
-        constexpr float ENEMY_SIDE_SIZE = 80.f;
-
         constexpr int FRAME_WIDTH = 100;
         constexpr int X_OFFSET = 44;
         constexpr int Y_OFFSET = 41;
@@ -334,10 +332,10 @@ struct Enemy : AnimatedObj {
         objSprite.setTexture(animationData.animationTexture);
 
         objSprite.setTextureRect(sf::IntRect(
-                FRAME_WIDTH * animationFrameNumber + X_OFFSET,
-                Y_OFFSET,
-                ANIMATION_WIDTH,
-                ANIMATION_HEIGHT
+                FRAME_WIDTH * animationFrameNumber + X_OFFSET - 10,
+                Y_OFFSET - 10,
+                ANIMATION_WIDTH + 20,
+                ANIMATION_HEIGHT + 15
         ));
 
         float SCALE_X = 4.f;
@@ -355,8 +353,10 @@ struct Enemy : AnimatedObj {
 
     void spritePositionUpdate() {
         sf::Vector2f pos = body.getPosition();
+        pos.x -= 40;
+        pos.y -= 40;
         if (isSpriteLeftOrented) {
-            pos.x += 50;
+            pos.x += 130;
         }
         objSprite.setPosition(pos);
     }

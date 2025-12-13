@@ -286,11 +286,12 @@ void knyazMove(const float& elapsedTime) {
 }
 
 sf::RectangleShape getKnyazBody() {
-    constexpr float KNYAZ_SIDE_SIZE = 80.f;
+    constexpr float KNYAZ_X_SIZE = 45.f;
+    constexpr float KNYAZ_Y_SIZE = 75.f;
     constexpr float KNYAZ_START_X = 39.f;
     constexpr float KNYAZ_START_Y = 400.f;
 
-    sf::RectangleShape knyazBody({45.f, 75.f});
+    sf::RectangleShape knyazBody({KNYAZ_X_SIZE, KNYAZ_Y_SIZE});
     knyazBody.setPosition({KNYAZ_START_X, KNYAZ_START_Y});
     return knyazBody;
 }

@@ -107,9 +107,6 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             }
             break;
         case GameState::GAME_PROCESS:
-            for (const auto& obj : mapObjs) {
-                window.draw(obj.body);
-            }
 
             window.draw(knyaz.body);
             window.draw(knyaz.objSprite);
@@ -118,6 +115,11 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
                 window.draw(enemy.body);
                 window.draw(enemy.objSprite);
             }
+
+            for (const auto& obj : mapObjs) {
+                window.draw(obj.body);
+            }
+
 
             window.draw(HpIndicatorSprite);
             break;
