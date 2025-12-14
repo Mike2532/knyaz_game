@@ -105,6 +105,11 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
             knyaz.hp = 0;
         }
 
+        if (knyaz.isAlive && obj.type == ObjsTypes::BOTTLE) {
+            knyaz.hp += knyaz.MAX_HP / 100 * 35;
+            removeBottleByCoords(obj.body.getPosition());
+        }
+
         knyazPos.x = (leftCollision)
                      ? objPos.x - knyazSize.x
                      : objPos.x + objSize.x;

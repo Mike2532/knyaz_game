@@ -38,6 +38,7 @@ extern sf::Texture LavaTexture;
 extern sf::Texture SpikesTexture;
 extern sf::Texture SpikesUpTexture;
 
+extern sf::Texture BottleTexture;
 
 extern sf::Music GameMusic;
 extern sf::Font myFont;
@@ -392,7 +393,8 @@ struct Enemy : AnimatedObj {
                 changeAnimation(animationContainer["enemyIDLE"]);
             } else if (animationFrameNumber == animationData.animationFrames - 3) {
                 knyaz.hp -= attackPower;
-                if (knyaz.hp <= 0) {
+                knyaz.hp = max(knyaz.hp, 0);
+                if (knyaz.hp == 0) {
                     knyaz.changeAnimation(animationContainer["death"]);
                     knyaz.isAlive = false;
                 }
@@ -430,4 +432,5 @@ extern vector<GameEntity> mapObjs;
 extern vector<Enemy> mapEnemys;
 
 extern void enemysTakenDamage();
+extern void removeBottleByCoords(sf::Vector2f coords);
 #endif //KNYAZ_GAME_GLOBALS_H

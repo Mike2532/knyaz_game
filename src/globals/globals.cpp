@@ -31,6 +31,8 @@ sf::Texture LavaTexture;
 sf::Texture SpikesTexture;
 sf::Texture SpikesUpTexture;
 
+sf::Texture BottleTexture;
+
 sf::Music GameMusic;
 sf::Font myFont;
 sf::Sprite BGSprite;
@@ -219,9 +221,36 @@ void initGameMap() {
     }
 }
 
+void spawnBottle(sf::Vector2f coords) {
+    constexpr float BOTTLE_SIDE_SIZE = 15.f;
+    sf::RectangleShape bottle;
+    bottle.setSize({BOTTLE_SIDE_SIZE, BOTTLE_SIDE_SIZE});
+    bottle.setPosition({coords.x, coords.y - BOTTLE_SIDE_SIZE});
+    bottle.setTexture(&BottleTexture);
+
+    GameEntity bottleEntity;
+    bottleEntity.body = bottle;
+    bottleEntity.type = ObjsTypes::BOTTLE;
+
+    mapObjs.emplace_back(bottleEntity);
+}
+
 std::map<std::string, std::string> config;
 std::map<std::string, sf::Keyboard::Scancode> keymap;
 sf::Clock globalTimer;
+
+int getBottleSpawnChanse() {
+    int knyazHpPercent = float(float (knyaz.hp) / float (knyaz.MAX_HP)) * 100;
+    if (knyazHpPercent >= 90) return 1;
+    else if (knyazHpPercent >= 80) return 5;
+    else if (knyazHpPercent >= 70) return 10;
+    else if (knyazHpPercent >= 60) return 20;
+    else if (knyazHpPercent >= 50) return 40;
+    else if (knyazHpPercent >= 40) return 50;
+    else if (knyazHpPercent >= 30) return 60;
+    else if (knyazHpPercent >= 20) return 70;
+    return 80;
+}
 
 void enemysTakenDamage() {
     constexpr int ATTACK_DELAY = 200;
@@ -231,8 +260,28 @@ void enemysTakenDamage() {
                 enemy.hp -= enemy.takenDamage;
                 enemy.takenDamage = 0;
                 enemy.objSprite.setColor(sf::Color::White);
+                if (enemy.hp <= 0) {
+                    int chanse = getBottleSpawnChanse();
+                    int r2 = rand() % 100;
+                    if (r2 <= chanse) {
+                        sf::Vector2f pos = enemy.body.getPosition();
+                        sf::Vector2f size = enemy.body.getSize();
+
+                        float bottleXPos = pos.x + (size.x/2);
+                        float bottleYPos = pos.y + (size.y);
+
+                        spawnBottle({bottleXPos, bottleYPos});
+                    }
+                }
             }
         }
         knyaz.isAttackFinished = false;
+    }
+}
+
+void removeBottleByCoords(sf::Vector2f coords) {
+    for (auto &entity : mapObjs) {
+        auto toRemove = remove_if(mapObjs.begin(), mapObjs.end(), [coords](GameEntity &entity) {return entity.body.getPosition() == coords && entity.type == ObjsTypes::BOTTLE;});
+        mapObjs.erase(toRemove, mapObjs.end());
     }
 }

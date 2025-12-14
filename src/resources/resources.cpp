@@ -50,6 +50,7 @@ void initObjsTextures() {
     LavaTexture.loadFromFile(config["WORLD_TEXTURES_FOLDER"] + config["LAVA_TEXTURE"]);
     SpikesTexture.loadFromFile(config["WORLD_TEXTURES_FOLDER"] + config["SPIKES_TEXTURE"]);
     SpikesUpTexture.loadFromFile(config["WORLD_TEXTURES_FOLDER"] + config["SPIKES_UP_TEXTURE"]);
+    BottleTexture.loadFromFile(config["WORLD_TEXTURES_FOLDER"] + config["BOTTLE_TEXTURE"]);
 }
 
 void initUITextures() {

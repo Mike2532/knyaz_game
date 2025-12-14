@@ -38,6 +38,7 @@ map<string, string> initConfig() {
         {"UI_TEXTURES_FOLDER", "../media/ui/"},
         {"HP_INDICATOR_TEXTURE", "HpIndicator.png"},
         {"WORLD_TEXTURES_FOLDER", "../media/objsTextures/"},
+        {"BOTTLE_TEXTURE", "bottle.png"},
         {"GROUND_TEXTURE", "ground.jpg"},
         {"LAVA_TEXTURE", "lava.jpg"},
         {"SPIKES_TEXTURE", "spikesRight.png"},
