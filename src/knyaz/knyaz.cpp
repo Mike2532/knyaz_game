@@ -316,7 +316,7 @@ void verticalMoveProcess() {
 
 void horizontalMove(const float& elapsedTime) {
     horizontalMoveProcess(elapsedTime);
-//    checkHorizontalCollision(mapObjs);
+    checkHorizontalCollision(mapObjs);
 }
 
 void verticalMove() {

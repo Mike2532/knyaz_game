@@ -95,7 +95,7 @@ auto makePortal(PortalParam params) {
 
 vector<PortalParam> portalParams {
         {
-                {3498.f + 25.f, 661.f},
+                {3498.f + 20.f, 661.f},
                 {3661.f, 661.f},
                 {5.f, 100.f},
                 {3543.f, 636.f},
@@ -286,12 +286,14 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
 
         makeEntity({120.f, 35.f}, {2880.f, 736.f}, ObjsTypes::OBTACLE), //4zone lava One
 
-        makeEntity({573.f, 560.f}, {2970.f, 0.f}, ObjsTypes::WALL),//4zone BIGSQUARE
+        makeEntity({573.f, 500.f}, {2970.f, -500.f}, ObjsTypes::ENTITY), //4zone BIGSQUARE UPPROPTECTION
+        makeEntity({573.f, 560.f}, {2970.f, 0.f}, ObjsTypes::WALL), //4zone BIGSQUARE
         makeEntity({543.f, 35.f}, {3000.f, 736.f}, ObjsTypes::ENTITY), //4zone goblin-platform
         makeEntity({91.f, 711.f + 100.f}, {3543.f, 0.f}, ObjsTypes::ENTITY), //4zone portalWall 1
         makeEntity({100.f, 35.f}, {3634.f, 736.f}, ObjsTypes::ENTITY), //4zone portalFloor
         makeEntity({100.f, 35.f}, {3634.f, 0.f}, ObjsTypes::ENTITY), //4zone portalRoof
         makeEntity({20.f, 771.f}, {3734.f, 0.f}, ObjsTypes::ENTITY), //4zone anti-gravity right wall
+        makeEntity({20.f, 500.f}, {3754.f, -500.f}, ObjsTypes::ENTITY), //4zone battle arena left wall UPPER PROTECTION
         makeEntity({20.f, 771.f}, {3754.f, 0.f}, ObjsTypes::WALL), //4zone battle arena left wall
 
         makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 0}, ObjsTypes::SPIKES), //4zone battle arena spikes
