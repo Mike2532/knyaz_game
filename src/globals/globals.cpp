@@ -56,6 +56,14 @@ vector<Portal> mapPortals;
 
 bool lastTeleported = false;
 
+sf::RectangleShape antiGravityField;
+
+void initAntiGravityField() {
+    antiGravityField.setSize({100.f, 701.f});
+    antiGravityField.setPosition({3634.f, 34.f});
+    antiGravityField.setFillColor({16, 211, 255, 120});
+}
+
 struct PortalParam{
     sf::Vector2f inCoords;
     sf::Vector2f outCoords;

@@ -213,6 +213,9 @@ void leftMoveProcess(const unsigned int& LEFT_CAMERA_EDGE, const float &offset) 
             portal.inBody.setPosition(inBodyPos);
             portal.outBody.setPosition(outBodyPos);
         }
+        sf::Vector2f antiGravityPos = antiGravityField.getPosition();
+        antiGravityPos.x = antiGravityPos.x + offset;
+        antiGravityField.setPosition(antiGravityPos);
     }
     knyaz.body.setPosition(knyazPosition);
 }
@@ -253,6 +256,9 @@ void rightMoveProcess(const unsigned int& RIGHT_CAMERA_EDGE, const float &offset
             portal.inBody.setPosition(inBodyPos);
             portal.outBody.setPosition(outBodyPos);
         }
+        sf::Vector2f antiGravityPos = antiGravityField.getPosition();
+        antiGravityPos.x = antiGravityPos.x - offset;
+        antiGravityField.setPosition(antiGravityPos);
     }
     knyaz.body.setPosition(knyazPosition);
 }
@@ -274,10 +280,16 @@ void horizontalMoveProcess(const float& elapsedTime) {
 
 void verticalMoveProcess() {
     constexpr float FREE_FALLING_SPEED_MULTIPLYER = 0.4f;
-    constexpr float JUMP_POWER = 0.3f * 3;
+    constexpr float JUMP_POWER = 0.3f;
     constexpr float CLIMBING_SPEED_MULTIPLYER = 0.15f;
 
     sf::Vector2f knyazPosition = knyaz.body.getPosition();
+
+    if (knyaz.isFlyingUp) {
+        knyazPosition.y -= 0.2f;
+        knyaz.body.setPosition(knyazPosition);
+        return;
+    }
 
     if (knyaz.isClimbing) {
         float climbingOffset = (knyaz.climbingTimer.getElapsedTime().asSeconds()) * CLIMBING_SPEED_MULTIPLYER;
@@ -343,6 +355,9 @@ void checkKnyazPortaling() {
             knyaz.body.setPosition(portal.outCoords);
             if (i == mapPortals.size() - 1) {
                 lastTeleported = true;
+                knyaz.isFlyingUp = false;
+            } else if (i == 0) {
+                knyaz.isFlyingUp = true;
             }
             break;
         }

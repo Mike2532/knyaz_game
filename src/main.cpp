@@ -51,6 +51,7 @@ void initDepends() {
     initGameMap();
     initEnemys();
     initMapPortals();
+    initAntiGravityField();
     knyaz.animationData = animationContainer["idle"];
     HpIndicatorSprite.setTexture(HpIndicatorTexture);
     srand(time(NULL));
@@ -123,6 +124,7 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             }
 
             if (!lastTeleported) {
+                window.draw(antiGravityField);
                 for (const auto& portal : mapPortals) {
                     window.draw(portal.inBody);
                     window.draw(portal.outBody);

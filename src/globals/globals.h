@@ -46,6 +46,7 @@ extern sf::Sprite BGSprite;
 extern sf::Sprite HpIndicatorSprite;
 
 extern bool lastTeleported;
+extern sf::RectangleShape antiGravityField;
 
 struct Portal {
     sf::Vector2f inCoords;
@@ -113,6 +114,7 @@ struct Knyaz : AnimatedObj {
     bool isClimbing = false;
 
     bool isAttackFinished = false;
+    bool isFlyingUp = false;
 
     int hp = 2500;
     int lightAttackPower = 400;
@@ -439,6 +441,7 @@ void initVariables();
 void initGameMap();
 void initEnemys();
 void initMapPortals();
+void initAntiGravityField();
 
 extern vector<GameEntity> mapObjs;
 extern vector<Enemy> mapEnemys;
