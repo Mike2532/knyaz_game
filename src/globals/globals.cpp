@@ -195,6 +195,43 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 4}, ObjsTypes::SPIKES), //start-hight ship
         makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 5}, ObjsTypes::SPIKES), //start-hight ship
 
+        makeEntity({120.f, 35.f}, {2880.f, 736.f}, ObjsTypes::OBTACLE), //4zone lava One
+
+        makeEntity({573.f, 560.f}, {2970.f, 0.f}, ObjsTypes::WALL),//4zone BIGSQUARE
+        makeEntity({543.f, 35.f}, {3000.f, 736.f}, ObjsTypes::ENTITY), //4zone goblin-platform
+        makeEntity({91.f, 711.f + 100.f}, {3543.f, 0.f}, ObjsTypes::ENTITY), //4zone portalWall 1
+        makeEntity({100.f, 35.f}, {3634.f, 736.f}, ObjsTypes::ENTITY), //4zone portalFloor
+        makeEntity({100.f, 35.f}, {3634.f, 0.f}, ObjsTypes::ENTITY), //4zone portalRoof
+        makeEntity({20.f, 771.f}, {3734.f, 0.f}, ObjsTypes::ENTITY), //4zone anti-gravity right wall
+        makeEntity({20.f, 771.f}, {3754.f, 0.f}, ObjsTypes::WALL), //4zone battle arena left wall
+
+        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 0}, ObjsTypes::SPIKES), //4zone battle arena spikes
+        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 1}, ObjsTypes::SPIKES), //4zone battle arena spikes
+        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 2}, ObjsTypes::SPIKES), //4zone battle arena spikes
+        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 3}, ObjsTypes::SPIKES), //4zone battle arena spikes
+        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 4}, ObjsTypes::SPIKES), //4zone battle arena spikes
+        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 5}, ObjsTypes::SPIKES), //4zone battle arena spikes
+        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 6}, ObjsTypes::SPIKES), //4zone battle arena spikes
+        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 7}, ObjsTypes::SPIKES), //4zone battle arena spikes
+        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 8}, ObjsTypes::SPIKES), //4zone battle arena spikes
+        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 9}, ObjsTypes::SPIKES), //4zone battle arena spikes
+        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 10}, ObjsTypes::SPIKES), //4zone battle arena spikes
+
+        makeEntity({80.f, 135.f}, {4240.f, 0.f}, ObjsTypes::ENTITY), //4zone portalWall2
+        makeEntity({335.f, 35.f}, {3905.f, 100.f}, ObjsTypes::ENTITY), //4zone foor near portal
+        makeEntity({131.f, 70.f}, {3774.f, 330.f}, ObjsTypes::ENTITY), //4zone platform under sheeps
+        makeEntity({302.f, 35.f}, {3903.f, 365.f}, ObjsTypes::ENTITY), //4zone platform for sheeps
+
+        makeEntity({30.f, 30.f}, {3905.f + 30 * 0, 335.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+        makeEntity({30.f, 30.f}, {3905.f + 30 * 1, 335.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+        makeEntity({30.f, 30.f}, {3905.f + 30 * 2, 335.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+        makeEntity({30.f, 30.f}, {3905.f + 30 * 3, 335.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+        makeEntity({30.f, 30.f}, {3905.f + 30 * 4, 335.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+        makeEntity({30.f, 30.f}, {3905.f + 30 * 5, 335.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+        makeEntity({30.f, 30.f}, {3905.f + 30 * 6, 335.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+        makeEntity({30.f, 30.f}, {3905.f + 30 * 7, 335.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+        makeEntity({30.f, 30.f}, {3905.f + 30 * 8, 335.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+        makeEntity({30.f, 30.f}, {3905.f + 30 * 9, 335.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
 };
 
 void initGameMap() {
