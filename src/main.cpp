@@ -116,6 +116,7 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             window.draw(knyaz.objSprite);
 
             for (auto &enemy : mapEnemys) {
+                window.draw(enemy.body);
                 window.draw(enemy.objSprite);
             }
 

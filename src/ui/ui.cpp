@@ -263,6 +263,7 @@ void gameRestart() {
     initGameMap();
     initEnemys();
     initMapPortals();
+    initAntiGravityField();
     knyaz.isAlive = true;
     knyaz.hp = knyaz.MAX_HP;
     knyaz.changeAnimation(animationContainer["falling"]);

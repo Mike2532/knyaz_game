@@ -198,6 +198,27 @@ const vector<EnemyParam> enemyParams {
                 2720.f,
                 2855.f,
                 2855.f
+        },
+        { //4zone near 1-st portal
+                {3138.f, 676.f},
+                3000,
+                3063,
+                3468,
+                3538
+        },
+        { //4zone near 4 portal
+            {3942.f, 40.f},
+            3905,
+            3905,
+            4210,
+            4230
+        },
+        { //4zone battle area
+                {3892.f, 711.f},
+                3774,
+                3860,
+                4250,
+                4315
         }
 };
 
