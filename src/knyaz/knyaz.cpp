@@ -14,7 +14,7 @@ void fallingCheck(bool &falling) {
     for (auto entity : mapObjs) {
         if (isKnyazVerticalOverlap(entity) && abs(knyaz.getBot() - entity.getTop()) < 0.2f) {
             falling = false;
-            if (entity.type == ObjsTypes::OBTACLE && knyaz.isAlive) {
+            if (knyaz.isAlive && (entity.type == ObjsTypes::OBTACLE || entity.type == ObjsTypes::SPIKES_UP)) {
                 knyaz.changeAnimation(animationContainer["death"]);
                 knyaz.isAlive = false;
                 knyaz.hp = 0;
