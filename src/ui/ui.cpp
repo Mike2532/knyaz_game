@@ -214,6 +214,9 @@ void mouseEventsHandler(const sf::Event& event) {
 }
 
 void jumpHandler(const sf::Event& event) {
+    if (knyaz.isClimbing) {
+        return;
+    }
     if (knyaz.isJump && !(knyaz.isDoubleJump)) {
         knyaz.isDoubleJump = true;
         knyaz.changeAnimation(animationContainer["jump"]);
@@ -232,35 +235,25 @@ void movementHandler() {
     bool moveRightPressed = sf::Keyboard::isKeyPressed(keymap["MOVE_RIGHT_KEY"]);
     bool isKnyazStanding = !(knyaz.isJump || knyaz.isFalling);
     if (moveLeftPressed && !knyaz.isMovingLeft) {
+        if (knyaz.isClimbing && knyaz.isLeftOrented) {
+            return;
+        }
         knyaz.isMovingLeft = true;
         if (isKnyazStanding) knyaz.changeAnimation(animationContainer["run"]);
         if (!knyaz.isLeftOrented) knyaz.isLeftOrented = true;
-        if (knyaz.isClimbing) {
-            knyaz.isClimbing = false;
-            knyaz.freeFallingTimer.restart();
-        }
     } else if (!moveLeftPressed && knyaz.isMovingLeft) {
         knyaz.isMovingLeft = false;
         if (!knyaz.isMovingRight && isKnyazStanding) knyaz.changeAnimation(animationContainer["idle"]);
-        if (knyaz.isClimbing) {
-            knyaz.isClimbing = false;
-            knyaz.freeFallingTimer.restart();
-        }
     } else if (moveRightPressed && !knyaz.isMovingRight) {
+        if (knyaz.isClimbing && !knyaz.isLeftOrented) {
+            return;
+        }
         knyaz.isMovingRight = true;
         if (isKnyazStanding) knyaz.changeAnimation(animationContainer["run"]);
         if (knyaz.isLeftOrented) knyaz.isLeftOrented = false;
-        if (knyaz.isClimbing) {
-            knyaz.isClimbing = false;
-            knyaz.freeFallingTimer.restart();
-        }
     } else if (!moveRightPressed && knyaz.isMovingRight) {
         knyaz.isMovingRight = false;
         if (!knyaz.isMovingLeft && isKnyazStanding) knyaz.changeAnimation(animationContainer["idle"]);
-        if (knyaz.isClimbing) {
-            knyaz.isClimbing = false;
-            knyaz.freeFallingTimer.restart();
-        }
     }
 
 }

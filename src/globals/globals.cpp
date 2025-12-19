@@ -145,7 +145,7 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({20.f, 2000.f}, {4320.f, -1000.f}, ObjsTypes::ENTITY),     // rightWorldEdge
         makeEntity({4320.f, 28.f}, {0.f, 771.f}, ObjsTypes::ENTITY),           // floor
 
-        makeEntity({237.f, 582.f}, {1017.f, 217.f}, ObjsTypes::ENTITY),       // 1-end
+        makeEntity({237.f, 582.f}, {1017.f, 217.f}, ObjsTypes::WALL),       // 1-end
         makeEntity({237.f, 35.f}, {666.f, 684.f}, ObjsTypes::ENTITY), // 1-1
         makeEntity({237.f, 35.f}, {403.f, 541.f}, ObjsTypes::ENTITY), // 1-2
         makeEntity({237.f, 35.f}, {149.f, 446.f}, ObjsTypes::ENTITY), // 1-3
@@ -153,7 +153,7 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({237.f, 35.f}, {347.f, 216.f}, ObjsTypes::ENTITY), // 1-5
         makeEntity({367.f, 35.f}, {650.f, 147.f}, ObjsTypes::ENTITY), // 1-6
 
-        makeEntity({20.f, 642.f}, {2860.f, 129.f}, ObjsTypes::ENTITY), // 2-end
+        makeEntity({20.f, 642.f}, {2860.f, 129.f}, ObjsTypes::WALL), // 2-end
         makeEntity({145.f, 35.f}, {2420.f, 676.f}, ObjsTypes::ENTITY), // 2-1
         makeEntity({145.f, 35.f}, {2420.f, 511.f}, ObjsTypes::ENTITY), // 2-2
         makeEntity({145.f, 35.f}, {2420.f, 346.f}, ObjsTypes::ENTITY), // 2-3
@@ -162,11 +162,11 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({145.f, 35.f}, {2715.f, 459.f}, ObjsTypes::ENTITY), // 2-6
         makeEntity({145.f, 35.f}, {2715.f, 294.f}, ObjsTypes::ENTITY), // 2-7
         makeEntity({145.f, 35.f}, {2715.f, 129.f}, ObjsTypes::ENTITY), // 2-8
-        makeEntity({20.f, 945.f}, {2400.f, -400.f}, ObjsTypes::ENTITY), // 2-9
+        makeEntity({20.f, 945.f}, {2400.f, -400.f}, ObjsTypes::WALL), // 2-9
 
-        makeEntity({80.f, 900.f}, {1434.f, -400.f}, ObjsTypes::ENTITY), // M1
-        makeEntity({60.f, 535.f}, {1714.f, 236.f}, ObjsTypes::ENTITY), // M2
-        makeEntity({80.f, 35.f}, {1634.f, 236.f}, ObjsTypes::ENTITY), //M3
+        makeEntity({80.f, 900.f}, {1434.f, -400.f}, ObjsTypes::WALL), // M1
+        makeEntity({60.f, 535.f}, {1714.f, 236.f}, ObjsTypes::WALL), // M2
+        makeEntity({80.f, 35.f}, {1634.f, 236.f}, ObjsTypes::WALL), //M3
 
         makeEntity({30.f, 30.f}, {1647.f, 206.f}, ObjsTypes::SPIKES_UP), //SPIKES_UP
         makeEntity({30.f, 30.f}, {1647.f + 30 * 1, 206.f}, ObjsTypes::SPIKES_UP),  //SPIKES_UP
@@ -206,6 +206,9 @@ void initGameMap() {
                 initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, LavaTexture, mapObjs, obj.second);
                 break;
             case ObjsTypes::ENTITY:
+                initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, GroundTexture, mapObjs, obj.second);
+                break;
+            case ObjsTypes::WALL:
                 initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, GroundTexture, mapObjs, obj.second);
                 break;
             case ObjsTypes::SPIKES:

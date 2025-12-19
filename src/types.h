@@ -25,7 +25,7 @@ enum class AnimationTypes {
     CLIMB
 };
 
-enum class ObjsTypes {ENTITY, OBTACLE, SPIKES, SPIKES_UP, ENEMY, BOTTLE};
+enum class ObjsTypes {ENTITY, OBTACLE, SPIKES, SPIKES_UP, ENEMY, BOTTLE, WALL};
 
 enum class EnemyStates {PATROLLING, AGRESSIVE};
 

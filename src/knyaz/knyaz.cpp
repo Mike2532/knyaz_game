@@ -75,7 +75,9 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
     sf::Vector2f knyazPos = knyaz.body.getPosition();
     sf::Vector2f knyazSize = knyaz.body.getSize();
 
-    bool climbed = false;
+    bool prevClimbed = knyaz.isClimbing;
+    bool leftClimb = false;
+    bool rightClimb = false;
 
     for (auto& obj : container) {
         const bool leftCollision = isLeftCollision(obj);
@@ -86,15 +88,14 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
         sf::Vector2f objPos = obj.body.getPosition();
         sf::Vector2f  objSize = obj.body.getSize();
 
-        bool leftClimb = abs((knyazPos.x + knyazSize.x) - objPos.x) <= 3;
-        bool rightClimb = abs((knyazPos.x - 1) - (objPos.x + objSize.x)) <= 3;
+        leftClimb = leftClimb || (abs((knyazPos.x + knyazSize.x) - objPos.x) <= 2 && obj.type == ObjsTypes::WALL && !knyaz.isLeftOrented);
+        rightClimb = rightClimb || (abs((knyazPos.x - 1) - (objPos.x + objSize.x)) <= 2 && obj.type == ObjsTypes::WALL && knyaz.isLeftOrented);
 
         if (knyaz.isClimbing && (leftClimb || rightClimb)) {
             knyaz.changeAnimation(animationContainer["wallHang"]);
             knyaz.isJump = false;
             knyaz.isDoubleJump = false;
             knyaz.isFalling = false;
-            climbed = true;
         }
 
         if ( !(leftCollision || rightCollision)) continue;
@@ -117,8 +118,13 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
         knyaz.body.setPosition(knyazPos);
     }
 
-    if (knyaz.isClimbing && !climbed) {
-        knyaz.isClimbing = false;
+    knyaz.isClimbing = leftClimb || rightClimb;
+    if (knyaz.isClimbing && !prevClimbed) {
+        knyaz.changeAnimation(animationContainer["wallHang"]);
+        knyaz.isJump = false;
+        knyaz.isDoubleJump = false;
+        knyaz.isFalling = false;
+        knyaz.climbingTimer.restart();
     }
 }
 
@@ -246,14 +252,13 @@ void horizontalMoveProcess(const float& elapsedTime) {
 
 void verticalMoveProcess() {
     constexpr float FREE_FALLING_SPEED_MULTIPLYER = 0.4f;
-    constexpr float JUMP_POWER = 0.25f;
-    constexpr float CLIMBING_SPEED_MULTIPLYER = 0.015f;
+    constexpr float JUMP_POWER = 0.3f;
+    constexpr float CLIMBING_SPEED_MULTIPLYER = 0.15f;
 
     sf::Vector2f knyazPosition = knyaz.body.getPosition();
 
-    if (knyaz.isClimbing && knyaz.climbingTimer.getElapsedTime().asSeconds() > 1) {
-        float climbingOffset = (knyaz.climbingTimer.getElapsedTime().asSeconds() - 1) * CLIMBING_SPEED_MULTIPLYER;
-        climbingOffset = min(climbingOffset, 0.03f);
+    if (knyaz.isClimbing) {
+        float climbingOffset = (knyaz.climbingTimer.getElapsedTime().asSeconds()) * CLIMBING_SPEED_MULTIPLYER;
         knyazPosition.y += climbingOffset;
     }
 

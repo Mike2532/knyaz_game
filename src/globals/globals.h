@@ -101,6 +101,7 @@ struct Knyaz : AnimatedObj {
     bool isJump = false;
     bool isDoubleJump = false;
     bool isClimbing = false;
+
     bool isAttackFinished = false;
 
     int hp = 2500;
