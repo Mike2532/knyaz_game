@@ -54,6 +54,8 @@ vector<GameEntity> mapObjs;
 vector<Enemy> mapEnemys;
 vector<Portal> mapPortals;
 
+UI ui;
+
 bool lastTeleported = false;
 
 sf::RectangleShape antiGravityField;
@@ -389,6 +391,7 @@ void enemysTakenDamage() {
     if (knyaz.attackTimer.getElapsedTime().asMilliseconds() >= ATTACK_DELAY && knyaz.isAttackFinished) {
         for (auto &enemy : mapEnemys) {
             if (enemy.takenDamage != 0) {
+                knyaz.focusCounter = min(knyaz.focusCounter + 1, knyaz.MAX_FOCUS_COUNTER);
                 enemy.hp -= enemy.takenDamage;
                 enemy.takenDamage = 0;
                 enemy.objSprite.setColor(sf::Color::White);

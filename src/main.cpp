@@ -52,6 +52,7 @@ void initDepends() {
     initEnemys();
     initMapPortals();
     initAntiGravityField();
+    initUI();
     knyaz.animationData = animationContainer["idle"];
     HpIndicatorSprite.setTexture(HpIndicatorTexture);
     srand(time(NULL));
@@ -81,6 +82,7 @@ void update(std::vector<sf::Text>& textToPrint) {
         globalTimer.restart();
 
         for (auto &enemy : mapEnemys) {
+            enemy.stunProcess();
             enemy.checkKnyazVision();
             enemy.move(elapsedTime);
             enemy.tryToAttack();
@@ -98,6 +100,7 @@ void update(std::vector<sf::Text>& textToPrint) {
         knyaz.spritePositionUpdate();
         knyaz.takeDamage();
         updateHpIndicator();
+        updateUI();
     }
 }
 
@@ -132,6 +135,12 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             }
 
             window.draw(HpIndicatorSprite);
+
+            window.draw(ui.focusOutline);
+            window.draw(ui.focusFill);
+            window.draw(ui.rageOutline);
+            window.draw(ui.rageFill);
+
             break;
         default:
             break;

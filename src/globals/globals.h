@@ -48,6 +48,16 @@ extern sf::Sprite HpIndicatorSprite;
 extern bool lastTeleported;
 extern sf::RectangleShape antiGravityField;
 
+struct UI {
+    sf::RectangleShape focusOutline;
+    sf::RectangleShape focusFill;
+
+    sf::RectangleShape rageOutline;
+    sf::RectangleShape rageFill;
+};
+
+extern UI ui;
+
 struct Portal {
     sf::Vector2f inCoords;
     sf::RectangleShape inBody;
@@ -78,9 +88,14 @@ struct AnimatedObj : GameEntity {
     AnimationData animationData;
     int animationFrameNumber;
 
+    bool isStunned = false;
+
     virtual void textureUpdate() = 0;
 
     void animationProcess() {
+        if (isStunned) {
+            return;
+        }
         constexpr int ANIMATION_DURATON = 100;
 
         if (
@@ -106,6 +121,8 @@ struct AnimatedObj : GameEntity {
 
 struct Knyaz : AnimatedObj {
     const int MAX_HP = 2500;
+    const int MAX_FOCUS_COUNTER = 6;
+    const int MAX_RAGE_COUNTER = 3;
 
     bool isMovingLeft = false;
     bool isMovingRight = false;
@@ -119,7 +136,11 @@ struct Knyaz : AnimatedObj {
     int hp = 2500;
     int lightAttackPower = 400;
     int heavyAttackPower = 700;
+    int rageAttackPower = 1200;
     int takenDamage = 0;
+
+    int rageCounter = 0;
+    int focusCounter = 0;
 
     sf::Clock attackTimer;
     sf::Clock damageTimer;
@@ -195,6 +216,7 @@ struct Knyaz : AnimatedObj {
     void takeDamage() {
         constexpr float damageMilliseconds = 400;
         if (takenDamage != 0 && damageTimer.getElapsedTime().asMilliseconds() >= damageMilliseconds) {
+            rageCounter = min(rageCounter + 1, MAX_RAGE_COUNTER);
             objSprite.setColor(sf::Color::White);
             takenDamage = 0;
         }
@@ -211,6 +233,8 @@ extern std::map<std::string, sf::Keyboard::Scancode> keymap;
 extern sf::Clock globalTimer;
 
 struct Enemy : AnimatedObj {
+    float STUNNED_TIME = 3.f;
+
     float LEFT_PATROLING_EDGE;
     float RIGHT_PATROLING_EDGE;
     float LEFT_ACTIVE_EDGE;
@@ -222,6 +246,8 @@ struct Enemy : AnimatedObj {
     bool isPatrolingLeft = true;
     bool isAttacking = false;
 
+    sf::Clock stunnedTimer;
+
     int hp = 1000;
     int attackPower = 650;
     int takenDamage = 0;
@@ -231,6 +257,9 @@ struct Enemy : AnimatedObj {
     EnemyStates state = EnemyStates::PATROLLING;
 
     void move(const float& elapsedTime) {
+        if (isStunned) {
+            return;
+        }
         if ((isNearLeftKnyaz || isNearRightKnyaz) && animationData.animationType != AnimationTypes::IDLE && animationData.animationType != AnimationTypes::ATTACK) {
             changeAnimation(animationContainer["enemyIDLE"]);
             attackTimer.restart();
@@ -303,6 +332,9 @@ struct Enemy : AnimatedObj {
     }
 
     void checkKnyazVision() {
+        if (isStunned) {
+            return;
+        }
         constexpr float SEARCHING_DURATION = 2.f;
         bool isKnyazUpperOrLower = knyaz.getTop() >= getBot() || knyaz.getBot() <= getTop();
 
@@ -364,6 +396,9 @@ struct Enemy : AnimatedObj {
     }
 
     void tryToAttack() {
+        if (isStunned) {
+            return;
+        }
         if (!knyaz.isAlive) return;
         bool isAttacking = isAttackingNow(attackTimer.getElapsedTime().asMilliseconds());
 
@@ -432,6 +467,15 @@ struct Enemy : AnimatedObj {
             pos.x += 130;
         }
         objSprite.setPosition(pos);
+    }
+
+    void stunProcess() {
+        if (!isStunned) {
+            return;
+        }
+        if (stunnedTimer.getElapsedTime().asSeconds() >= STUNNED_TIME) {
+            isStunned = false;
+        }
     }
 };
 

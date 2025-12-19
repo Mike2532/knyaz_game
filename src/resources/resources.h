@@ -17,4 +17,7 @@ void initUITextures();
 
 void updateBGSprite();
 
+void initUI();
+void updateUI();
+
 #endif //KNYAZ_GAME_RESOURCES_H

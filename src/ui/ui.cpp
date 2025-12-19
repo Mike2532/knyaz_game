@@ -192,18 +192,11 @@ void mouseEventsHandler(const sf::Event& event) {
         } else if (event.mouseButton.button == sf::Mouse::Right) {
             knyaz.changeAnimation(animationContainer["heavyAttack"]);
             for (auto &enemy : mapEnemys) {
-                if (enemy.isNearLeftKnyaz && !knyaz.isLeftOrented) {
+                if ((enemy.isNearLeftKnyaz  && !knyaz.isLeftOrented) || (enemy.isNearRightKnyaz &&  knyaz.isLeftOrented)) {
                     sf::Vector2f enemyPos = enemy.body.getPosition();
-                    enemyPos.x += DAMAGE_OFFSET;
+                    enemyPos.x += knyaz.isLeftOrented ? -DAMAGE_OFFSET : DAMAGE_OFFSET;
                     enemy.body.setPosition(enemyPos);
-                    enemy.takenDamage += knyaz.lightAttackPower;
-                    enemy.objSprite.setColor(sf::Color::Red);
-                    knyaz.attackTimer.restart();
-                }
-                if (enemy.isNearRightKnyaz && knyaz.isLeftOrented) {
-                    sf::Vector2f enemyPos = enemy.body.getPosition();
-                    enemyPos.x += DAMAGE_OFFSET;
-                    enemy.body.setPosition(enemyPos);
+
                     enemy.takenDamage += knyaz.lightAttackPower;
                     enemy.objSprite.setColor(sf::Color::Red);
                     knyaz.attackTimer.restart();
@@ -266,6 +259,8 @@ void gameRestart() {
     initAntiGravityField();
     knyaz.isAlive = true;
     knyaz.hp = knyaz.MAX_HP;
+    knyaz.focusCounter = 0;
+    knyaz.rageCounter = 0;
     knyaz.changeAnimation(animationContainer["falling"]);
     knyaz.freeFallingTimer.restart();
 }
@@ -276,6 +271,7 @@ void removeDeathEnemys() {
 }
 
 void GameProcessEventsHandler(const sf::Event& event) {
+    constexpr int DAMAGE_OFFSET = 15;
     if (!knyaz.isAlive && (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::KeyPressed) && knyaz.animationFrameNumber == knyaz.animationData.animationFrames - 1) {
         gameRestart();
         return;
@@ -286,13 +282,76 @@ void GameProcessEventsHandler(const sf::Event& event) {
             mouseEventsHandler(event);
         }
 
-        if (event.type == sf::Event::KeyPressed && (sf::Keyboard::isKeyPressed(keymap["JUMP_KEY"]) || sf::Keyboard::isKeyPressed(keymap["ALTER_JUMP_KEY"]))) {
-            jumpHandler(event);
-        }
+        if (event.type == sf::Event::KeyPressed) {
+            if ((sf::Keyboard::isKeyPressed(keymap["JUMP_KEY"]) || sf::Keyboard::isKeyPressed(keymap["ALTER_JUMP_KEY"]))) {
+                jumpHandler(event);
+            } else if (sf::Keyboard::isKeyPressed(keymap["CLIMBING_KEY"]) && knyaz.isFalling && !knyaz.isClimbing) {
+                knyaz.isClimbing = true;
+                knyaz.climbingTimer.restart();
+            } else if (sf::Keyboard::isKeyPressed(keymap["FOCUS_KEY"]) && knyaz.focusCounter == knyaz.MAX_FOCUS_COUNTER) {
+                constexpr float SCREEN_W = 1440.f;
+                constexpr float MAX_TP_RANGE = 700.f;
+                constexpr float CRIT_ATTACK_POWER = 800.f;
 
-        if (event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(keymap["CLIMBING_KEY"]) && knyaz.isFalling && !knyaz.isClimbing) {
-            knyaz.isClimbing = true;
-            knyaz.climbingTimer.restart();
+                float minDist = INT_MAX;
+                Enemy* closestEnemy = nullptr;
+
+                for (auto& enemy : mapEnemys) {
+                    if (enemy.getRight() >=  SCREEN_W || enemy.getLeft() <= 0) {
+                        continue;
+                    }
+                    float dx = abs(enemy.getLeft() - knyaz.getLeft());
+                    float dy = abs(enemy.getTop() - knyaz.getTop());
+                    float distanse = sqrt(dx * dx + dy * dy);
+                    if (distanse < minDist) {
+                        minDist = distanse;
+                        closestEnemy = &enemy;
+                    }
+                }
+
+                if (minDist > MAX_TP_RANGE) {
+                    return;
+                }
+
+                knyaz.focusCounter = 0;
+                sf::Vector2f enemyPos = closestEnemy->body.getPosition();
+                sf::Vector2f knyazPos = knyaz.body.getPosition();
+                sf::Vector2f knyazSize = knyaz.body.getSize();
+                knyazPos.x = enemyPos.x - knyazSize.x;
+                knyazPos.y = enemyPos.y;
+                knyaz.body.setPosition(knyazPos);
+
+                knyaz.isClimbing = false;
+                knyaz.isJump = false;
+                knyaz.isMovingRight = false;
+                knyaz.isMovingLeft = false;
+                knyaz.isFalling = false;
+                knyaz.isDoubleJump = false;
+                knyaz.isFlyingUp = false;
+                knyaz.changeAnimation(animationContainer["easyAttack"]);
+                knyaz.isLeftOrented = false;
+                closestEnemy->isNearLeftKnyaz = true;
+                closestEnemy->takenDamage += CRIT_ATTACK_POWER;
+                closestEnemy->stunnedTimer.restart();
+                closestEnemy->isStunned = true;
+                closestEnemy->objSprite.setColor(sf::Color::Red);
+                knyaz.attackTimer.restart();
+            } else if (sf::Keyboard::isKeyPressed(keymap["RAGE_KEY"]) && knyaz.rageCounter == knyaz.MAX_RAGE_COUNTER) {
+                if (!(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight)) {
+                    for (auto &enemy : mapEnemys) {
+                        if ((enemy.isNearLeftKnyaz  && !knyaz.isLeftOrented) || (enemy.isNearRightKnyaz &&  knyaz.isLeftOrented)) {
+                            knyaz.rageCounter = 0;
+                            knyaz.changeAnimation(animationContainer["heavyAttack"]);
+                            sf::Vector2f enemyPos = enemy.body.getPosition();
+                            enemyPos.x += knyaz.isLeftOrented ? -DAMAGE_OFFSET : DAMAGE_OFFSET;
+                            enemy.body.setPosition(enemyPos);
+                            enemy.takenDamage += knyaz.rageAttackPower;
+                            enemy.objSprite.setColor(sf::Color::Red);
+                            knyaz.attackTimer.restart();
+                        }
+                    }
+                }
+            }
         }
 
         movementHandler();
