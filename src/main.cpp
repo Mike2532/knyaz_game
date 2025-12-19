@@ -50,6 +50,7 @@ void initDepends() {
     initUITextures();
     initGameMap();
     initEnemys();
+    initMapPortals();
     knyaz.animationData = animationContainer["idle"];
     HpIndicatorSprite.setTexture(HpIndicatorTexture);
     srand(time(NULL));
@@ -86,6 +87,7 @@ void update(std::vector<sf::Text>& textToPrint) {
             enemy.spritePositionUpdate();
         }
 
+        checkKnyazPortaling();
         knyazMove(elapsedTime);
         checkKnyazFalling();
         checkKnyazEnemyCollision();
@@ -118,6 +120,13 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
 
             for (const auto& obj : mapObjs) {
                 window.draw(obj.body);
+            }
+
+            if (!lastTeleported) {
+                for (const auto& portal : mapPortals) {
+                    window.draw(portal.inBody);
+                    window.draw(portal.outBody);
+                }
             }
 
             window.draw(HpIndicatorSprite);

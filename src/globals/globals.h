@@ -45,6 +45,16 @@ extern sf::Font myFont;
 extern sf::Sprite BGSprite;
 extern sf::Sprite HpIndicatorSprite;
 
+extern bool lastTeleported;
+
+struct Portal {
+    sf::Vector2f inCoords;
+    sf::RectangleShape inBody;
+
+    sf::Vector2f outCoords;
+    sf::RectangleShape outBody;
+};
+
 struct AnimationData {
     sf::Texture animationTexture;
     int animationFrames;
@@ -428,9 +438,11 @@ void initVariables();
 
 void initGameMap();
 void initEnemys();
+void initMapPortals();
 
 extern vector<GameEntity> mapObjs;
 extern vector<Enemy> mapEnemys;
+extern vector<Portal> mapPortals;
 
 extern void enemysTakenDamage();
 extern void removeBottleByCoords(sf::Vector2f coords);

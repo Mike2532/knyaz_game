@@ -262,6 +262,7 @@ void gameRestart() {
     knyaz.body = getKnyazBody();
     initGameMap();
     initEnemys();
+    initMapPortals();
     knyaz.isAlive = true;
     knyaz.hp = knyaz.MAX_HP;
     knyaz.changeAnimation(animationContainer["falling"]);

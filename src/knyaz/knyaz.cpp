@@ -202,6 +202,17 @@ void leftMoveProcess(const unsigned int& LEFT_CAMERA_EDGE, const float &offset) 
             enemy.LEFT_PATROLING_EDGE += offset;
             enemy.body.setPosition(enemyPos);
         }
+        for (auto& portal : mapPortals) {
+            portal.inCoords.x = portal.inCoords.x + offset;
+            portal.outCoords.x = portal.outCoords.x + offset;
+
+            sf::Vector2f inBodyPos = portal.inBody.getPosition();
+            sf::Vector2f outBodyPos = portal.outBody.getPosition();
+            inBodyPos.x += offset;
+            outBodyPos.x += offset;
+            portal.inBody.setPosition(inBodyPos);
+            portal.outBody.setPosition(outBodyPos);
+        }
     }
     knyaz.body.setPosition(knyazPosition);
 }
@@ -231,6 +242,17 @@ void rightMoveProcess(const unsigned int& RIGHT_CAMERA_EDGE, const float &offset
             enemy.LEFT_PATROLING_EDGE -= offset;
             enemy.body.setPosition(enemyPos);
         }
+        for (auto& portal : mapPortals) {
+            portal.inCoords.x = portal.inCoords.x - offset;
+            portal.outCoords.x = portal.outCoords.x - offset;
+
+            sf::Vector2f inBodyPos = portal.inBody.getPosition();
+            sf::Vector2f outBodyPos = portal.outBody.getPosition();
+            inBodyPos.x -= offset;
+            outBodyPos.x -= offset;
+            portal.inBody.setPosition(inBodyPos);
+            portal.outBody.setPosition(outBodyPos);
+        }
     }
     knyaz.body.setPosition(knyazPosition);
 }
@@ -252,7 +274,7 @@ void horizontalMoveProcess(const float& elapsedTime) {
 
 void verticalMoveProcess() {
     constexpr float FREE_FALLING_SPEED_MULTIPLYER = 0.4f;
-    constexpr float JUMP_POWER = 0.3f;
+    constexpr float JUMP_POWER = 0.3f * 3;
     constexpr float CLIMBING_SPEED_MULTIPLYER = 0.15f;
 
     sf::Vector2f knyazPosition = knyaz.body.getPosition();
@@ -282,7 +304,7 @@ void verticalMoveProcess() {
 
 void horizontalMove(const float& elapsedTime) {
     horizontalMoveProcess(elapsedTime);
-    checkHorizontalCollision(mapObjs);
+//    checkHorizontalCollision(mapObjs);
 }
 
 void verticalMove() {
@@ -310,4 +332,27 @@ void updateHpIndicator() {
     sf::Color HpColor = HpIndicatorSprite.getColor();
     HpColor.a = 255 * float (float (knyaz.MAX_HP - knyaz.hp) / knyaz.MAX_HP);
     HpIndicatorSprite.setColor(HpColor);
+}
+
+void checkKnyazPortaling() {
+    const sf::Vector2f knyazPos = knyaz.body.getPosition();
+    for (int i = 0; i < mapPortals.size(); i++) {
+        Portal portal = mapPortals[i];
+        const sf::Vector2f portalPos = portal.inCoords;
+        if (abs(portalPos.x - knyazPos.x) <= 25 && abs(portalPos.y - knyazPos.y) <= 2) {
+            knyaz.body.setPosition(portal.outCoords);
+            if (i == mapPortals.size() - 1) {
+                lastTeleported = true;
+            }
+            break;
+        }
+    }
+
+    for (auto portal : mapPortals) {
+        const sf::Vector2f portalPos = portal.inCoords;
+        if (abs(portalPos.x - knyazPos.x) <= 25 && abs(portalPos.y - knyazPos.y) <= 2) {
+            knyaz.body.setPosition(portal.outCoords);
+            break;
+        }
+    }
 }

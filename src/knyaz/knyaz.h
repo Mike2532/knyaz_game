@@ -9,5 +9,6 @@ sf::RectangleShape getKnyazBody();
 void checkKnyazFalling();
 void checkKnyazEnemyCollision();
 void updateHpIndicator();
+void checkKnyazPortaling();
 
 #endif //KNYAZ_GAME_KNYAZ_H
