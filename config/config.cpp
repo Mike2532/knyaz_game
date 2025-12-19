@@ -55,6 +55,7 @@ map<string, sf::Keyboard::Scancode> getKeymap() {
         {"MOVE_LEFT_KEY", sf::Keyboard::Scancode::A},
         {"MOVE_RIGHT_KEY", sf::Keyboard::Scancode::D},
         {"JUMP_KEY", sf::Keyboard::Scancode::Space},
+        {"ALTER_JUMP_KEY", sf::Keyboard::Scancode::W},
         {"RAGE_KEY", sf::Keyboard::Scancode::R},
         {"FOCUS_KEY", sf::Keyboard::Scancode::F},
         {"CLIMBING_KEY", sf::Keyboard::Scancode::E}

@@ -284,7 +284,7 @@ void GameProcessEventsHandler(const sf::Event& event) {
             mouseEventsHandler(event);
         }
 
-        if (event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(keymap["JUMP_KEY"])) {
+        if (event.type == sf::Event::KeyPressed && (sf::Keyboard::isKeyPressed(keymap["JUMP_KEY"]) || sf::Keyboard::isKeyPressed(keymap["ALTER_JUMP_KEY"]))) {
             jumpHandler(event);
         }
 
