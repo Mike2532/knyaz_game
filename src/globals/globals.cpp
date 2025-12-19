@@ -144,6 +144,7 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({20.f, 2000.f}, {-20.f, -1000.f}, ObjsTypes::ENTITY),      // leftWorldEdge
         makeEntity({20.f, 2000.f}, {4320.f, -1000.f}, ObjsTypes::ENTITY),     // rightWorldEdge
         makeEntity({4320.f, 28.f}, {0.f, 771.f}, ObjsTypes::ENTITY),           // floor
+        makeEntity({4320.f, 28.f}, {0.f, -180.f}, ObjsTypes::ENTITY),           // rof
 
         makeEntity({237.f, 582.f}, {1017.f, 217.f}, ObjsTypes::WALL),       // 1-end
         makeEntity({237.f, 35.f}, {666.f, 684.f}, ObjsTypes::ENTITY), // 1-1
@@ -164,7 +165,7 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({145.f, 35.f}, {2715.f, 129.f}, ObjsTypes::ENTITY), // 2-8
         makeEntity({20.f, 945.f}, {2400.f, -400.f}, ObjsTypes::WALL), // 2-9
 
-        makeEntity({80.f, 900.f}, {1434.f, -400.f}, ObjsTypes::WALL), // M1
+        makeEntity({80.f, 680.f}, {1434.f, -180.f}, ObjsTypes::WALL), // M1
         makeEntity({60.f, 535.f}, {1714.f, 236.f}, ObjsTypes::WALL), // M2
         makeEntity({80.f, 35.f}, {1634.f, 236.f}, ObjsTypes::WALL), //M3
 
