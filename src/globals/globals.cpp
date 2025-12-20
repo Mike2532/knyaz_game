@@ -151,6 +151,7 @@ struct EnemyParam {
     const float LEFT_PATROLING_EDGE;
     const float RIGHT_PATROLING_EDGE;
     const float RIGHT_ACTIVE_EDGE;
+    const int id;
 };
 
 auto addEnemy(const EnemyParam &enemyParam) {
@@ -162,6 +163,7 @@ auto addEnemy(const EnemyParam &enemyParam) {
     myEnemy.RIGHT_PATROLING_EDGE = enemyParam.RIGHT_PATROLING_EDGE;
     myEnemy.RIGHT_ACTIVE_EDGE = enemyParam.RIGHT_ACTIVE_EDGE;
     myEnemy.animationData = animationContainer["enemyWalk"];
+    myEnemy.id = enemyParam.id;
     mapEnemys.push_back(myEnemy);
 }
 
@@ -171,56 +173,64 @@ const vector<EnemyParam> enemyParams {
                 1774.f,
                 1899.f,
                 2290.f,
-                2420.f
+                2420.f,
+                0
         },
         { //Start 1-st
                 {466.f, 461.f + 20.f - 2.f},
                 407.f,
                 407.f,
                 653.f,
-                653.f
+                653.f,
+                1
         },
         { //Start 2-nd
                 {702.f, 67.f + 20.f - 2.f},
                 655.f,
                 680.f,
                 982.f,
-                1012.f
+                1012.f,
+                2
         },
         {  //Tower 1-st
                 {2435.f, 431.f + 20.f - 2.f},
                 2425.f,
                 2425.f,
                 2560.f,
-                2560.f
+                2560.f,
+                3
         },
         { //Tower 2-nd
                 {2770.f, 214.f + 20.f - 2.f},
                 2720.f,
                 2720.f,
                 2855.f,
-                2855.f
+                2855.f,
+                4
         },
         { //4zone near 1-st portal
                 {3138.f, 676.f},
                 3000,
                 3063,
                 3468,
-                3538
+                3538,
+                5
         },
         { //4zone near 4 portal
             {3942.f, 40.f},
             3905,
             3905,
             4210,
-            4230
+            4230,
+            6
         },
         { //4zone battle area
                 {3892.f, 711.f},
                 3774,
                 3860,
                 4250,
-                4315
+                4315,
+                7
         }
 };
 

@@ -93,9 +93,6 @@ struct AnimatedObj : GameEntity {
     virtual void textureUpdate() = 0;
 
     void animationProcess() {
-        if (isStunned) {
-            return;
-        }
         constexpr int ANIMATION_DURATON = 100;
 
         if (
@@ -104,8 +101,10 @@ struct AnimatedObj : GameEntity {
         ) return;
         animationTimer.restart();
 
-        animationFrameNumber++;
-        animationFrameNumber %= animationData.animationFrames;
+        if (!(animationFrameNumber == 0 && isStunned)) {
+            animationFrameNumber++;
+            animationFrameNumber %= animationData.animationFrames;
+        }
 
         textureUpdate();
     }
@@ -120,9 +119,16 @@ struct AnimatedObj : GameEntity {
 };
 
 struct Knyaz : AnimatedObj {
-    const int MAX_HP = 2500;
-    const int MAX_FOCUS_COUNTER = 6;
-    const int MAX_RAGE_COUNTER = 3;
+//    const int MAX_HP = 2500;
+//    const int MAX_FOCUS_COUNTER = 6;
+//    const int MAX_RAGE_COUNTER = 3;
+
+    const int MAX_HP = 999999;
+    const int MAX_FOCUS_COUNTER = 0;
+    const int MAX_RAGE_COUNTER = 0;
+
+    int lastHeatedEnemy;
+    vector<string> actionsHistory;
 
     bool isMovingLeft = false;
     bool isMovingRight = false;
@@ -133,7 +139,7 @@ struct Knyaz : AnimatedObj {
     bool isAttackFinished = false;
     bool isFlyingUp = false;
 
-    int hp = 2500;
+    int hp = MAX_HP;
     int lightAttackPower = 400;
     int heavyAttackPower = 700;
     int rageAttackPower = 1200;
@@ -233,6 +239,8 @@ extern std::map<std::string, sf::Keyboard::Scancode> keymap;
 extern sf::Clock globalTimer;
 
 struct Enemy : AnimatedObj {
+    int id;
+    int MAX_HP = 4000;
     float STUNNED_TIME = 3.f;
 
     float LEFT_PATROLING_EDGE;
@@ -248,7 +256,7 @@ struct Enemy : AnimatedObj {
 
     sf::Clock stunnedTimer;
 
-    int hp = 1000;
+    int hp = MAX_HP;
     int attackPower = 650;
     int takenDamage = 0;
 

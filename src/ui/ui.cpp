@@ -173,6 +173,9 @@ void mouseEventsHandler(const sf::Event& event) {
             knyaz.changeAnimation(animationContainer["easyAttack"]);
             for (auto &enemy : mapEnemys) {
                 if ((enemy.isNearLeftKnyaz) && !knyaz.isLeftOrented) {
+                    knyaz.lastHeatedEnemy = enemy.id;
+                    knyaz.actionsHistory.clear();
+                    knyaz.actionsHistory.emplace_back("ea");
                     sf::Vector2f enemyPos = enemy.body.getPosition();
                     enemyPos.x -= DAMAGE_OFFSET;
                     enemy.body.setPosition(enemyPos);
@@ -181,6 +184,9 @@ void mouseEventsHandler(const sf::Event& event) {
                     knyaz.attackTimer.restart();
                 }
                 if (enemy.isNearRightKnyaz && knyaz.isLeftOrented) {
+                    knyaz.lastHeatedEnemy = enemy.id;
+                    knyaz.actionsHistory.clear();
+                    knyaz.actionsHistory.emplace_back("ea");
                     sf::Vector2f enemyPos = enemy.body.getPosition();
                     enemyPos.x -= DAMAGE_OFFSET;
                     enemy.body.setPosition(enemyPos);
@@ -193,6 +199,16 @@ void mouseEventsHandler(const sf::Event& event) {
             knyaz.changeAnimation(animationContainer["heavyAttack"]);
             for (auto &enemy : mapEnemys) {
                 if ((enemy.isNearLeftKnyaz  && !knyaz.isLeftOrented) || (enemy.isNearRightKnyaz &&  knyaz.isLeftOrented)) {
+                    vector<string> comboVector = {"ea", "jmp"};
+                    if (enemy.id != knyaz.lastHeatedEnemy) {
+                        knyaz.actionsHistory.clear();
+                    }
+                    if (knyaz.actionsHistory == comboVector) {
+                        knyaz.actionsHistory.clear();
+                        enemy.stunnedTimer.restart();
+                        enemy.isStunned = true;
+                    }
+
                     sf::Vector2f enemyPos = enemy.body.getPosition();
                     enemyPos.x += knyaz.isLeftOrented ? -DAMAGE_OFFSET : DAMAGE_OFFSET;
                     enemy.body.setPosition(enemyPos);
@@ -211,11 +227,15 @@ void jumpHandler(const sf::Event& event) {
         return;
     }
     if (knyaz.isJump && !(knyaz.isDoubleJump)) {
+        knyaz.actionsHistory.clear();
         knyaz.isDoubleJump = true;
         knyaz.changeAnimation(animationContainer["jump"]);
         knyaz.freeFallingTimer.restart();
         if (knyaz.isClimbing) knyaz.isClimbing = false;
     } else if (!knyaz.isJump && !knyaz.isDoubleJump) {
+        if (knyaz.actionsHistory.size() == 1 && knyaz.actionsHistory[0] == "ea") {
+            knyaz.actionsHistory.emplace_back("jmp");
+        }
         knyaz.isJump = true;
         knyaz.changeAnimation(animationContainer["jump"]);
         knyaz.freeFallingTimer.restart();
@@ -321,21 +341,22 @@ void GameProcessEventsHandler(const sf::Event& event) {
                 knyazPos.y = enemyPos.y;
                 knyaz.body.setPosition(knyazPos);
 
-                knyaz.isClimbing = false;
-                knyaz.isJump = false;
-                knyaz.isMovingRight = false;
-                knyaz.isMovingLeft = false;
-                knyaz.isFalling = false;
-                knyaz.isDoubleJump = false;
-                knyaz.isFlyingUp = false;
-                knyaz.changeAnimation(animationContainer["easyAttack"]);
-                knyaz.isLeftOrented = false;
-                closestEnemy->isNearLeftKnyaz = true;
-                closestEnemy->takenDamage += CRIT_ATTACK_POWER;
-                closestEnemy->stunnedTimer.restart();
-                closestEnemy->isStunned = true;
-                closestEnemy->objSprite.setColor(sf::Color::Red);
-                knyaz.attackTimer.restart();
+                knyaz.changeAnimation(animationContainer["idle"]);
+//                knyaz.isClimbing = false;
+//                knyaz.isJump = false;
+//                knyaz.isMovingRight = false;
+//                knyaz.isMovingLeft = false;
+//                knyaz.isFalling = false;
+//                knyaz.isDoubleJump = false;
+//                knyaz.isFlyingUp = false;
+//                knyaz.changeAnimation(animationContainer["easyAttack"]);
+//                knyaz.isLeftOrented = false;
+//                closestEnemy->isNearLeftKnyaz = true;
+//                closestEnemy->takenDamage += CRIT_ATTACK_POWER;
+//                closestEnemy->stunnedTimer.restart();
+//                closestEnemy->isStunned = true;
+//                closestEnemy->objSprite.setColor(sf::Color::Red);
+//                knyaz.attackTimer.restart();
             } else if (sf::Keyboard::isKeyPressed(keymap["RAGE_KEY"]) && knyaz.rageCounter == knyaz.MAX_RAGE_COUNTER) {
                 if (!(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight)) {
                     for (auto &enemy : mapEnemys) {
