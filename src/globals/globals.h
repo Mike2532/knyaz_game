@@ -119,13 +119,9 @@ struct AnimatedObj : GameEntity {
 };
 
 struct Knyaz : AnimatedObj {
-//    const int MAX_HP = 2500;
-//    const int MAX_FOCUS_COUNTER = 6;
-//    const int MAX_RAGE_COUNTER = 3;
-
-    const int MAX_HP = 999999;
-    const int MAX_FOCUS_COUNTER = 0;
-    const int MAX_RAGE_COUNTER = 0;
+    const int MAX_HP = 3000;
+    const int MAX_FOCUS_COUNTER = 6;
+    const int MAX_RAGE_COUNTER = 3;
 
     int lastHeatedEnemy;
     vector<string> actionsHistory;
@@ -142,7 +138,7 @@ struct Knyaz : AnimatedObj {
     int hp = MAX_HP;
     int lightAttackPower = 400;
     int heavyAttackPower = 700;
-    int rageAttackPower = 1200;
+    int rageAttackPower = 2200;
     int takenDamage = 0;
 
     int rageCounter = 0;
@@ -240,7 +236,7 @@ extern sf::Clock globalTimer;
 
 struct Enemy : AnimatedObj {
     int id;
-    int MAX_HP = 4000;
+    int MAX_HP = 2000;
     float STUNNED_TIME = 3.f;
 
     float LEFT_PATROLING_EDGE;

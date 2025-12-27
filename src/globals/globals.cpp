@@ -130,7 +130,6 @@ void initMapObj(sf::Vector2f objSize, sf::Vector2f objPos, sf::Texture &texture,
     objBody.setPosition(objPos);
     objBody.setTexture(&texture);
     if (type != ObjsTypes::SPIKES && type != ObjsTypes::SPIKES_UP) objBody.setTextureRect(sf::IntRect(0, 0, (int)objSize.x, (int)objSize.y));
-    if (type == ObjsTypes::ENEMY) objBody.setFillColor(sf::Color::Red); //TODO удалить
     newEntity.body = objBody;
 
     newEntity.type = type;

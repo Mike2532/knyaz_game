@@ -173,10 +173,25 @@ void mouseEventsHandler(const sf::Event& event) {
             knyaz.changeAnimation(animationContainer["easyAttack"]);
             for (auto &enemy : mapEnemys) {
                 if ((enemy.isNearLeftKnyaz) && !knyaz.isLeftOrented) {
-                    knyaz.lastHeatedEnemy = enemy.id;
-                    knyaz.actionsHistory.clear();
-                    knyaz.actionsHistory.emplace_back("ea");
                     sf::Vector2f enemyPos = enemy.body.getPosition();
+                    if (
+                            knyaz.actionsHistory.size() == 2 &&
+                            knyaz.actionsHistory[0] == "ea" &&
+                            knyaz.actionsHistory[1] == "ha" &&
+                            knyaz.lastHeatedEnemy == enemy.id
+                    ) {
+                        knyaz.actionsHistory.clear();
+                        sf::Vector2f enymeSize = enemy.body.getSize();
+                        sf::Vector2f knyazPos = knyaz.body.getPosition();
+                        knyazPos.x = enemyPos.x + enymeSize.x;
+                        knyaz.body.setPosition(knyazPos);
+                        knyaz.isLeftOrented = true;
+                        enemy.takenDamage += knyaz.lightAttackPower * 0.5;
+                    } else {
+                        knyaz.actionsHistory.clear();
+                        knyaz.lastHeatedEnemy = enemy.id;
+                        knyaz.actionsHistory.emplace_back("ea");
+                    }
                     enemyPos.x -= DAMAGE_OFFSET;
                     enemy.body.setPosition(enemyPos);
                     enemy.takenDamage += knyaz.lightAttackPower;
@@ -184,10 +199,25 @@ void mouseEventsHandler(const sf::Event& event) {
                     knyaz.attackTimer.restart();
                 }
                 if (enemy.isNearRightKnyaz && knyaz.isLeftOrented) {
-                    knyaz.lastHeatedEnemy = enemy.id;
-                    knyaz.actionsHistory.clear();
-                    knyaz.actionsHistory.emplace_back("ea");
                     sf::Vector2f enemyPos = enemy.body.getPosition();
+                    if (
+                            knyaz.actionsHistory.size() == 2 &&
+                            knyaz.actionsHistory[0] == "ea" &&
+                            knyaz.actionsHistory[1] == "ha" &&
+                            knyaz.lastHeatedEnemy == enemy.id
+                        ) {
+                        knyaz.actionsHistory.clear();
+                        sf::Vector2f knyazSize = knyaz.body.getSize();
+                        sf::Vector2f knyazPos = knyaz.body.getPosition();
+                        knyazPos.x = enemyPos.x - knyazSize.x;
+                        knyaz.body.setPosition(knyazPos);
+                        knyaz.isLeftOrented = false;
+                        enemy.takenDamage += knyaz.lightAttackPower * 0.5;
+                    } else {
+                        knyaz.actionsHistory.clear();
+                        knyaz.lastHeatedEnemy = enemy.id;
+                        knyaz.actionsHistory.emplace_back("ea");
+                    }
                     enemyPos.x -= DAMAGE_OFFSET;
                     enemy.body.setPosition(enemyPos);
                     enemy.takenDamage += knyaz.lightAttackPower;
@@ -200,6 +230,7 @@ void mouseEventsHandler(const sf::Event& event) {
             for (auto &enemy : mapEnemys) {
                 if ((enemy.isNearLeftKnyaz  && !knyaz.isLeftOrented) || (enemy.isNearRightKnyaz &&  knyaz.isLeftOrented)) {
                     vector<string> comboVector = {"ea", "jmp"};
+
                     if (enemy.id != knyaz.lastHeatedEnemy) {
                         knyaz.actionsHistory.clear();
                     }
@@ -207,6 +238,8 @@ void mouseEventsHandler(const sf::Event& event) {
                         knyaz.actionsHistory.clear();
                         enemy.stunnedTimer.restart();
                         enemy.isStunned = true;
+                    } else if (knyaz.actionsHistory.size() == 1 && knyaz.actionsHistory[0] == "ea") {
+                        knyaz.actionsHistory.emplace_back("ha");
                     }
 
                     sf::Vector2f enemyPos = enemy.body.getPosition();
@@ -342,21 +375,6 @@ void GameProcessEventsHandler(const sf::Event& event) {
                 knyaz.body.setPosition(knyazPos);
 
                 knyaz.changeAnimation(animationContainer["idle"]);
-//                knyaz.isClimbing = false;
-//                knyaz.isJump = false;
-//                knyaz.isMovingRight = false;
-//                knyaz.isMovingLeft = false;
-//                knyaz.isFalling = false;
-//                knyaz.isDoubleJump = false;
-//                knyaz.isFlyingUp = false;
-//                knyaz.changeAnimation(animationContainer["easyAttack"]);
-//                knyaz.isLeftOrented = false;
-//                closestEnemy->isNearLeftKnyaz = true;
-//                closestEnemy->takenDamage += CRIT_ATTACK_POWER;
-//                closestEnemy->stunnedTimer.restart();
-//                closestEnemy->isStunned = true;
-//                closestEnemy->objSprite.setColor(sf::Color::Red);
-//                knyaz.attackTimer.restart();
             } else if (sf::Keyboard::isKeyPressed(keymap["RAGE_KEY"]) && knyaz.rageCounter == knyaz.MAX_RAGE_COUNTER) {
                 if (!(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight)) {
                     for (auto &enemy : mapEnemys) {
