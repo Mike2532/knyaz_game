@@ -1,7 +1,6 @@
 set(SRC_SOURCES
         main.cpp
         globals/globals.cpp
-        knyaz/knyaz.cpp
 )
 
 add_executable(knyaz_game ${SRC_SOURCES})

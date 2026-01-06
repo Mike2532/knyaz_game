@@ -1,5 +1,4 @@
 add_library(knyaz_lib
-        knyaz.cpp
         eventsHandler/eventsHandler.cpp
         eventsHandler/eventsHandler.h
         eventsHandler/keyboard/keyboardHandler.cpp
@@ -10,6 +9,18 @@ add_library(knyaz_lib
         eventsHandler/mouse/left/left.h
         eventsHandler/mouse/right/right.cpp
         eventsHandler/mouse/right/right.h
+        move/move.cpp
+        move/move.h
+        move/vertical/vertical.cpp
+        move/vertical/vertical.h
+        move/horizontal/horizontal.cpp
+        move/horizontal/horizontal.h
+        move/collisionChecker/checker.cpp
+        move/collisionChecker/checker.h
+        move/falling/falling.cpp
+        move/falling/falling.h
+        state/state.cpp
+        state/state.h
 )
 
 target_include_directories(knyaz_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

@@ -1,6 +1,5 @@
 #include <iostream>
 #include "globals/globals.h"
-#include "knyaz/knyaz.h"
 #include "types.h"
 #include "vector"
 #include "../../config/config.h"
@@ -15,6 +14,10 @@
 #include "./resources/animations/animations.h"
 #include "./resources/objs/objs.h"
 #include "./resources/ui/ui.h"
+#include "./knyaz/move/move.h"
+#include "./knyaz/move/falling/falling.h"
+#include "./knyaz/move/collisionChecker/checker.h"
+#include "./knyaz/state/state.h"
 
 using namespace std;
 
@@ -68,7 +71,7 @@ void initDepends() {
 }
 
 void initVariables() {
-    knyaz.body = getKnyazBody();
+    knyaz.body = initKnyazBody();
     updateBGSprite();
     mainMenu = getMainMenu();
     helpMenu = getHelpMenu();

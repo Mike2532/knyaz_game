@@ -1,7 +1,7 @@
 #include "../globals/globals.h"
-#include "../knyaz/knyaz.h"
 #include "./keyboard/keyboardHandler.h"
 #include "./mouse/mouseHandler.h"
+#include "../state/state.h"
 
 using namespace std;
 
@@ -34,7 +34,7 @@ void movementHandler() {
 }
 
 void gameRestart() {
-    knyaz.body = getKnyazBody();
+    knyaz.body = initKnyazBody();
     initGameMap();
     initEnemys();
     initMapPortals();
