@@ -1,4 +1,6 @@
 #include "../../globals/globals.h"
+#include "../../globals/mapEnemys/Enemy/Enemy.h"
+#include "../../globals/mapEnemys/mapEnemys.h"
 #include "algorithm"
 
 using namespace std;

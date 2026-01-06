@@ -1,7 +1,7 @@
 #include <iostream>
+#include <vector>
 #include "globals/globals.h"
 #include "types.h"
-#include "vector"
 #include "../../config/config.h"
 #include "./ui/helpMenu/helpMenu.h"
 #include "./ui/loadScreen/loadScreen.h"
@@ -18,6 +18,10 @@
 #include "./knyaz/move/falling/falling.h"
 #include "./knyaz/move/collisionChecker/checker.h"
 #include "./knyaz/state/state.h"
+#include "./globals/mapObjs/mapObjs.h"
+#include "./globals/mapPortals/mapPortals.h"
+#include "./knyaz.h"
+#include "./globals/mapEnemys/mapEnemys.h"
 
 using namespace std;
 

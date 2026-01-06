@@ -1,5 +1,7 @@
 #include "../globals/globals.h"
 #include "../collisionChecker/checker.h"
+#include "../../../globals/mapObjs/mapObjs.h"
+#include "../../knyaz.h"
 
 void fallingCheck(bool &falling) {
     for (auto entity : mapObjs) {

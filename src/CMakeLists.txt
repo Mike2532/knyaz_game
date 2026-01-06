@@ -19,6 +19,7 @@ target_link_libraries(
         ui_lib
         knyaz_lib
         resources_lib
+        globals_lib
 )
 
 target_link_libraries(knyaz_game PRIVATE

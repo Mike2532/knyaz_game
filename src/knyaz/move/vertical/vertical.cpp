@@ -1,6 +1,8 @@
 #include <SFML/System/Vector2.hpp>
 #include "../../../globals/globals.h"
 #include "../collisionChecker/checker.h"
+#include "../../../globals/mapObjs/mapObjs.h"
+#include "../../knyaz.h"
 
 void checkVerticalCollision(vector<GameEntity> &container) {
     sf::Vector2f knyazPos = knyaz.body.getPosition();

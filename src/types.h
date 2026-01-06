@@ -29,25 +29,4 @@ enum class ObjsTypes {ENTITY, OBTACLE, SPIKES, SPIKES_UP, ENEMY, BOTTLE, WALL};
 
 enum class EnemyStates {PATROLLING, AGRESSIVE};
 
-struct GameEntity {
-    sf::RectangleShape body;
-    ObjsTypes type;
-    float getTop() {
-        return body.getPosition().y;
-    }
-    float getBot() {
-        sf::Vector2f pos = body.getPosition();
-        sf::Vector2f size = body.getSize();
-        return pos.y + size.y;
-    }
-    float getLeft() {
-        return body.getPosition().x;
-    }
-    float getRight() {
-        sf::Vector2f pos = body.getPosition();
-        sf::Vector2f size = body.getSize();
-        return pos.x + size.x;
-    }
-};
-
 #endif //KNYAZ_GAME_TYPES_H

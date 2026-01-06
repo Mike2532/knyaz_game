@@ -1,5 +1,7 @@
 #include <SFML/Window/Event.hpp>
 #include "../globals/globals.h"
+#include "../../../knyaz.h"
+#include "../globals/mapEnemys/mapEnemys.h"
 
 bool stunComboChecker() {
     return knyaz.actionsHistory[0] == "ea" && knyaz.actionsHistory[1] == "jmp";

@@ -21,6 +21,8 @@ add_library(knyaz_lib
         move/falling/falling.h
         state/state.cpp
         state/state.h
+        knyaz.h
+        knyaz.cpp
 )
 
 target_include_directories(knyaz_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

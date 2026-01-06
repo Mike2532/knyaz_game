@@ -154,30 +154,6 @@ globals/globals.cpp.s:
 	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/globals/globals.cpp.s
 .PHONY : globals/globals.cpp.s
 
-knyaz/knyaz.o: knyaz/knyaz.cpp.o
-.PHONY : knyaz/knyaz.o
-
-# target to build an object file
-knyaz/knyaz.cpp.o:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/knyaz/knyaz.cpp.o
-.PHONY : knyaz/knyaz.cpp.o
-
-knyaz/knyaz.i: knyaz/knyaz.cpp.i
-.PHONY : knyaz/knyaz.i
-
-# target to preprocess a source file
-knyaz/knyaz.cpp.i:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/knyaz/knyaz.cpp.i
-.PHONY : knyaz/knyaz.cpp.i
-
-knyaz/knyaz.s: knyaz/knyaz.cpp.s
-.PHONY : knyaz/knyaz.s
-
-# target to generate assembly for a file
-knyaz/knyaz.cpp.s:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/knyaz/knyaz.cpp.s
-.PHONY : knyaz/knyaz.cpp.s
-
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -214,9 +190,6 @@ help:
 	@echo "... globals/globals.o"
 	@echo "... globals/globals.i"
 	@echo "... globals/globals.s"
-	@echo "... knyaz/knyaz.o"
-	@echo "... knyaz/knyaz.i"
-	@echo "... knyaz/knyaz.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

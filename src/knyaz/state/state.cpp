@@ -1,4 +1,7 @@
 #include "../../globals/globals.h"
+#include "../../globals/mapObjs/mapObjs.h"
+#include "../../globals/mapPortals/mapPortals.h"
+#include "./knyaz.h"
 
 using namespace std;
 

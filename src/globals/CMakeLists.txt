@@ -1,5 +1,21 @@
 add_library(globals_lib STATIC
         globals.cpp
+        mapObjs/mapObjs.cpp
+        mapObjs/mapObjs.h
+        mapObjs/gameEntity/gameEntity.cpp
+        mapObjs/gameEntity/gameEntity.h
+        mapPortals/mapPortals.cpp
+        mapPortals/mapPortals.h
+        mapPortals/Portal.h
+        mapEnemys/mapEnemys.cpp
+        mapEnemys/mapEnemys.h
+        AnimatedObj/AnimatedObj.cpp
+        AnimatedObj/AnimatedObj.h
+        AnimatedObj/AnimationData.h
+        mapEnemys/Enemy/Enemy.cpp
+        mapEnemys/Enemy/Enemy.h
+        bottle/bottle.cpp
+        bottle/bottle.h
 )
 
 target_include_directories(globals_lib

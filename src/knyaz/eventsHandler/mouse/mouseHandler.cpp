@@ -2,6 +2,7 @@
 #include "../globals/globals.h"
 #include "./left/left.h"
 #include "./right/right.h"
+#include "../knyaz/knyaz.h"
 
 bool canHandle() {
     return !(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight);

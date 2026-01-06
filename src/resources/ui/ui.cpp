@@ -1,6 +1,7 @@
 #include "../../globals/globals.h"
 #include "../../../config/config.h"
 #include "./uiStruct.h"
+#include "../../knyaz/knyaz.h"
 
 UI ui;
 

@@ -1,5 +1,10 @@
 #include "../../../globals/globals.h"
 #include "../collisionChecker/checker.h"
+#include "../../../globals/mapObjs/mapObjs.h"
+#include "../../../globals/mapPortals/mapPortals.h"
+#include "../../knyaz.h"
+#include "../globals/mapEnemys/mapEnemys.h"
+#include "../globals/bottle/bottle.h"
 
 void checkHorizontalCollision(vector<GameEntity> &container) {
     sf::Vector2f knyazPos = knyaz.body.getPosition();

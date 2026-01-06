@@ -2,6 +2,10 @@
 #include "./keyboard/keyboardHandler.h"
 #include "./mouse/mouseHandler.h"
 #include "../state/state.h"
+#include "../../globals/mapObjs/mapObjs.h"
+#include "../../globals/mapPortals/mapPortals.h"
+#include "../knyaz.h"
+#include "../../globals/mapEnemys/mapEnemys.h"
 
 using namespace std;
 

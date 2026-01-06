@@ -1,4 +1,7 @@
 #include "../globals/globals.h"
+#include "../globals/mapEnemys/mapEnemys.h"
+#include "../globals/mapEnemys/Enemy/Enemy.h"
+#include "../../knyaz.h"
 
 void jumpHandler() {
     if (knyaz.isClimbing) {

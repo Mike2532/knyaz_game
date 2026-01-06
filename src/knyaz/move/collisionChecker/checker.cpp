@@ -1,4 +1,7 @@
 #include "../../../globals/globals.h"
+#include "../../../globals/mapObjs/mapObjs.h"
+#include "../../knyaz.h"
+#include "../globals/mapEnemys/mapEnemys.h"
 
 bool isKnyazVerticalOverlap(GameEntity entity) {
     return knyaz.getRight() > entity.getLeft() && knyaz.getRight() < entity.getRight() || knyaz.getLeft() > entity.getLeft() && knyaz.getLeft() < entity.getRight();
