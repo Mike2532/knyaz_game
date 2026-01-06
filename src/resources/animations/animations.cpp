@@ -14,6 +14,8 @@ sf::Texture EnemyWalkTexture;
 sf::Texture EnemyAttackTexture;
 sf::Texture EnemyIDLETexture;
 
+sf::Texture tpTexture;
+
 void initAnimationTextures() {
     KnyazIdleTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_IDLE_ANIMATION"]);
     KnyazRunTexture.loadFromFile(config["KNYAZ_ANIMATIOS_FOLDER"] + config["KNYAZ_RUN_ANIMATION"]);
@@ -26,6 +28,7 @@ void initAnimationTextures() {
     EnemyWalkTexture.loadFromFile(config["ENEMYS_ANIMATION_FOLDER"] + config["ENEMY_WALK_ANIMATION"]);
     EnemyAttackTexture.loadFromFile(config["ENEMYS_ANIMATION_FOLDER"] + config["ENEMY_ATTACK_ANIMATION"]);
     EnemyIDLETexture.loadFromFile(config["ENEMYS_ANIMATION_FOLDER"] + config["ENEMY_IDLE_ANIMATION"]);
+    tpTexture.loadFromFile(config["TP_ENTIYES_FOLDER"] + config["TP_ENTIYES_TEXTURE"]);
 }
 
 void initAnimations() {
@@ -94,4 +97,11 @@ void initAnimations() {
             6,
             AnimationTypes::IDLE
     };
+
+    animationContainer["tpEntityes"] = {
+            tpTexture,
+            6,
+            AnimationTypes::IDLE
+    };
+
 }

@@ -1,7 +1,7 @@
 #include "../../globals/globals.h"
-#include "../../globals/mapObjs/mapObjs.h"
 #include "../../globals/mapPortals/mapPortals.h"
 #include "./knyaz.h"
+#include "../../globals/tpEntity/tpEntity.h"
 
 using namespace std;
 
@@ -27,22 +27,18 @@ void checkKnyazPortaling() {
     for (int i = 0; i < mapPortals.size(); i++) {
         Portal portal = mapPortals[i];
         const sf::Vector2f portalPos = portal.inCoords;
-        if (abs(portalPos.x - knyazPos.x) <= 25 && abs(portalPos.y - knyazPos.y) <= 2) {
-            knyaz.body.setPosition(portal.outCoords);
+        if (abs(portalPos.x - knyazPos.x) <= 25 && abs(portalPos.y - knyazPos.y) <= 2 && !knyaz.isTp) {
+            spawnTpEntity(knyazPos);
+            spawnTpEntity(portal.outCoords);
+            knyaz.tpTimer.restart();
+            knyaz.isTp = true;
+            knyaz.tpCoords = portal.outCoords;
             if (i == mapPortals.size() - 1) {
                 lastTeleported = true;
                 knyaz.isFlyingUp = false;
             } else if (i == 0) {
                 knyaz.isFlyingUp = true;
             }
-            break;
-        }
-    }
-
-    for (auto portal : mapPortals) {
-        const sf::Vector2f portalPos = portal.inCoords;
-        if (abs(portalPos.x - knyazPos.x) <= 25 && abs(portalPos.y - knyazPos.y) <= 2) {
-            knyaz.body.setPosition(portal.outCoords);
             break;
         }
     }

@@ -48,6 +48,8 @@ map<string, string> initConfig() {
         {"ENEMY_WALK_ANIMATION", "walk.png"},
         {"ENEMY_ATTACK_ANIMATION", "attack.png"},
         {"ENEMY_IDLE_ANIMATION", "idle.png"},
+        {"TP_ENTIYES_FOLDER", "./../media/animations/tpEntitys/"},
+        {"TP_ENTIYES_TEXTURE", "tpEntitys.png"},
     };
 }
 

@@ -35,11 +35,17 @@ struct Knyaz : AnimatedObj {
     sf::Clock damageTimer;
     sf::Clock climbingTimer;
 
+    bool isTp = false;
+    sf::Clock tpTimer;
+    sf::Vector2f tpCoords;
+
     void textureUpdate() override;
 
     void spritePositionUpdate();
 
     void takeDamage();
+
+    void tpProcess();
 };
 
 extern Knyaz knyaz;

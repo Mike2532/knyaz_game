@@ -81,3 +81,16 @@ void Knyaz::takeDamage() {
         takenDamage = 0;
     }
 }
+
+void Knyaz::tpProcess() {
+    if (!isTp || tpTimer.getElapsedTime().asMilliseconds() <= 300) {
+        return;
+    }
+
+    knyaz.body.setPosition({-100, -100});
+
+    if (tpTimer.getElapsedTime().asMilliseconds() >= 400) {
+        body.setPosition(tpCoords);
+        isTp = false;
+    }
+}

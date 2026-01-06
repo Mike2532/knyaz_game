@@ -22,6 +22,7 @@
 #include "./globals/mapPortals/mapPortals.h"
 #include "./knyaz.h"
 #include "./globals/mapEnemys/mapEnemys.h"
+#include "./globals/tpEntity/tpEntity.h"
 
 using namespace std;
 
@@ -48,6 +49,7 @@ int main() {
     playGameMusic();
 
     std::vector<sf::Text> textToPrint;
+
     while (window.isOpen()) {
         pollEvents();
         update(textToPrint);
@@ -115,6 +117,7 @@ void update(std::vector<sf::Text>& textToPrint) {
         knyaz.animationProcess();
         knyaz.spritePositionUpdate();
         knyaz.takeDamage();
+        knyaz.tpProcess();
         updateHpIndicator();
         updateUI();
     }
@@ -156,6 +159,11 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             window.draw(ui.focusFill);
             window.draw(ui.rageOutline);
             window.draw(ui.rageFill);
+
+            for (auto& e : tpEntityArr) {
+                window.draw(e.objSprite);
+                e.animationProcess();
+            }
 
             break;
         default:

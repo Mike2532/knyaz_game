@@ -36,6 +36,10 @@ void verticalMoveProcess() {
     constexpr float JUMP_POWER = 0.3f;
     constexpr float CLIMBING_SPEED_MULTIPLYER = 0.15f;
 
+    if (knyaz.isTp) {
+        return;
+    }
+
     sf::Vector2f knyazPosition = knyaz.body.getPosition();
 
     if (knyaz.isFlyingUp) {

@@ -43,6 +43,7 @@ void gameRestart() {
     initEnemys();
     initMapPortals();
     initAntiGravityField();
+    lastTeleported = false;
     knyaz.isAlive = true;
     knyaz.hp = knyaz.MAX_HP;
     knyaz.focusCounter = 0;
@@ -56,7 +57,7 @@ bool isGameShouldRestart(const sf::Event& event) {
 }
 
 void knyazEventsHandler(const sf::Event& event) {
-    if (knyaz.isAlive) {
+    if (knyaz.isAlive && !knyaz.isTp) {
         if (event.type == sf::Event::MouseButtonPressed && !knyaz.isClimbing) {
             mouseEventsHandler(event);
         }

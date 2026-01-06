@@ -16,6 +16,8 @@ add_library(globals_lib STATIC
         mapEnemys/Enemy/Enemy.h
         bottle/bottle.cpp
         bottle/bottle.h
+        tpEntity/tpEntity.cpp
+        tpEntity/tpEntity.h
 )
 
 target_include_directories(globals_lib
