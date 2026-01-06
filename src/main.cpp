@@ -1,19 +1,23 @@
+#include <iostream>
 #include "globals/globals.h"
 #include "resources/resources.h"
-#include "ui/ui.h"
 #include "knyaz/knyaz.h"
 #include "types.h"
 #include "vector"
-#include <iostream>
+#include "../../config/config.h"
+#include "./ui/helpMenu/helpMenu.h"
+#include "./ui/loadScreen/loadScreen.h"
+#include "./knyaz/eventsHandler/eventsHandler.h"
+#include "./ui/gameEnd/gameEnd.h"
+#include "./ui/utils/deathEnemys.h"
 
 using namespace std;
 
-extern std::map<std::string, std::string> initConfig();
-extern std::map<std::string, sf::Keyboard::Scancode> getKeymap();
+extern map<string, sf::Keyboard::Scancode> getKeymap();
 
 void pollEvents();
-void update(std::vector<sf::Text>& textToPrint);
-void redrawFrame(const std::vector<sf::Text>& textToPrint);
+void update(vector<sf::Text>& textToPrint);
+void redrawFrame(const vector<sf::Text>& textToPrint);
 
 int main() {
     config = initConfig();
@@ -62,7 +66,7 @@ void initVariables() {
     knyaz.body = getKnyazBody();
     updateBGSprite();
     mainMenu = getMainMenu();
-    settingsMenu = getSettingsMenu();
+    helpMenu = getHelpMenu();
 }
 
 void update(std::vector<sf::Text>& textToPrint) {
@@ -71,7 +75,7 @@ void update(std::vector<sf::Text>& textToPrint) {
     if (curState == GameState::MAIN_MENU) {
         textToPrint = {mainMenu.startText, mainMenu.settingsText, mainMenu.exitText};
     } else if (curState == GameState::HELP_MENU) {
-        textToPrint = settingsMenu;
+        textToPrint = helpMenu;
     } else if (curState == GameState::LOAD_SCREEN_1) {
         if (globalTimer.getElapsedTime().asSeconds() >= LOADING_DURATION) {
             curState = GameState::LOAD_SCREEN_2;
@@ -154,16 +158,16 @@ void pollEvents() {
     while (window.pollEvent(event)) {
         switch (curState) {
             case GameState::MAIN_MENU:
-                MainMenuEventsHandler(event);
+                mainMenuEventsHandler(event);
                 break;
             case GameState::HELP_MENU:
-                HelpMenuEventsHandler(event);
+                helpMenuEventsHandler(event);
                 break;
             case GameState::LOAD_SCREEN_2:
                 LoadScreenEventsHandler(event);
                 break;
             case GameState::GAME_PROCESS:
-                GameProcessEventsHandler(event);
+                knyazEventsHandler(event);
                 break;
             case GameState::GAME_END:
                 GameEndEventsHandler(event);
@@ -171,3 +175,10 @@ void pollEvents() {
         }
     }
 }
+
+//todo подумать над ценностью
+// сейчас много всего намешено - и flow и князь Владимир и порталы
+//
+// todo не стоит отдельно упоминать папку globals
+// todo баг на широком экране - попыл задник и UI
+// todo анимации при телепортации чтобы это было явно, а не выглядело как баг

@@ -1,5 +1,4 @@
 #include "globals.h"
-#include "../types.h"
 #include "string"
 
 using namespace std;
@@ -41,8 +40,6 @@ sf::Sprite HpIndicatorSprite;
 std::map<std::string, AnimationData> animationContainer;
 
 Knyaz knyaz;
-MainMenu mainMenu;
-SettingsMenu settingsMenu;
 sf::RenderWindow window;
 
 //TODO в прод разкомментировать
@@ -378,7 +375,6 @@ void spawnBottle(sf::Vector2f coords) {
     mapObjs.emplace_back(bottleEntity);
 }
 
-std::map<std::string, std::string> config;
 std::map<std::string, sf::Keyboard::Scancode> keymap;
 sf::Clock globalTimer;
 

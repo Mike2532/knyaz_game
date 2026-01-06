@@ -1,7 +1,3 @@
-//
-// Created by Миша Чулков on 14.11.2025.
-//
-
 #ifndef KNYAZ_GAME_CONFIG_H
 #define KNYAZ_GAME_CONFIG_H
 
@@ -11,6 +7,7 @@
 
 using namespace std;
 
+extern map<std::string, std::string> config;
 map<string, string> initConfig();
 map<string, sf::Keyboard::Scancode> getKeymap();
 

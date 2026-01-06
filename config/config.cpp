@@ -1,9 +1,10 @@
+#include <SFML/Window.hpp>
 #include "map"
 #include "string"
 
-#include <SFML/Window.hpp>
-
 using namespace std;
+
+map<std::string, std::string> config;
 
 map<string, string> initConfig() {
     return {

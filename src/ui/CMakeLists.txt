@@ -1,4 +1,18 @@
-add_library(ui_lib ui.cpp ui.h)
+add_library(ui_lib
+        utils/text.cpp
+        utils/text.h
+        mainMenu/mainMenu.cpp
+        mainMenu/mainMenu.h
+        mainMenu/mainMenuStruct.h
+        helpMenu/helpMenu.cpp
+        helpMenu/helpMenu.h
+        loadScreen/loadScreen.cpp
+        loadScreen/loadScreen.h
+        gameEnd/gameEnd.cpp
+        gameEnd/gameEnd.h
+        utils/deathEnemys.cpp
+        utils/deathEnemys.h
+)
 
 target_link_libraries(ui_lib
         PUBLIC

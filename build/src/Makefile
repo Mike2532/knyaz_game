@@ -226,30 +226,6 @@ resources/resources.cpp.s:
 	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/resources/resources.cpp.s
 .PHONY : resources/resources.cpp.s
 
-ui/ui.o: ui/ui.cpp.o
-.PHONY : ui/ui.o
-
-# target to build an object file
-ui/ui.cpp.o:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/ui/ui.cpp.o
-.PHONY : ui/ui.cpp.o
-
-ui/ui.i: ui/ui.cpp.i
-.PHONY : ui/ui.i
-
-# target to preprocess a source file
-ui/ui.cpp.i:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/ui/ui.cpp.i
-.PHONY : ui/ui.cpp.i
-
-ui/ui.s: ui/ui.cpp.s
-.PHONY : ui/ui.s
-
-# target to generate assembly for a file
-ui/ui.cpp.s:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/ui/ui.cpp.s
-.PHONY : ui/ui.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -271,9 +247,6 @@ help:
 	@echo "... resources/resources.o"
 	@echo "... resources/resources.i"
 	@echo "... resources/resources.s"
-	@echo "... ui/ui.o"
-	@echo "... ui/ui.i"
-	@echo "... ui/ui.s"
 .PHONY : help
 
 

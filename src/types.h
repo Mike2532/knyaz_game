@@ -50,15 +50,4 @@ struct GameEntity {
     }
 };
 
-struct MainMenu {
-    sf::Text startText;
-    sf::FloatRect startTextInfo;
-    sf::Text settingsText;
-    sf::FloatRect settingsTextInfo;
-    sf::Text exitText;
-    sf::FloatRect exitTextInfo;
-};
-
-using SettingsMenu = std::vector<sf::Text>;
-
 #endif //KNYAZ_GAME_TYPES_H

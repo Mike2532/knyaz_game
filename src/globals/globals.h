@@ -8,6 +8,7 @@
 #include <vector>
 #include "iostream"
 #include "../types.h"
+#include "../ui/mainMenu/mainMenu.h"
 
 using namespace std;
 
@@ -226,11 +227,8 @@ struct Knyaz : AnimatedObj {
 };
 
 extern Knyaz knyaz;
-extern MainMenu mainMenu;
-extern SettingsMenu settingsMenu;
 extern sf::RenderWindow window;
 extern GameState curState;
-extern std::map<std::string, std::string> config;
 extern std::map<std::string, sf::Keyboard::Scancode> keymap;
 extern sf::Clock globalTimer;
 

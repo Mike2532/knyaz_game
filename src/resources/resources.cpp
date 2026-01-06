@@ -1,9 +1,8 @@
+#include <iostream>
+#include <string>
 #include "resources.h"
 #include "../globals/globals.h"
-#include "../types.h"
-#include <iostream>
-#include "map"
-#include "string"
+#include "../../config/config.h"
 
 using namespace std;
 

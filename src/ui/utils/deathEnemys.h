@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_DEATHENEMYS_H
+#define KNYAZ_GAME_DEATHENEMYS_H
+
+void removeDeathEnemys();
+
+#endif //KNYAZ_GAME_DEATHENEMYS_H

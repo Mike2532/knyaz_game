@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_KEYBOARDHANDLER_H
+#define KNYAZ_GAME_KEYBOARDHANDLER_H
+
+void keyboardEventsHandler();
+
+#endif //KNYAZ_GAME_KEYBOARDHANDLER_H
