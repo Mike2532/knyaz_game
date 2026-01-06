@@ -1,5 +1,5 @@
 #include "../../globals/globals.h"
-#include "../../resources/resources.h"
+#include "../../resources/BG/BG.h"
 
 void LoadScreenClickHandler() {
     globalTimer.restart();

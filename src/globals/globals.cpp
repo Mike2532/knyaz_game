@@ -1,39 +1,9 @@
 #include "globals.h"
 #include "string"
+#include "../resources/objs/objs.h"
 
 using namespace std;
 
-sf::Texture MainMenuTexture;
-sf::Texture HelpMenuTexture;
-sf::Texture LoadScreenOneTexture;
-sf::Texture LoadScreenTwoTexture;
-sf::Texture GameProcessTexture;
-sf::Texture GameEndTexture;
-
-sf::Texture KnyazIdleTexture;
-sf::Texture KnyazRunTexture;
-sf::Texture KnyazJumpTexture;
-sf::Texture KnyazFallingTexture;
-sf::Texture KnyazEasyAttackTexture;
-sf::Texture KnyazHeavyAttackTexture;
-sf::Texture KnyazDeathTexture;
-sf::Texture KnyazWallHangTexture;
-
-sf::Texture HpIndicatorTexture;
-
-sf::Texture EnemyWalkTexture;
-sf::Texture EnemyAttackTexture;
-sf::Texture EnemyIDLETexture;
-
-sf::Texture GroundTexture;
-sf::Texture LavaTexture;
-sf::Texture SpikesTexture;
-sf::Texture SpikesUpTexture;
-
-sf::Texture BottleTexture;
-
-sf::Music GameMusic;
-sf::Font myFont;
 sf::Sprite BGSprite;
 sf::Sprite HpIndicatorSprite;
 
@@ -50,8 +20,6 @@ GameState curState = GameState::GAME_PROCESS;
 vector<GameEntity> mapObjs;
 vector<Enemy> mapEnemys;
 vector<Portal> mapPortals;
-
-UI ui;
 
 bool lastTeleported = false;
 

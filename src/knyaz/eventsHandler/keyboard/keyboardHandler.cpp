@@ -1,5 +1,4 @@
 #include "../globals/globals.h"
-#include "../resources/resources.h"
 
 void jumpHandler() {
     if (knyaz.isClimbing) {

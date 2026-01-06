@@ -1,6 +1,5 @@
 #include <iostream>
 #include "globals/globals.h"
-#include "resources/resources.h"
 #include "knyaz/knyaz.h"
 #include "types.h"
 #include "vector"
@@ -10,6 +9,12 @@
 #include "./knyaz/eventsHandler/eventsHandler.h"
 #include "./ui/gameEnd/gameEnd.h"
 #include "./ui/utils/deathEnemys.h"
+#include "./resources/font/font.h"
+#include "./resources/sounds/gameMusic/music.h"
+#include "./resources/BG/BG.h"
+#include "./resources/animations/animations.h"
+#include "./resources/objs/objs.h"
+#include "./resources/ui/ui.h"
 
 using namespace std;
 

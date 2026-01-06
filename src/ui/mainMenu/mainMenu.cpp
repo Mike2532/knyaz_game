@@ -2,7 +2,7 @@
 #include "../utils/text.h"
 #include "./mainMenuStruct.h"
 #include "../../globals/globals.h"
-#include "../../resources/resources.h"
+#include "../../resources/BG/BG.h"
 
 MainMenu mainMenu;
 

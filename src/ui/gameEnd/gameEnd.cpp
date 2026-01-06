@@ -1,6 +1,6 @@
 #include <SFML/Window/Event.hpp>
-#include "../../resources/resources.h"
 #include "../../globals/globals.h"
+#include "../../resources/BG/BG.h"
 
 void GameEndClickHandler() {
     curState = GameState::MAIN_MENU;

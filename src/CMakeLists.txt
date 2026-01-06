@@ -2,7 +2,6 @@ set(SRC_SOURCES
         main.cpp
         globals/globals.cpp
         knyaz/knyaz.cpp
-        resources/resources.cpp
 )
 
 add_executable(knyaz_game ${SRC_SOURCES})
@@ -20,6 +19,7 @@ target_link_libraries(
         config
         ui_lib
         knyaz_lib
+        resources_lib
 )
 
 target_link_libraries(knyaz_game PRIVATE

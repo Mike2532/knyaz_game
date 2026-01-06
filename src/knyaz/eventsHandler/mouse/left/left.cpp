@@ -1,6 +1,5 @@
 #include <SFML/Window/Event.hpp>
 #include "../globals/globals.h"
-#include "../resources/resources.h"
 
 bool isLeftEasy(const Enemy& enemy) {
     return enemy.isNearLeftKnyaz && !knyaz.isLeftOrented;

@@ -202,30 +202,6 @@ main.cpp.s:
 	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-resources/resources.o: resources/resources.cpp.o
-.PHONY : resources/resources.o
-
-# target to build an object file
-resources/resources.cpp.o:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/resources/resources.cpp.o
-.PHONY : resources/resources.cpp.o
-
-resources/resources.i: resources/resources.cpp.i
-.PHONY : resources/resources.i
-
-# target to preprocess a source file
-resources/resources.cpp.i:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/resources/resources.cpp.i
-.PHONY : resources/resources.cpp.i
-
-resources/resources.s: resources/resources.cpp.s
-.PHONY : resources/resources.s
-
-# target to generate assembly for a file
-resources/resources.cpp.s:
-	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/resources/resources.cpp.s
-.PHONY : resources/resources.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -244,9 +220,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... resources/resources.o"
-	@echo "... resources/resources.i"
-	@echo "... resources/resources.s"
 .PHONY : help
 
 

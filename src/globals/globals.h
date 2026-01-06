@@ -12,52 +12,11 @@
 
 using namespace std;
 
-extern sf::Texture MainMenuTexture;
-extern sf::Texture HelpMenuTexture;
-extern sf::Texture LoadScreenOneTexture;
-extern sf::Texture LoadScreenTwoTexture;
-extern sf::Texture GameProcessTexture;
-extern sf::Texture GameEndTexture;
-
-extern sf::Texture KnyazIdleTexture;
-extern sf::Texture KnyazRunTexture;
-extern sf::Texture KnyazJumpTexture;
-extern sf::Texture KnyazFallingTexture;
-extern sf::Texture KnyazEasyAttackTexture;
-extern sf::Texture KnyazHeavyAttackTexture;
-extern sf::Texture KnyazDeathTexture;
-extern sf::Texture KnyazWallHangTexture;
-
-extern sf::Texture HpIndicatorTexture;
-
-extern sf::Texture EnemyWalkTexture;
-extern sf::Texture EnemyAttackTexture;
-extern sf::Texture EnemyIDLETexture;
-
-extern sf::Texture GroundTexture;
-extern sf::Texture LavaTexture;
-extern sf::Texture SpikesTexture;
-extern sf::Texture SpikesUpTexture;
-
-extern sf::Texture BottleTexture;
-
-extern sf::Music GameMusic;
-extern sf::Font myFont;
 extern sf::Sprite BGSprite;
 extern sf::Sprite HpIndicatorSprite;
 
 extern bool lastTeleported;
 extern sf::RectangleShape antiGravityField;
-
-struct UI {
-    sf::RectangleShape focusOutline;
-    sf::RectangleShape focusFill;
-
-    sf::RectangleShape rageOutline;
-    sf::RectangleShape rageFill;
-};
-
-extern UI ui;
 
 struct Portal {
     sf::Vector2f inCoords;

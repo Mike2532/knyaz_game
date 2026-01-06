@@ -1,6 +1,17 @@
 add_library(resources_lib
-        resources.cpp
-        resources.h
+        font/font.cpp
+        font/font.h
+        sounds/gameMusic/music.cpp
+        sounds/gameMusic/music.h
+        BG/BG.cpp
+        BG/BG.h
+        animations/animations.cpp
+        animations/animations.h
+        objs/objs.cpp
+        objs/objs.h
+        ui/ui.cpp
+        ui/ui.h
+        ui/uiStruct.h
 )
 
 target_link_libraries(resources_lib

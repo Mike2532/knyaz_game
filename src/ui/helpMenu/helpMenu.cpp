@@ -3,7 +3,7 @@
 #include "../utils/text.h"
 #include "../../../config/config.h"
 #include "../../globals/globals.h"
-#include "../../resources/resources.h"
+#include "../../resources/BG/BG.h"
 
 using namespace std;
 
