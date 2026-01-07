@@ -4,6 +4,7 @@
 #include "../globals/mapEnemys/mapEnemys.h"
 #include "../../../knyaz.h"
 #include "../resources/sounds/fx/fight/fight.h"
+#include "../resources/sounds/fx/tp/tp.h"
 
 bool isLeftEasy(const Enemy& enemy) {
     return enemy.isNearLeftKnyaz && !knyaz.isLeftOrented;
@@ -45,6 +46,7 @@ void leftComboProcess(const Enemy& enemy, const sf::Vector2f enemyPos) {
     knyazPos.x = enemyPos.x + enymeSize.x;
     knyaz.body.setPosition(knyazPos);
     knyaz.isLeftOrented = true;
+    playTpSound();
 }
 
 void rightComboProcess(const Enemy& enemy, const sf::Vector2f enemyPos) {
@@ -53,6 +55,7 @@ void rightComboProcess(const Enemy& enemy, const sf::Vector2f enemyPos) {
     knyazPos.x = enemyPos.x - knyazSize.x;
     knyaz.body.setPosition(knyazPos);
     knyaz.isLeftOrented = false;
+    playTpSound();
 }
 
 void leftMouseHandler(const int& DAMAGE_OFFSET) {

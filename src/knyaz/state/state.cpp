@@ -2,6 +2,7 @@
 #include "../../globals/mapPortals/mapPortals.h"
 #include "./knyaz.h"
 #include "../../globals/tpEntity/tpEntity.h"
+#include "../resources/sounds/fx/tp/tp.h"
 
 using namespace std;
 
@@ -28,6 +29,7 @@ void checkKnyazPortaling() {
         Portal portal = mapPortals[i];
         const sf::Vector2f portalPos = portal.inCoords;
         if (abs(portalPos.x - knyazPos.x) <= 25 && abs(portalPos.y - knyazPos.y) <= 2 && !knyaz.isTp) {
+            playTpSound();
             spawnTpEntity(knyazPos);
             spawnTpEntity(portal.outCoords);
             knyaz.tpTimer.restart();

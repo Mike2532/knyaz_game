@@ -2,6 +2,7 @@
 #include "../globals/globals.h"
 #include "../../../knyaz.h"
 #include "../globals/mapEnemys/mapEnemys.h"
+#include "../resources/sounds/fx/rage/rage.h"
 
 bool stunComboChecker() {
     return knyaz.actionsHistory[0] == "ea" && knyaz.actionsHistory[1] == "jmp";
@@ -11,6 +12,7 @@ void stunComboProcess(Enemy& enemy) {
     knyaz.actionsHistory.clear();
     enemy.stunnedTimer.restart();
     enemy.isStunned = true;
+    playRageSound();
 }
 
 bool focusComboChecker() {

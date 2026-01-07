@@ -26,6 +26,8 @@ add_library(resources_lib
         sounds/fx/bottle/bottle.h
         sounds/fx/tp/tp.cpp
         sounds/fx/tp/tp.h
+        sounds/fx/rage/rage.cpp
+        sounds/fx/rage/rage.h
 )
 
 target_link_libraries(resources_lib

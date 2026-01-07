@@ -1,9 +1,9 @@
 #include "../globals/globals.h"
 #include "../globals/mapEnemys/mapEnemys.h"
-#include "../globals/mapEnemys/Enemy/Enemy.h"
 #include "../../knyaz.h"
 #include "../resources/sounds/fx/run/knyazRunFX.h"
-#include "../resources/sounds/fx/wind/wind.h"
+#include "../resources/sounds/fx/rage/rage.h"
+#include "../resources/sounds/fx/tp/tp.h"
 
 void jumpHandler() {
     if (knyaz.isClimbing) {
@@ -56,7 +56,7 @@ void focusHandler() {
     Enemy* closestEnemy = nullptr;
 
     for (auto& enemy : mapEnemys) {
-        if (enemy.getRight() >=  SCREEN_W || enemy.getLeft() <= 0) {
+        if (enemy.getRight() >= SCREEN_W || enemy.getLeft() <= 0) {
             continue;
         }
         float dx = abs(enemy.getLeft() - knyaz.getLeft());
@@ -81,6 +81,7 @@ void focusHandler() {
     knyaz.body.setPosition(knyazPos);
 
     knyaz.changeAnimation(animationContainer["idle"]);
+    playTpSound();
 }
 
 void rageHandler() {
@@ -97,6 +98,7 @@ void rageHandler() {
                 enemy.takenDamage += knyaz.rageAttackPower;
                 enemy.objSprite.setColor(sf::Color::Red);
                 knyaz.attackTimer.restart();
+                playRageSound();
             }
         }
     }

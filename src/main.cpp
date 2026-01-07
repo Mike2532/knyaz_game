@@ -29,6 +29,7 @@
 #include "./resources/sounds/fx/wind/wind.h"
 #include "./resources/sounds/fx/bottle/bottle.h"
 #include "./resources/sounds/fx/tp/tp.h"
+#include "./resources/sounds/fx/rage/rage.h"
 
 using namespace std;
 
@@ -85,6 +86,7 @@ void initDepends() {
     initWindSounds();
     initBottleSound();
     initTpSound();
+    initRageSound();
     knyaz.animationData = animationContainer["idle"];
     HpIndicatorSprite.setTexture(HpIndicatorTexture);
     srand(time(NULL));

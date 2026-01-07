@@ -91,6 +91,9 @@ map<string, string> initConfig() {
 
         {"TP_SOUND_FOLDER", "media/music/fx/tp/"},
         {"TP_SOUND", "tp.wav"},
+
+        {"RAGE_SOUND_FOLDER", "media/music/fx/rage/"},
+        {"RAGE_SOUND", "rage.wav"},
     };
 }
 

@@ -6,7 +6,8 @@
 using namespace std;
 
 struct Knyaz : AnimatedObj {
-    const int MAX_HP = 3000;
+//    const int MAX_HP = 3000;
+    const int MAX_HP = 300000000;
     const int MAX_FOCUS_COUNTER = 6;
     const int MAX_RAGE_COUNTER = 3;
 
