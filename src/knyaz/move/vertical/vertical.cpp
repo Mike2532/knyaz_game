@@ -3,6 +3,7 @@
 #include "../collisionChecker/checker.h"
 #include "../../../globals/mapObjs/mapObjs.h"
 #include "../../knyaz.h"
+#include "../resources/sounds/fx/run/knyazRunFX.h"
 
 void checkVerticalCollision(vector<GameEntity> &container) {
     sf::Vector2f knyazPos = knyaz.body.getPosition();
@@ -57,6 +58,7 @@ void verticalMoveProcess() {
 
     if (knyaz.isFalling) {
         knyazPosition.y += fallingOffset;
+        stopKnyazRunSound();
     }
 
     if (knyaz.isJump) {

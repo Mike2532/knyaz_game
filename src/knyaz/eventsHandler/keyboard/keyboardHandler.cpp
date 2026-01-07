@@ -2,6 +2,8 @@
 #include "../globals/mapEnemys/mapEnemys.h"
 #include "../globals/mapEnemys/Enemy/Enemy.h"
 #include "../../knyaz.h"
+#include "../resources/sounds/fx/run/knyazRunFX.h"
+#include "../resources/sounds/fx/wind/wind.h"
 
 void jumpHandler() {
     if (knyaz.isClimbing) {
@@ -19,6 +21,7 @@ void jumpHandler() {
         }
         knyaz.isJump = true;
         knyaz.changeAnimation(animationContainer["jump"]);
+        stopKnyazRunSound();
         knyaz.freeFallingTimer.restart();
         if (knyaz.isClimbing) knyaz.isClimbing = false;
     }

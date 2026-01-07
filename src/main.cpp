@@ -24,6 +24,11 @@
 #include "./globals/mapEnemys/mapEnemys.h"
 #include "./globals/tpEntity/tpEntity.h"
 #include "./resources/sounds/fx/fight/fight.h"
+#include "./resources/sounds/fx/run/knyazRunFX.h"
+#include "./resources/sounds/fx/landing/knyazLandingFX.h"
+#include "./resources/sounds/fx/wind/wind.h"
+#include "./resources/sounds/fx/bottle/bottle.h"
+#include "./resources/sounds/fx/tp/tp.h"
 
 using namespace std;
 
@@ -75,6 +80,11 @@ void initDepends() {
     initAirSounds();
     initArmorSounds();
     initFlashSounds();
+    initKnyazRunSound();
+    initKnyazLandingSound();
+    initWindSounds();
+    initBottleSound();
+    initTpSound();
     knyaz.animationData = animationContainer["idle"];
     HpIndicatorSprite.setTexture(HpIndicatorTexture);
     srand(time(NULL));

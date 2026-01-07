@@ -1,4 +1,4 @@
-#ifndef KNYAZ_GAME_KNYAZ_H
+#ifndef KNYAZ_GAME_KNYAZRUNFX_H
 #define KNYAZ_GAME_KNYAZ_H
 
 #include "../globals/AnimatedObj/AnimatedObj.h"
@@ -18,6 +18,8 @@ struct Knyaz : AnimatedObj {
     bool isJump = false;
     bool isDoubleJump = false;
     bool isClimbing = false;
+
+    bool isRunning = false;
 
     bool isAttackFinished = false;
     bool isFlyingUp = false;
@@ -50,4 +52,4 @@ struct Knyaz : AnimatedObj {
 
 extern Knyaz knyaz;
 
-#endif //KNYAZ_GAME_KNYAZ_H
+#endif //KNYAZ_GAME_KNYAZRUNFX_H

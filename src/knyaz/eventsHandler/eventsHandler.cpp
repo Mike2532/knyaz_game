@@ -6,6 +6,7 @@
 #include "../../globals/mapPortals/mapPortals.h"
 #include "../knyaz.h"
 #include "../../globals/mapEnemys/mapEnemys.h"
+#include "../resources/sounds/fx/run/knyazRunFX.h"
 
 using namespace std;
 
@@ -13,26 +14,39 @@ void movementHandler() {
     bool moveLeftPressed = sf::Keyboard::isKeyPressed(keymap["MOVE_LEFT_KEY"]);
     bool moveRightPressed = sf::Keyboard::isKeyPressed(keymap["MOVE_RIGHT_KEY"]);
     bool isKnyazStanding = !(knyaz.isJump || knyaz.isFalling);
+
     if (moveLeftPressed && !knyaz.isMovingLeft) {
         if (knyaz.isClimbing && knyaz.isLeftOrented) {
             return;
         }
         knyaz.isMovingLeft = true;
-        if (isKnyazStanding) knyaz.changeAnimation(animationContainer["run"]);
+        if (isKnyazStanding) {
+            knyaz.changeAnimation(animationContainer["run"]);
+            startKnyazRunSound();
+        }
         if (!knyaz.isLeftOrented) knyaz.isLeftOrented = true;
     } else if (!moveLeftPressed && knyaz.isMovingLeft) {
         knyaz.isMovingLeft = false;
-        if (!knyaz.isMovingRight && isKnyazStanding) knyaz.changeAnimation(animationContainer["idle"]);
+        if (!knyaz.isMovingRight && isKnyazStanding) {
+            knyaz.changeAnimation(animationContainer["idle"]);
+            stopKnyazRunSound();
+        }
     } else if (moveRightPressed && !knyaz.isMovingRight) {
         if (knyaz.isClimbing && !knyaz.isLeftOrented) {
             return;
         }
         knyaz.isMovingRight = true;
-        if (isKnyazStanding) knyaz.changeAnimation(animationContainer["run"]);
+        if (isKnyazStanding) {
+            knyaz.changeAnimation(animationContainer["run"]);
+            startKnyazRunSound();
+        }
         if (knyaz.isLeftOrented) knyaz.isLeftOrented = false;
     } else if (!moveRightPressed && knyaz.isMovingRight) {
         knyaz.isMovingRight = false;
-        if (!knyaz.isMovingLeft && isKnyazStanding) knyaz.changeAnimation(animationContainer["idle"]);
+        if (!knyaz.isMovingLeft && isKnyazStanding) {
+            knyaz.changeAnimation(animationContainer["idle"]);
+            stopKnyazRunSound();
+        }
     }
 
 }

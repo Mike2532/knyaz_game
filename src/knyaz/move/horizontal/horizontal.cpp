@@ -5,6 +5,9 @@
 #include "../../knyaz.h"
 #include "../globals/mapEnemys/mapEnemys.h"
 #include "../globals/bottle/bottle.h"
+#include "../resources/sounds/fx/fight/fight.h"
+#include "../resources/sounds/fx/landing/knyazLandingFX.h"
+#include "../resources/sounds/fx/wind/wind.h"
 
 void checkHorizontalCollision(vector<GameEntity> &container) {
     sf::Vector2f knyazPos = knyaz.body.getPosition();
@@ -39,6 +42,9 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
             knyaz.changeAnimation(animationContainer["death"]);
             knyaz.isAlive = false;
             knyaz.hp = 0;
+            playRandomFlashSound();
+            playRandomLandingSound();
+            stopWindSound();
         }
 
         if (knyaz.isAlive && obj.type == ObjsTypes::BOTTLE) {

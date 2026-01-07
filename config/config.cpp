@@ -73,6 +73,24 @@ map<string, string> initConfig() {
         {"STRIKE_FLASH_3", "f3.wav"},
         {"STRIKE_FLASH_4", "f4.wav"},
         {"STRIKE_FLASH_5", "f5.wav"},
+
+        {"KNYAZ_RUN_FOLDER", "media/music/fx/run/"},
+        {"KNYAZ_RUN_SOUND", "knyaz.wav"},
+
+        {"KNYAZ_LANDING_FOLDER", "media/music/fx/landing/"},
+        {"KNYAZ_LANDING_SOUND_1", "l1.wav"},
+        {"KNYAZ_LANDING_SOUND_2", "l2.wav"},
+
+        {"WIND_SOUND_FOLDER", "media/music/fx/wind/"},
+        {"WIND_SOUND_1", "w1.wav"},
+        {"WIND_SOUND_2", "w2.wav"},
+        {"WIND_SOUND_3", "w3.wav"},
+
+        {"BOTTLE_SOUND_FOLDER", "media/music/fx/bottle/"},
+        {"BOTTLE_SOUND", "bottle.wav"},
+
+        {"TP_SOUND_FOLDER", "media/music/fx/tp/"},
+        {"TP_SOUND", "tp.wav"},
     };
 }
 

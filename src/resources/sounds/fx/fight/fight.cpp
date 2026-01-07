@@ -1,41 +1,9 @@
 #include <SFML/Audio/Music.hpp>
-#include <vector>
-#include "../../../../../config/config.h"
 #include <algorithm>
-#include <iostream>
-#include <SFML/Audio/SoundBuffer.hpp>
-#include <SFML/Audio/Sound.hpp>
-#include <filesystem>
+#include "../../../../../config/config.h"
+#include "../utils/FX.h"
 
 using namespace std;
-
-struct FXEffect {
-    sf::SoundBuffer buffer;
-    sf::Sound sound;
-
-    void init(string addres) {
-        bool ok = buffer.loadFromFile(addres);
-        if (!ok) {
-            std::cerr << "FAILED TO LOAD SOUND: " << addres << std::endl;
-        }
-        sound.setBuffer(buffer);
-    }
-
-    void play() {
-        sound.stop();
-        sound.play();
-    }
-};
-
-struct FXContainer {
-    vector<unique_ptr<FXEffect>> container;
-
-    void playRandom() {
-        int soindInd = rand() % container.size();
-        container[soindInd]->play();
-    }
-};
-
 
 FXContainer airContaiter;
 

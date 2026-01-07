@@ -14,6 +14,18 @@ add_library(resources_lib
         ui/uiStruct.h
         sounds/fx/fight/fight.cpp
         sounds/fx/fight/fight.h
+        sounds/fx/run/knyazRunFX.cpp
+        sounds/fx/run/knyazRunFX.h
+        sounds/fx/landing/knyazLandingFX.cpp
+        sounds/fx/landing/knyazLandingFX.h
+        sounds/fx/utils/FX.cpp
+        sounds/fx/utils/FX.h
+        sounds/fx/wind/wind.cpp
+        sounds/fx/wind/wind.h
+        sounds/fx/bottle/bottle.cpp
+        sounds/fx/bottle/bottle.h
+        sounds/fx/tp/tp.cpp
+        sounds/fx/tp/tp.h
 )
 
 target_link_libraries(resources_lib

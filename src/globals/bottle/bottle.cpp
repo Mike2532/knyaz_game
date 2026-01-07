@@ -1,10 +1,9 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include "../mapObjs/mapObjs.h"
-#include "../mapObjs/gameEntity/gameEntity.h"
 #include "../../resources/objs/objs.h"
 #include "../knyaz/knyaz.h"
-#include "../mapObjs/GameEntity/GameEntity.h"
+#include "../resources/sounds/fx/bottle/bottle.h"
 
 using namespace std;
 
@@ -25,6 +24,7 @@ void removeBottleByCoords(sf::Vector2f coords) {
     for (auto &entity : mapObjs) {
         auto toRemove = remove_if(mapObjs.begin(), mapObjs.end(), [coords](GameEntity &entity) {return entity.body.getPosition() == coords && entity.type == ObjsTypes::BOTTLE;});
         mapObjs.erase(toRemove, mapObjs.end());
+        playBottleSound();
     }
 }
 
