@@ -3,6 +3,7 @@
 #include "./left/left.h"
 #include "./right/right.h"
 #include "../knyaz/knyaz.h"
+#include "../../../resources/sounds/fx/fight/fight.h"
 
 bool canHandle() {
     return !(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight);
@@ -15,9 +16,16 @@ void mouseEventsHandler(const sf::Event& event) {
         return;
     }
 
-    if (event.mouseButton.button == sf::Mouse::Left) {
-        leftMouseHandler(DAMAGE_OFFSET);
-    } else if (event.mouseButton.button == sf::Mouse::Right) {
-        rightMouseHandler(DAMAGE_OFFSET);
+    bool isLeft = event.mouseButton.button == sf::Mouse::Left;
+    bool isRight = event.mouseButton.button == sf::Mouse::Right;
+
+    if (isLeft || isRight) {
+        playRandomAirSound();
+
+        if (isLeft) {
+            leftMouseHandler(DAMAGE_OFFSET);
+        } else if (isRight) {
+            rightMouseHandler(DAMAGE_OFFSET);
+        }
     }
 }

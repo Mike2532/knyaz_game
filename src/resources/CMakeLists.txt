@@ -12,6 +12,8 @@ add_library(resources_lib
         ui/ui.cpp
         ui/ui.h
         ui/uiStruct.h
+        sounds/fx/fight/fight.cpp
+        sounds/fx/fight/fight.h
 )
 
 target_link_libraries(resources_lib

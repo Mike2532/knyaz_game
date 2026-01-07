@@ -1,6 +1,8 @@
 #include "./Enemy/Enemy.h"
 #include "../../knyaz/knyaz.h"
 #include "../globals/bottle/bottle.h"
+#include <iostream>
+#include "../resources/sounds/fx/fight/fight.h"
 
 vector<Enemy> mapEnemys;
 
@@ -101,10 +103,12 @@ void initEnemys() {
 }
 
 void enemysTakenDamage() {
-    constexpr int ATTACK_DELAY = 200;
+    constexpr int ATTACK_DELAY = 100;
+
     if (knyaz.attackTimer.getElapsedTime().asMilliseconds() >= ATTACK_DELAY && knyaz.isAttackFinished) {
         for (auto &enemy : mapEnemys) {
             if (enemy.takenDamage != 0) {
+                playRandomFlashSound();
                 knyaz.focusCounter = min(knyaz.focusCounter + 1, knyaz.MAX_FOCUS_COUNTER);
                 enemy.hp -= enemy.takenDamage;
                 enemy.takenDamage = 0;

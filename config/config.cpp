@@ -50,6 +50,29 @@ map<string, string> initConfig() {
         {"ENEMY_IDLE_ANIMATION", "idle.png"},
         {"TP_ENTIYES_FOLDER", "./../media/animations/tpEntitys/"},
         {"TP_ENTIYES_TEXTURE", "tpEntitys.png"},
+
+        {"STRIKES_AIR_FOLDER", "media/music/fx/strikes/air/"},
+        {"STRIKE_AIR_1", "ai1.wav"},
+        {"STRIKE_AIR_2", "ai2.wav"},
+        {"STRIKE_AIR_3", "ai3.wav"},
+        {"STRIKE_AIR_4", "ai4.wav"},
+        {"STRIKE_AIR_5", "ai5.wav"},
+        {"STRIKE_AIR_6", "ai6.wav"},
+        {"STRIKE_AIR_7", "ai7.wav"},
+        {"STRIKE_AIR_8", "ai8.wav"},
+
+        {"STRIKES_ARMOR_FOLDER", "media/music/fx/strikes/armor/"},
+        {"STRIKE_ARMOR_1", "ar1.wav"},
+        {"STRIKE_ARMOR_2", "ar2.wav"},
+        {"STRIKE_ARMOR_3", "ar3.wav"},
+        {"STRIKE_ARMOR_4", "ar4.wav"},
+
+        {"STRIKES_FLASH_FOLDER", "media/music/fx/strikes/flash/"},
+        {"STRIKE_FLASH_1", "f1.wav"},
+        {"STRIKE_FLASH_2", "f2.wav"},
+        {"STRIKE_FLASH_3", "f3.wav"},
+        {"STRIKE_FLASH_4", "f4.wav"},
+        {"STRIKE_FLASH_5", "f5.wav"},
     };
 }
 

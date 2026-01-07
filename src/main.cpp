@@ -23,6 +23,7 @@
 #include "./knyaz.h"
 #include "./globals/mapEnemys/mapEnemys.h"
 #include "./globals/tpEntity/tpEntity.h"
+#include "./resources/sounds/fx/fight/fight.h"
 
 using namespace std;
 
@@ -71,6 +72,9 @@ void initDepends() {
     initMapPortals();
     initAntiGravityField();
     initUI();
+    initAirSounds();
+    initArmorSounds();
+    initFlashSounds();
     knyaz.animationData = animationContainer["idle"];
     HpIndicatorSprite.setTexture(HpIndicatorTexture);
     srand(time(NULL));

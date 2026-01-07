@@ -1,5 +1,6 @@
 #include "../knyaz/knyaz.h"
 #include "./Enemy.h"
+#include "../resources/sounds/fx/fight/fight.h"
 
 void Enemy::move(const float &elapsedTime) {
     if (isStunned) {
@@ -149,6 +150,7 @@ void Enemy::tryToAttack() {
 
     if ((isNearLeftKnyaz || isNearRightKnyaz) && animationData.animationType != AnimationTypes::ATTACK && isAttacking) {
         changeAnimation(animationContainer["enemyAttack"]);
+        playRandomAirSound();
     }
 }
 
@@ -185,6 +187,7 @@ void Enemy::textureUpdate() {
             attackTimer.restart();
             changeAnimation(animationContainer["enemyIDLE"]);
         } else if (animationFrameNumber == animationData.animationFrames - 3) {
+            playRandomArmorSound();
             knyaz.hp -= attackPower;
             knyaz.hp = max(knyaz.hp, 0);
             if (knyaz.hp == 0) {

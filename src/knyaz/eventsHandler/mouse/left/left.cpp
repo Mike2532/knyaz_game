@@ -3,7 +3,7 @@
 #include "../globals/mapEnemys/Enemy/Enemy.h"
 #include "../globals/mapEnemys/mapEnemys.h"
 #include "../../../knyaz.h"
-
+#include "../resources/sounds/fx/fight/fight.h"
 
 bool isLeftEasy(const Enemy& enemy) {
     return enemy.isNearLeftKnyaz && !knyaz.isLeftOrented;
