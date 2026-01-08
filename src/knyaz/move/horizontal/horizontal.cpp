@@ -31,20 +31,20 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
 
         if (knyaz.isClimbing && (leftClimb || rightClimb)) {
             knyaz.changeAnimation(animationContainer["wallHang"]);
-            knyaz.isJump = false;
-            knyaz.isDoubleJump = false;
+            knyaz.curJMPState = jumpStates::base;
+            knyaz.jumpCounter = 0;
             knyaz.isFalling = false;
         }
 
-        if ( !(leftCollision || rightCollision)) continue;
+        if (!(leftCollision || rightCollision)) continue;
 
         if (knyaz.isAlive && (obj.type == ObjsTypes::OBTACLE || obj.type == ObjsTypes::SPIKES || obj.type == ObjsTypes::SPIKES_UP)) {
             knyaz.changeAnimation(animationContainer["death"]);
             knyaz.isAlive = false;
             knyaz.hp = 0;
+            stopWindSound();
             playRandomFlashSound();
             playRandomLandingSound();
-            stopWindSound();
         }
 
         if (knyaz.isAlive && obj.type == ObjsTypes::BOTTLE) {
@@ -62,14 +62,12 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
     knyaz.isClimbing = leftClimb || rightClimb;
     if (knyaz.isClimbing && !prevClimbed) {
         knyaz.changeAnimation(animationContainer["wallHang"]);
-        knyaz.isJump = false;
-        knyaz.isDoubleJump = false;
+        knyaz.curJMPState = jumpStates::base;
+        knyaz.jumpCounter = 0;
         knyaz.isFalling = false;
         knyaz.climbingTimer.restart();
     }
 }
-
-enum class MoveDirection { Left = -1, Right = 1 };
 
 void moveProcess(
         bool isLeftMove,

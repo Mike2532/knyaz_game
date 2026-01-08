@@ -17,12 +17,12 @@ void checkVerticalCollision(vector<GameEntity> &container) {
 
         if (downCollision) {
             knyaz.changeAnimation(animationContainer["falling"]);
-            knyaz.isJump = false;
             knyaz.freeFallingTimer.restart();
+            knyaz.curJMPState = jumpStates::falling;
         }
 
         sf::Vector2f objPos = obj.body.getPosition();
-        sf::Vector2f  objSize = obj.body.getSize();
+        sf::Vector2f objSize = obj.body.getSize();
 
         knyazPos.y = (upCollision)
                      ? objPos.y - knyazSize.y
@@ -61,10 +61,10 @@ void verticalMoveProcess() {
         stopKnyazRunSound();
     }
 
-    if (knyaz.isJump) {
+    if (knyaz.curJMPState == jumpStates::oneJump || knyaz.curJMPState == jumpStates::secondJump) {
         knyazPosition.y -= JUMP_POWER;
         if (fallingOffset >= JUMP_POWER) {
-            knyaz.isJump = false;
+            knyaz.curJMPState = jumpStates::falling;
             knyaz.changeAnimation(animationContainer["falling"]);
             knyaz.freeFallingTimer.restart();
         }

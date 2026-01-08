@@ -5,26 +5,29 @@
 #include "../resources/sounds/fx/rage/rage.h"
 #include "../resources/sounds/fx/tp/tp.h"
 
+bool canHandleJMP() {
+    return (
+        knyaz.jumpCounter < knyaz.MAX_JUMP_COUNTER && (
+            knyaz.curJMPState == jumpStates::base ||
+            knyaz.curJMPState == jumpStates::oneJump ||
+            knyaz.curJMPState == jumpStates::falling
+       )
+    );
+}
+
 void jumpHandler() {
-    if (knyaz.isClimbing) {
+    if (knyaz.isClimbing || !canHandleJMP()) {
         return;
     }
-    if (knyaz.isJump && !(knyaz.isDoubleJump)) {
-        knyaz.actionsHistory.clear();
-        knyaz.isDoubleJump = true;
-        knyaz.changeAnimation(animationContainer["jump"]);
-        knyaz.freeFallingTimer.restart();
-        if (knyaz.isClimbing) knyaz.isClimbing = false;
-    } else if (!knyaz.isJump && !knyaz.isDoubleJump) {
-        if (knyaz.actionsHistory.size() == 1 && knyaz.actionsHistory[0] == "ea") {
-            knyaz.actionsHistory.emplace_back("jmp");
-        }
-        knyaz.isJump = true;
-        knyaz.changeAnimation(animationContainer["jump"]);
-        stopKnyazRunSound();
-        knyaz.freeFallingTimer.restart();
-        if (knyaz.isClimbing) knyaz.isClimbing = false;
+
+    knyaz.jumpCounter++;
+    if (knyaz.jumpCounter == 0) {
+        knyaz.curJMPState = jumpStates::oneJump;
+    } else {
+        knyaz.curJMPState = jumpStates::secondJump;
     }
+    knyaz.changeAnimation(animationContainer["jump"]);
+    knyaz.freeFallingTimer.restart();
 }
 
 bool isJumpEvent() {
@@ -84,23 +87,35 @@ void focusHandler() {
     playTpSound();
 }
 
+bool isKnyazJumping() {
+    return knyaz.curJMPState == jumpStates::oneJump || knyaz.curJMPState == jumpStates::secondJump;
+}
+
+bool canHandleRage(const Enemy& enemy) {
+    return enemy.isNearLeftKnyaz  && !knyaz.isLeftOrented || enemy.isNearRightKnyaz &&  knyaz.isLeftOrented;
+}
+
 void rageHandler() {
     constexpr int DAMAGE_OFFSET = 15;
 
-    if (!(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight)) {
-        for (auto &enemy : mapEnemys) {
-            if ((enemy.isNearLeftKnyaz  && !knyaz.isLeftOrented) || (enemy.isNearRightKnyaz &&  knyaz.isLeftOrented)) {
-                knyaz.rageCounter = 0;
-                knyaz.changeAnimation(animationContainer["heavyAttack"]);
-                sf::Vector2f enemyPos = enemy.body.getPosition();
-                enemyPos.x += knyaz.isLeftOrented ? -DAMAGE_OFFSET : DAMAGE_OFFSET;
-                enemy.body.setPosition(enemyPos);
-                enemy.takenDamage += knyaz.rageAttackPower;
-                enemy.objSprite.setColor(sf::Color::Red);
-                knyaz.attackTimer.restart();
-                playRageSound();
-            }
+    if (isKnyazJumping() || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight) {
+        return;
+    }
+
+    for (auto &enemy : mapEnemys) {
+        if (!canHandleRage(enemy)) {
+            continue;
         }
+
+        knyaz.rageCounter = 0;
+        knyaz.changeAnimation(animationContainer["heavyAttack"]);
+        sf::Vector2f enemyPos = enemy.body.getPosition();
+        enemyPos.x += knyaz.isLeftOrented ? -DAMAGE_OFFSET : DAMAGE_OFFSET;
+        enemy.body.setPosition(enemyPos);
+        enemy.takenDamage += knyaz.rageAttackPower;
+        enemy.objSprite.setColor(sf::Color::Red);
+        knyaz.attackTimer.restart();
+        playRageSound();
     }
 }
 

@@ -14,7 +14,6 @@ void fallingCheck(bool &falling) {
                 knyaz.changeAnimation(animationContainer["death"]);
                 knyaz.isAlive = false;
                 knyaz.hp = 0;
-                cout << "AAAA\n";
                 playRandomFlashSound();
                 stopWindSound();
             }
@@ -34,23 +33,27 @@ void checkKnyazFalling() {
             knyaz.changeAnimation(animationContainer["idle"]);
             playRandomLandingSound();
             stopWindSound();
+            knyaz.jmpAccess = true;
         } else {
             knyaz.changeAnimation(animationContainer["run"]);
             playRandomLandingSound();
             stopWindSound();
+            knyaz.jmpAccess = true;
         }
     }
 
     if (falling == knyaz.isFalling) return;
-    if (falling && !knyaz.isJump && knyaz.isAlive) knyaz.changeAnimation(animationContainer["falling"]);
+    if (falling && knyaz.isAlive && knyaz.curJMPState == jumpStates::base) {
+        knyaz.changeAnimation(animationContainer["falling"]);
+    }
     if (falling) {
         knyaz.isFalling = true;
         knyaz.freeFallingTimer.restart();
         playRandomWindSound();
     } else {
+        knyaz.curJMPState = jumpStates::base;
+        knyaz.jumpCounter = 0;
         knyaz.isFalling = false;
-        knyaz.isJump = false;
-        knyaz.isDoubleJump = false;
         stopWindSound();
     }
 
