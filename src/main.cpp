@@ -53,6 +53,7 @@ int main() {
     initDepends();
 
     cout << SCREEN_WIDTH << ' ' << SCREEN_HEIGHT << endl;
+    cout << "hello world\n";
 
     window.create(sf::VideoMode({SCREEN_WIDTH, SCREEN_HEIGHT}), config["GAME_NAME"]);
 
