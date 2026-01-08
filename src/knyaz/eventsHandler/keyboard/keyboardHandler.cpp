@@ -20,12 +20,12 @@ void jumpHandler() {
         return;
     }
 
-    knyaz.jumpCounter++;
     if (knyaz.jumpCounter == 0) {
         knyaz.curJMPState = jumpStates::oneJump;
-    } else {
+    } else if (knyaz.jumpCounter == 1) {
         knyaz.curJMPState = jumpStates::secondJump;
     }
+    knyaz.jumpCounter++;
     knyaz.changeAnimation(animationContainer["jump"]);
     knyaz.freeFallingTimer.restart();
 }
