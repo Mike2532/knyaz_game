@@ -4,8 +4,8 @@
 #include "../globals/mapEnemys/mapEnemys.h"
 #include "../resources/sounds/fx/rage/rage.h"
 
-bool stunComboChecker() {
-    return knyaz.actionsHistory[0] == "ea" && knyaz.actionsHistory[1] == "jmp";
+bool stunComboChecker(const vector<string>& ah) {
+    return ah.size() == 2 && ah[0] == "ea" && ah[1] == "jmp";
 }
 
 void stunComboProcess(Enemy& enemy) {
@@ -15,8 +15,8 @@ void stunComboProcess(Enemy& enemy) {
     playRageSound();
 }
 
-bool focusComboChecker() {
-    return knyaz.actionsHistory.size() == 1 && knyaz.actionsHistory[0] == "ea";
+bool focusComboChecker(const vector<string>& ah) {
+    return ah.size() == 1 && ah[0] == "ea";
 }
 
 void focusComboProcess() {
@@ -24,9 +24,9 @@ void focusComboProcess() {
 }
 
 void heavyComboChecker(Enemy& enemy) {
-    if (stunComboChecker()) {
+    if (stunComboChecker(knyaz.actionsHistory)) {
         stunComboProcess(enemy);
-    } else if (focusComboChecker()) {
+    } else if (focusComboChecker(knyaz.actionsHistory)) {
         focusComboProcess();
     }
 }

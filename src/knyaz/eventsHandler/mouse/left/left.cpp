@@ -14,7 +14,7 @@ bool isRightEasy(const Enemy& enemy) {
     return enemy.isNearRightKnyaz && knyaz.isLeftOrented;
 }
 
-bool isCombo(const Enemy& enemy) {
+bool isCombo(const Enemy& enemy, const Knyaz& knyaz) {
     return knyaz.actionsHistory.size() == 2 &&
            knyaz.actionsHistory[0] == "ea" &&
            knyaz.actionsHistory[1] == "ha" &&
@@ -66,7 +66,7 @@ void leftMouseHandler(const int& DAMAGE_OFFSET) {
 
         if (isLeft || isRight) {
             sf::Vector2f enemyPos = enemy.body.getPosition();
-            if (isCombo(enemy)) {
+            if (isCombo(enemy, knyaz)) {
                 if (isLeft) {
                     leftComboProcess(enemy, enemyPos);
                 } else {
