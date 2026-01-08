@@ -5,6 +5,9 @@ using namespace std;
 #include "./gameEntity/gameEntity.h"
 #include "../resources/objs/objs.h"
 
+using MapObj = pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>;
+using TextureMap = map<ObjsTypes, sf::Texture*>;
+
 vector<GameEntity> mapObjs;
 
 void initMapObj(sf::Vector2f objSize, sf::Vector2f objPos, sf::Texture &texture, vector<GameEntity> &container, ObjsTypes type) {
@@ -28,7 +31,7 @@ auto makeEntity(const sf::Vector2f &entitySize, const sf::Vector2f &entityPos, O
     );
 }
 
-const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
+const vector<MapObj>  mapObjParams {
         makeEntity({20.f, 2000.f}, {-20.f, -1000.f}, ObjsTypes::ENTITY),      // leftWorldEdge
         makeEntity({20.f, 2000.f}, {4320.f, -1000.f}, ObjsTypes::ENTITY),     // rightWorldEdge
         makeEntity({1000.f, 28.f}, {0.f, 771.f + 100.f}, ObjsTypes::ENTITY),           // floor
@@ -127,30 +130,35 @@ const vector<pair<pair<sf::Vector2f, sf::Vector2f>, ObjsTypes>>  mapObjParams {
         makeEntity({30.f, 30.f}, {3905.f + 30 * 9, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
 };
 
+void certainInit(MapObj& obj, sf::Texture& texture) {
+    initMapObj(
+        {obj.first.first.x, obj.first.first.y},
+        {obj.first.second.x, obj.first.second.y},
+        texture,
+        mapObjs,
+        obj.second
+    );
+}
+
+TextureMap getTextureMap() {
+    sf::Texture emptyTexture;
+
+    map<ObjsTypes, sf::Texture*> textureMap;
+    textureMap[ObjsTypes::OBTACLE]      = &LavaTexture;
+    textureMap[ObjsTypes::ENTITY]       = &GroundTexture;
+    textureMap[ObjsTypes::WALL]         = &GroundTexture;
+    textureMap[ObjsTypes::SPIKES]       = &SpikesTexture;
+    textureMap[ObjsTypes::SPIKES_UP]    = &SpikesUpTexture;
+    textureMap[ObjsTypes::ENEMY]        = &emptyTexture;
+
+    return textureMap;
+}
+
 void initGameMap() {
     mapObjs.clear();
     for (auto obj : mapObjParams) {
-        sf::Texture emptyTexture;
-
-        switch (obj.second) {
-            case ObjsTypes::OBTACLE:
-                initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, LavaTexture, mapObjs, obj.second);
-                break;
-            case ObjsTypes::ENTITY:
-                initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, GroundTexture, mapObjs, obj.second);
-                break;
-            case ObjsTypes::WALL:
-                initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, GroundTexture, mapObjs, obj.second);
-                break;
-            case ObjsTypes::SPIKES:
-                initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, SpikesTexture, mapObjs, obj.second);
-                break;
-            case ObjsTypes::SPIKES_UP:
-                initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, SpikesUpTexture, mapObjs, obj.second);
-                break;
-            case ObjsTypes::ENEMY:
-                initMapObj({obj.first.first.x, obj.first.first.y}, {obj.first.second.x, obj.first.second.y}, emptyTexture, mapObjs, obj.second);
-                break;
-        }
+        TextureMap textureMap = getTextureMap();
+        sf::Texture* objTexture = textureMap[obj.second];
+        certainInit(obj, *objTexture);
     }
 }
