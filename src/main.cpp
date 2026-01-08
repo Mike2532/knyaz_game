@@ -81,7 +81,7 @@ void initDepends() {
     initEnemys();
     initMapPortals();
     initAntiGravityField();
-    initUI();
+    initUI(make_pair(SCREEN_WIDTH, SCREEN_HEIGHT));
     initAirSounds();
     initArmorSounds();
     initFlashSounds();
@@ -156,6 +156,13 @@ void drawBG() {
     }
 }
 
+void drawUI() {
+    window.draw(ui.focusOutline);
+    window.draw(ui.focusFill);
+    window.draw(ui.rageOutline);
+    window.draw(ui.rageFill);
+}
+
 void redrawFrame(const std::vector<sf::Text>& textToPrint) {
     window.clear();
     drawBG();
@@ -188,10 +195,7 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
 
             window.draw(HpIndicatorSprite);
 
-            window.draw(ui.focusOutline);
-            window.draw(ui.focusFill);
-            window.draw(ui.rageOutline);
-            window.draw(ui.rageFill);
+            drawUI();
 
             for (auto& e : tpEntityArr) {
                 window.draw(e.objSprite);

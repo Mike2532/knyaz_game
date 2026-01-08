@@ -11,13 +11,13 @@ void initUITextures() {
     HpIndicatorTexture.loadFromFile(config["UI_TEXTURES_FOLDER"] + config["HP_INDICATOR_TEXTURE"]);
 }
 
-void initUI() {
-
-
+void initUI(pair<const int, const int> screenSize) {
+    constexpr float UI_X_MULT = 0.97;
+    constexpr float UI_Y_MULT = 0.78;
     constexpr float BAR_LENGTH = 10.f;
     constexpr float BAR_HEIGHT = 70.f;
-    constexpr float X_OFFSET = 1400.f;
-    constexpr float Y_OFFSET = 700.f;
+    const auto X_OFFSET = static_cast<float>(screenSize.first * UI_X_MULT);
+    const auto Y_OFFSET = static_cast<float>(screenSize.second * UI_Y_MULT);
     constexpr float SPACE_BETWEEN = 20.f;
 
     ui.focusOutline.setPosition({X_OFFSET, Y_OFFSET});
