@@ -3,6 +3,7 @@
 #include "../globals/bottle/bottle.h"
 #include <iostream>
 #include "../resources/sounds/fx/fight/fight.h"
+#include "../globals/viewport/viewport.h"
 
 vector<Enemy> mapEnemys;
 
@@ -17,12 +18,12 @@ struct EnemyParam {
 
 auto addEnemy(const EnemyParam &enemyParam) {
     Enemy myEnemy;
-    myEnemy.body.setSize({50.f, 60.f});
-    myEnemy.body.setPosition(enemyParam.enemyPos);
-    myEnemy.LEFT_ACTIVE_EDGE = enemyParam.LEFT_ACTIVE_EDGE;
-    myEnemy.LEFT_PATROLING_EDGE = enemyParam.LEFT_PATROLING_EDGE;
-    myEnemy.RIGHT_PATROLING_EDGE = enemyParam.RIGHT_PATROLING_EDGE;
-    myEnemy.RIGHT_ACTIVE_EDGE = enemyParam.RIGHT_ACTIVE_EDGE;
+    myEnemy.body.setSize({50.f * VIEW_SCALE_X, 60.f * VIEW_SCALE_X});
+    myEnemy.body.setPosition({enemyParam.enemyPos.x * VIEW_SCALE_X, enemyParam.enemyPos.y * VIEW_SCALE_Y});
+    myEnemy.LEFT_ACTIVE_EDGE = enemyParam.LEFT_ACTIVE_EDGE * VIEW_SCALE_X;
+    myEnemy.LEFT_PATROLING_EDGE = enemyParam.LEFT_PATROLING_EDGE * VIEW_SCALE_X;
+    myEnemy.RIGHT_PATROLING_EDGE = enemyParam.RIGHT_PATROLING_EDGE * VIEW_SCALE_X;
+    myEnemy.RIGHT_ACTIVE_EDGE = enemyParam.RIGHT_ACTIVE_EDGE * VIEW_SCALE_X;
     myEnemy.animationData = animationContainer["enemyWalk"];
     myEnemy.id = enemyParam.id;
     mapEnemys.push_back(myEnemy);

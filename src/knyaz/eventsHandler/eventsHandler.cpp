@@ -7,6 +7,7 @@
 #include "../knyaz.h"
 #include "../../globals/mapEnemys/mapEnemys.h"
 #include "../resources/sounds/fx/run/knyazRunFX.h"
+#include "../globals/viewport/viewport.h"
 
 using namespace std;
 
@@ -53,7 +54,7 @@ void movementHandler() {
 
 void gameRestart() {
     knyaz.body = initKnyazBody();
-    initGameMap();
+    initGameMap(VIEW_SCALE);
     initEnemys();
     initMapPortals();
     initAntiGravityField();

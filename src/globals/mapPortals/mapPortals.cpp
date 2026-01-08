@@ -1,4 +1,5 @@
 #include "./Portal.h"
+#include "../globals/viewport/viewport.h"
 
 using namespace std;
 
@@ -16,18 +17,18 @@ struct PortalParam{
 
 auto makePortal(PortalParam params) {
     Portal portal;
-    portal.inCoords = params.inCoords;
-    portal.outCoords = params.outCoords;
+    portal.inCoords = {params.inCoords.x * VIEW_SCALE_X, params.inCoords.y * VIEW_SCALE_Y};
+    portal.outCoords = {params.outCoords.x * VIEW_SCALE_X, params.outCoords.y * VIEW_SCALE_Y};;
 
     sf::RectangleShape inBody;
-    inBody.setSize(params.inBodySize);
-    inBody.setPosition(params.inBodyPos);
+    inBody.setSize({params.inBodySize.x * VIEW_SCALE_X, params.inBodySize.y * VIEW_SCALE_Y});
+    inBody.setPosition({params.inBodyPos.x * VIEW_SCALE_X, params.inBodyPos.y * VIEW_SCALE_Y});
     inBody.setFillColor(sf::Color::Blue);
     portal.inBody = inBody;
 
     sf::RectangleShape outBody;
-    outBody.setSize(params.outBodySize);
-    outBody.setPosition(params.outBodyPos);
+    outBody.setSize({params.outBodySize.x * VIEW_SCALE_X, params.outBodySize.y * VIEW_SCALE_Y});
+    outBody.setPosition({params.outBodyPos.x * VIEW_SCALE_X, params.outBodyPos.y * VIEW_SCALE_Y});
     outBody.setFillColor(sf::Color::Red);
     portal.outBody = outBody;
 

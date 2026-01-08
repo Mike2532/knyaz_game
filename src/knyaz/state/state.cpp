@@ -3,14 +3,15 @@
 #include "./knyaz.h"
 #include "../../globals/tpEntity/tpEntity.h"
 #include "../resources/sounds/fx/tp/tp.h"
+#include "../globals/viewport/viewport.h"
 
 using namespace std;
 
 sf::RectangleShape initKnyazBody() {
-    constexpr float KNYAZ_X_SIZE = 45.f;
-    constexpr float KNYAZ_Y_SIZE = 75.f;
-    constexpr float KNYAZ_START_X = 39.f;
-    constexpr float KNYAZ_START_Y = 400.f;
+    const float KNYAZ_X_SIZE = 45.f * VIEW_SCALE_X;
+    const float KNYAZ_Y_SIZE = 75.f * VIEW_SCALE_Y;
+    const float KNYAZ_START_X = 39.f * VIEW_SCALE_X;
+    const float KNYAZ_START_Y = 400.f * VIEW_SCALE_Y;
 
     sf::RectangleShape knyazBody({KNYAZ_X_SIZE, KNYAZ_Y_SIZE});
     knyazBody.setPosition({KNYAZ_START_X, KNYAZ_START_Y});

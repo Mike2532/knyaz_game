@@ -7,6 +7,6 @@ using namespace std;
 
 extern vector<GameEntity> mapObjs;
 
-void initGameMap();
+void initGameMap(const pair<const float, const float>& VIEW_SCALE);
 
 #endif //KNYAZ_GAME_MAPOBJS_H

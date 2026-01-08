@@ -18,6 +18,8 @@ add_library(globals_lib STATIC
         bottle/bottle.h
         tpEntity/tpEntity.cpp
         tpEntity/tpEntity.h
+        viewport/viewport.cpp
+        viewport/viewport.h
 )
 
 target_include_directories(globals_lib

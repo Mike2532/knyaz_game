@@ -31,6 +31,7 @@
 #include "./resources/sounds/fx/bottle/bottle.h"
 #include "./resources/sounds/fx/tp/tp.h"
 #include "./resources/sounds/fx/rage/rage.h"
+#include "./globals/viewport/viewport.h"
 
 using namespace std;
 
@@ -40,12 +41,6 @@ void pollEvents();
 void update(vector<sf::Text>& textToPrint);
 void redrawFrame(const vector<sf::Text>& textToPrint);
 
-const sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
-const unsigned int SCREEN_WIDTH = desktopMode.width;
-const unsigned int SCREEN_HEIGHT = desktopMode.height;
-const unsigned int BG_WIDTH = 1097;
-const unsigned int BG_HEIGHT = 900;
-
 int main() {
     config = initConfig();
     keymap = getKeymap();
@@ -53,6 +48,8 @@ int main() {
     initDepends();
 
     cout << SCREEN_WIDTH << ' ' << SCREEN_HEIGHT << endl;
+    cout << LOGICAL_W << ' ' << LOGICAL_H << endl;
+    cout << VIEW_SCALE_X << ' ' << VIEW_SCALE_Y << endl;
 
     window.create(sf::VideoMode({SCREEN_WIDTH, SCREEN_HEIGHT}), config["GAME_NAME"]);
 
@@ -60,6 +57,11 @@ int main() {
     playGameMusic();
 
     std::vector<sf::Text> textToPrint;
+
+    sf::View view;
+    view.setSize(LOGICAL_W, LOGICAL_H);
+    view.setCenter(LOGICAL_W / 2, LOGICAL_H / 2);
+    window.setView(view);
 
     while (window.isOpen()) {
         pollEvents();
@@ -77,11 +79,11 @@ void initDepends() {
     initAnimations();
     initObjsTextures();
     initUITextures();
-    initGameMap();
+    initGameMap(VIEW_SCALE);
     initEnemys();
     initMapPortals();
     initAntiGravityField();
-    initUI(make_pair(SCREEN_WIDTH, SCREEN_HEIGHT));
+    initUI(make_pair(LOGICAL_W, LOGICAL_H));
     initAirSounds();
     initArmorSounds();
     initFlashSounds();
@@ -93,6 +95,7 @@ void initDepends() {
     initRageSound();
     knyaz.animationData = animationContainer["idle"];
     HpIndicatorSprite.setTexture(HpIndicatorTexture);
+    HpIndicatorSprite.setScale({VIEW_SCALE_X, VIEW_SCALE_Y});
     srand(time(NULL));
 }
 
@@ -144,10 +147,10 @@ void update(std::vector<sf::Text>& textToPrint) {
 }
 
 void drawBG() {
-    const float relY = static_cast<float>(SCREEN_HEIGHT) / static_cast<float>(BG_HEIGHT);
+    const float relY = static_cast<float>(LOGICAL_H) / static_cast<float>(BG_HEIGHT);
     BGSprite.setScale({1, relY});
 
-    const float relX = static_cast<float>(SCREEN_WIDTH) / static_cast<float>(BG_WIDTH);
+    const float relX = static_cast<float>(LOGICAL_W) / static_cast<float>(BG_WIDTH);
     const int screens = static_cast<int>(ceil(relX));
     for (int i = 0; i < screens; i++) {
         const float bgPos = i * BG_WIDTH;
@@ -175,9 +178,11 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             }
             break;
         case GameState::GAME_PROCESS:
+            window.draw(knyaz.body);
             window.draw(knyaz.objSprite);
 
             for (auto &enemy : mapEnemys) {
+                window.draw(enemy.body);
                 window.draw(enemy.objSprite);
             }
 
