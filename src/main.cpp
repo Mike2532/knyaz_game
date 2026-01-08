@@ -39,10 +39,12 @@ extern map<string, sf::Keyboard::Scancode> getKeymap();
 void pollEvents();
 void update(vector<sf::Text>& textToPrint);
 void redrawFrame(const vector<sf::Text>& textToPrint);
+void scaleToScreen();
 
 const sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
 const unsigned int SCREEN_WIDTH = desktopMode.width;
 const unsigned int SCREEN_HEIGHT = desktopMode.height;
+
 const unsigned int BG_WIDTH = 1097;
 const unsigned int BG_HEIGHT = 900;
 
@@ -56,6 +58,7 @@ int main() {
     cout << "hello world\n";
 
     window.create(sf::VideoMode({SCREEN_WIDTH, SCREEN_HEIGHT}), config["GAME_NAME"]);
+    scaleToScreen();
 
     initVariables();
     playGameMusic();
@@ -232,6 +235,37 @@ void pollEvents() {
                 break;
         }
     }
+}
+
+void scaleToScreen() {
+    constexpr float LOGIC_W = 1440;
+    constexpr float LOGIC_H = 900;
+
+    float windowWidth = SCREEN_WIDTH;
+    float windowHeight = SCREEN_HEIGHT;
+
+    sf::View gameView;
+    gameView.setSize(LOGIC_W, LOGIC_H);
+    gameView.setCenter(LOGIC_W / 2.f, LOGIC_H / 2.f);
+
+    float aspectRatio = LOGIC_W / LOGIC_H;
+    float windowAspectRatio = windowWidth / windowHeight;
+
+    float vpX = 0.0f;
+    float vpY = 0.0f;
+    float vpWidth = 1.0f;
+    float vpHeight = 1.0f;
+
+    if (windowAspectRatio > aspectRatio) {
+        vpHeight = aspectRatio / windowAspectRatio;
+        vpY = (1.0f - vpHeight) / 2.0f;
+    } else {
+        vpWidth = windowAspectRatio / aspectRatio;
+        vpX = (1.0f - vpWidth) / 2.0f;
+    }
+
+    gameView.setViewport(sf::FloatRect(vpX, vpY, vpWidth, vpHeight));
+    window.setView(gameView);
 }
 
 //todo подумать над ценностью

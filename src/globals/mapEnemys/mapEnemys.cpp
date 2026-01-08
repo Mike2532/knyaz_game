@@ -30,7 +30,7 @@ auto addEnemy(const EnemyParam &enemyParam) {
 
 const vector<EnemyParam> enemyParams {
         { //MW
-                {1932.f, 691.f + 20.f - 2.f},
+                {1932.f, 691.f + 20.f - 2.f + 100.f},
                 1774.f,
                 1899.f,
                 2290.f,
@@ -38,7 +38,7 @@ const vector<EnemyParam> enemyParams {
                 0
         },
         { //Start 1-st
-                {466.f, 461.f + 20.f - 2.f},
+                {466.f, 461.f + 20.f - 2.f + 100.f},
                 407.f,
                 407.f,
                 653.f,
@@ -46,7 +46,7 @@ const vector<EnemyParam> enemyParams {
                 1
         },
         { //Start 2-nd
-                {702.f, 67.f + 20.f - 2.f},
+                {702.f, 67.f + 20.f - 2.f + 100.f},
                 655.f,
                 680.f,
                 982.f,
@@ -54,7 +54,7 @@ const vector<EnemyParam> enemyParams {
                 2
         },
         {  //Tower 1-st
-                {2435.f, 431.f + 20.f - 2.f},
+                {2435.f, 431.f + 20.f - 2.f + 100.f},
                 2425.f,
                 2425.f,
                 2560.f,
@@ -62,7 +62,7 @@ const vector<EnemyParam> enemyParams {
                 3
         },
         { //Tower 2-nd
-                {2770.f, 214.f + 20.f - 2.f},
+                {2770.f, 214.f + 20.f - 2.f + 100.f},
                 2720.f,
                 2720.f,
                 2855.f,
@@ -70,7 +70,7 @@ const vector<EnemyParam> enemyParams {
                 4
         },
         { //4zone near 1-st portal
-                {3138.f, 676.f},
+                {3138.f, 676.f + 100.f},
                 3000,
                 3063,
                 3468,
@@ -78,7 +78,7 @@ const vector<EnemyParam> enemyParams {
                 5
         },
         { //4zone near 4 portal
-                {3942.f, 40.f},
+                {3942.f, 40.f + 100.f},
                 3905,
                 3905,
                 4210,
@@ -86,7 +86,7 @@ const vector<EnemyParam> enemyParams {
                 6
         },
         { //4zone battle area
-                {3892.f, 711.f},
+                {3892.f, 711.f + 100.f},
                 3774,
                 3860,
                 4250,
