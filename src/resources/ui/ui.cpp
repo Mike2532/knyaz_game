@@ -12,6 +12,8 @@ void initUITextures() {
 }
 
 void initUI() {
+
+
     constexpr float BAR_LENGTH = 10.f;
     constexpr float BAR_HEIGHT = 70.f;
     constexpr float X_OFFSET = 1400.f;
