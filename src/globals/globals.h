@@ -18,6 +18,7 @@ extern sf::Sprite BGSprite;
 extern sf::Sprite HpIndicatorSprite;
 
 extern bool lastTeleported;
+extern bool superLastTeleported;
 extern sf::RectangleShape antiGravityField;
 
 extern std::map<std::string, AnimationData> animationContainer;

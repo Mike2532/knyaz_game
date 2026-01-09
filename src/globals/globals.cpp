@@ -19,6 +19,7 @@ sf::View UIView;
 GameState curState = GameState::GAME_PROCESS;
 
 bool lastTeleported = false;
+bool superLastTeleported = false;
 
 sf::RectangleShape antiGravityField;
 

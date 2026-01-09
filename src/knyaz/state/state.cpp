@@ -35,11 +35,13 @@ void checkKnyazPortaling() {
             knyaz.tpTimer.restart();
             knyaz.isTp = true;
             knyaz.tpCoords = portal.outCoords;
-            if (i == mapPortals.size() - 1) {
+            if (i == 1) {
                 lastTeleported = true;
                 knyaz.isFlyingUp = false;
             } else if (i == 0) {
                 knyaz.isFlyingUp = true;
+            } else if (i == 2) {
+                superLastTeleported = true;
             }
             break;
         }

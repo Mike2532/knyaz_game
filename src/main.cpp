@@ -199,10 +199,15 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
 
             if (!lastTeleported) {
                 window.draw(antiGravityField);
-                for (const auto& portal : mapPortals) {
-                    window.draw(portal.inBody);
-                    window.draw(portal.outBody);
+                for (int i = 0; i < 2; i++) {
+                    window.draw(mapPortals[i].inBody);
+                    window.draw(mapPortals[i].outBody);
                 }
+            }
+
+            if (!superLastTeleported) {
+                window.draw(mapPortals[2].inBody);
+                window.draw(mapPortals[2].outBody);
             }
 
             for (auto& e : tpEntityArr) {

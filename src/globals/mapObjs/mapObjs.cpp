@@ -33,11 +33,8 @@ auto makeEntity(const sf::Vector2f &entitySize, const sf::Vector2f &entityPos, O
 
 const vector<MapObj>  mapObjParams {
         makeEntity({20.f, 2000.f}, {-20.f, -1000.f}, ObjsTypes::ENTITY),      // leftWorldEdge
-//        makeEntity({20.f, 2000}, {4320.f + 1440.f, -1000}, ObjsTypes::ENTITY),     // rightWorldEdge
-
-        makeEntity({20.f, 750.f}, {4320.f, 0}, ObjsTypes::ENTITY),     //boss door
-
-
+        makeEntity({20.f, 2000.f}, {4320.f + 1440.f, -1000}, ObjsTypes::ENTITY),     // rightWorldEdge
+        makeEntity({20.f, 900.f}, {4320.f, 0}, ObjsTypes::ENTITY),     //boss door
 
         makeEntity({1000.f, 28.f}, {0.f, 771.f + 100.f}, ObjsTypes::ENTITY),           // floor
         makeEntity({1000.f, 28.f}, {1000.f, 771.f + 100.f}, ObjsTypes::ENTITY),           // floor
@@ -95,63 +92,92 @@ const vector<MapObj>  mapObjParams {
         makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 4 + 100.f}, ObjsTypes::SPIKES), //start-hight ship
         makeEntity({30.f, 30.f}, {0.f, 151.f - 30 * 5 + 100.f}, ObjsTypes::SPIKES), //start-hight ship
 
-        makeEntity({120.f, 35.f}, {2880.f, 736.f + 100.f}, ObjsTypes::OBTACLE), //4zone lava One
-
-        makeEntity({573.f, 500.f}, {2970.f, -500.f + 100.f}, ObjsTypes::ENTITY), //4zone BIGSQUARE UPPROPTECTION
-        makeEntity({573.f, 560.f}, {2970.f, 0.f + 100.f}, ObjsTypes::WALL), //4zone BIGSQUARE
-        makeEntity({543.f, 35.f}, {3000.f, 736.f + 100.f}, ObjsTypes::ENTITY), //4zone goblin-platform
-        makeEntity({91.f, 711.f + 100.f}, {3543.f, 0.f + 100.f}, ObjsTypes::ENTITY), //4zone portalWall 1
-        makeEntity({100.f, 35.f}, {3634.f, 736.f + 100.f}, ObjsTypes::ENTITY), //4zone portalFloor
-        makeEntity({100.f + 120.f, 35.f + 100.f}, {3634.f - 100.f, 0.f}, ObjsTypes::ENTITY), //4zone portalRoof
-        makeEntity({20.f, 771.f}, {3734.f, 0.f + 100.f}, ObjsTypes::ENTITY), //4zone anti-gravity right wall
-        makeEntity({20.f, 500.f}, {3754.f, -500.f + 100.f}, ObjsTypes::ENTITY), //4zone battle arena left wall UPPER PROTECTION
-        makeEntity({20.f, 771.f}, {3754.f, 0.f + 100.f}, ObjsTypes::WALL), //4zone battle arena left wall
-
-        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 0 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
-        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 1 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
-        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 2 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
-        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 3 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
-        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 4 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
-        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 5 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
-        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 6 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
-        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 7 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
-        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 8 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
-        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 9 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
-        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 10 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
-
-        makeEntity({80.f, 135.f + 100.f}, {4240.f, 0.f}, ObjsTypes::ENTITY), //4zone portalWall2
-        makeEntity({335.f, 35.f}, {3905.f, 100.f + 100.f}, ObjsTypes::ENTITY), //4zone foor near portal
-        makeEntity({131.f, 70.f}, {3774.f, 330.f + 100.f}, ObjsTypes::ENTITY), //4zone platform under sheeps
-        makeEntity({302.f, 35.f}, {3903.f, 365.f + 100.f}, ObjsTypes::ENTITY), //4zone platform for sheeps
-
-        makeEntity({30.f, 30.f}, {3905.f + 30 * 0, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
-        makeEntity({30.f, 30.f}, {3905.f + 30 * 1, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
-        makeEntity({30.f, 30.f}, {3905.f + 30 * 2, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
-        makeEntity({30.f, 30.f}, {3905.f + 30 * 3, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
-        makeEntity({30.f, 30.f}, {3905.f + 30 * 4, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
-        makeEntity({30.f, 30.f}, {3905.f + 30 * 5, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
-        makeEntity({30.f, 30.f}, {3905.f + 30 * 6, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
-        makeEntity({30.f, 30.f}, {3905.f + 30 * 7, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
-        makeEntity({30.f, 30.f}, {3905.f + 30 * 8, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
-        makeEntity({30.f, 30.f}, {3905.f + 30 * 9, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
-
-        makeEntity({335.f, 35.f}, {3985.f, 495.f + 100.f}, ObjsTypes::ENTITY), //4zone dls platform 1
-        makeEntity({338.f, 35.f}, {3774.f, 616.f + 100.f}, ObjsTypes::ENTITY), //4zone dls platform 2
-        makeEntity({150.f, 35.f}, {4170.f, 616.f + 100.f}, ObjsTypes::ENTITY), //4zone dls platform 3
-
-        makeEntity({30.f, 30.f}, {3774.f, 400.f + 100.f + 30.f * 0}, ObjsTypes::SPIKES), //4zone spikes upper plat2
-        makeEntity({30.f, 30.f}, {3774.f, 400.f + 100.f + 30.f * 1}, ObjsTypes::SPIKES), //4zone spikes upper plat2
-        makeEntity({30.f, 30.f}, {3774.f, 400.f + 100.f + 30.f * 2}, ObjsTypes::SPIKES), //4zone spikes upper plat2
-        makeEntity({30.f, 30.f}, {3774.f, 400.f + 100.f + 30.f * 3}, ObjsTypes::SPIKES), //4zone spikes upper plat2
-
-        makeEntity({30.f, 30.f}, {4171.f + 30.f * 0, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
-        makeEntity({30.f, 30.f}, {4171.f + 30.f * 1, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
-        makeEntity({30.f, 30.f}, {4171.f + 30.f * 2, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
-        makeEntity({30.f, 30.f}, {4171.f + 30.f * 3, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
-        makeEntity({30.f, 30.f}, {4171.f + 30.f * 4, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
+//        makeEntity({120.f, 35.f}, {2880.f, 736.f + 100.f}, ObjsTypes::OBTACLE), //4zone lava One
+//
+//        makeEntity({573.f, 500.f}, {2970.f, -500.f + 100.f}, ObjsTypes::ENTITY), //4zone BIGSQUARE UPPROPTECTION
+//        makeEntity({573.f, 560.f}, {2970.f, 0.f + 100.f}, ObjsTypes::WALL), //4zone BIGSQUARE
+//        makeEntity({543.f, 35.f}, {3000.f, 736.f + 100.f}, ObjsTypes::ENTITY), //4zone goblin-platform
+//        makeEntity({91.f, 711.f + 100.f}, {3543.f, 0.f + 100.f}, ObjsTypes::ENTITY), //4zone portalWall 1
+//        makeEntity({100.f, 35.f}, {3634.f, 736.f + 100.f}, ObjsTypes::ENTITY), //4zone portalFloor
+//        makeEntity({100.f + 120.f, 35.f + 100.f}, {3634.f - 100.f, 0.f}, ObjsTypes::ENTITY), //4zone portalRoof
+//        makeEntity({20.f, 771.f}, {3734.f, 0.f + 100.f}, ObjsTypes::ENTITY), //4zone anti-gravity right wall
+//        makeEntity({20.f, 500.f}, {3754.f, -500.f + 100.f}, ObjsTypes::ENTITY), //4zone battle arena left wall UPPER PROTECTION
+//        makeEntity({20.f, 771.f}, {3754.f, 0.f + 100.f}, ObjsTypes::WALL), //4zone battle arena left wall
+//
+//        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 0 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
+//        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 1 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
+//        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 2 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
+//        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 3 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
+//        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 4 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
+//        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 5 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
+//        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 6 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
+//        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 7 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
+//        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 8 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
+//        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 9 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
+//        makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 10 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
+//
+//        makeEntity({80.f, 135.f + 100.f}, {4240.f, 0.f}, ObjsTypes::ENTITY), //4zone portalWall2
+//        makeEntity({335.f, 35.f}, {3905.f, 100.f + 100.f}, ObjsTypes::ENTITY), //4zone foor near portal
+//        makeEntity({131.f, 70.f}, {3774.f, 330.f + 100.f}, ObjsTypes::ENTITY), //4zone platform under sheeps
+//        makeEntity({302.f, 35.f}, {3903.f, 365.f + 100.f}, ObjsTypes::ENTITY), //4zone platform for sheeps
+//
+//        makeEntity({30.f, 30.f}, {3905.f + 30 * 0, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+//        makeEntity({30.f, 30.f}, {3905.f + 30 * 1, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+//        makeEntity({30.f, 30.f}, {3905.f + 30 * 2, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+//        makeEntity({30.f, 30.f}, {3905.f + 30 * 3, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+//        makeEntity({30.f, 30.f}, {3905.f + 30 * 4, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+//        makeEntity({30.f, 30.f}, {3905.f + 30 * 5, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+//        makeEntity({30.f, 30.f}, {3905.f + 30 * 6, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+//        makeEntity({30.f, 30.f}, {3905.f + 30 * 7, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+//        makeEntity({30.f, 30.f}, {3905.f + 30 * 8, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+//        makeEntity({30.f, 30.f}, {3905.f + 30 * 9, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
+//
+//        makeEntity({335.f, 35.f}, {3985.f, 495.f + 100.f}, ObjsTypes::ENTITY), //4zone dls platform 1
+//        makeEntity({338.f, 35.f}, {3774.f, 616.f + 100.f}, ObjsTypes::ENTITY), //4zone dls platform 2
+//        makeEntity({150.f, 35.f}, {4170.f, 616.f + 100.f}, ObjsTypes::ENTITY), //4zone dls platform 3
+//
+//        makeEntity({30.f, 30.f}, {3774.f, 400.f + 100.f + 30.f * 0}, ObjsTypes::SPIKES), //4zone spikes upper plat2
+//        makeEntity({30.f, 30.f}, {3774.f, 400.f + 100.f + 30.f * 1}, ObjsTypes::SPIKES), //4zone spikes upper plat2
+//        makeEntity({30.f, 30.f}, {3774.f, 400.f + 100.f + 30.f * 2}, ObjsTypes::SPIKES), //4zone spikes upper plat2
+//        makeEntity({30.f, 30.f}, {3774.f, 400.f + 100.f + 30.f * 3}, ObjsTypes::SPIKES), //4zone spikes upper plat2
+//
+//        makeEntity({30.f, 30.f}, {4171.f + 30.f * 0, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
+//        makeEntity({30.f, 30.f}, {4171.f + 30.f * 1, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
+//        makeEntity({30.f, 30.f}, {4171.f + 30.f * 2, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
+//        makeEntity({30.f, 30.f}, {4171.f + 30.f * 3, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
+//        makeEntity({30.f, 30.f}, {4171.f + 30.f * 4, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
 
 //        makeEntity({20.f, 750.f}, {4320.f, 0}, ObjsTypes::ENTITY),     //boss door
-        makeEntity({40.f, 40.f}, {4320.f + 100, 850.f}, ObjsTypes::SPIKES_UP),     //hirakiri
+
+        makeEntity({237.f, 35.f}, {4543.f, 530.f + 100.f}, ObjsTypes::ENTITY),     //boos platform 1
+        makeEntity({30.f, 30.f}, {4541.f, 497.f + 105.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p1
+        makeEntity({30.f, 30.f}, {4748.f, 497.f + 105.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p1
+
+        makeEntity({237.f, 35.f}, {4979.f, 530.f + 100.f}, ObjsTypes::ENTITY),     //boos platform 2
+        makeEntity({30.f, 30.f}, {5055.f, 497.f + 105.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p2
+        makeEntity({30.f, 30.f}, {5055.f + 30.f, 497.f + 105.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p2
+        makeEntity({30.f, 30.f}, {5055.f + 60.f, 497.f + 105.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p2
+
+        makeEntity({237.f, 35.f}, {5455.f, 530.f + 100.f}, ObjsTypes::ENTITY),     //boos platform 3
+        makeEntity({30.f, 30.f}, {5455.f, 497.f + 105.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p3
+        makeEntity({30.f, 30.f}, {5662.f, 497.f + 105.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p3
+
+        makeEntity({237.f, 35.f}, {4683.f, 283.f + 100.f}, ObjsTypes::ENTITY),     //boos platform 4
+        makeEntity({30.f, 30.f}, {4683.f, 253.f + 105.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p4
+        makeEntity({30.f, 30.f}, {4683.f + 30.f, 253.f + 105.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p4
+        makeEntity({30.f, 30.f}, {4860.f, 253.f + 105.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p4
+        makeEntity({30.f, 30.f}, {4860.f + 30.f, 253.f + 105.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p4
+
+        makeEntity({237.f, 35.f}, {5231.f, 283.f + 100.f}, ObjsTypes::ENTITY),     //boos platform 5
+        makeEntity({30.f, 30.f}, {5231.f, 253.f + 100.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p5
+        makeEntity({30.f, 30.f}, {5231.f + 30.f, 253.f + 100.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p5
+        makeEntity({30.f, 30.f}, {5408.f, 253.f + 100.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p5
+        makeEntity({30.f, 30.f}, {5408.f + 30.f, 253.f + 100.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p5
+
+        makeEntity({237.f, 35.f}, {4979.f, 112.f + 100.f}, ObjsTypes::ENTITY),     //boos platform 6
+        makeEntity({30.f, 30.f}, {5055.f, 84.f + 100.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p6
+        makeEntity({30.f, 30.f}, {5055.f + 30.f, 84.f + 100.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p6
+        makeEntity({30.f, 30.f}, {5055.f + 60.f, 84.f + 100.f}, ObjsTypes::SPIKES_UP),     //boos spikes upper p6
 };
 
 void certainInit(MapObj& obj, sf::Texture& texture) {
