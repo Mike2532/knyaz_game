@@ -64,8 +64,14 @@ void focusHandler() {
     float minDist = INT_MAX;
     Enemy* closestEnemy = nullptr;
 
+    auto viewCenter = gameView.getCenter();
+    auto viewSize = gameView.getSize();
+
+    auto leftEdge = viewCenter.x - viewSize.x / 2;
+    auto rightEdge = viewCenter.x + viewSize.x / 2;
+
     for (auto& enemy : mapEnemys) {
-        if (enemy.getRight() >= SCREEN_W || enemy.getLeft() <= 0) {
+        if (enemy.getRight() >= rightEdge || enemy.getLeft() <= leftEdge) {
             continue;
         }
         float dx = abs(enemy.getLeft() - knyaz.getLeft());
