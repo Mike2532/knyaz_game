@@ -37,7 +37,7 @@ auto makePortal(PortalParam params) {
 vector<PortalParam> portalParams {
         {
                 {3498.f + 20.f, 661.f + 100.f},
-                {3661.f, 661.f + 100.f},
+                {3661.f - 60.f, 661.f + 100.f},
                 {5.f, 100.f},
                 {3543.f, 636.f + 100.f},
                 {100.f, 5.f},
@@ -45,11 +45,11 @@ vector<PortalParam> portalParams {
         },
         {
                 {3661.f, 35.f + 100.f},
-                {4190.f, 25.f + 100.f},
+                {4190.f - 60.f, 25.f + 100.f},
                 {100.f, 5.f},
                 {3634.f, 30.f + 100.f},
                 {5.f, 100.f},
-                {4235.f, 0.f + 100.f}
+                {4235.f - 60.f, 0.f + 100.f}
         }
 };
 

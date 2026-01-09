@@ -64,6 +64,10 @@ void gameRestart() {
     knyaz.rageCounter = 0;
     knyaz.changeAnimation(animationContainer["falling"]);
     knyaz.freeFallingTimer.restart();
+
+    constexpr float LOGIC_W = 1440;
+    constexpr float LOGIC_H = 900;
+    gameView.setCenter({LOGIC_W / 2, LOGIC_H / 2});
 }
 
 bool isGameShouldRestart(const sf::Event& event) {
