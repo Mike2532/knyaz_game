@@ -24,6 +24,9 @@ add_library(globals_lib STATIC
         bossBottles/bossBottles.h
         mapEnemys/enemysDamage.cpp
         mapEnemys/enemysDamage.h
+        mapPortals/gameEndPortal.cpp
+        mapPortals/gameEndPortal.h
+        mapPortals/PortalParam.h
 )
 
 target_include_directories(globals_lib

@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_GAMEENDPORTAL_H
+#define KNYAZ_GAME_GAMEENDPORTAL_H
+
+void spawnGameEndPortal();
+
+#endif //KNYAZ_GAME_GAMEENDPORTAL_H

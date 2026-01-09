@@ -4,12 +4,14 @@
 #include "../../resources/sounds/fx/win/win.h"
 #include "../../resources/sounds/fx/fight/fight.h"
 #include "../globals/bottle/bottle.h"
+#include "../globals/mapPortals/gameEndPortal.h"
 
 void deadBossProcess(const Enemy& enemy) {
     if (!enemy.isBoss) {
         return;
     }
     startKnyazWinSound();
+    spawnGameEndPortal();
 }
 
 void deadEnemyProcess(const Enemy& enemy) {

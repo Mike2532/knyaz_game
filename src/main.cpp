@@ -63,7 +63,6 @@ void tododelete() {
     mapObjs[0] = prevRightEdge;
     mapObjs[1] = newRightEdge;
     mapObjs[2] = prevLeftEdge;
-
 }
 
 
@@ -232,6 +231,10 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             if (!superLastTeleported) {
                 window.draw(mapPortals[2].inBody);
                 window.draw(mapPortals[2].outBody);
+            }
+
+            if (mapPortals.size() == 4) {
+                window.draw(mapPortals[3].inBody);
             }
 
             for (auto& e : tpEntityArr) {

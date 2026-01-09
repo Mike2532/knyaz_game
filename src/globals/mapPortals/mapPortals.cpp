@@ -1,20 +1,11 @@
 #include "./Portal.h"
+#include "./PortalParam.h"
 
 using namespace std;
 
 vector<Portal> mapPortals;
 
-
-struct PortalParam{
-    sf::Vector2f inCoords;
-    sf::Vector2f outCoords;
-    sf::Vector2f inBodySize;
-    sf::Vector2f inBodyPos;
-    sf::Vector2f outBodySize;
-    sf::Vector2f outBodyPos;
-};
-
-auto makePortal(PortalParam params) {
+Portal makePortal(PortalParam params) {
     Portal portal;
     portal.inCoords = params.inCoords;
     portal.outCoords = params.outCoords;
