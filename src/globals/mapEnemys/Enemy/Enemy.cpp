@@ -66,6 +66,14 @@ void Enemy::move(const float &elapsedTime) {
         }
 
         if (isKnyazLeft && needToLeftRun) {
+            if (animationData.animationType == AnimationTypes::IDLE && seeKnyaz) {
+                if (isBoss) {
+                    changeAnimation(animationContainer["bossWalk"]);
+                } else {
+                    changeAnimation(animationContainer["enemyWalk"]);
+                }
+            }
+
             enemyPos.x -= AGRESSIVE_SPEED * elapsedTime;
             enemyPos.x = max(enemyPos.x, LEFT_ACTIVE_EDGE);
             isPatrolingLeft = true;
@@ -74,6 +82,14 @@ void Enemy::move(const float &elapsedTime) {
                 isNearLeftKnyaz = false;
             }
         } else if (isKnyazRight && needToRightRun && !needToReverse) {
+            if (animationData.animationType == AnimationTypes::IDLE && seeKnyaz) {
+                if (isBoss) {
+                    changeAnimation(animationContainer["bossWalk"]);
+                } else {
+                    changeAnimation(animationContainer["enemyWalk"]);
+                }
+            }
+
             enemyPos.x += AGRESSIVE_SPEED * elapsedTime;
             enemyPos.x = min(enemyPos.x, RIGHT_ACTIVE_EDGE - body.getSize().x);
             isPatrolingLeft = false;
@@ -81,6 +97,12 @@ void Enemy::move(const float &elapsedTime) {
             if (isNearRightKnyaz) {
                 isNearRightKnyaz = false;
             }
+        }
+    } else if (state == EnemyStates::AGRESSIVE && !seeKnyaz && animationData.animationType == AnimationTypes::RUN) {
+        if (isBoss) {
+            changeAnimation(animationContainer["bossIDLE"]);
+        } else {
+            changeAnimation(animationContainer["enemyIDLE"]);
         }
     }
 }

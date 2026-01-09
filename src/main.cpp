@@ -84,12 +84,6 @@ int main() {
 
     tododelete();
 
-//    for (int i = 0; i < 1; i++) {
-//        pollEvents();
-//        update(textToPrint);
-//        redrawFrame(textToPrint);
-//    }
-
     while (window.isOpen()) {
         pollEvents();
         update(textToPrint);
