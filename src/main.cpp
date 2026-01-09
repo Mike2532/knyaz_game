@@ -148,14 +148,18 @@ void update(std::vector<sf::Text>& textToPrint) {
 }
 
 void drawBG() {
-    const float relY = static_cast<float>(SCREEN_HEIGHT) / static_cast<float>(BG_HEIGHT);
-    BGSprite.setScale({1, relY});
+    constexpr float LOGIC_W = 1440;
+    constexpr float LOGIC_H = 900;
 
-    const float relX = static_cast<float>(SCREEN_WIDTH) / static_cast<float>(BG_WIDTH);
-    const int screens = static_cast<int>(ceil(relX));
-    for (int i = 0; i < screens; i++) {
-        const float bgPos = i * BG_WIDTH;
-        BGSprite.setPosition({bgPos, 0});
+    float bgScale = LOGIC_H / BG_HEIGHT;
+    float bgWidth = BG_WIDTH * bgScale;
+
+    int numCopies = static_cast<int>(ceil(LOGIC_W / bgWidth)) + 1;
+
+    BGSprite.setScale(bgScale, bgScale);
+
+    for (int i = 0; i < numCopies; i++) {
+        BGSprite.setPosition(i * bgWidth, 0);
         window.draw(BGSprite);
     }
 }
@@ -169,8 +173,11 @@ void drawUI() {
 
 void redrawFrame(const std::vector<sf::Text>& textToPrint) {
     window.clear();
+
+    window.setView(UIView);
     drawBG();
 
+    window.setView(gameView);
     switch (curState) {
         case GameState::MAIN_MENU:
         case GameState::HELP_MENU:
@@ -197,14 +204,15 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
                 }
             }
 
-            window.draw(HpIndicatorSprite);
-
-            drawUI();
-
             for (auto& e : tpEntityArr) {
                 window.draw(e.objSprite);
                 e.animationProcess();
             }
+
+            window.setView(UIView);
+            window.draw(HpIndicatorSprite);
+
+            drawUI();
 
             break;
         default:
@@ -244,7 +252,6 @@ void scaleToScreen() {
     float windowWidth = SCREEN_WIDTH;
     float windowHeight = SCREEN_HEIGHT;
 
-    sf::View gameView;
     gameView.setSize(LOGIC_W, LOGIC_H);
     gameView.setCenter(LOGIC_W / 2.f, LOGIC_H / 2.f);
 
@@ -265,6 +272,11 @@ void scaleToScreen() {
     }
 
     gameView.setViewport(sf::FloatRect(vpX, vpY, vpWidth, vpHeight));
+
+    UIView.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    UIView.setCenter(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f);
+    UIView.setViewport({0.f, 0.f, 1.f, 1.f});
+
     window.setView(gameView);
 }
 

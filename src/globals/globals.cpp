@@ -10,6 +10,9 @@ std::map<std::string, AnimationData> animationContainer;
 
 sf::RenderWindow window;
 
+sf::View gameView;
+sf::View UIView;
+
 //TODO в прод разкомментировать
 //GameState curState = GameState::MAIN_MENU;
 //TODO в прод закомментировать

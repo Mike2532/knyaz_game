@@ -69,63 +69,97 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
     }
 }
 
+void updateCamera(float knyazX, float levelLeft, float levelRight) {
+    constexpr float LOGIC_W = 1440;
+    constexpr float LOGIC_H = 900;
+
+    const float CAMERA_MARGIN = 600.f;
+
+    float viewHalfWidth = LOGIC_W / 2.f;
+    float currentCenterX = gameView.getCenter().x;
+
+    if (knyazX < currentCenterX - viewHalfWidth + CAMERA_MARGIN) {
+        currentCenterX = knyazX + viewHalfWidth - CAMERA_MARGIN;
+    }
+    else if (knyazX > currentCenterX + viewHalfWidth - CAMERA_MARGIN) {
+        currentCenterX = knyazX - viewHalfWidth + CAMERA_MARGIN;
+    }
+
+    currentCenterX = std::max(currentCenterX, levelLeft + viewHalfWidth);
+    currentCenterX = std::min(currentCenterX, levelRight - viewHalfWidth);
+
+    gameView.setCenter(currentCenterX, LOGIC_H / 2.f);
+    window.setView(gameView);
+}
+
 void moveProcess(
         bool isLeftMove,
         const float offset,
         const unsigned int cameraEdge,
         const unsigned int screenWidth = 0 // для правого края
 ) {
-    int edgeIndex = (isLeftMove ? 0 : 1);
-    sf::Vector2f knyazPos = knyaz.body.getPosition();
-    GameEntity edge = mapObjs[edgeIndex];
-    sf::Vector2f edgePos = edge.body.getPosition();
-    sf::Vector2f edgeSize = edge.body.getSize();
+    float levelLeft = mapObjs[0].getRight();
+    float levelRight = mapObjs[1].getLeft();
 
     float signedOffset = isLeftMove ? -offset : offset;
 
-    if ((isLeftMove && knyazPos.x >= cameraEdge) ||
-        (!isLeftMove && knyazPos.x <= cameraEdge) ||
-        (isLeftMove && edgePos.x + edgeSize.x + signedOffset >= 0) ||
-        (!isLeftMove && edgePos.x - signedOffset < screenWidth))
-    {
-        knyazPos.x += signedOffset;
-    } else {
-        auto moveEntity = [signedOffset](auto& entity){
-            sf::Vector2f pos = entity.body.getPosition();
-            pos.x += -signedOffset;
-            entity.body.setPosition(pos);
-        };
-
-        for (auto& obj : mapObjs) moveEntity(obj);
-
-        for (auto& enemy : mapEnemys) {
-            sf::Vector2f pos = enemy.body.getPosition();
-            pos.x += -signedOffset;
-            enemy.RIGHT_ACTIVE_EDGE += -signedOffset;
-            enemy.RIGHT_PATROLING_EDGE += -signedOffset;
-            enemy.LEFT_ACTIVE_EDGE += -signedOffset;
-            enemy.LEFT_PATROLING_EDGE += -signedOffset;
-            enemy.body.setPosition(pos);
-        }
-
-        for (auto& portal : mapPortals) {
-            portal.inCoords.x += -signedOffset;
-            portal.outCoords.x += -signedOffset;
-
-            sf::Vector2f inPos = portal.inBody.getPosition();
-            sf::Vector2f outPos = portal.outBody.getPosition();
-            inPos.x += -signedOffset;
-            outPos.x += -signedOffset;
-            portal.inBody.setPosition(inPos);
-            portal.outBody.setPosition(outPos);
-        }
-
-        sf::Vector2f agPos = antiGravityField.getPosition();
-        agPos.x += -signedOffset;
-        antiGravityField.setPosition(agPos);
-    }
-
+    sf::Vector2f knyazPos = knyaz.body.getPosition();
+    knyazPos.x += signedOffset;
     knyaz.body.setPosition(knyazPos);
+
+    updateCamera(knyazPos.x, levelLeft, levelRight);
+
+//    int edgeIndex = (isLeftMove ? 0 : 1);
+//    sf::Vector2f knyazPos = knyaz.body.getPosition();
+//    GameEntity edge = mapObjs[edgeIndex];
+//    sf::Vector2f edgePos = edge.body.getPosition();
+//    sf::Vector2f edgeSize = edge.body.getSize();
+//
+//    float signedOffset = isLeftMove ? -offset : offset;
+//
+//    if ((isLeftMove && knyazPos.x >= cameraEdge) ||
+//        (!isLeftMove && knyazPos.x <= cameraEdge) ||
+//        (isLeftMove && edgePos.x + edgeSize.x + signedOffset >= 0) ||
+//        (!isLeftMove && edgePos.x - signedOffset < screenWidth))
+//    {
+//        knyazPos.x += signedOffset;
+//    } else {
+//        auto moveEntity = [signedOffset](auto& entity){
+//            sf::Vector2f pos = entity.body.getPosition();
+//            pos.x += -signedOffset;
+//            entity.body.setPosition(pos);
+//        };
+//
+//        for (auto& obj : mapObjs) moveEntity(obj);
+//
+//        for (auto& enemy : mapEnemys) {
+//            sf::Vector2f pos = enemy.body.getPosition();
+//            pos.x += -signedOffset;
+//            enemy.RIGHT_ACTIVE_EDGE += -signedOffset;
+//            enemy.RIGHT_PATROLING_EDGE += -signedOffset;
+//            enemy.LEFT_ACTIVE_EDGE += -signedOffset;
+//            enemy.LEFT_PATROLING_EDGE += -signedOffset;
+//            enemy.body.setPosition(pos);
+//        }
+//
+//        for (auto& portal : mapPortals) {
+//            portal.inCoords.x += -signedOffset;
+//            portal.outCoords.x += -signedOffset;
+//
+//            sf::Vector2f inPos = portal.inBody.getPosition();
+//            sf::Vector2f outPos = portal.outBody.getPosition();
+//            inPos.x += -signedOffset;
+//            outPos.x += -signedOffset;
+//            portal.inBody.setPosition(inPos);
+//            portal.outBody.setPosition(outPos);
+//        }
+//
+//        sf::Vector2f agPos = antiGravityField.getPosition();
+//        agPos.x += -signedOffset;
+//        antiGravityField.setPosition(agPos);
+//    }
+//
+//    knyaz.body.setPosition(knyazPos);
 }
 
 void horizontalMoveProcess(const float& elapsedTime) {

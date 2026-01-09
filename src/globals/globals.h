@@ -27,6 +27,9 @@ extern GameState curState;
 extern std::map<std::string, sf::Keyboard::Scancode> keymap;
 extern sf::Clock globalTimer;
 
+extern sf::View gameView;
+extern sf::View UIView;
+
 void initDepends();
 void initVariables();
 

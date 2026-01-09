@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_MEETBOSS_H
+#define KNYAZ_GAME_MEETBOSS_H
+
+
+
+#endif //KNYAZ_GAME_MEETBOSS_H

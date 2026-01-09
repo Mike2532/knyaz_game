@@ -18,6 +18,8 @@ add_library(globals_lib STATIC
         bottle/bottle.h
         tpEntity/tpEntity.cpp
         tpEntity/tpEntity.h
+        boss/meet/meetBoss.cpp
+        boss/meet/meetBoss.h
 )
 
 target_include_directories(globals_lib

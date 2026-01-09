@@ -42,6 +42,8 @@ struct Knyaz : AnimatedObj {
     int rageCounter = 0;
     int focusCounter = 0;
 
+    bool meetTheBoos = false;
+
     sf::Clock attackTimer;
     sf::Clock damageTimer;
     sf::Clock climbingTimer;
