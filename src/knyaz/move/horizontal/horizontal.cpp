@@ -48,8 +48,7 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
         }
 
         if (knyaz.isAlive && obj.type == ObjsTypes::BOTTLE) {
-            knyaz.hp += knyaz.MAX_HP / 100 * 35;
-            removeBottleByCoords(obj.body.getPosition());
+            bottleProcess(obj);
         }
 
         knyazPos.x = (leftCollision)
@@ -108,58 +107,6 @@ void moveProcess(
     knyaz.body.setPosition(knyazPos);
 
     updateCamera(knyazPos.x, levelLeft, levelRight);
-
-//    int edgeIndex = (isLeftMove ? 0 : 1);
-//    sf::Vector2f knyazPos = knyaz.body.getPosition();
-//    GameEntity edge = mapObjs[edgeIndex];
-//    sf::Vector2f edgePos = edge.body.getPosition();
-//    sf::Vector2f edgeSize = edge.body.getSize();
-//
-//    float signedOffset = isLeftMove ? -offset : offset;
-//
-//    if ((isLeftMove && knyazPos.x >= cameraEdge) ||
-//        (!isLeftMove && knyazPos.x <= cameraEdge) ||
-//        (isLeftMove && edgePos.x + edgeSize.x + signedOffset >= 0) ||
-//        (!isLeftMove && edgePos.x - signedOffset < screenWidth))
-//    {
-//        knyazPos.x += signedOffset;
-//    } else {
-//        auto moveEntity = [signedOffset](auto& entity){
-//            sf::Vector2f pos = entity.body.getPosition();
-//            pos.x += -signedOffset;
-//            entity.body.setPosition(pos);
-//        };
-//
-//        for (auto& obj : mapObjs) moveEntity(obj);
-//
-//        for (auto& enemy : mapEnemys) {
-//            sf::Vector2f pos = enemy.body.getPosition();
-//            pos.x += -signedOffset;
-//            enemy.RIGHT_ACTIVE_EDGE += -signedOffset;
-//            enemy.RIGHT_PATROLING_EDGE += -signedOffset;
-//            enemy.LEFT_ACTIVE_EDGE += -signedOffset;
-//            enemy.LEFT_PATROLING_EDGE += -signedOffset;
-//            enemy.body.setPosition(pos);
-//        }
-//
-//        for (auto& portal : mapPortals) {
-//            portal.inCoords.x += -signedOffset;
-//            portal.outCoords.x += -signedOffset;
-//
-//            sf::Vector2f inPos = portal.inBody.getPosition();
-//            sf::Vector2f outPos = portal.outBody.getPosition();
-//            inPos.x += -signedOffset;
-//            outPos.x += -signedOffset;
-//            portal.inBody.setPosition(inPos);
-//            portal.outBody.setPosition(outPos);
-//        }
-//
-//        sf::Vector2f agPos = antiGravityField.getPosition();
-//        agPos.x += -signedOffset;
-//        antiGravityField.setPosition(agPos);
-//    }
-//
-//    knyaz.body.setPosition(knyazPos);
 }
 
 void horizontalMoveProcess(const float& elapsedTime) {

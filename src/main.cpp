@@ -155,8 +155,8 @@ void update(std::vector<sf::Text>& textToPrint) {
         }
 
         checkKnyazPortaling();
-        knyazMove(elapsedTime);
         checkKnyazFalling();
+        knyazMove(elapsedTime);
         checkKnyazEnemyCollision();
         enemysTakenDamage();
         removeDeathEnemys();

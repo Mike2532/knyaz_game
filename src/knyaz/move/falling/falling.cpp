@@ -5,11 +5,18 @@
 #include "../resources/sounds/fx/landing/knyazLandingFX.h"
 #include "../resources/sounds/fx/fight/fight.h"
 #include "../resources/sounds/fx/wind/wind.h"
+#include "../globals/bottle/bottle.h"
 
 void fallingCheck(bool &falling) {
     for (auto entity : mapObjs) {
         if (isKnyazVerticalOverlap(entity) && abs(knyaz.getBot() - entity.getTop()) < 0.2f) {
             falling = false;
+
+            if (entity.type == ObjsTypes::BOTTLE) {
+                cout << "AAVACVAVA\n";
+                bottleProcess(entity);
+            }
+
             if (knyaz.isAlive && (entity.type == ObjsTypes::OBTACLE || entity.type == ObjsTypes::SPIKES_UP)) {
                 knyaz.changeAnimation(animationContainer["death"]);
                 knyaz.isAlive = false;

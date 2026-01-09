@@ -1,5 +1,6 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <iostream>
 #include "../mapObjs/mapObjs.h"
 #include "../../resources/objs/objs.h"
 #include "../knyaz/knyaz.h"
@@ -21,11 +22,19 @@ int getBottleSpawnChanse() {
 }
 
 void removeBottleByCoords(sf::Vector2f coords) {
+    auto mo = mapObjs;
     for (auto &entity : mapObjs) {
-        auto toRemove = remove_if(mapObjs.begin(), mapObjs.end(), [coords](GameEntity &entity) {return entity.body.getPosition() == coords && entity.type == ObjsTypes::BOTTLE;});
+        auto toRemove = remove_if(
+                mapObjs.begin(),
+                mapObjs.end(),
+                [coords](GameEntity &entity) {
+                    return entity.body.getPosition() == coords && entity.type == ObjsTypes::BOTTLE;
+                });
         mapObjs.erase(toRemove, mapObjs.end());
         playBottleSound();
     }
+    auto moTwo = mapObjs;
+    int a = 0;
 }
 
 void spawnBottle(sf::Vector2f coords) {
@@ -40,4 +49,14 @@ void spawnBottle(sf::Vector2f coords) {
     bottleEntity.type = ObjsTypes::BOTTLE;
 
     mapObjs.emplace_back(bottleEntity);
+}
+
+void bottleProcess(GameEntity& bottleEntity) {
+    if (knyaz.hp == knyaz.MAX_HP) {
+        cout << "sorry, max hp\n";
+        return;
+    }
+    const auto newKnyazHp = knyaz.hp + knyaz.MAX_HP / 100 * 35;
+    knyaz.hp = min(newKnyazHp, knyaz.MAX_HP);
+    removeBottleByCoords(bottleEntity.body.getPosition());
 }

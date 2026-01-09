@@ -29,7 +29,6 @@ auto addEnemy(const EnemyParam &enemyParam) {
     myEnemy.isBoss = enemyParam.isBoss;
 
     if (enemyParam.isBoss) {
-
         myEnemy.body.setSize({120.f, 200.f});
         myEnemy.MAX_HP = 7000;
         myEnemy.X_OFFSET = 37;
