@@ -27,8 +27,12 @@ void falledComboProcess(const Enemy& enemy) {
     knyaz.actionsHistory.emplace_back("ea");
 }
 
-void attackProcess(Enemy& enemy, sf::Vector2f enemyPos, const int& DAMAGE_OFFSET)  {
-    enemyPos.x -= DAMAGE_OFFSET;
+void attackProcess(const bool isLeft, Enemy& enemy, sf::Vector2f enemyPos, const int& DAMAGE_OFFSET)  {
+    if (isLeft) {
+        enemyPos.x += DAMAGE_OFFSET;
+    } else {
+        enemyPos.x -= DAMAGE_OFFSET;
+    }
     enemy.body.setPosition(enemyPos);
     enemy.takenDamage += knyaz.lightAttackPower;
     enemy.objSprite.setColor(sf::Color::Red);
@@ -73,7 +77,7 @@ void leftMouseHandler(const int& DAMAGE_OFFSET) {
             } else {
                 falledComboProcess(enemy);
             }
-            attackProcess(enemy, enemyPos, DAMAGE_OFFSET);
+            attackProcess(isLeft, enemy, enemyPos, DAMAGE_OFFSET);
         }
     }
 }
