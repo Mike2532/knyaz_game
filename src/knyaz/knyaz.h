@@ -9,7 +9,6 @@ enum class jumpStates {base, oneJump, secondJump, heated, falling};
 
 struct Knyaz : AnimatedObj {
     const int MAX_HP = 3000;
-//    const int MAX_HP = 300000000;
     const int MAX_FOCUS_COUNTER = 6;
     const int MAX_RAGE_COUNTER = 3;
 
@@ -26,11 +25,13 @@ struct Knyaz : AnimatedObj {
     bool isDoubleJump = false;
     bool isClimbing = false;
 
+    bool isAtacking = false;
+
     bool jmpAccess = true;
 
     bool isRunning = false;
 
-    bool isAttackFinished = false;
+    bool isAttackFinished = true;
     bool isFlyingUp = false;
 
     int hp = MAX_HP;

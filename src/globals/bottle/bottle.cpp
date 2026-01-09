@@ -53,7 +53,6 @@ void spawnBottle(sf::Vector2f coords) {
 
 void bottleProcess(GameEntity& bottleEntity) {
     if (knyaz.hp == knyaz.MAX_HP) {
-        cout << "sorry, max hp\n";
         return;
     }
     const auto newKnyazHp = knyaz.hp + knyaz.MAX_HP / 100 * 35;

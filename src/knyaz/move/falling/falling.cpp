@@ -13,7 +13,6 @@ void fallingCheck(bool &falling) {
             falling = false;
 
             if (entity.type == ObjsTypes::BOTTLE) {
-                cout << "AAVACVAVA\n";
                 bottleProcess(entity);
             }
 

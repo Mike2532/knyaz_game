@@ -16,6 +16,10 @@ void movementHandler() {
     bool moveRightPressed = sf::Keyboard::isKeyPressed(keymap["MOVE_RIGHT_KEY"]);
     bool isKnyazStanding = !(knyaz.isJump || knyaz.isFalling);
 
+    if (moveLeftPressed || moveRightPressed) {
+        knyaz.isAtacking = false;
+    }
+
     if (moveLeftPressed && !knyaz.isMovingLeft) {
         if (knyaz.isClimbing && knyaz.isLeftOrented) {
             return;
@@ -65,6 +69,9 @@ void gameRestart() {
     knyaz.rageCounter = 0;
     knyaz.changeAnimation(animationContainer["falling"]);
     knyaz.freeFallingTimer.restart();
+    knyaz.isAtacking = false;
+    knyaz.isMovingLeft = false;
+    knyaz.isMovingRight = false;
 
     constexpr float LOGIC_W = 1440;
     constexpr float LOGIC_H = 900;

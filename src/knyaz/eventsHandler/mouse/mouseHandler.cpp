@@ -6,7 +6,7 @@
 #include "../../../resources/sounds/fx/fight/fight.h"
 
 bool canHandle() {
-    return !(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight);
+    return !(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight || knyaz.isAtacking);
 }
 
 void mouseEventsHandler(const sf::Event& event) {
@@ -20,6 +20,8 @@ void mouseEventsHandler(const sf::Event& event) {
     bool isRight = event.mouseButton.button == sf::Mouse::Right;
 
     if (isLeft || isRight) {
+        knyaz.isAtacking = true;
+
         playRandomAirSound();
 
         if (isLeft) {

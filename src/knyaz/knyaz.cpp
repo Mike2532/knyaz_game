@@ -36,6 +36,7 @@ void Knyaz::textureUpdate() {
                     NORMAL_W  + 15.f,
                     NORMAL_H
             ));
+            knyaz.isAtacking = false;
         }
     } else {
         objSprite.setTextureRect(sf::IntRect(

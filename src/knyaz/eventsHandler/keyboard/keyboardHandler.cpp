@@ -126,13 +126,22 @@ void rageHandler() {
 }
 
 void keyboardEventsHandler() {
-    if (isJumpEvent()) {
+    bool isJump = isJumpEvent();
+    bool isCliming = isClimbingEvent();
+    bool isFocus = isFocusEvent();
+    bool isRage = isRageEvent();
+
+    if (isJump || isCliming || isFocus || isRage) {
+        knyaz.isAtacking = false;
+    }
+
+    if (isJump) {
         jumpHandler();
-    } else if (isClimbingEvent()) {
+    } else if (isCliming) {
         climbingHandler();
-    } else if (isFocusEvent()) {
+    } else if (isFocus) {
         focusHandler();
-    } else if (isRageEvent()) {
+    } else if (isRage) {
         rageHandler();
     }
 }
