@@ -35,27 +35,23 @@ void attackProcess(Enemy& enemy, sf::Vector2f enemyPos, const int& DAMAGE_OFFSET
     knyaz.attackTimer.restart();
 }
 
-void commonComboProcess(Enemy& enemy) {
-    knyaz.actionsHistory.clear();
-    enemy.takenDamage += knyaz.lightAttackPower * 0.5;
-}
-
-void leftComboProcess(const Enemy& enemy, const sf::Vector2f enemyPos) {
+void comboProcess(bool isLeft, Enemy& enemy, const sf::Vector2f& enemyPos) {
     sf::Vector2f enymeSize = enemy.body.getSize();
     sf::Vector2f knyazPos = knyaz.body.getPosition();
-    knyazPos.x = enemyPos.x + enymeSize.x;
-    knyaz.body.setPosition(knyazPos);
-    knyaz.isLeftOrented = true;
-    playTpSound();
-}
-
-void rightComboProcess(const Enemy& enemy, const sf::Vector2f enemyPos) {
     sf::Vector2f knyazSize = knyaz.body.getSize();
-    sf::Vector2f knyazPos = knyaz.body.getPosition();
-    knyazPos.x = enemyPos.x - knyazSize.x;
+
+    knyazPos.x = (isLeft)
+            ? enemyPos.x + enymeSize.x
+            : enemyPos.x - knyazSize.x;
+
     knyaz.body.setPosition(knyazPos);
-    knyaz.isLeftOrented = false;
+    knyaz.isLeftOrented = !knyaz.isLeftOrented;
+    knyaz.actionsHistory.clear();
     playTpSound();
+    enemy.needToReverse = true;
+    enemy.reverseTimer.restart();
+    enemy.changeAnimation(animationContainer["enemyWalk"]);
+    enemy.takenDamage += knyaz.lightAttackPower * 0.5;
 }
 
 void leftMouseHandler(const int& DAMAGE_OFFSET) {
@@ -67,12 +63,13 @@ void leftMouseHandler(const int& DAMAGE_OFFSET) {
         if (isLeft || isRight) {
             sf::Vector2f enemyPos = enemy.body.getPosition();
             if (isCombo(enemy, knyaz)) {
+
                 if (isLeft) {
-                    leftComboProcess(enemy, enemyPos);
-                } else {
-                    rightComboProcess(enemy, enemyPos);
+                    comboProcess(true, enemy, enemyPos);
+                } else if (isRight) {
+                    comboProcess(false, enemy, enemyPos);
                 }
-                commonComboProcess(enemy);
+
             } else {
                 falledComboProcess(enemy);
             }

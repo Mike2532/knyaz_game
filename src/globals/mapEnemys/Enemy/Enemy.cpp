@@ -65,7 +65,7 @@ void Enemy::move(const float &elapsedTime) {
             if (isNearLeftKnyaz) {
                 isNearLeftKnyaz = false;
             }
-        } else if (isKnyazRight && needToRightRun) {
+        } else if (isKnyazRight && needToRightRun && !needToReverse) {
             enemyPos.x += AGRESSIVE_SPEED * elapsedTime;
             enemyPos.x = min(enemyPos.x, RIGHT_ACTIVE_EDGE - body.getSize().x);
             isPatrolingLeft = false;
@@ -226,3 +226,9 @@ void Enemy::stunProcess() {
     }
 }
 
+void Enemy::easyComboReversal() {
+    if (needToReverse && reverseTimer.getElapsedTime().asMilliseconds() >= 700) {
+        isPatrolingLeft = !isPatrolingLeft;
+        needToReverse = false;
+    }
+}

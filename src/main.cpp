@@ -130,6 +130,7 @@ void update(std::vector<sf::Text>& textToPrint) {
             enemy.tryToAttack();
             enemy.animationProcess();
             enemy.spritePositionUpdate();
+            enemy.easyComboReversal();
         }
 
         checkKnyazPortaling();

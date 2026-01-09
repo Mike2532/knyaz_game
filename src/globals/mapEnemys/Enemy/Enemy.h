@@ -32,6 +32,9 @@ struct Enemy : AnimatedObj {
     sf::Clock attackTimer;
     EnemyStates state = EnemyStates::PATROLLING;
 
+    bool needToReverse = false;
+    sf::Clock reverseTimer;
+
     void move(const float& elapsedTime);
 
     void checkKnyazVision();
@@ -45,6 +48,8 @@ struct Enemy : AnimatedObj {
     void spritePositionUpdate();
 
     void stunProcess();
+
+    void easyComboReversal();
 };
 
 #endif //KNYAZ_GAME_ENEMY_H

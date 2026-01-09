@@ -28,6 +28,12 @@ void jumpHandler() {
     knyaz.jumpCounter++;
     knyaz.changeAnimation(animationContainer["jump"]);
     knyaz.freeFallingTimer.restart();
+
+    if (knyaz.actionsHistory.size() == 1 && knyaz.actionsHistory[0] == "ea") {
+        knyaz.actionsHistory.emplace_back("jmp");
+    } else {
+        knyaz.actionsHistory.clear();
+    }
 }
 
 bool isJumpEvent() {
