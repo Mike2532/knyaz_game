@@ -33,8 +33,8 @@ auto makeEntity(const sf::Vector2f &entitySize, const sf::Vector2f &entityPos, O
 
 const vector<MapObj>  mapObjParams {
         makeEntity({20.f, 2000.f}, {-20.f, -1000.f}, ObjsTypes::ENTITY),      // leftWorldEdge
-        makeEntity({20.f, 2000.f}, {4320.f + 1440.f, -1000}, ObjsTypes::ENTITY),     // rightWorldEdge
         makeEntity({20.f, 900.f}, {4320.f, 0}, ObjsTypes::ENTITY),     //boss door
+        makeEntity({20.f, 2000.f}, {4320.f + 1440.f, -1000}, ObjsTypes::ENTITY),     // rightWorldEdge
 
         makeEntity({1000.f, 28.f}, {0.f, 771.f + 100.f}, ObjsTypes::ENTITY),           // floor
         makeEntity({1000.f, 28.f}, {1000.f, 771.f + 100.f}, ObjsTypes::ENTITY),           // floor

@@ -67,7 +67,23 @@ void gameRestart() {
 
     constexpr float LOGIC_W = 1440;
     constexpr float LOGIC_H = 900;
-    gameView.setCenter({LOGIC_W / 2, LOGIC_H / 2});
+
+    const float cameraRespawnX = (knyaz.meetTheBoos)
+            ? LOGIC_W / 2 + LOGIC_W * 3
+            : LOGIC_W / 2;
+
+    gameView.setCenter({cameraRespawnX, LOGIC_H / 2});
+
+    if (!knyaz.meetTheBoos) {
+        return;
+    }
+
+    const auto prevLeftEdge = mapObjs[0];
+    const auto prevRightEdge = mapObjs[1];
+    const auto newRightEdge = mapObjs[2];
+    mapObjs[0] = prevRightEdge;
+    mapObjs[1] = newRightEdge;
+    mapObjs[2] = prevLeftEdge;
 }
 
 bool isGameShouldRestart(const sf::Event& event) {
