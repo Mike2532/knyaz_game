@@ -31,7 +31,7 @@ auto addEnemy(const EnemyParam &enemyParam) {
     if (enemyParam.isBoss) {
 
         myEnemy.body.setSize({120.f, 200.f});
-        myEnemy.MAX_HP = 10000;
+        myEnemy.MAX_HP = 7000;
         myEnemy.X_OFFSET = 37;
         myEnemy.Y_OFFSET = 32;
         myEnemy.ANIMATION_WIDTH = 33;
@@ -112,33 +112,33 @@ const vector<EnemyParam> enemyParams {
                 6,
                 false
         },
-//        { //4zone battle area
-//                {3892.f, 711.f + 100.f},
-//                3774,
-//                3860,
-//                4250,
-//                4315,
-//                7,
-//                false
-//        },
-//        { //4zone dls 1
-//                {4140.f, 435.f + 100.f},
-//                3985,
-//                3995,
-//                4300,
-//                4310,
-//                8,
-//                false
-//        },
-//        { //4zone dls 2
-//            {3894.f, 556.f + 100.f},
-//            3774,
-//            3789,
-//            4092,
-//            4107,
-//            9,
-//                false
-//        },
+        { //4zone battle area
+                {3892.f, 711.f + 100.f},
+                3774,
+                3860,
+                4250,
+                4315,
+                7,
+                false
+        },
+        { //4zone dls 1
+                {4140.f, 435.f + 100.f},
+                3985,
+                3995,
+                4300,
+                4310,
+                8,
+                false
+        },
+        { //4zone dls 2
+            {3894.f, 556.f + 100.f},
+            3774,
+            3789,
+            4092,
+            4107,
+            9,
+                false
+        },
         { //boss arena p1
                 {4632.f, 467.f + 100.f},
                 4571,
