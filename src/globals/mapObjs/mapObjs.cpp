@@ -135,6 +135,21 @@ const vector<MapObj>  mapObjParams {
         makeEntity({30.f, 30.f}, {3905.f + 30 * 8, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
         makeEntity({30.f, 30.f}, {3905.f + 30 * 9, 335.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone long sheeps
 
+        makeEntity({335.f, 35.f}, {3985.f, 495.f + 100.f}, ObjsTypes::ENTITY), //4zone dls platform 1
+        makeEntity({338.f, 35.f}, {3774.f, 616.f + 100.f}, ObjsTypes::ENTITY), //4zone dls platform 2
+        makeEntity({150.f, 35.f}, {4170.f, 616.f + 100.f}, ObjsTypes::ENTITY), //4zone dls platform 3
+
+        makeEntity({30.f, 30.f}, {3774.f, 400.f + 100.f + 30.f * 0}, ObjsTypes::SPIKES), //4zone spikes upper plat2
+        makeEntity({30.f, 30.f}, {3774.f, 400.f + 100.f + 30.f * 1}, ObjsTypes::SPIKES), //4zone spikes upper plat2
+        makeEntity({30.f, 30.f}, {3774.f, 400.f + 100.f + 30.f * 2}, ObjsTypes::SPIKES), //4zone spikes upper plat2
+        makeEntity({30.f, 30.f}, {3774.f, 400.f + 100.f + 30.f * 3}, ObjsTypes::SPIKES), //4zone spikes upper plat2
+
+        makeEntity({30.f, 30.f}, {4171.f + 30.f * 0, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
+        makeEntity({30.f, 30.f}, {4171.f + 30.f * 1, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
+        makeEntity({30.f, 30.f}, {4171.f + 30.f * 2, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
+        makeEntity({30.f, 30.f}, {4171.f + 30.f * 3, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
+        makeEntity({30.f, 30.f}, {4171.f + 30.f * 4, 586.f + 100.f}, ObjsTypes::SPIKES_UP), //4zone spikes upper plat3
+
 //        makeEntity({20.f, 750.f}, {4320.f, 0}, ObjsTypes::ENTITY),     //boss door
         makeEntity({40.f, 40.f}, {4320.f + 100, 850.f}, ObjsTypes::SPIKES_UP),     //hirakiri
 };
