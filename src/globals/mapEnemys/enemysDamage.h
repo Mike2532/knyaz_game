@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_ENEMYSDAMAGE_H
+#define KNYAZ_GAME_ENEMYSDAMAGE_H
+
+void enemysTakenDamage();
+
+#endif //KNYAZ_GAME_ENEMYSDAMAGE_H

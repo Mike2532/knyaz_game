@@ -22,6 +22,8 @@ add_library(globals_lib STATIC
         boss/meet/meetBoss.h
         bossBottles/bossBottles.cpp
         bossBottles/bossBottles.h
+        mapEnemys/enemysDamage.cpp
+        mapEnemys/enemysDamage.h
 )
 
 target_include_directories(globals_lib

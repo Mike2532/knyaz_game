@@ -1,8 +1,5 @@
 #include "./Enemy/Enemy.h"
-#include "../../knyaz/knyaz.h"
-#include "../globals/bottle/bottle.h"
 #include <iostream>
-#include "../resources/sounds/fx/fight/fight.h"
 
 vector<Enemy> mapEnemys;
 
@@ -31,7 +28,8 @@ auto addEnemy(const EnemyParam &enemyParam) {
     if (enemyParam.isBoss) {
         myEnemy.body.setSize({120.f, 200.f});
         myEnemy.MAX_HP = 7000;
-        myEnemy.hp = 7000;
+//        myEnemy.hp = 7000;
+        myEnemy.hp = 1;
         myEnemy.X_OFFSET = 37;
         myEnemy.Y_OFFSET = 32;
         myEnemy.ANIMATION_WIDTH = 33;
@@ -172,40 +170,5 @@ void initEnemys() {
     mapEnemys.clear();
     for (auto &enemyParam : enemyParams) {
         addEnemy(enemyParam);
-    }
-}
-
-void enemysTakenDamage() {
-    constexpr int ATTACK_DELAY = 100;
-
-    if (knyaz.attackTimer.getElapsedTime().asMilliseconds() >= ATTACK_DELAY && knyaz.isAttackFinished) {
-        for (auto &enemy : mapEnemys) {
-            if (enemy.takenDamage != 0) {
-                if (enemy.isBoss) {
-                    playRandomArmorSound();
-                } else {
-                    playRandomFlashSound();
-                }
-
-                knyaz.focusCounter = min(knyaz.focusCounter + 1, knyaz.MAX_FOCUS_COUNTER);
-                enemy.hp -= enemy.takenDamage;
-                enemy.takenDamage = 0;
-                enemy.objSprite.setColor(sf::Color::White);
-                if (enemy.hp <= 0) {
-                    int chanse = getBottleSpawnChanse();
-                    int r2 = rand() % 100;
-                    if (r2 <= chanse) {
-                        sf::Vector2f pos = enemy.body.getPosition();
-                        sf::Vector2f size = enemy.body.getSize();
-
-                        float bottleXPos = pos.x + (size.x/2);
-                        float bottleYPos = pos.y + (size.y);
-
-                        spawnBottle({bottleXPos, bottleYPos});
-                    }
-                }
-            }
-        }
-        knyaz.isAttackFinished = false;
     }
 }

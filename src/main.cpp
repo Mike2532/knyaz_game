@@ -33,6 +33,8 @@
 #include "./resources/sounds/fx/rage/rage.h"
 #include "./resources/animations/boss/boss.h"
 #include "globals/bossBottles/bossBottles.h"
+#include "./resources/sounds/fx/win/win.h"
+#include "./globals/mapEnemys/enemysDamage.h"
 
 using namespace std;
 
@@ -115,6 +117,7 @@ void initDepends() {
     initBottleSound();
     initTpSound();
     initRageSound();
+    initKnyazWinSound();
     spawnBossBottles();
     knyaz.animationData = animationContainer["idle"];
     HpIndicatorSprite.setTexture(HpIndicatorTexture);

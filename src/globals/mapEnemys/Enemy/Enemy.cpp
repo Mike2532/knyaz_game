@@ -184,7 +184,7 @@ void Enemy::tryToAttack() {
 
     if ((isNearLeftKnyaz || isNearRightKnyaz) && animationData.animationType != AnimationTypes::ATTACK && isAttacking) {
         if (isBoss) {
-            changeAnimation(animationContainer["bossAttack0"]);
+            changeAnimation(animationContainer["bossAttack" + to_string(rand() % 2)]);
         } else {
             changeAnimation(animationContainer["enemyAttack"]);
         }

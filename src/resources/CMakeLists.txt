@@ -30,6 +30,8 @@ add_library(resources_lib
         sounds/fx/rage/rage.h
         animations/boss/boss.h
         animations/boss/boss.cpp
+        sounds/fx/win/win.cpp
+        sounds/fx/win/win.h
 )
 
 target_link_libraries(resources_lib

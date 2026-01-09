@@ -96,6 +96,9 @@ map<string, string> initConfig() {
         {"RAGE_SOUND", "rage.wav"},
 
         {"BOSS_TEXTIRES_FOLDER", "media/animations/boss/"},
+
+        {"WINNER_FX_FOLDER", "media/music/fx/"},
+        {"WINNER_FX_SOUND", "win.wav"},
     };
 }
 
