@@ -33,8 +33,10 @@ auto makeEntity(const sf::Vector2f &entitySize, const sf::Vector2f &entityPos, O
 
 const vector<MapObj>  mapObjParams {
         makeEntity({20.f, 2000.f}, {-20.f, -1000.f}, ObjsTypes::ENTITY),      // leftWorldEdge
-        makeEntity({20.f, 900.f}, {4320.f, 0}, ObjsTypes::ENTITY),     //boss door
-        makeEntity({20.f, 2000.f}, {4320.f + 1440.f, -1000}, ObjsTypes::ENTITY),     // rightWorldEdge
+        makeEntity({20.f, 900.f}, {4320.f, 0}, ObjsTypes::WALL),     //boss door
+        makeEntity({20.f, 2000.f}, {4320.f + 1440.f, -1000}, ObjsTypes::WALL),     // rightWorldEdge
+
+        makeEntity({20.f, 180}, {4320.f, -180}, ObjsTypes::ENTITY), //upper boss door
 
         makeEntity({1000.f, 28.f}, {0.f, 771.f + 100.f}, ObjsTypes::ENTITY),           // floor
         makeEntity({1000.f, 28.f}, {1000.f, 771.f + 100.f}, ObjsTypes::ENTITY),           // floor
@@ -42,7 +44,7 @@ const vector<MapObj>  mapObjParams {
         makeEntity({1000.f, 28.f}, {3000.f, 771.f + 100.f}, ObjsTypes::ENTITY),           // floor
         makeEntity({1000.f, 28.f}, {4000.f, 771.f + 100.f}, ObjsTypes::ENTITY),           // floor
         makeEntity({1000.f, 28.f}, {5000.f, 771.f + 100.f}, ObjsTypes::ENTITY),           // floor
-        makeEntity({4320.f, 28.f}, {0.f, -180.f}, ObjsTypes::ENTITY),           // rof
+        makeEntity({4320.f + 2000.f, 28.f}, {0.f, -180.f}, ObjsTypes::ENTITY),           // rof
 
 //        makeEntity({237.f, 582.f}, {1017.f, 217.f + 100.f}, ObjsTypes::WALL),       // 1-end
         makeEntity({237.f, 35.f}, {403.f, 541.f + 100.f}, ObjsTypes::ENTITY), // 1-2
