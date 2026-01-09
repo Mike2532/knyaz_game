@@ -147,14 +147,14 @@ void update(std::vector<sf::Text>& textToPrint) {
         float elapsedTime = globalTimer.getElapsedTime().asSeconds();
         globalTimer.restart();
 
-//        boss.stunProcess();
-//        boss.stunProcess();
-//        boss.checkKnyazVision();
-//        boss.move(elapsedTime);
-//        boss.tryToAttack();
-//        boss.animationProcess();
-//        boss.spritePositionUpdate();
-//        boss.easyComboReversal();
+        boss.stunProcess();
+        boss.stunProcess();
+        boss.checkKnyazVision();
+        boss.move(elapsedTime);
+        boss.tryToAttack();
+        boss.animationProcess();
+        boss.spritePositionUpdate();
+        boss.easyComboReversal();
 
         for (auto &enemy : mapEnemys) {
             enemy.stunProcess();
@@ -226,6 +226,7 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             window.draw(boss.objSprite);
 
             for (auto &enemy : mapEnemys) {
+                window.draw(enemy.body);
                 window.draw(enemy.objSprite);
             }
 

@@ -180,14 +180,18 @@ void Enemy::textureUpdate() {
             ANIMATION_HEIGHT
     ));
 
+    float scaleX = ANIMATION_TEXTURE_SCALE_X;
+    float scaleY = ANIMATION_TEXTURE_SCALE_Y;
+
     if (isPatrolingLeft) {
         isSpriteLeftOrented = true;
-        ANIMATION_TEXTURE_SCALE_X *= -1;
-    } else if (isSpriteLeftOrented) {
+        scaleX = -abs(scaleX);
+    } else {
         isSpriteLeftOrented = false;
+        scaleX = abs(scaleX);
     }
 
-    objSprite.setScale(ANIMATION_TEXTURE_SCALE_X, ANIMATION_TEXTURE_SCALE_Y);
+    objSprite.setScale(scaleX, scaleY);
 
     if (animationData.animationType == AnimationTypes::ATTACK) {
         if (animationFrameNumber == animationData.animationFrames - 1) {
@@ -226,14 +230,10 @@ void Enemy::spritePositionUpdate() {
     pos.x -= SPRITE_POS_X_OFFSET;
     pos.y -= SPRITE_POS_Y_OFFSET;
 
-    if (!isBoss) {
-        if (isSpriteLeftOrented) {
-            pos.x += SPRITE_POS_ADDITIONAL_OFFSET;
-        }
-    } else {
-        if (!isSpriteLeftOrented) {
-            pos.x -= SPRITE_POS_ADDITIONAL_OFFSET;
-        }
+    if (!isBoss && isSpriteLeftOrented) {
+        pos.x += SPRITE_POS_ADDITIONAL_OFFSET;
+    } else if (isBoss && !isSpriteLeftOrented) {
+        pos.x -= SPRITE_POS_ADDITIONAL_OFFSET;
     }
 
     objSprite.setPosition(pos);
