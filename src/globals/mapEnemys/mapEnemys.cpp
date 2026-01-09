@@ -50,7 +50,7 @@ auto addEnemy(const EnemyParam &enemyParam) {
 
 const vector<EnemyParam> enemyParams {
         { //MW
-                {1932.f, 691.f + 20.f - 2.f + 100.f},
+                {1932.f + 300.f, 691.f + 20.f - 2.f + 100.f},
                 1774.f,
                 1899.f,
                 2290.f,
@@ -59,7 +59,7 @@ const vector<EnemyParam> enemyParams {
                 false
         },
         { //Start 1-st
-                {466.f, 461.f + 20.f - 2.f + 100.f},
+                {466.f + 300.f, 461.f + 20.f - 2.f + 100.f},
                 407.f,
                 407.f,
                 653.f,
@@ -68,7 +68,7 @@ const vector<EnemyParam> enemyParams {
                 false
         },
         { //Start 2-nd
-                {702.f, 67.f + 20.f - 2.f + 100.f},
+                {702.f + 300.f, 67.f + 20.f - 2.f + 100.f},
                 655.f,
                 680.f,
                 982.f,
@@ -140,7 +140,7 @@ const vector<EnemyParam> enemyParams {
                 false
         },
         { //boss arena p1
-                {4632.f, 467.f + 100.f},
+                {4632.f + 100.f, 467.f + 100.f},
                 4571,
                 4571,
                 4743 + 5,
@@ -149,7 +149,7 @@ const vector<EnemyParam> enemyParams {
                 false
         },
         { //boss arena p3
-                {5546.f, 467.f + 100.f},
+                {5546.f + 100.f, 467.f + 100.f},
                 5485,
                 5485,
                 5657 + 5,
