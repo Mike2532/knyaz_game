@@ -20,18 +20,14 @@ void initBoss() {
     boss.isBoss = true;
 
     boss.MAX_HP = 10000;
-
-    boss.FRAME_WIDTH = 100;
     boss.X_OFFSET = 37;
     boss.Y_OFFSET = 32;
     boss.ANIMATION_WIDTH = 33;
     boss.ANIMATION_HEIGHT = 28;
     boss.ANIMATION_TEXTURE_SCALE_X = 10.f;
     boss.ANIMATION_TEXTURE_SCALE_Y = 10.f;
-
     boss.SPRITE_POS_X_OFFSET = -190.f;
     boss.SPRITE_POS_Y_OFFSET = 50.f;
     boss.SPRITE_POS_ADDITIONAL_OFFSET = 260.f;
-
     boss.attackPower = 650 * 2;
 }

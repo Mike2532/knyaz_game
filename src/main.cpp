@@ -118,7 +118,6 @@ void initDepends() {
     initBottleSound();
     initTpSound();
     initRageSound();
-    initBoss();
     knyaz.animationData = animationContainer["idle"];
     HpIndicatorSprite.setTexture(HpIndicatorTexture);
     srand(time(NULL));
@@ -146,15 +145,6 @@ void update(std::vector<sf::Text>& textToPrint) {
     } else if (curState == GameState::GAME_PROCESS) {
         float elapsedTime = globalTimer.getElapsedTime().asSeconds();
         globalTimer.restart();
-
-        boss.stunProcess();
-        boss.stunProcess();
-        boss.checkKnyazVision();
-        boss.move(elapsedTime);
-        boss.tryToAttack();
-        boss.animationProcess();
-        boss.spritePositionUpdate();
-        boss.easyComboReversal();
 
         for (auto &enemy : mapEnemys) {
             enemy.stunProcess();
@@ -222,11 +212,7 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
         case GameState::GAME_PROCESS:
             window.draw(knyaz.objSprite);
 
-            window.draw(boss.body);
-            window.draw(boss.objSprite);
-
             for (auto &enemy : mapEnemys) {
-                window.draw(enemy.body);
                 window.draw(enemy.objSprite);
             }
 

@@ -9,8 +9,8 @@ struct Enemy : AnimatedObj {
     bool isBoss = false;
 
     int id;
-//    int MAX_HP = 2000;
-    int MAX_HP = 200000000;
+    int MAX_HP = 2000;
+//    int MAX_HP = 200000000;
     float STUNNED_TIME = 3.f;
 
     float LEFT_PATROLING_EDGE;
