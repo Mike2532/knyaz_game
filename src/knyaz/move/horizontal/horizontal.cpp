@@ -39,9 +39,7 @@ void checkHorizontalCollision(vector<GameEntity> &container) {
         if (!(leftCollision || rightCollision)) continue;
 
         if (knyaz.isAlive && (obj.type == ObjsTypes::OBTACLE || obj.type == ObjsTypes::SPIKES || obj.type == ObjsTypes::SPIKES_UP)) {
-            knyaz.changeAnimation(animationContainer["death"]);
-            knyaz.isAlive = false;
-            knyaz.hp = 0;
+            knyaz.dieProcess();
             stopWindSound();
             playRandomFlashSound();
             playRandomLandingSound();

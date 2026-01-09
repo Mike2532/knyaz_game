@@ -95,3 +95,17 @@ void Knyaz::tpProcess() {
         isTp = false;
     }
 }
+
+void Knyaz::stopRun() {
+    isMovingRight = false;
+    isMovingLeft = false;
+    curJMPState = jumpStates::base;
+    jumpCounter = 0;
+}
+
+void Knyaz::dieProcess() {
+    changeAnimation(animationContainer["death"]);
+    isAlive = false;
+    hp = 0;
+    stopRun();
+}

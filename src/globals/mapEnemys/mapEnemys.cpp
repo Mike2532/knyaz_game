@@ -181,7 +181,12 @@ void enemysTakenDamage() {
     if (knyaz.attackTimer.getElapsedTime().asMilliseconds() >= ATTACK_DELAY && knyaz.isAttackFinished) {
         for (auto &enemy : mapEnemys) {
             if (enemy.takenDamage != 0) {
-                playRandomFlashSound();
+                if (enemy.isBoss) {
+                    playRandomArmorSound();
+                } else {
+                    playRandomFlashSound();
+                }
+
                 knyaz.focusCounter = min(knyaz.focusCounter + 1, knyaz.MAX_FOCUS_COUNTER);
                 enemy.hp -= enemy.takenDamage;
                 enemy.takenDamage = 0;

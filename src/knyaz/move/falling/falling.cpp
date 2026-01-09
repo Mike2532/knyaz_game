@@ -17,9 +17,7 @@ void fallingCheck(bool &falling) {
             }
 
             if (knyaz.isAlive && (entity.type == ObjsTypes::OBTACLE || entity.type == ObjsTypes::SPIKES_UP)) {
-                knyaz.changeAnimation(animationContainer["death"]);
-                knyaz.isAlive = false;
-                knyaz.hp = 0;
+                knyaz.dieProcess();
                 playRandomFlashSound();
                 stopWindSound();
             }

@@ -59,6 +59,8 @@ struct Knyaz : AnimatedObj {
     void spritePositionUpdate();
     void takeDamage();
     void tpProcess();
+    void stopRun();
+    void dieProcess();
 };
 
 extern Knyaz knyaz;
