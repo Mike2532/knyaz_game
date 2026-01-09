@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_BOSSBOTTLES_H
+#define KNYAZ_GAME_BOSSBOTTLES_H
+
+void spawnBossBottles();
+
+#endif //KNYAZ_GAME_BOSSBOTTLES_H

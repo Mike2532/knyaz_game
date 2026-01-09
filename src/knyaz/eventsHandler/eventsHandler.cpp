@@ -7,6 +7,7 @@
 #include "../knyaz.h"
 #include "../../globals/mapEnemys/mapEnemys.h"
 #include "../resources/sounds/fx/run/knyazRunFX.h"
+#include "../globals/bossBottles/bossBottles.h"
 
 using namespace std;
 
@@ -73,6 +74,8 @@ void gameRestart() {
             : LOGIC_W / 2;
 
     gameView.setCenter({cameraRespawnX, LOGIC_H / 2});
+
+    spawnBossBottles();
 
     if (!knyaz.meetTheBoos) {
         return;
