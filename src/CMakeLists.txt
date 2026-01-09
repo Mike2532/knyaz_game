@@ -1,6 +1,10 @@
 set(SRC_SOURCES
         main.cpp
         globals/globals.cpp
+        boss/bossType.cpp
+        boss/bossType.h
+        boss/initBoss.cpp
+        boss/initBoss.h
 )
 
 add_executable(knyaz_game ${SRC_SOURCES})

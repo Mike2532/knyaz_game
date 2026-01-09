@@ -130,6 +130,54 @@ knyaz_game/fast:
 	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/build
 .PHONY : knyaz_game/fast
 
+boss/bossType.o: boss/bossType.cpp.o
+.PHONY : boss/bossType.o
+
+# target to build an object file
+boss/bossType.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/boss/bossType.cpp.o
+.PHONY : boss/bossType.cpp.o
+
+boss/bossType.i: boss/bossType.cpp.i
+.PHONY : boss/bossType.i
+
+# target to preprocess a source file
+boss/bossType.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/boss/bossType.cpp.i
+.PHONY : boss/bossType.cpp.i
+
+boss/bossType.s: boss/bossType.cpp.s
+.PHONY : boss/bossType.s
+
+# target to generate assembly for a file
+boss/bossType.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/boss/bossType.cpp.s
+.PHONY : boss/bossType.cpp.s
+
+boss/initBoss.o: boss/initBoss.cpp.o
+.PHONY : boss/initBoss.o
+
+# target to build an object file
+boss/initBoss.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/boss/initBoss.cpp.o
+.PHONY : boss/initBoss.cpp.o
+
+boss/initBoss.i: boss/initBoss.cpp.i
+.PHONY : boss/initBoss.i
+
+# target to preprocess a source file
+boss/initBoss.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/boss/initBoss.cpp.i
+.PHONY : boss/initBoss.cpp.i
+
+boss/initBoss.s: boss/initBoss.cpp.s
+.PHONY : boss/initBoss.s
+
+# target to generate assembly for a file
+boss/initBoss.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/boss/initBoss.cpp.s
+.PHONY : boss/initBoss.cpp.s
+
 globals/globals.o: globals/globals.cpp.o
 .PHONY : globals/globals.o
 
@@ -187,6 +235,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... knyaz_game"
+	@echo "... boss/bossType.o"
+	@echo "... boss/bossType.i"
+	@echo "... boss/bossType.s"
+	@echo "... boss/initBoss.o"
+	@echo "... boss/initBoss.i"
+	@echo "... boss/initBoss.s"
 	@echo "... globals/globals.o"
 	@echo "... globals/globals.i"
 	@echo "... globals/globals.s"

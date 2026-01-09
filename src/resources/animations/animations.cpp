@@ -1,5 +1,6 @@
 #include "../../globals/globals.h"
 #include "../../../config/config.h"
+#include "./boss/boss.h"
 
 sf::Texture KnyazIdleTexture;
 sf::Texture KnyazRunTexture;
@@ -104,4 +105,33 @@ void initAnimations() {
             AnimationTypes::IDLE
     };
 
+    animationContainer["bossAttack0"] = {
+            *bossTextures[bossTexturesKeys::attack0],
+            6,
+            AnimationTypes::ATTACK
+    };
+
+    animationContainer["bossAttack1"] = {
+            *bossTextures[bossTexturesKeys::attack1],
+            6,
+            AnimationTypes::ATTACK
+    };
+
+    animationContainer["bossDeath"] = {
+            *bossTextures[bossTexturesKeys::death],
+            6,
+            AnimationTypes::ATTACK
+    };
+
+    animationContainer["bossIDLE"] = {
+            *bossTextures[bossTexturesKeys::idle],
+            6,
+            AnimationTypes::IDLE
+    };
+
+    animationContainer["bossWalk"] = {
+            *bossTextures[bossTexturesKeys::walk],
+            8,
+            AnimationTypes::RUN
+    };
 }

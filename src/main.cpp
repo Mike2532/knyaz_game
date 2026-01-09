@@ -31,6 +31,11 @@
 #include "./resources/sounds/fx/bottle/bottle.h"
 #include "./resources/sounds/fx/tp/tp.h"
 #include "./resources/sounds/fx/rage/rage.h"
+#include "./resources/animations/boss/boss.h"
+#include "./resources/animations/boss/boss.h"
+#include "./boss/bossType.h"
+#include "./boss/initBoss.h"
+
 
 using namespace std;
 
@@ -47,6 +52,21 @@ const unsigned int SCREEN_HEIGHT = desktopMode.height;
 
 const unsigned int BG_WIDTH = 1097;
 const unsigned int BG_HEIGHT = 900;
+
+void tododelete() {
+    if (!knyaz.meetTheBoos) {
+        return;
+    }
+
+    const auto prevLeftEdge = mapObjs[0];
+    const auto prevRightEdge = mapObjs[1];
+    const auto newRightEdge = mapObjs[2];
+    mapObjs[0] = prevRightEdge;
+    mapObjs[1] = newRightEdge;
+    mapObjs[2] = prevLeftEdge;
+
+}
+
 
 int main() {
     config = initConfig();
@@ -65,6 +85,8 @@ int main() {
 
     std::vector<sf::Text> textToPrint;
 
+    tododelete();
+
     while (window.isOpen()) {
         pollEvents();
         update(textToPrint);
@@ -78,6 +100,7 @@ void initDepends() {
     initFont();
     initBGTexture();
     initAnimationTextures();
+    initBossTextures();
     initAnimations();
     initObjsTextures();
     initUITextures();
@@ -95,6 +118,7 @@ void initDepends() {
     initBottleSound();
     initTpSound();
     initRageSound();
+    initBoss();
     knyaz.animationData = animationContainer["idle"];
     HpIndicatorSprite.setTexture(HpIndicatorTexture);
     srand(time(NULL));
@@ -122,6 +146,15 @@ void update(std::vector<sf::Text>& textToPrint) {
     } else if (curState == GameState::GAME_PROCESS) {
         float elapsedTime = globalTimer.getElapsedTime().asSeconds();
         globalTimer.restart();
+
+//        boss.stunProcess();
+//        boss.stunProcess();
+//        boss.checkKnyazVision();
+//        boss.move(elapsedTime);
+//        boss.tryToAttack();
+//        boss.animationProcess();
+//        boss.spritePositionUpdate();
+//        boss.easyComboReversal();
 
         for (auto &enemy : mapEnemys) {
             enemy.stunProcess();
@@ -188,6 +221,9 @@ void redrawFrame(const std::vector<sf::Text>& textToPrint) {
             break;
         case GameState::GAME_PROCESS:
             window.draw(knyaz.objSprite);
+
+            window.draw(boss.body);
+            window.draw(boss.objSprite);
 
             for (auto &enemy : mapEnemys) {
                 window.draw(enemy.objSprite);

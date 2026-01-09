@@ -7,10 +7,18 @@ void Enemy::move(const float &elapsedTime) {
         return;
     }
     if ((isNearLeftKnyaz || isNearRightKnyaz) && animationData.animationType != AnimationTypes::IDLE && animationData.animationType != AnimationTypes::ATTACK) {
-        changeAnimation(animationContainer["enemyIDLE"]);
+        if (isBoss) {
+            changeAnimation(animationContainer["bossIDLE"]);
+        } else {
+            changeAnimation(animationContainer["enemyIDLE"]);
+        }
         attackTimer.restart();
     } else if (!(isNearLeftKnyaz || isNearRightKnyaz) && animationData.animationType == AnimationTypes::ATTACK) {
-        changeAnimation(animationContainer["enemyIDLE"]);
+        if (isBoss) {
+            changeAnimation(animationContainer["bossIDLE"]);
+        } else {
+            changeAnimation(animationContainer["enemyIDLE"]);
+        }
     }
 
     float PATROL_SPEED = 125.f;
@@ -97,7 +105,11 @@ void Enemy::checkKnyazVision() {
         }
         if (state == EnemyStates::AGRESSIVE && searchingTimer.getElapsedTime().asSeconds() >= SEARCHING_DURATION) {
             state = EnemyStates::PATROLLING;
-            changeAnimation(animationContainer["enemyWalk"]);
+            if (isBoss) {
+                changeAnimation(animationContainer["bossWalk"]);
+            } else {
+                changeAnimation(animationContainer["enemyWalk"]);
+            }
         }
         return;
     }
@@ -149,43 +161,42 @@ void Enemy::tryToAttack() {
     bool isAttacking = isAttackingNow(attackTimer.getElapsedTime().asMilliseconds());
 
     if ((isNearLeftKnyaz || isNearRightKnyaz) && animationData.animationType != AnimationTypes::ATTACK && isAttacking) {
-        changeAnimation(animationContainer["enemyAttack"]);
+        if (isBoss) {
+            changeAnimation(animationContainer["bossAttack0"]);
+        } else {
+            changeAnimation(animationContainer["enemyAttack"]);
+        }
         playRandomAirSound();
     }
 }
 
 void Enemy::textureUpdate() {
-    constexpr int FRAME_WIDTH = 100;
-    constexpr int X_OFFSET = 44;
-    constexpr int Y_OFFSET = 41;
-    constexpr int ANIMATION_WIDTH = 22;
-    constexpr int ANIMATION_HEIGHT = 16;
-
     objSprite.setTexture(animationData.animationTexture);
 
     objSprite.setTextureRect(sf::IntRect(
-            FRAME_WIDTH * animationFrameNumber + X_OFFSET - 10,
-            Y_OFFSET - 10,
-            ANIMATION_WIDTH + 20,
-            ANIMATION_HEIGHT + 15
+            FRAME_WIDTH * animationFrameNumber + X_OFFSET,
+            Y_OFFSET,
+            ANIMATION_WIDTH,
+            ANIMATION_HEIGHT
     ));
-
-    float SCALE_X = 4.f;
-    float SCALE_Y = 4.f;
 
     if (isPatrolingLeft) {
         isSpriteLeftOrented = true;
-        SCALE_X *= -1;
+        ANIMATION_TEXTURE_SCALE_X *= -1;
     } else if (isSpriteLeftOrented) {
         isSpriteLeftOrented = false;
     }
 
-    objSprite.setScale(SCALE_X, SCALE_Y);
+    objSprite.setScale(ANIMATION_TEXTURE_SCALE_X, ANIMATION_TEXTURE_SCALE_Y);
 
     if (animationData.animationType == AnimationTypes::ATTACK) {
         if (animationFrameNumber == animationData.animationFrames - 1) {
             attackTimer.restart();
-            changeAnimation(animationContainer["enemyIDLE"]);
+            if (isBoss) {
+                changeAnimation(animationContainer["bossIDLE"]);
+            } else {
+                changeAnimation(animationContainer["enemyIDLE"]);
+            }
         } else if (animationFrameNumber == animationData.animationFrames - 3) {
             playRandomArmorSound();
             knyaz.hp -= attackPower;
@@ -198,22 +209,33 @@ void Enemy::textureUpdate() {
             knyaz.objSprite.setColor(sf::Color::Red);
             knyaz.damageTimer.restart();
         }
-
     }
 
     if (animationFrameNumber == animationData.animationFrames - 1 && animationData.animationType == AnimationTypes::ATTACK) {
         attackTimer.restart();
-        changeAnimation(animationContainer["enemyIDLE"]);
+        if (isBoss) {
+            changeAnimation(animationContainer["bossIDLE"]);
+        } else {
+            changeAnimation(animationContainer["enemyIDLE"]);
+        }
     }
 }
 
 void Enemy::spritePositionUpdate() {
     sf::Vector2f pos = body.getPosition();
-    pos.x -= 40;
-    pos.y -= 40;
-    if (isSpriteLeftOrented) {
-        pos.x += 130;
+    pos.x -= SPRITE_POS_X_OFFSET;
+    pos.y -= SPRITE_POS_Y_OFFSET;
+
+    if (!isBoss) {
+        if (isSpriteLeftOrented) {
+            pos.x += SPRITE_POS_ADDITIONAL_OFFSET;
+        }
+    } else {
+        if (!isSpriteLeftOrented) {
+            pos.x -= SPRITE_POS_ADDITIONAL_OFFSET;
+        }
     }
+
     objSprite.setPosition(pos);
 }
 

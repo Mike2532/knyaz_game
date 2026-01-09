@@ -6,6 +6,8 @@
 #include "../../globals.h"
 
 struct Enemy : AnimatedObj {
+    bool isBoss = false;
+
     int id;
 //    int MAX_HP = 2000;
     int MAX_HP = 200000000;
@@ -35,20 +37,25 @@ struct Enemy : AnimatedObj {
     bool needToReverse = false;
     sf::Clock reverseTimer;
 
+    int FRAME_WIDTH = 100;
+    int X_OFFSET = 34;
+    int Y_OFFSET = 31;
+    int ANIMATION_WIDTH = 42;
+    int ANIMATION_HEIGHT = 31;
+    float ANIMATION_TEXTURE_SCALE_X = 4.f;
+    float ANIMATION_TEXTURE_SCALE_Y = 4.f;
+
+    float SPRITE_POS_X_OFFSET = 40.f;
+    float SPRITE_POS_Y_OFFSET = 40.f;
+    float SPRITE_POS_ADDITIONAL_OFFSET = 130.f;
+
     void move(const float& elapsedTime);
-
     void checkKnyazVision();
-
     bool isAttackingNow(int x);
-
     void tryToAttack();
-
     void textureUpdate() override;
-
     void spritePositionUpdate();
-
     void stunProcess();
-
     void easyComboReversal();
 };
 

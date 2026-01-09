@@ -42,7 +42,9 @@ struct Knyaz : AnimatedObj {
     int rageCounter = 0;
     int focusCounter = 0;
 
-    bool meetTheBoos = false;
+    //TODO ПОМЕНЯТЬ
+//    bool meetTheBoos = false;
+    bool meetTheBoos = true;
 
     sf::Clock attackTimer;
     sf::Clock damageTimer;
@@ -53,11 +55,8 @@ struct Knyaz : AnimatedObj {
     sf::Vector2f tpCoords;
 
     void textureUpdate() override;
-
     void spritePositionUpdate();
-
     void takeDamage();
-
     void tpProcess();
 };
 
