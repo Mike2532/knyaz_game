@@ -5,55 +5,40 @@
 
 using namespace std;
 
-enum class jumpStates {base, oneJump, secondJump, heated, falling};
+enum class jumpStates {base, oneJump, secondJump, falling};
 
 struct Knyaz : AnimatedObj {
     const int MAX_HP = 3000;
     const int MAX_FOCUS_COUNTER = 6;
     const int MAX_RAGE_COUNTER = 3;
-
-    jumpStates curJMPState = jumpStates::base;
-    int jumpCounter = 0;
     const int MAX_JUMP_COUNTER = 2;
 
-    int lastHeatedEnemy;
     vector<string> actionsHistory;
+    jumpStates curJMPState = jumpStates::base;
+    sf::Clock attackTimer;
+    sf::Clock damageTimer;
+    sf::Clock climbingTimer;
+    sf::Clock tpTimer;
+    sf::Vector2f tpCoords;
 
-    bool isMovingLeft = false;
-    bool isMovingRight = false;
-    bool isJump = false;
-    bool isDoubleJump = false;
-    bool isClimbing = false;
-
-    bool isAtacking = false;
-
-    bool jmpAccess = true;
-
-    bool isRunning = false;
-
-    bool isAttackFinished = true;
-    bool isFlyingUp = false;
-
+    int jumpCounter = 0;
+    int lastHeatedEnemy;
     int hp = MAX_HP;
     int lightAttackPower = 400;
     int heavyAttackPower = 700;
     int rageAttackPower = 2200;
     int takenDamage = 0;
-
     int rageCounter = 0;
     int focusCounter = 0;
 
-    //TODO ПОМЕНЯТЬ
-//    bool meetTheBoos = false;
-    bool meetTheBoos = true;
-
-    sf::Clock attackTimer;
-    sf::Clock damageTimer;
-    sf::Clock climbingTimer;
-
+    bool isMovingLeft = false;
+    bool isMovingRight = false;
+    bool isClimbing = false;
+    bool isAtacking = false;
+    bool isAttackFinished = true;
+    bool isFlyingUp = false;
+    bool meetTheBoos = false;
     bool isTp = false;
-    sf::Clock tpTimer;
-    sf::Vector2f tpCoords;
 
     void textureUpdate() override;
     void spritePositionUpdate();
@@ -61,6 +46,9 @@ struct Knyaz : AnimatedObj {
     void tpProcess();
     void stopRun();
     void dieProcess();
+    void battleReset();
+    void fullHPReset();
+    void animationsReset();
 };
 
 extern Knyaz knyaz;

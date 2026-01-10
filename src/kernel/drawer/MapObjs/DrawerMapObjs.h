@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_DRAWERMAPOBJS_H
+#define KNYAZ_GAME_DRAWERMAPOBJS_H
+
+void drawMapObjs();
+
+#endif //KNYAZ_GAME_DRAWERMAPOBJS_H

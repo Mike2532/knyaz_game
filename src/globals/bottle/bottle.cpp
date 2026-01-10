@@ -1,12 +1,20 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
-#include <iostream>
 #include "../mapObjs/mapObjs.h"
 #include "../../resources/objs/objs.h"
 #include "../knyaz/knyaz.h"
-#include "../resources/sounds/fx/bottle/bottle.h"
+#include "../../resources/sounds/fx/bottle/bottleFX.h"
 
 using namespace std;
+
+vector<sf::Vector2f> bossBottlesCoords {
+        {5010.f, 512.f + 117.f}, //p2
+        {5175.f, 512.f + 117.f}, //p2
+        {4794.f, 268.f + 115.f}, //p4
+        {5355.f, 268.f + 115.f}, //p5
+        {5010.f, 97.f + 115.f}, //p6
+        {5175.f, 97.f + 115.f}, //p6
+};
 
 int getBottleSpawnChanse() {
     int knyazHpPercent = float(float (knyaz.hp) / float (knyaz.MAX_HP)) * 100;
@@ -58,4 +66,10 @@ void bottleProcess(GameEntity& bottleEntity) {
     const auto newKnyazHp = knyaz.hp + knyaz.MAX_HP / 100 * 35;
     knyaz.hp = min(newKnyazHp, knyaz.MAX_HP);
     removeBottleByCoords(bottleEntity.body.getPosition());
+}
+
+void spawnBossBottles() {
+    for (auto &bottleCoords : bossBottlesCoords) {
+        spawnBottle(bottleCoords);
+    }
 }

@@ -4,6 +4,7 @@
 #include "../../globals/tpEntity/tpEntity.h"
 #include "../resources/sounds/fx/tp/tp.h"
 #include "../globals/mapObjs/mapObjs.h"
+#include "../resources/sounds/fx/wind/wind.h"
 
 using namespace std;
 
@@ -28,6 +29,15 @@ void updateHpIndicator() {
     HpIndicatorSprite.setColor(HpColor);
 }
 
+void knyazMeetBossProcess() {
+    const auto prevLeftEdge = mapObjs[0];
+    const auto prevRightEdge = mapObjs[1];
+    const auto newRightEdge = mapObjs[2];
+    mapObjs[0] = prevRightEdge;
+    mapObjs[1] = newRightEdge;
+    mapObjs[2] = prevLeftEdge;
+}
+
 void checkKnyazPortaling() {
     const sf::Vector2f knyazPos = knyaz.body.getPosition();
     for (int i = 0; i < mapPortals.size(); i++) {
@@ -48,13 +58,10 @@ void checkKnyazPortaling() {
             } else if (i == 2) {
                 superLastTeleported = true;
                 knyaz.meetTheBoos = true;
-
-                const auto prevLeftEdge = mapObjs[0];
-                const auto prevRightEdge = mapObjs[1];
-                const auto newRightEdge = mapObjs[2];
-                mapObjs[0] = prevRightEdge;
-                mapObjs[1] = newRightEdge;
-                mapObjs[2] = prevLeftEdge;
+                knyazMeetBossProcess();
+            } else if (i == 3) {
+                curState = GameState::GAME_END;
+                stopWindSound();
             }
             break;
         }

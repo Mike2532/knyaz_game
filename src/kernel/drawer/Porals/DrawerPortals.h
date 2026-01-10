@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_DRAWERPORTALS_H
+#define KNYAZ_GAME_DRAWERPORTALS_H
+
+void drawPortals();
+
+#endif //KNYAZ_GAME_DRAWERPORTALS_H

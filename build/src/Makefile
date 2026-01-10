@@ -178,6 +178,30 @@ boss/initBoss.cpp.s:
 	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/boss/initBoss.cpp.s
 .PHONY : boss/initBoss.cpp.s
 
+globals/bottle/bottle.o: globals/bottle/bottle.cpp.o
+.PHONY : globals/bottle/bottle.o
+
+# target to build an object file
+globals/bottle/bottle.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/globals/bottle/bottle.cpp.o
+.PHONY : globals/bottle/bottle.cpp.o
+
+globals/bottle/bottle.i: globals/bottle/bottle.cpp.i
+.PHONY : globals/bottle/bottle.i
+
+# target to preprocess a source file
+globals/bottle/bottle.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/globals/bottle/bottle.cpp.i
+.PHONY : globals/bottle/bottle.cpp.i
+
+globals/bottle/bottle.s: globals/bottle/bottle.cpp.s
+.PHONY : globals/bottle/bottle.s
+
+# target to generate assembly for a file
+globals/bottle/bottle.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/globals/bottle/bottle.cpp.s
+.PHONY : globals/bottle/bottle.cpp.s
+
 globals/globals.o: globals/globals.cpp.o
 .PHONY : globals/globals.o
 
@@ -201,6 +225,318 @@ globals/globals.s: globals/globals.cpp.s
 globals/globals.cpp.s:
 	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/globals/globals.cpp.s
 .PHONY : globals/globals.cpp.s
+
+kernel/drawer/BG/DrawerBG.o: kernel/drawer/BG/DrawerBG.cpp.o
+.PHONY : kernel/drawer/BG/DrawerBG.o
+
+# target to build an object file
+kernel/drawer/BG/DrawerBG.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/BG/DrawerBG.cpp.o
+.PHONY : kernel/drawer/BG/DrawerBG.cpp.o
+
+kernel/drawer/BG/DrawerBG.i: kernel/drawer/BG/DrawerBG.cpp.i
+.PHONY : kernel/drawer/BG/DrawerBG.i
+
+# target to preprocess a source file
+kernel/drawer/BG/DrawerBG.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/BG/DrawerBG.cpp.i
+.PHONY : kernel/drawer/BG/DrawerBG.cpp.i
+
+kernel/drawer/BG/DrawerBG.s: kernel/drawer/BG/DrawerBG.cpp.s
+.PHONY : kernel/drawer/BG/DrawerBG.s
+
+# target to generate assembly for a file
+kernel/drawer/BG/DrawerBG.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/BG/DrawerBG.cpp.s
+.PHONY : kernel/drawer/BG/DrawerBG.cpp.s
+
+kernel/drawer/Game/DrawerGame.o: kernel/drawer/Game/DrawerGame.cpp.o
+.PHONY : kernel/drawer/Game/DrawerGame.o
+
+# target to build an object file
+kernel/drawer/Game/DrawerGame.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/Game/DrawerGame.cpp.o
+.PHONY : kernel/drawer/Game/DrawerGame.cpp.o
+
+kernel/drawer/Game/DrawerGame.i: kernel/drawer/Game/DrawerGame.cpp.i
+.PHONY : kernel/drawer/Game/DrawerGame.i
+
+# target to preprocess a source file
+kernel/drawer/Game/DrawerGame.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/Game/DrawerGame.cpp.i
+.PHONY : kernel/drawer/Game/DrawerGame.cpp.i
+
+kernel/drawer/Game/DrawerGame.s: kernel/drawer/Game/DrawerGame.cpp.s
+.PHONY : kernel/drawer/Game/DrawerGame.s
+
+# target to generate assembly for a file
+kernel/drawer/Game/DrawerGame.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/Game/DrawerGame.cpp.s
+.PHONY : kernel/drawer/Game/DrawerGame.cpp.s
+
+kernel/drawer/MapEnemys/DrawerMapEnemys.o: kernel/drawer/MapEnemys/DrawerMapEnemys.cpp.o
+.PHONY : kernel/drawer/MapEnemys/DrawerMapEnemys.o
+
+# target to build an object file
+kernel/drawer/MapEnemys/DrawerMapEnemys.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/MapEnemys/DrawerMapEnemys.cpp.o
+.PHONY : kernel/drawer/MapEnemys/DrawerMapEnemys.cpp.o
+
+kernel/drawer/MapEnemys/DrawerMapEnemys.i: kernel/drawer/MapEnemys/DrawerMapEnemys.cpp.i
+.PHONY : kernel/drawer/MapEnemys/DrawerMapEnemys.i
+
+# target to preprocess a source file
+kernel/drawer/MapEnemys/DrawerMapEnemys.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/MapEnemys/DrawerMapEnemys.cpp.i
+.PHONY : kernel/drawer/MapEnemys/DrawerMapEnemys.cpp.i
+
+kernel/drawer/MapEnemys/DrawerMapEnemys.s: kernel/drawer/MapEnemys/DrawerMapEnemys.cpp.s
+.PHONY : kernel/drawer/MapEnemys/DrawerMapEnemys.s
+
+# target to generate assembly for a file
+kernel/drawer/MapEnemys/DrawerMapEnemys.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/MapEnemys/DrawerMapEnemys.cpp.s
+.PHONY : kernel/drawer/MapEnemys/DrawerMapEnemys.cpp.s
+
+kernel/drawer/MapObjs/DrawerMapObjs.o: kernel/drawer/MapObjs/DrawerMapObjs.cpp.o
+.PHONY : kernel/drawer/MapObjs/DrawerMapObjs.o
+
+# target to build an object file
+kernel/drawer/MapObjs/DrawerMapObjs.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/MapObjs/DrawerMapObjs.cpp.o
+.PHONY : kernel/drawer/MapObjs/DrawerMapObjs.cpp.o
+
+kernel/drawer/MapObjs/DrawerMapObjs.i: kernel/drawer/MapObjs/DrawerMapObjs.cpp.i
+.PHONY : kernel/drawer/MapObjs/DrawerMapObjs.i
+
+# target to preprocess a source file
+kernel/drawer/MapObjs/DrawerMapObjs.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/MapObjs/DrawerMapObjs.cpp.i
+.PHONY : kernel/drawer/MapObjs/DrawerMapObjs.cpp.i
+
+kernel/drawer/MapObjs/DrawerMapObjs.s: kernel/drawer/MapObjs/DrawerMapObjs.cpp.s
+.PHONY : kernel/drawer/MapObjs/DrawerMapObjs.s
+
+# target to generate assembly for a file
+kernel/drawer/MapObjs/DrawerMapObjs.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/MapObjs/DrawerMapObjs.cpp.s
+.PHONY : kernel/drawer/MapObjs/DrawerMapObjs.cpp.s
+
+kernel/drawer/Menu/DrawerMenu.o: kernel/drawer/Menu/DrawerMenu.cpp.o
+.PHONY : kernel/drawer/Menu/DrawerMenu.o
+
+# target to build an object file
+kernel/drawer/Menu/DrawerMenu.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/Menu/DrawerMenu.cpp.o
+.PHONY : kernel/drawer/Menu/DrawerMenu.cpp.o
+
+kernel/drawer/Menu/DrawerMenu.i: kernel/drawer/Menu/DrawerMenu.cpp.i
+.PHONY : kernel/drawer/Menu/DrawerMenu.i
+
+# target to preprocess a source file
+kernel/drawer/Menu/DrawerMenu.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/Menu/DrawerMenu.cpp.i
+.PHONY : kernel/drawer/Menu/DrawerMenu.cpp.i
+
+kernel/drawer/Menu/DrawerMenu.s: kernel/drawer/Menu/DrawerMenu.cpp.s
+.PHONY : kernel/drawer/Menu/DrawerMenu.s
+
+# target to generate assembly for a file
+kernel/drawer/Menu/DrawerMenu.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/Menu/DrawerMenu.cpp.s
+.PHONY : kernel/drawer/Menu/DrawerMenu.cpp.s
+
+kernel/drawer/Porals/DrawerPortals.o: kernel/drawer/Porals/DrawerPortals.cpp.o
+.PHONY : kernel/drawer/Porals/DrawerPortals.o
+
+# target to build an object file
+kernel/drawer/Porals/DrawerPortals.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/Porals/DrawerPortals.cpp.o
+.PHONY : kernel/drawer/Porals/DrawerPortals.cpp.o
+
+kernel/drawer/Porals/DrawerPortals.i: kernel/drawer/Porals/DrawerPortals.cpp.i
+.PHONY : kernel/drawer/Porals/DrawerPortals.i
+
+# target to preprocess a source file
+kernel/drawer/Porals/DrawerPortals.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/Porals/DrawerPortals.cpp.i
+.PHONY : kernel/drawer/Porals/DrawerPortals.cpp.i
+
+kernel/drawer/Porals/DrawerPortals.s: kernel/drawer/Porals/DrawerPortals.cpp.s
+.PHONY : kernel/drawer/Porals/DrawerPortals.s
+
+# target to generate assembly for a file
+kernel/drawer/Porals/DrawerPortals.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/Porals/DrawerPortals.cpp.s
+.PHONY : kernel/drawer/Porals/DrawerPortals.cpp.s
+
+kernel/drawer/UI/DrawerUI.o: kernel/drawer/UI/DrawerUI.cpp.o
+.PHONY : kernel/drawer/UI/DrawerUI.o
+
+# target to build an object file
+kernel/drawer/UI/DrawerUI.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/UI/DrawerUI.cpp.o
+.PHONY : kernel/drawer/UI/DrawerUI.cpp.o
+
+kernel/drawer/UI/DrawerUI.i: kernel/drawer/UI/DrawerUI.cpp.i
+.PHONY : kernel/drawer/UI/DrawerUI.i
+
+# target to preprocess a source file
+kernel/drawer/UI/DrawerUI.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/UI/DrawerUI.cpp.i
+.PHONY : kernel/drawer/UI/DrawerUI.cpp.i
+
+kernel/drawer/UI/DrawerUI.s: kernel/drawer/UI/DrawerUI.cpp.s
+.PHONY : kernel/drawer/UI/DrawerUI.s
+
+# target to generate assembly for a file
+kernel/drawer/UI/DrawerUI.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/UI/DrawerUI.cpp.s
+.PHONY : kernel/drawer/UI/DrawerUI.cpp.s
+
+kernel/drawer/redraw.o: kernel/drawer/redraw.cpp.o
+.PHONY : kernel/drawer/redraw.o
+
+# target to build an object file
+kernel/drawer/redraw.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/redraw.cpp.o
+.PHONY : kernel/drawer/redraw.cpp.o
+
+kernel/drawer/redraw.i: kernel/drawer/redraw.cpp.i
+.PHONY : kernel/drawer/redraw.i
+
+# target to preprocess a source file
+kernel/drawer/redraw.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/redraw.cpp.i
+.PHONY : kernel/drawer/redraw.cpp.i
+
+kernel/drawer/redraw.s: kernel/drawer/redraw.cpp.s
+.PHONY : kernel/drawer/redraw.s
+
+# target to generate assembly for a file
+kernel/drawer/redraw.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/drawer/redraw.cpp.s
+.PHONY : kernel/drawer/redraw.cpp.s
+
+kernel/polling/eventsPolling.o: kernel/polling/eventsPolling.cpp.o
+.PHONY : kernel/polling/eventsPolling.o
+
+# target to build an object file
+kernel/polling/eventsPolling.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/polling/eventsPolling.cpp.o
+.PHONY : kernel/polling/eventsPolling.cpp.o
+
+kernel/polling/eventsPolling.i: kernel/polling/eventsPolling.cpp.i
+.PHONY : kernel/polling/eventsPolling.i
+
+# target to preprocess a source file
+kernel/polling/eventsPolling.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/polling/eventsPolling.cpp.i
+.PHONY : kernel/polling/eventsPolling.cpp.i
+
+kernel/polling/eventsPolling.s: kernel/polling/eventsPolling.cpp.s
+.PHONY : kernel/polling/eventsPolling.s
+
+# target to generate assembly for a file
+kernel/polling/eventsPolling.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/polling/eventsPolling.cpp.s
+.PHONY : kernel/polling/eventsPolling.cpp.s
+
+kernel/updater/Game/UpdateGame.o: kernel/updater/Game/UpdateGame.cpp.o
+.PHONY : kernel/updater/Game/UpdateGame.o
+
+# target to build an object file
+kernel/updater/Game/UpdateGame.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/updater/Game/UpdateGame.cpp.o
+.PHONY : kernel/updater/Game/UpdateGame.cpp.o
+
+kernel/updater/Game/UpdateGame.i: kernel/updater/Game/UpdateGame.cpp.i
+.PHONY : kernel/updater/Game/UpdateGame.i
+
+# target to preprocess a source file
+kernel/updater/Game/UpdateGame.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/updater/Game/UpdateGame.cpp.i
+.PHONY : kernel/updater/Game/UpdateGame.cpp.i
+
+kernel/updater/Game/UpdateGame.s: kernel/updater/Game/UpdateGame.cpp.s
+.PHONY : kernel/updater/Game/UpdateGame.s
+
+# target to generate assembly for a file
+kernel/updater/Game/UpdateGame.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/updater/Game/UpdateGame.cpp.s
+.PHONY : kernel/updater/Game/UpdateGame.cpp.s
+
+kernel/updater/loadScreen/UpdaterLoadScreen.o: kernel/updater/loadScreen/UpdaterLoadScreen.cpp.o
+.PHONY : kernel/updater/loadScreen/UpdaterLoadScreen.o
+
+# target to build an object file
+kernel/updater/loadScreen/UpdaterLoadScreen.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/updater/loadScreen/UpdaterLoadScreen.cpp.o
+.PHONY : kernel/updater/loadScreen/UpdaterLoadScreen.cpp.o
+
+kernel/updater/loadScreen/UpdaterLoadScreen.i: kernel/updater/loadScreen/UpdaterLoadScreen.cpp.i
+.PHONY : kernel/updater/loadScreen/UpdaterLoadScreen.i
+
+# target to preprocess a source file
+kernel/updater/loadScreen/UpdaterLoadScreen.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/updater/loadScreen/UpdaterLoadScreen.cpp.i
+.PHONY : kernel/updater/loadScreen/UpdaterLoadScreen.cpp.i
+
+kernel/updater/loadScreen/UpdaterLoadScreen.s: kernel/updater/loadScreen/UpdaterLoadScreen.cpp.s
+.PHONY : kernel/updater/loadScreen/UpdaterLoadScreen.s
+
+# target to generate assembly for a file
+kernel/updater/loadScreen/UpdaterLoadScreen.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/updater/loadScreen/UpdaterLoadScreen.cpp.s
+.PHONY : kernel/updater/loadScreen/UpdaterLoadScreen.cpp.s
+
+kernel/updater/mainMenu/UpdaterMainMenu.o: kernel/updater/mainMenu/UpdaterMainMenu.cpp.o
+.PHONY : kernel/updater/mainMenu/UpdaterMainMenu.o
+
+# target to build an object file
+kernel/updater/mainMenu/UpdaterMainMenu.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/updater/mainMenu/UpdaterMainMenu.cpp.o
+.PHONY : kernel/updater/mainMenu/UpdaterMainMenu.cpp.o
+
+kernel/updater/mainMenu/UpdaterMainMenu.i: kernel/updater/mainMenu/UpdaterMainMenu.cpp.i
+.PHONY : kernel/updater/mainMenu/UpdaterMainMenu.i
+
+# target to preprocess a source file
+kernel/updater/mainMenu/UpdaterMainMenu.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/updater/mainMenu/UpdaterMainMenu.cpp.i
+.PHONY : kernel/updater/mainMenu/UpdaterMainMenu.cpp.i
+
+kernel/updater/mainMenu/UpdaterMainMenu.s: kernel/updater/mainMenu/UpdaterMainMenu.cpp.s
+.PHONY : kernel/updater/mainMenu/UpdaterMainMenu.s
+
+# target to generate assembly for a file
+kernel/updater/mainMenu/UpdaterMainMenu.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/updater/mainMenu/UpdaterMainMenu.cpp.s
+.PHONY : kernel/updater/mainMenu/UpdaterMainMenu.cpp.s
+
+kernel/updater/update.o: kernel/updater/update.cpp.o
+.PHONY : kernel/updater/update.o
+
+# target to build an object file
+kernel/updater/update.cpp.o:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/updater/update.cpp.o
+.PHONY : kernel/updater/update.cpp.o
+
+kernel/updater/update.i: kernel/updater/update.cpp.i
+.PHONY : kernel/updater/update.i
+
+# target to preprocess a source file
+kernel/updater/update.cpp.i:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/updater/update.cpp.i
+.PHONY : kernel/updater/update.cpp.i
+
+kernel/updater/update.s: kernel/updater/update.cpp.s
+.PHONY : kernel/updater/update.s
+
+# target to generate assembly for a file
+kernel/updater/update.cpp.s:
+	cd /Users/misaculkov/CLionProjects/knyaz-game/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/kernel/updater/update.cpp.s
+.PHONY : kernel/updater/update.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -241,9 +577,51 @@ help:
 	@echo "... boss/initBoss.o"
 	@echo "... boss/initBoss.i"
 	@echo "... boss/initBoss.s"
+	@echo "... globals/bottle/bottle.o"
+	@echo "... globals/bottle/bottle.i"
+	@echo "... globals/bottle/bottle.s"
 	@echo "... globals/globals.o"
 	@echo "... globals/globals.i"
 	@echo "... globals/globals.s"
+	@echo "... kernel/drawer/BG/DrawerBG.o"
+	@echo "... kernel/drawer/BG/DrawerBG.i"
+	@echo "... kernel/drawer/BG/DrawerBG.s"
+	@echo "... kernel/drawer/Game/DrawerGame.o"
+	@echo "... kernel/drawer/Game/DrawerGame.i"
+	@echo "... kernel/drawer/Game/DrawerGame.s"
+	@echo "... kernel/drawer/MapEnemys/DrawerMapEnemys.o"
+	@echo "... kernel/drawer/MapEnemys/DrawerMapEnemys.i"
+	@echo "... kernel/drawer/MapEnemys/DrawerMapEnemys.s"
+	@echo "... kernel/drawer/MapObjs/DrawerMapObjs.o"
+	@echo "... kernel/drawer/MapObjs/DrawerMapObjs.i"
+	@echo "... kernel/drawer/MapObjs/DrawerMapObjs.s"
+	@echo "... kernel/drawer/Menu/DrawerMenu.o"
+	@echo "... kernel/drawer/Menu/DrawerMenu.i"
+	@echo "... kernel/drawer/Menu/DrawerMenu.s"
+	@echo "... kernel/drawer/Porals/DrawerPortals.o"
+	@echo "... kernel/drawer/Porals/DrawerPortals.i"
+	@echo "... kernel/drawer/Porals/DrawerPortals.s"
+	@echo "... kernel/drawer/UI/DrawerUI.o"
+	@echo "... kernel/drawer/UI/DrawerUI.i"
+	@echo "... kernel/drawer/UI/DrawerUI.s"
+	@echo "... kernel/drawer/redraw.o"
+	@echo "... kernel/drawer/redraw.i"
+	@echo "... kernel/drawer/redraw.s"
+	@echo "... kernel/polling/eventsPolling.o"
+	@echo "... kernel/polling/eventsPolling.i"
+	@echo "... kernel/polling/eventsPolling.s"
+	@echo "... kernel/updater/Game/UpdateGame.o"
+	@echo "... kernel/updater/Game/UpdateGame.i"
+	@echo "... kernel/updater/Game/UpdateGame.s"
+	@echo "... kernel/updater/loadScreen/UpdaterLoadScreen.o"
+	@echo "... kernel/updater/loadScreen/UpdaterLoadScreen.i"
+	@echo "... kernel/updater/loadScreen/UpdaterLoadScreen.s"
+	@echo "... kernel/updater/mainMenu/UpdaterMainMenu.o"
+	@echo "... kernel/updater/mainMenu/UpdaterMainMenu.i"
+	@echo "... kernel/updater/mainMenu/UpdaterMainMenu.s"
+	@echo "... kernel/updater/update.o"
+	@echo "... kernel/updater/update.i"
+	@echo "... kernel/updater/update.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

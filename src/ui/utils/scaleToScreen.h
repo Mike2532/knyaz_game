@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_SCALETOSCREEN_H
+#define KNYAZ_GAME_SCALETOSCREEN_H
+
+void scaleToScreen();
+
+#endif //KNYAZ_GAME_SCALETOSCREEN_H

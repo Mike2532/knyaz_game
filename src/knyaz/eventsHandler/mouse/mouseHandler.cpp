@@ -6,7 +6,14 @@
 #include "../../../resources/sounds/fx/fight/fight.h"
 
 bool canHandle() {
-    return !(knyaz.isJump || knyaz.isFalling || knyaz.isMovingLeft || knyaz.isMovingRight || knyaz.isAtacking);
+    return !(
+        knyaz.curJMPState == jumpStates::oneJump ||
+        knyaz.curJMPState == jumpStates::secondJump ||
+        knyaz.isFalling ||
+        knyaz.isMovingLeft ||
+        knyaz.isMovingRight ||
+        knyaz.isAtacking
+    );
 }
 
 void mouseEventsHandler(const sf::Event& event) {

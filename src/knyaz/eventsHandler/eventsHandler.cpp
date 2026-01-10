@@ -7,14 +7,15 @@
 #include "../knyaz.h"
 #include "../../globals/mapEnemys/mapEnemys.h"
 #include "../resources/sounds/fx/run/knyazRunFX.h"
-#include "../globals/bossBottles/bossBottles.h"
+#include "../globals/bottle/bottle.h"
+#include "../state/state.h"
 
 using namespace std;
 
 void movementHandler() {
     bool moveLeftPressed = sf::Keyboard::isKeyPressed(keymap["MOVE_LEFT_KEY"]);
     bool moveRightPressed = sf::Keyboard::isKeyPressed(keymap["MOVE_RIGHT_KEY"]);
-    bool isKnyazStanding = !(knyaz.isJump || knyaz.isFalling);
+    bool isKnyazStanding = !(knyaz.curJMPState == jumpStates::oneJump || knyaz.curJMPState == jumpStates::secondJump || knyaz.isFalling);
 
     if (moveLeftPressed || moveRightPressed) {
         knyaz.isAtacking = false;
@@ -56,6 +57,17 @@ void movementHandler() {
 
 }
 
+void cameraRespawn() {
+    constexpr float LOGIC_W = 1440;
+    constexpr float LOGIC_H = 900;
+
+    const float cameraRespawnX = (knyaz.meetTheBoos)
+                                 ? LOGIC_W / 2 + LOGIC_W * 3
+                                 : LOGIC_W / 2;
+
+    gameView.setCenter({cameraRespawnX, LOGIC_H / 2});
+}
+
 void gameRestart() {
     knyaz.body = initKnyazBody();
     initGameMap();
@@ -63,37 +75,19 @@ void gameRestart() {
     initMapPortals();
     initAntiGravityField();
     lastTeleported = false;
-    knyaz.isAlive = true;
-    knyaz.hp = knyaz.MAX_HP;
-    knyaz.focusCounter = 0;
-    knyaz.rageCounter = 0;
-    knyaz.changeAnimation(animationContainer["falling"]);
-    knyaz.freeFallingTimer.restart();
-    knyaz.isAtacking = false;
-    knyaz.isMovingLeft = false;
-    knyaz.isMovingRight = false;
 
-    constexpr float LOGIC_W = 1440;
-    constexpr float LOGIC_H = 900;
+    knyaz.fullHPReset();
+    knyaz.battleReset();
+    knyaz.stopRun();
+    knyaz.animationsReset();
 
-    const float cameraRespawnX = (knyaz.meetTheBoos)
-            ? LOGIC_W / 2 + LOGIC_W * 3
-            : LOGIC_W / 2;
-
-    gameView.setCenter({cameraRespawnX, LOGIC_H / 2});
-
+    cameraRespawn();
     spawnBossBottles();
 
     if (!knyaz.meetTheBoos) {
         return;
     }
-
-    const auto prevLeftEdge = mapObjs[0];
-    const auto prevRightEdge = mapObjs[1];
-    const auto newRightEdge = mapObjs[2];
-    mapObjs[0] = prevRightEdge;
-    mapObjs[1] = newRightEdge;
-    mapObjs[2] = prevLeftEdge;
+    knyazMeetBossProcess();
 }
 
 bool isGameShouldRestart(const sf::Event& event) {

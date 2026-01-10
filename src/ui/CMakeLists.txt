@@ -12,6 +12,8 @@ add_library(ui_lib
         gameEnd/gameEnd.h
         utils/deathEnemys.cpp
         utils/deathEnemys.h
+        utils/scaleToScreen.cpp
+        utils/scaleToScreen.h
 )
 
 target_link_libraries(ui_lib

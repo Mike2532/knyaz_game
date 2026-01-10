@@ -18,10 +18,6 @@ add_library(globals_lib STATIC
         bottle/bottle.h
         tpEntity/tpEntity.cpp
         tpEntity/tpEntity.h
-        boss/meet/meetBoss.cpp
-        boss/meet/meetBoss.h
-        bossBottles/bossBottles.cpp
-        bossBottles/bossBottles.h
         mapEnemys/enemysDamage.cpp
         mapEnemys/enemysDamage.h
         mapPortals/gameEndPortal.cpp

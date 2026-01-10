@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_DRAWERBG_H
+#define KNYAZ_GAME_DRAWERBG_H
+
+void drawBG();
+
+#endif //KNYAZ_GAME_DRAWERBG_H

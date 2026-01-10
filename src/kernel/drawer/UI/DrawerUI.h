@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_DRAWERUI_H
+#define KNYAZ_GAME_DRAWERUI_H
+
+void drawUI();
+
+#endif //KNYAZ_GAME_DRAWERUI_H

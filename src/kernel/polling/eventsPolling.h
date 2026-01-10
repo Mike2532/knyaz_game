@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_EVENTSPOLLING_H
+#define KNYAZ_GAME_EVENTSPOLLING_H
+
+void pollEvents();
+
+#endif //KNYAZ_GAME_EVENTSPOLLING_H

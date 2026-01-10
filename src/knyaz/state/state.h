@@ -6,5 +6,6 @@
 sf::RectangleShape initKnyazBody();
 void updateHpIndicator();
 void checkKnyazPortaling();
+void knyazMeetBossProcess();
 
 #endif //KNYAZ_GAME_STATE_H

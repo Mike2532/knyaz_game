@@ -26,6 +26,16 @@ void fallingCheck(bool &falling) {
     }
 }
 
+bool isKnyazStanding() {
+    return !(knyaz.isMovingRight || knyaz.isMovingLeft);
+}
+
+void changeAnimationAfrterLanding(string animationName) {
+    knyaz.changeAnimation(animationContainer[animationName]);
+    playRandomLandingSound();
+    stopWindSound();
+}
+
 void checkKnyazFalling() {
     bool falling = true;
     fallingCheck(falling);
@@ -33,17 +43,9 @@ void checkKnyazFalling() {
     if (knyaz.isClimbing) return;
 
     if (knyaz.isFalling && !falling) {
-        if (!(knyaz.isMovingRight || knyaz.isMovingLeft)) {
-            knyaz.changeAnimation(animationContainer["idle"]);
-            playRandomLandingSound();
-            stopWindSound();
-            knyaz.jmpAccess = true;
-        } else {
-            knyaz.changeAnimation(animationContainer["run"]);
-            playRandomLandingSound();
-            stopWindSound();
-            knyaz.jmpAccess = true;
-        }
+        isKnyazStanding()
+        ? changeAnimationAfrterLanding("idle")
+        : changeAnimationAfrterLanding("run");
     }
 
     if (falling == knyaz.isFalling) return;

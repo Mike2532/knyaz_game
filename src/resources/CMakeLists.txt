@@ -1,17 +1,19 @@
 add_library(resources_lib
         font/font.cpp
         font/font.h
-        sounds/gameMusic/music.cpp
-        sounds/gameMusic/music.h
         BG/BG.cpp
         BG/BG.h
         animations/animations.cpp
         animations/animations.h
+        animations/boss/boss.h
+        animations/boss/boss.cpp
         objs/objs.cpp
         objs/objs.h
         ui/ui.cpp
         ui/ui.h
         ui/uiStruct.h
+        sounds/gameMusic/music.cpp
+        sounds/gameMusic/music.h
         sounds/fx/fight/fight.cpp
         sounds/fx/fight/fight.h
         sounds/fx/run/knyazRunFX.cpp
@@ -22,14 +24,12 @@ add_library(resources_lib
         sounds/fx/utils/FX.h
         sounds/fx/wind/wind.cpp
         sounds/fx/wind/wind.h
-        sounds/fx/bottle/bottle.cpp
-        sounds/fx/bottle/bottle.h
+        sounds/fx/bottle/bottleFX.cpp
+        sounds/fx/bottle/bottleFX.h
         sounds/fx/tp/tp.cpp
         sounds/fx/tp/tp.h
         sounds/fx/rage/rage.cpp
         sounds/fx/rage/rage.h
-        animations/boss/boss.h
-        animations/boss/boss.cpp
         sounds/fx/win/win.cpp
         sounds/fx/win/win.h
 )

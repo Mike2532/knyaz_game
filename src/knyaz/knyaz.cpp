@@ -109,3 +109,19 @@ void Knyaz::dieProcess() {
     hp = 0;
     stopRun();
 }
+
+void Knyaz::battleReset() {
+    knyaz.isAtacking = false;
+    knyaz.focusCounter = 0;
+    knyaz.rageCounter = 0;
+}
+
+void Knyaz::fullHPReset() {
+    knyaz.isAlive = true;
+    knyaz.hp = knyaz.MAX_HP;
+}
+
+void Knyaz::animationsReset() {
+    knyaz.changeAnimation(animationContainer["falling"]);
+    knyaz.freeFallingTimer.restart();
+}

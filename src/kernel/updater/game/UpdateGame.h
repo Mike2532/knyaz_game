@@ -1,0 +1,6 @@
+#ifndef KNYAZ_GAME_UPDATEGAME_H
+#define KNYAZ_GAME_UPDATEGAME_H
+
+void updateGame();
+
+#endif //KNYAZ_GAME_UPDATEGAME_H
