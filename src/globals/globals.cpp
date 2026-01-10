@@ -18,8 +18,8 @@ GameState curState = GameState::MAIN_MENU;
 //TODO в прод закомментировать
 //GameState curState = GameState::GAME_PROCESS;
 
-bool lastTeleported = false;
-bool superLastTeleported = false;
+bool teleportedToZone4 = false;
+bool teleportedToBoss = false;
 
 sf::RectangleShape antiGravityField;
 

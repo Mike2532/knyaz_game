@@ -17,8 +17,8 @@ using namespace std;
 extern sf::Sprite BGSprite;
 extern sf::Sprite HpIndicatorSprite;
 
-extern bool lastTeleported;
-extern bool superLastTeleported;
+extern bool teleportedToZone4;
+extern bool teleportedToBoss;
 extern sf::RectangleShape antiGravityField;
 
 extern std::map<std::string, AnimationData> animationContainer;

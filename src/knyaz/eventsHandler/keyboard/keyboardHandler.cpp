@@ -1,7 +1,6 @@
 #include "../globals/globals.h"
 #include "../globals/mapEnemys/mapEnemys.h"
 #include "../../knyaz.h"
-#include "../resources/sounds/fx/run/knyazRunFX.h"
 #include "../resources/sounds/fx/rage/rage.h"
 #include "../resources/sounds/fx/tp/tp.h"
 

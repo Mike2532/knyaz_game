@@ -77,7 +77,7 @@ void gameRestart() {
     initEnemys();
     initMapPortals();
     initAntiGravityField();
-    lastTeleported = false;
+    teleportedToZone4 = false;
 
     knyaz.fullHPReset();
     knyaz.battleReset();

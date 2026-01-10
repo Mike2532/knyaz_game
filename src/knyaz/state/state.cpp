@@ -54,20 +54,20 @@ void checkKnyazPortaling() {
             knyaz.tpCoords = portal.outCoords;
             knyaz.stopRun();
             if (i == 1) {
-                lastTeleported = true;
+                teleportedToZone4 = true;
                 knyaz.isFlyingUp = false;
             } else if (i == 0) {
                 knyaz.isFlyingUp = true;
             } else if (i == 2) {
-                superLastTeleported = true;
+                teleportedToBoss = true;
                 knyaz.meetTheBoos = true;
                 knyazMeetBossProcess();
             } else if (i == 3) {
                 knyaz.meetTheBoos = false;
                 knyaz.body = initKnyazBody();
                 curState = GameState::GAME_END;
-                superLastTeleported = false;
-                lastTeleported = false;
+                teleportedToBoss = false;
+                teleportedToZone4 = false;
                 gameRestart();
                 updateBGSprite();
                 stopWindSound();

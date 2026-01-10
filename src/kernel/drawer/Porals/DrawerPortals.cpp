@@ -3,7 +3,7 @@
 #include "../globals/tpEntity/tpEntity.h"
 
 void drawPortals() {
-    if (!lastTeleported) {
+    if (!teleportedToZone4) {
         window.draw(antiGravityField);
         for (int i = 0; i < 2; i++) {
             window.draw(mapPortals[i].inBody);
@@ -11,7 +11,7 @@ void drawPortals() {
         }
     }
 
-    if (!superLastTeleported) {
+    if (!teleportedToBoss) {
         window.draw(mapPortals[2].inBody);
         window.draw(mapPortals[2].outBody);
     }
