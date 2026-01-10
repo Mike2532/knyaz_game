@@ -6,8 +6,6 @@
 struct MainMenu {
     sf::Text startText;
     sf::FloatRect startTextInfo;
-    sf::Text settingsText;
-    sf::FloatRect settingsTextInfo;
     sf::Text exitText;
     sf::FloatRect exitTextInfo;
 };

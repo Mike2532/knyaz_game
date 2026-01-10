@@ -13,31 +13,30 @@ MainMenu getMainMenu() {
 
     const int Y_OFFSET = 25;
 
-    const auto getXPosition = [SCREEN_WIDTH] (sf::FloatRect textInfo) -> float {
-        return SCREEN_WIDTH/2 - textInfo.width/2;
+    const auto getXPosition = [SCREEN_WIDTH](sf::FloatRect textInfo) -> float {
+        return SCREEN_WIDTH / 2.f - textInfo.width / 2.f;
     };
 
     sf::Text startText = makeText("start");
-    sf::Text settingsText = makeText("help");
-    sf::Text exitText = makeText("exit");
+    sf::Text exitText  = makeText("exit");
 
-    sf::FloatRect settingsTextInfo = settingsText.getLocalBounds();
-    settingsText.setPosition(getXPosition(settingsTextInfo), SCREEN_HEIGHT/2 - settingsTextInfo.height/2);
-    settingsTextInfo = settingsText.getGlobalBounds();
-
-    sf::FloatRect startTextInfo = startText.getGlobalBounds();
-    startText.setPosition(getXPosition(startTextInfo), settingsTextInfo.top - startTextInfo.height - Y_OFFSET);
+    sf::FloatRect startTextInfo = startText.getLocalBounds();
+    startText.setPosition(
+            getXPosition(startTextInfo),
+            SCREEN_HEIGHT / 2.f - startTextInfo.height - Y_OFFSET / 2.f
+    );
     startTextInfo = startText.getGlobalBounds();
 
-    sf::FloatRect exitTextInfo = exitText.getGlobalBounds();
-    exitText.setPosition(getXPosition(exitTextInfo), settingsTextInfo.top + settingsTextInfo.height + Y_OFFSET);
+    sf::FloatRect exitTextInfo = exitText.getLocalBounds();
+    exitText.setPosition(
+            getXPosition(exitTextInfo),
+            SCREEN_HEIGHT / 2.f + Y_OFFSET / 2.f
+    );
     exitTextInfo = exitText.getGlobalBounds();
 
     return {
             startText,
             startTextInfo,
-            settingsText,
-            settingsTextInfo,
             exitText,
             exitTextInfo
     };
@@ -47,29 +46,24 @@ void mainMenuMouseClickHandler(const sf::Event& event) {
     const int eventX = event.mouseButton.x;
     const int eventY = event.mouseButton.y;
 
-    auto checkButtonMatch = [eventX, eventY] (const sf::FloatRect& textInfo) -> bool {
-        if (
+    auto checkButtonMatch = [eventX, eventY](const sf::FloatRect& textInfo) -> bool {
+        return
                 eventX >= textInfo.left &&
                 eventX <= textInfo.left + textInfo.width &&
                 eventY >= textInfo.top &&
-                eventY <= textInfo.top + textInfo.height
-                ) {
-            return true;
-        }
-        return false;
+                eventY <= textInfo.top + textInfo.height;
     };
 
     if (checkButtonMatch(mainMenu.startTextInfo)) {
         globalTimer.restart();
         curState = GameState::LOAD_SCREEN_1;
         updateBGSprite();
-    } else if (checkButtonMatch(mainMenu.settingsTextInfo)) {
-        curState = GameState::HELP_MENU;
-        updateBGSprite();
-    } else if (checkButtonMatch(mainMenu.exitTextInfo)) {
+    }
+    else if (checkButtonMatch(mainMenu.exitTextInfo)) {
         window.close();
     }
 }
+
 
 void mainMenuEventsHandler(const sf::Event& event) {
     if (event.type == sf::Event::MouseButtonPressed) {

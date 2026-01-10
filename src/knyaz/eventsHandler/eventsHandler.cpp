@@ -8,7 +8,6 @@
 #include "../../globals/mapEnemys/mapEnemys.h"
 #include "../resources/sounds/fx/run/knyazRunFX.h"
 #include "../globals/bottle/bottle.h"
-#include "../state/state.h"
 
 using namespace std;
 

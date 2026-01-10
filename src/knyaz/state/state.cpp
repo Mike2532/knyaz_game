@@ -5,6 +5,8 @@
 #include "../resources/sounds/fx/tp/tp.h"
 #include "../globals/mapObjs/mapObjs.h"
 #include "../resources/sounds/fx/wind/wind.h"
+#include "../resources/BG/BG.h"
+#include "../knyaz/eventsHandler/eventsHandler.h"
 
 using namespace std;
 
@@ -60,7 +62,13 @@ void checkKnyazPortaling() {
                 knyaz.meetTheBoos = true;
                 knyazMeetBossProcess();
             } else if (i == 3) {
+                knyaz.meetTheBoos = false;
+                knyaz.body = initKnyazBody();
                 curState = GameState::GAME_END;
+                superLastTeleported = false;
+                lastTeleported = false;
+                gameRestart();
+                updateBGSprite();
                 stopWindSound();
             }
             break;

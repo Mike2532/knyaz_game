@@ -28,8 +28,7 @@ auto addEnemy(const EnemyParam &enemyParam) {
     if (enemyParam.isBoss) {
         myEnemy.body.setSize({120.f, 200.f});
         myEnemy.MAX_HP = 7000;
-//        myEnemy.hp = 7000;
-        myEnemy.hp = 1;
+        myEnemy.hp = 7000;
         myEnemy.X_OFFSET = 37;
         myEnemy.Y_OFFSET = 32;
         myEnemy.ANIMATION_WIDTH = 33;
@@ -48,7 +47,7 @@ auto addEnemy(const EnemyParam &enemyParam) {
 
 const vector<EnemyParam> enemyParams {
         { //MW
-                {1932.f + 300.f, 691.f + 20.f - 2.f + 100.f},
+                {1932.f + 150.f, 691.f + 20.f - 2.f + 100.f},
                 1774.f,
                 1899.f,
                 2290.f,
@@ -57,7 +56,7 @@ const vector<EnemyParam> enemyParams {
                 false
         },
         { //Start 1-st
-                {466.f + 300.f, 461.f + 20.f - 2.f + 100.f},
+                {466.f + 150.f, 461.f + 20.f - 2.f + 100.f},
                 407.f,
                 407.f,
                 653.f,
@@ -66,7 +65,7 @@ const vector<EnemyParam> enemyParams {
                 false
         },
         { //Start 2-nd
-                {702.f + 300.f, 67.f + 20.f - 2.f + 100.f},
+                {702.f + 150.f, 67.f + 20.f - 2.f + 100.f},
                 655.f,
                 680.f,
                 982.f,
