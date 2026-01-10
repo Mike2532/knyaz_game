@@ -9,7 +9,6 @@
 #include "../ui/utils/deathEnemys.h"
 #include "./resources/ui/ui.h"
 
-
 void updateGame() {
     float elapsedTime = globalTimer.getElapsedTime().asSeconds();
     globalTimer.restart();
