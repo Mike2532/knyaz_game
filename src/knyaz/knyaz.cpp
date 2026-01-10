@@ -1,6 +1,8 @@
 #include "../globals/mapObjs/gameEntity/gameEntity.h"
 #include "../globals/globals.h"
 #include "./knyaz.h"
+#include "./move/horizontal/horizontal.h"
+#include "../globals/mapObjs/mapObjs.h"
 
 using namespace std;
 
@@ -93,6 +95,7 @@ void Knyaz::tpProcess() {
     if (tpTimer.getElapsedTime().asMilliseconds() >= 450) {
         body.setPosition(tpCoords);
         isTp = false;
+        updateCamera(tpCoords.x, mapObjs[0].getRight(), mapObjs[1].getLeft());
     }
 }
 

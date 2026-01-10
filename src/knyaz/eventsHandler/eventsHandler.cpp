@@ -12,6 +12,10 @@
 using namespace std;
 
 void movementHandler() {
+    if (knyaz.isFlyingUp) {
+        return;
+    }
+
     bool moveLeftPressed = sf::Keyboard::isKeyPressed(keymap["MOVE_LEFT_KEY"]);
     bool moveRightPressed = sf::Keyboard::isKeyPressed(keymap["MOVE_RIGHT_KEY"]);
     bool isKnyazStanding = !(knyaz.curJMPState == jumpStates::oneJump || knyaz.curJMPState == jumpStates::secondJump || knyaz.isFalling);

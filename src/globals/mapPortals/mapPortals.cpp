@@ -28,7 +28,7 @@ Portal makePortal(PortalParam params) {
 vector<PortalParam> portalParams {
         {
                 {3498.f + 20.f, 661.f + 100.f},
-                {3661.f - 60.f, 661.f + 100.f},
+                {3661.f, 661.f + 100.f},
                 {5.f, 100.f},
                 {3543.f, 636.f + 100.f},
                 {100.f, 5.f},

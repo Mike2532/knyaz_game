@@ -6,47 +6,41 @@
 #include "../../globals.h"
 
 struct Enemy : AnimatedObj {
-    bool isBoss = false;
-
     int id;
     int MAX_HP = 2000;
-    float STUNNED_TIME = 3.f;
-
-    float LEFT_PATROLING_EDGE;
-    float RIGHT_PATROLING_EDGE;
-    float LEFT_ACTIVE_EDGE;
-    float RIGHT_ACTIVE_EDGE;
-
-    bool isNearLeftKnyaz = false;
-    bool isNearRightKnyaz = false;
-    bool seeKnyaz = false;
-    bool isPatrolingLeft = true;
-    bool isAttacking = false;
-
-    sf::Clock stunnedTimer;
-
     int hp = MAX_HP;
     int attackPower = 650;
     int takenDamage = 0;
-
-    sf::Clock searchingTimer;
-    sf::Clock attackTimer;
-    EnemyStates state = EnemyStates::PATROLLING;
-
-    bool needToReverse = false;
-    sf::Clock reverseTimer;
-
     int FRAME_WIDTH = 100;
     int X_OFFSET = 34;
     int Y_OFFSET = 31;
     int ANIMATION_WIDTH = 42;
     int ANIMATION_HEIGHT = 31;
+
+    float STUNNED_TIME = 3.f;
+    float LEFT_PATROLING_EDGE;
+    float RIGHT_PATROLING_EDGE;
+    float LEFT_ACTIVE_EDGE;
+    float RIGHT_ACTIVE_EDGE;
     float ANIMATION_TEXTURE_SCALE_X = 4.f;
     float ANIMATION_TEXTURE_SCALE_Y = 4.f;
-
     float SPRITE_POS_X_OFFSET = 40.f;
     float SPRITE_POS_Y_OFFSET = 40.f;
     float SPRITE_POS_ADDITIONAL_OFFSET = 130.f;
+
+
+    bool isNearLeftKnyaz = false;
+    bool isNearRightKnyaz = false;
+    bool seeKnyaz = false;
+    bool isPatrolingLeft = true;
+    bool isBoss = false;
+    bool needToReverse = false;
+
+    EnemyStates state = EnemyStates::PATROLLING;
+    sf::Clock stunnedTimer;
+    sf::Clock searchingTimer;
+    sf::Clock attackTimer;
+    sf::Clock reverseTimer;
 
     void move(const float& elapsedTime);
     void checkKnyazVision();

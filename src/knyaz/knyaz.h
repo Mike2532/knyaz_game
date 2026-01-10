@@ -8,7 +8,7 @@ using namespace std;
 enum class jumpStates {base, oneJump, secondJump, falling};
 
 struct Knyaz : AnimatedObj {
-    const int MAX_HP = 3000;
+    const int MAX_HP = 4000;
     const int MAX_FOCUS_COUNTER = 6;
     const int MAX_RAGE_COUNTER = 3;
     const int MAX_JUMP_COUNTER = 2;

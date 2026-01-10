@@ -52,6 +52,7 @@ void checkKnyazPortaling() {
             knyaz.tpTimer.restart();
             knyaz.isTp = true;
             knyaz.tpCoords = portal.outCoords;
+            knyaz.stopRun();
             if (i == 1) {
                 lastTeleported = true;
                 knyaz.isFlyingUp = false;

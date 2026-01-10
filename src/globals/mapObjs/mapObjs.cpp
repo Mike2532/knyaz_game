@@ -118,7 +118,7 @@ const vector<MapObj>  mapObjParams {
         makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 9 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
         makeEntity({30.f, 30.f}, {3774.f, 0.f + 30.f * 10 + 100.f}, ObjsTypes::SPIKES), //4zone battle arena spikes
 
-        makeEntity({80.f, 135.f + 100.f}, {4240.f, 0.f}, ObjsTypes::ENTITY), //4zone portalWall2
+        makeEntity({80.f + 65.f, 135.f + 100.f}, {4240.f - 65.f, 0.f}, ObjsTypes::ENTITY), //4zone portalWall2
         makeEntity({335.f, 35.f}, {3905.f, 100.f + 100.f}, ObjsTypes::ENTITY), //4zone foor near portal
         makeEntity({131.f, 70.f}, {3774.f, 330.f + 100.f}, ObjsTypes::ENTITY), //4zone platform under sheeps
         makeEntity({302.f, 35.f}, {3903.f, 365.f + 100.f}, ObjsTypes::ENTITY), //4zone platform for sheeps

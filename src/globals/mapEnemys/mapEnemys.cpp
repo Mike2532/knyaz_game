@@ -104,8 +104,8 @@ const vector<EnemyParam> enemyParams {
                 {3942.f, 40.f + 100.f},
                 3905,
                 3905,
-                4210,
-                4230,
+                4210 - 70.f,
+                4230 - 70.f,
                 6,
                 false
         },
@@ -114,7 +114,7 @@ const vector<EnemyParam> enemyParams {
                 3774,
                 3860,
                 4250,
-                4315,
+                4290,
                 7,
                 false
         },
