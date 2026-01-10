@@ -14,9 +14,9 @@ sf::View gameView;
 sf::View UIView;
 
 //TODO в прод разкомментировать
-//GameState curState = GameState::MAIN_MENU;
+GameState curState = GameState::MAIN_MENU;
 //TODO в прод закомментировать
-GameState curState = GameState::GAME_PROCESS;
+//GameState curState = GameState::GAME_PROCESS;
 
 bool lastTeleported = false;
 bool superLastTeleported = false;

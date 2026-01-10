@@ -37,8 +37,7 @@ struct Knyaz : AnimatedObj {
     bool isAtacking = false;
     bool isAttackFinished = true;
     bool isFlyingUp = false;
-//    bool meetTheBoos = false;
-    bool meetTheBoos = true;
+    bool meetTheBoos = false;
     bool isTp = false;
 
     void textureUpdate() override;
