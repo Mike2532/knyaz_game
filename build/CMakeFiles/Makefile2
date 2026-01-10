@@ -254,12 +254,12 @@ src/CMakeFiles/knyaz_game.dir/all: src/resources/CMakeFiles/resources_lib.dir/al
 src/CMakeFiles/knyaz_game.dir/all: src/ui/CMakeFiles/ui_lib.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33 "Built target knyaz_game"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 "Built target knyaz_game"
 .PHONY : src/CMakeFiles/knyaz_game.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/knyaz_game.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles 71
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles 69
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/knyaz_game.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/knyaz_game.dir/rule
@@ -271,7 +271,7 @@ knyaz_game: src/CMakeFiles/knyaz_game.dir/rule
 # codegen rule for target.
 src/CMakeFiles/knyaz_game.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/knyaz_game.dir/build.make src/CMakeFiles/knyaz_game.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33 "Finished codegen for target knyaz_game"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 "Finished codegen for target knyaz_game"
 .PHONY : src/CMakeFiles/knyaz_game.dir/codegen
 
 # clean rule for target.
@@ -318,7 +318,7 @@ src/globals/CMakeFiles/globals_lib.dir/clean:
 src/knyaz/CMakeFiles/knyaz_lib.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/knyaz/CMakeFiles/knyaz_lib.dir/build.make src/knyaz/CMakeFiles/knyaz_lib.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/knyaz/CMakeFiles/knyaz_lib.dir/build.make src/knyaz/CMakeFiles/knyaz_lib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=34,35,36,37,38,39,40,41,42,43,44,45,46 "Built target knyaz_lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=32,33,34,35,36,37,38,39,40,41,42,43,44 "Built target knyaz_lib"
 .PHONY : src/knyaz/CMakeFiles/knyaz_lib.dir/all
 
 # Build rule for subdir invocation for target.
@@ -335,7 +335,7 @@ knyaz_lib: src/knyaz/CMakeFiles/knyaz_lib.dir/rule
 # codegen rule for target.
 src/knyaz/CMakeFiles/knyaz_lib.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f src/knyaz/CMakeFiles/knyaz_lib.dir/build.make src/knyaz/CMakeFiles/knyaz_lib.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=34,35,36,37,38,39,40,41,42,43,44,45,46 "Finished codegen for target knyaz_lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=32,33,34,35,36,37,38,39,40,41,42,43,44 "Finished codegen for target knyaz_lib"
 .PHONY : src/knyaz/CMakeFiles/knyaz_lib.dir/codegen
 
 # clean rule for target.
@@ -350,7 +350,7 @@ src/knyaz/CMakeFiles/knyaz_lib.dir/clean:
 src/resources/CMakeFiles/resources_lib.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/resources/CMakeFiles/resources_lib.dir/build.make src/resources/CMakeFiles/resources_lib.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/resources/CMakeFiles/resources_lib.dir/build.make src/resources/CMakeFiles/resources_lib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63 "Built target resources_lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61 "Built target resources_lib"
 .PHONY : src/resources/CMakeFiles/resources_lib.dir/all
 
 # Build rule for subdir invocation for target.
@@ -367,7 +367,7 @@ resources_lib: src/resources/CMakeFiles/resources_lib.dir/rule
 # codegen rule for target.
 src/resources/CMakeFiles/resources_lib.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f src/resources/CMakeFiles/resources_lib.dir/build.make src/resources/CMakeFiles/resources_lib.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63 "Finished codegen for target resources_lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61 "Finished codegen for target resources_lib"
 .PHONY : src/resources/CMakeFiles/resources_lib.dir/codegen
 
 # clean rule for target.
@@ -382,7 +382,7 @@ src/resources/CMakeFiles/resources_lib.dir/clean:
 src/ui/CMakeFiles/ui_lib.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/ui_lib.dir/build.make src/ui/CMakeFiles/ui_lib.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/ui_lib.dir/build.make src/ui/CMakeFiles/ui_lib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=64,65,66,67,68,69,70,71 "Built target ui_lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=62,63,64,65,66,67,68,69 "Built target ui_lib"
 .PHONY : src/ui/CMakeFiles/ui_lib.dir/all
 
 # Build rule for subdir invocation for target.
@@ -399,7 +399,7 @@ ui_lib: src/ui/CMakeFiles/ui_lib.dir/rule
 # codegen rule for target.
 src/ui/CMakeFiles/ui_lib.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/ui_lib.dir/build.make src/ui/CMakeFiles/ui_lib.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=64,65,66,67,68,69,70,71 "Finished codegen for target ui_lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/misaculkov/CLionProjects/knyaz-game/build/CMakeFiles --progress-num=62,63,64,65,66,67,68,69 "Finished codegen for target ui_lib"
 .PHONY : src/ui/CMakeFiles/ui_lib.dir/codegen
 
 # clean rule for target.

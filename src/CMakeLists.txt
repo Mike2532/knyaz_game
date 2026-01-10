@@ -3,10 +3,6 @@ set(SRC_SOURCES
         globals/globals.cpp
         globals/bottle/bottle.cpp
         globals/bottle/bottle.h
-        boss/bossType.cpp
-        boss/bossType.h
-        boss/initBoss.cpp
-        boss/initBoss.h
         kernel/drawer/BG/DrawerBG.cpp
         kernel/drawer/BG/DrawerBG.h
         kernel/drawer/Porals/DrawerPortals.cpp

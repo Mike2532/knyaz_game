@@ -41,6 +41,21 @@ const sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
 const unsigned int SCREEN_WIDTH = desktopMode.width;
 const unsigned int SCREEN_HEIGHT = desktopMode.height;
 
+
+void tododelete() {
+    if (!knyaz.meetTheBoos) {
+        return;
+    }
+
+    const auto prevLeftEdge = mapObjs[0];
+    const auto prevRightEdge = mapObjs[1];
+    const auto newRightEdge = mapObjs[2];
+    mapObjs[0] = prevRightEdge;
+    mapObjs[1] = newRightEdge;
+    mapObjs[2] = prevLeftEdge;
+
+}
+
 int main() {
     config = initConfig();
     keymap = getKeymap();
@@ -54,6 +69,8 @@ int main() {
     playGameMusic();
 
     std::vector<sf::Text> textToPrint;
+
+    tododelete();
 
     while (window.isOpen()) {
         pollEvents();

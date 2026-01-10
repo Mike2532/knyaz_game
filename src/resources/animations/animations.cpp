@@ -120,7 +120,7 @@ void initAnimations() {
     animationContainer["bossDeath"] = {
             *bossTextures[bossTexturesKeys::death],
             6,
-            AnimationTypes::ATTACK
+            AnimationTypes::DEATH
     };
 
     animationContainer["bossIDLE"] = {

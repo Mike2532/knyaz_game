@@ -6,12 +6,14 @@
 #include "../globals/bottle/bottle.h"
 #include "../globals/mapPortals/gameEndPortal.h"
 
-void deadBossProcess(const Enemy& enemy) {
+void deadBossProcess(Enemy& enemy) {
     if (!enemy.isBoss) {
         return;
     }
+    enemy.changeAnimation(animationContainer["bossDeath"]);
     startKnyazWinSound();
     spawnGameEndPortal();
+    enemy.isAlive = false;
 }
 
 void deadEnemyProcess(const Enemy& enemy) {
